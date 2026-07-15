@@ -1304,10 +1304,9 @@ FPGA SYSTEMS
 );
 
 
-
 /* =====================================================
    RANDOM FPGA SIGNAL FIELD V4
-   MULTI-DIRECTION SIGNAL FLOW
+   MULTI DIRECTION SIGNAL FLOW
 ===================================================== */
 
 
@@ -1336,12 +1335,10 @@ pulse.className =
 
 
 
-// random streak length
+// random size
 
-const randomLength =
+const length =
 Math.random()*250+150;
-
-
 
 
 
@@ -1376,18 +1373,14 @@ Math.random()*700+600;
 
 
 
-
-// controlled speed
+// slower realistic speed
 
 const duration =
-Math.random()*6+8;
+Math.random()*5+8;
 
 
 
 
-
-
-// brightness variation
 
 const opacity =
 Math.random()*.35+.25;
@@ -1399,7 +1392,7 @@ Math.random()*.35+.25;
 
 
 pulse.style.width =
-`${randomLength}px`;
+`${length}px`;
 
 
 
@@ -1454,10 +1447,10 @@ initial
 
 
 
+
 cpuField.appendChild(
 pulse
 );
-
 
 
 
@@ -1474,7 +1467,6 @@ pulse.remove();
 
 (duration+2)*1000
 
-
 );
 
 
@@ -1482,26 +1474,7 @@ pulse.remove();
 }
 
 
-/* =====================================================
-   MULTI DIRECTION FPGA SIGNALS
-===================================================== */
 
-
-.cpu-pulse {
-
-    position:absolute;
-
-    height:2px;
-
-    ...
-}
-
-
-@keyframes signalMove {
-
-    ...
-
-}
 
 
 
@@ -1512,7 +1485,7 @@ function startSignalSystem(){
 
 
 
-// instant startup signals
+// create signals immediately when website loads
 
 for(
 let i=0;
@@ -1531,7 +1504,6 @@ createSignal(true);
 
 
 
-
 // continuous random generation
 
 setInterval(()=>{
@@ -1542,7 +1514,8 @@ createSignal();
 
 },
 
-Math.random()*2000+2000
+
+Math.random()*1500+2000
 
 
 );
@@ -1550,6 +1523,7 @@ Math.random()*2000+2000
 
 
 }
+
 
 
 
@@ -1590,6 +1564,7 @@ i++
 ){
 
 
+
 setTimeout(()=>{
 
 
@@ -1604,6 +1579,7 @@ i*250
 );
 
 
+
 }
 
 
@@ -1615,7 +1591,7 @@ setTimeout(
 
 randomBurst,
 
-Math.random()*15000+15000
+Math.random()*12000+12000
 
 );
 
@@ -1626,9 +1602,8 @@ Math.random()*15000+15000
 
 
 
+
 randomBurst();
-
-
 
 
 /* =====================================================
