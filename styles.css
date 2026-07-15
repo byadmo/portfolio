@@ -1,16 +1,31 @@
+/* =====================================================
+   ADAM MORGAN PORTFOLIO
+   APPLE x TERMINAL ENGINEERING SYSTEM
+===================================================== */
+
+
 :root {
 
+
     --bg:#0a0a0c;
+
     --card:#121214;
+
     --border:#202023;
 
+
     --white:#ffffff;
+
     --muted:#8e8e93;
 
-    --green:#00ff66;
+
     --cyan:#00f0ff;
 
+    --green:#00ff66;
+
+
     --radius:26px;
+
 
     --transition:
     all .4s cubic-bezier(
@@ -23,13 +38,19 @@
 }
 
 
+
+
+
 * {
 
     margin:0;
+
     padding:0;
+
     box-sizing:border-box;
 
 }
+
 
 
 
@@ -41,45 +62,82 @@ html {
 
 
 
+
+
 body {
 
-    background:var(--bg);
 
-    color:white;
+    background:
+
+    var(--bg);
+
+
+    color:
+
+    var(--white);
+
 
     font-family:
+
     "JetBrains Mono",
     monospace;
 
-    padding:32px;
+
+    padding:
+
+    40px;
+
 
     overflow-x:hidden;
 
+
     line-height:1.6;
+
 
 }
 
 
 
+
+
+
+/* =========================
+   BACKGROUND TEXTURE
+========================= */
+
+
 .noise {
+
 
     position:fixed;
 
+
     inset:0;
+
 
     pointer-events:none;
 
+
     opacity:.03;
 
+
     background-image:
+
     radial-gradient(
         white 1px,
         transparent 1px
     );
 
-    background-size:14px 14px;
+
+    background-size:
+
+    15px 15px;
+
 
 }
+
+
+
 
 
 
@@ -91,20 +149,29 @@ body {
 
 .grid {
 
+
     max-width:1600px;
+
 
     margin:auto;
 
+
     display:grid;
 
+
     grid-template-columns:
+
     repeat(12,1fr);
+
 
     gap:22px;
 
-    align-items:stretch;
 
 }
+
+
+
+
 
 
 
@@ -116,110 +183,165 @@ body {
 
 .card {
 
-    position:relative;
 
-    overflow:hidden;
+    background:
 
-    background:var(--card);
+    var(--card);
+
 
     border:
 
     1px solid var(--border);
 
-    border-radius:var(--radius);
 
-    padding:34px;
+    border-radius:
 
-    display:flex;
+    var(--radius);
 
-    flex-direction:column;
+
+    padding:
+
+    34px;
+
+
+    position:relative;
+
+
+    overflow:hidden;
+
 
     opacity:0;
 
+
     transform:
+
     translateY(30px);
 
 
+    transition:
+
+    var(--transition);
+
+
     --x:50%;
+
     --y:50%;
 
 
-    transition:var(--transition);
-
 }
+
+
 
 
 
 .card.active {
 
+
     opacity:1;
 
+
     transform:
+
     translateY(0);
 
+
 }
+
+
 
 
 
 .card:hover {
 
+
     transform:
+
     translateY(-6px);
 
-    border-color:var(--cyan);
+
+    border-color:
+
+    var(--cyan);
+
 
     box-shadow:
 
+
     0 20px 60px
+
     rgba(0,240,255,.08);
 
+
 }
+
+
 
 
 
 .card::before {
 
+
     content:"";
+
 
     position:absolute;
 
-    width:280px;
 
-    height:280px;
+    width:300px;
+
+
+    height:300px;
+
 
     left:var(--x);
+
 
     top:var(--y);
 
 
     transform:
+
     translate(-50%,-50%);
+
 
 
     background:
 
     radial-gradient(
+
         circle,
-        rgba(0,240,255,.16),
+
+        rgba(0,240,255,.15),
+
         transparent 70%
+
     );
 
 
     opacity:0;
 
+
+    transition:.3s;
+
+
     pointer-events:none;
 
-    transition:.4s;
 
 }
+
+
 
 
 
 .card:hover::before {
 
+
     opacity:1;
 
+
 }
+
+
 
 
 
@@ -232,56 +354,90 @@ body {
 
 h1 {
 
+
     font-size:
+
     clamp(3rem,6vw,5.5rem);
+
 
     line-height:1.05;
 
+
     letter-spacing:-3px;
+
 
     margin-bottom:35px;
 
+
 }
+
+
 
 
 
 h2 {
 
+
     font-size:30px;
+
 
     margin-bottom:25px;
 
+
 }
+
+
 
 
 
 h3 {
 
+
     font-size:18px;
 
+
+    margin-bottom:15px;
+
+
 }
+
 
 
 
 p {
 
+
     color:var(--muted);
 
+
 }
+
+
 
 
 
 .label {
 
+
     color:var(--green);
+
 
     font-size:12px;
 
+
     letter-spacing:2px;
 
-    margin-bottom:24px;
+
+    margin-bottom:25px;
+
+
+    display:block;
+
 
 }
+
+
+
 
 
 
@@ -295,11 +451,15 @@ p {
 
 .terminal {
 
+
     display:flex;
+
 
     gap:10px;
 
+
     margin-bottom:25px;
+
 
 }
 
@@ -307,34 +467,183 @@ p {
 
 .terminal span {
 
+
     width:14px;
+
 
     height:14px;
 
+
     border-radius:50%;
+
 
 }
 
 
+
+
+
 .red {
+
 
     background:#ff5f57;
 
 }
 
 
+
 .yellow {
+
 
     background:#febc2e;
 
 }
 
 
+
 .green {
+
 
     background:#28c840;
 
 }
+
+
+
+
+
+
+
+
+/* =========================
+   GRID POSITIONS
+========================= */
+
+
+.hero {
+
+
+    grid-column:
+
+    span 8;
+
+
+    grid-row:
+
+    span 2;
+
+
+    min-height:650px;
+
+
+}
+
+
+
+
+.focus {
+
+
+    grid-column:
+
+    span 4;
+
+
+    min-height:310px;
+
+
+}
+
+
+
+
+
+.hardware {
+
+
+    grid-column:
+
+    span 8;
+
+
+    grid-row:
+
+    span 2;
+
+
+    min-height:650px;
+
+
+}
+
+
+
+
+
+.journey {
+
+
+    grid-column:
+
+    span 4;
+
+
+    min-height:350px;
+
+
+}
+
+
+
+
+
+.stack {
+
+
+    grid-column:
+
+    span 4;
+
+
+    min-height:350px;
+
+
+}
+
+
+
+
+
+.entrepreneurship {
+
+
+    grid-column:
+
+    span 4;
+
+
+    min-height:350px;
+
+
+}
+
+
+
+
+
+.connect {
+
+
+    grid-column:
+
+    span 12;
+
+
+    min-height:220px;
+
+
+}
+
 
 
 
@@ -347,23 +656,14 @@ p {
 ========================= */
 
 
-.hero {
-
-    grid-column:span 8;
-
-    grid-row:span 2;
-
-    min-height:650px;
-
-}
-
-
-
 .typing {
+
 
     font-size:20px;
 
-    margin-top:15px;
+
+    margin-bottom:30px;
+
 
 }
 
@@ -371,29 +671,43 @@ p {
 
 #typing {
 
+
     color:var(--green);
 
+
 }
+
 
 
 
 .cursor {
 
+
     display:inline-block;
+
 
     width:10px;
 
+
     height:22px;
+
 
     background:var(--green);
 
-    animation:blink 1s infinite;
+
+    animation:
+
+    blink 1s infinite;
+
 
 }
 
 
 
+
+
 @keyframes blink {
+
 
     50% {
 
@@ -401,7 +715,10 @@ p {
 
     }
 
+
 }
+
+
 
 
 
@@ -409,124 +726,72 @@ p {
 
 .buttons {
 
+
     display:flex;
+
 
     gap:15px;
 
+
     margin-top:40px;
 
+
+    flex-wrap:wrap;
+
+
 }
+
+
 
 
 
 .buttons a {
 
-    padding:14px 24px;
+
+    padding:
+
+    14px 24px;
+
+
+    background:#18181b;
+
 
     border:
 
     1px solid var(--border);
 
+
     border-radius:14px;
 
-    background:#18181b;
 
     color:white;
 
+
     text-decoration:none;
 
-    transition:.3s;
+
+    transition:var(--transition);
+
 
 }
+
+
 
 
 
 .buttons a:hover {
 
+
     color:var(--green);
+
 
     border-color:var(--green);
 
-}
-
-
-
-
-
-/* =========================
-   BENTO POSITIONS
-========================= */
-
-
-.profile {
-
-    grid-column:span 4;
-
-    min-height:360px;
 
 }
 
 
 
-.hardware {
-
-    grid-column:span 8;
-
-    grid-row:span 2;
-
-    min-height:650px;
-
-}
-
-
-
-.creative {
-
-    grid-column:span 4;
-
-    min-height:350px;
-
-}
-
-
-
-.experience {
-
-    grid-column:span 4;
-
-    min-height:350px;
-
-}
-
-
-
-.toolkit {
-
-    grid-column:span 4;
-
-    min-height:350px;
-
-}
-
-
-
-.metrics {
-
-    grid-column:span 6;
-
-    min-height:300px;
-
-}
-
-
-
-.socials-card {
-
-    grid-column:span 6;
-
-    min-height:300px;
-
-}
 
 
 
@@ -534,45 +799,62 @@ p {
 
 
 /* =========================
-   CURRENT FOCUS
+   PROFILE
 ========================= */
 
 
-.profile .info {
+.info {
+
 
     display:flex;
 
+
     flex-direction:column;
+
 
     gap:22px;
 
-    margin-top:25px;
 
 }
 
 
 
-.profile .info div {
+
+
+.info div {
+
 
     padding-bottom:15px;
+
 
     border-bottom:
 
     1px solid var(--border);
 
+
 }
 
 
 
-.profile .info span {
+
+
+.info span {
+
 
     display:block;
 
-    color:var(--muted);
 
     font-size:12px;
 
+
+    color:var(--muted);
+
+
 }
+
+
+
+
 
 
 
@@ -585,13 +867,15 @@ p {
 
 .pipeline {
 
+
     display:flex;
+
 
     gap:12px;
 
-    margin:35px 0;
 
-    flex-wrap:wrap;
+    margin:30px 0;
+
 
 }
 
@@ -599,57 +883,64 @@ p {
 
 .pipeline span {
 
+
+    padding:
+
+    14px 18px;
+
+
     background:#18181b;
+
 
     border:
 
     1px solid var(--border);
 
-    padding:14px 18px;
 
     border-radius:12px;
 
+
 }
+
+
 
 
 
 pre {
 
+
     background:#080808;
+
 
     color:var(--green);
 
-    padding:22px;
+
+    padding:25px;
+
 
     border-radius:15px;
 
-    border:
-
-    1px solid var(--border);
-
-    min-height:230px;
 
     overflow:auto;
 
+
+    margin-bottom:25px;
+
+
 }
 
 
-
-.hardware ul {
-
-    margin-top:30px;
-
-    padding-left:20px;
-
-}
 
 
 
 .hardware li {
 
-    margin-bottom:16px;
 
     color:var(--muted);
+
+
+    margin-bottom:15px;
+
 
 }
 
@@ -658,60 +949,89 @@ pre {
 
 
 
+
+
 /* =========================
-   TIMELINE BUTTONS
+   JOURNEY
 ========================= */
 
 
 .years {
 
+
     display:flex;
 
-    gap:12px;
+
+    gap:10px;
+
 
     margin-bottom:25px;
 
+
 }
+
+
 
 
 
 .years button {
 
+
+    padding:
+
+    12px 18px;
+
+
     background:#18181b;
 
+
     color:white;
+
 
     border:
 
     1px solid var(--border);
 
-    padding:12px 18px;
 
     border-radius:12px;
 
+
     cursor:pointer;
+
 
     font-family:inherit;
 
+
 }
+
+
 
 
 
 .years button:hover {
 
+
     color:var(--green);
+
 
     border-color:var(--green);
 
+
 }
+
+
 
 
 
 #timeline {
 
+
     min-height:120px;
 
+
 }
+
+
 
 
 
@@ -719,95 +1039,221 @@ pre {
 
 
 /* =========================
-   MOBILE
+   TAGS
+========================= */
+
+
+.tags {
+
+
+    display:flex;
+
+
+    flex-wrap:wrap;
+
+
+    gap:10px;
+
+
+    margin-bottom:25px;
+
+
+}
+
+
+
+
+
+.tags span {
+
+
+    padding:
+
+    8px 14px;
+
+
+    background:#18181b;
+
+
+    border:
+
+    1px solid var(--border);
+
+
+    border-radius:999px;
+
+
+    font-size:13px;
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================
+   CONNECT
+========================= */
+
+
+.connect a {
+
+
+    display:inline-block;
+
+
+    margin-right:40px;
+
+
+    color:white;
+
+
+    text-decoration:none;
+
+
+    font-size:18px;
+
+
+}
+
+
+
+
+
+.connect a:hover {
+
+
+    color:var(--green);
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================
+   RESPONSIVE
 ========================= */
 
 
 @media(max-width:1100px){
 
 
-.grid {
+    body {
 
-    grid-template-columns:
-    repeat(6,1fr);
+        padding:24px;
+
+    }
+
+
+
+    .grid {
+
+
+        grid-template-columns:
+
+        repeat(6,1fr);
+
+
+    }
+
+
+
+    .hero,
+    .hardware {
+
+
+        grid-column:
+
+        span 6;
+
+
+    }
+
+
+
+    .focus,
+    .journey,
+    .stack,
+    .entrepreneurship {
+
+
+        grid-column:
+
+        span 3;
+
+
+    }
+
 
 }
 
 
-
-.hero,
-.hardware {
-
-    grid-column:span 6;
-
-}
-
-
-
-.profile,
-.creative,
-.experience,
-.toolkit {
-
-    grid-column:span 3;
-
-}
-
-
-
-}
 
 
 
 @media(max-width:700px){
 
 
-body {
+    body {
 
-    padding:16px;
+        padding:16px;
 
-}
-
-
-.grid {
-
-    display:flex;
-
-    flex-direction:column;
-
-}
-
-
-.card {
-
-    min-height:auto;
-
-    padding:24px;
-
-}
+    }
 
 
 
-h1 {
-
-    font-size:2.6rem;
-
-}
+    .grid {
 
 
-
-.buttons {
-
-    flex-direction:column;
-
-}
+        display:flex;
 
 
-.buttons a {
+        flex-direction:column;
 
-    text-align:center;
 
-}
+    }
+
+
+
+    .card {
+
+
+        min-height:auto;
+
+
+        padding:24px;
+
+
+    }
+
+
+
+    h1 {
+
+
+        font-size:2.7rem;
+
+
+    }
+
+
+
+    .buttons {
+
+
+        flex-direction:column;
+
+
+    }
 
 
 }
