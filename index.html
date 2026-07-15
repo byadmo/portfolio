@@ -6,20 +6,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Adam Morgan | Hardware Engineer</title>
+<title>Adam Morgan | Electrical Engineering Portfolio</title>
 
-<meta name="description" content="Adam Morgan — Computer Engineering student designing processors, RTL architectures, and creative technology.">
+<meta name="description" content="Adam Morgan — Electrical Engineering student specializing in digital systems, processor architecture, RTL design, and embedded hardware.">
+
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
+
 <link rel="stylesheet" href="styles.css">
 
-<script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
-
 </head>
+
 
 
 <body>
@@ -33,42 +35,49 @@
 
 
 <!-- =====================================================
-     HERO CARD
+ HERO
 ===================================================== -->
+
 
 <section class="card hero reveal">
 
 
 <div class="terminal-bar">
 
-    <div class="dots">
-        <span class="dot red"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
-    </div>
+<div class="dots">
+
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+
+</div>
 
 </div>
 
 
 
-<div class="hero-content">
-
-
 <p class="eyebrow">
-SYSTEM_INIT // ADAM_MORGAN
+
+ELECTRICAL_ENGINEERING // DIGITAL_SYSTEMS
+
 </p>
 
 
+
 <h1>
+
 Hi, I'm Adam.<br>
+
 I design computer processors.
+
 </h1>
+
 
 
 <div class="typing-line">
 
 <span>
-Currently Working on:
+Currently Building:
 </span>
 
 <span id="typing"></span>
@@ -81,30 +90,29 @@ Currently Working on:
 
 <p class="hero-description">
 
-Computer Engineering student focused on CPU architecture,
-RTL design, and building efficient hardware systems from the ground up.
+Electrical Engineering student focused on digital design,
+computer architecture, FPGA development, and creating efficient
+hardware systems from transistor-level concepts to complete processors.
 
 </p>
+
 
 
 
 <div class="hero-buttons">
 
-
-<a href="https://github.com" class="button">
-GitHub
+<a class="button" href="#">
+$ view_projects
 </a>
 
 
-<a href="https://linkedin.com" class="button secondary">
-LinkedIn
+<a class="button secondary" href="#">
+$ contact_adam
 </a>
 
 
 </div>
 
-
-</div>
 
 
 </section>
@@ -113,51 +121,81 @@ LinkedIn
 
 
 
+
+
 <!-- =====================================================
-     FOCUS WIDGET
+ SYSTEM STATUS
 ===================================================== -->
 
 
-<section class="card focus reveal">
+<section class="card status reveal">
 
 
 <span class="label">
-FOCUS_STATE
+SYSTEM_STATUS
 </span>
-
 
 
 <h2>
-STATUS:
-<span class="green-text">
-LOCKED IN
+
+MISSION:
+<span class="blue">
+BUILDING SILICON
+
 </span>
+
 </h2>
 
 
 
-<div class="wave">
+<div class="status-grid">
 
 
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
+<div>
+
+<span>
+RTL DESIGN
+</span>
+
+<strong>
+ACTIVE
+</strong>
+
+</div>
+
+
+<div>
+
+<span>
+FPGA DEVELOPMENT
+</span>
+
+<strong>
+ACTIVE
+</strong>
+
+</div>
+
+
+
+<div>
+
+<span>
+CPU ARCHITECTURE
+</span>
+
+<strong>
+ONLINE
+</strong>
+
+</div>
 
 
 </div>
 
 
 
-<p>
-
-Layering Classical Piano &
-20Hz Beta Binaural Beats
-for deep focus.
-
-</p>
-
+<div class="pulse-ring"></div>
 
 
 </section>
@@ -166,8 +204,12 @@ for deep focus.
 
 
 
+
+
+
+
 <!-- =====================================================
-     HARDWARE CORE
+ RISC-V CORE
 ===================================================== -->
 
 
@@ -190,79 +232,125 @@ for deep focus.
 <i>+</i>
 </span>
 
+
 </div>
 
 </div>
+
 
 
 
 <span class="label">
-PROJECT_001 // HARDWARE_CORE
+PROJECT_001 // PROCESSOR_DESIGN
 </span>
 
 
 
 <h2>
+
 32-Bit Pipelined RISC-V CPU Core
+
 </h2>
 
 
 
-<div class="hardware-layout">
+
+<div class="cpu-layout">
+
+
+<div class="pipeline">
+
+
+<div>
+IF
+</div>
+
+<div>
+ID
+</div>
+
+<div>
+EX
+</div>
+
+<div>
+MEM
+</div>
+
+<div>
+WB
+</div>
+
+
+</div>
+
+
+
 
 
 <div class="code-window">
 
 
 <pre>
-module cpu_core(
+
+module risc_v_cpu (
 
 input clk,
-input reset,
 
-output [31:0] pc
+input reset
 
 );
 
 
-pipeline_stage IF;
-pipeline_stage ID;
-pipeline_stage EX;
-pipeline_stage MEM;
-pipeline_stage WB;
+hazard_unit HU();
+
+forwarding_unit FU();
 
 
-
-forwarding_unit FU;
-
-hazard_detection HD;
+pipeline_registers PR();
 
 
 endmodule
+
 </pre>
+
 
 
 </div>
 
 
 
+
+</div>
+
+
+
+
+
+
 <div class="hardware-info">
+
+
+<p>
+Designed with:
+</p>
 
 
 <ul>
 
+
 <li>
-Hazard resolution and pipeline control logic
+5-stage pipeline architecture
 </li>
 
 
 <li>
-Data forwarding paths reducing stalls
+Data forwarding and hazard resolution
 </li>
 
 
 <li>
-Waveform simulation using GTKWave
+RTL simulation using GTKWave and ModelSim
 </li>
 
 
@@ -272,7 +360,6 @@ Waveform simulation using GTKWave
 </div>
 
 
-</div>
 
 
 </section>
@@ -283,8 +370,10 @@ Waveform simulation using GTKWave
 
 
 
+
+
 <!-- =====================================================
-     CREATIVE BRAIN
+ FOUNDER
 ===================================================== -->
 
 
@@ -292,35 +381,46 @@ Waveform simulation using GTKWave
 
 
 <span class="label">
-ENTREPRENEURSHIP
+
+CREATIVE_ENGINEERING
+
 </span>
 
 
 
 <h2>
+
 Independent Streetwear Brand
+
 </h2>
 
 
 
 <h3>
+
 Founder & Creative Director
+
 </h3>
 
 
 <p class="date">
-Jan. 2021 — Present
+
+2021 — Present
+
 </p>
 
 
 
 <p>
 
-Directed complete product lifecycle including
-material sourcing, manufacturing decisions,
-capital allocation, branding, and digital marketing.
+Managed product development,
+manufacturing decisions,
+capital allocation,
+branding strategy,
+and digital marketing.
 
 </p>
+
 
 
 </section>
@@ -331,8 +431,10 @@ capital allocation, branding, and digital marketing.
 
 
 
+
+
 <!-- =====================================================
-     EXPERIENCE
+ EXPERIENCE TIMELINE
 ===================================================== -->
 
 
@@ -340,27 +442,54 @@ capital allocation, branding, and digital marketing.
 
 
 <span class="label">
-EXPERIENCE_LOG
+
+ENGINEERING_TIMELINE
+
 </span>
 
 
 
-<div class="year-buttons">
+
+<div class="timeline">
 
 
-<button onclick="showExperience('2026')">
+<div>
+
+<span>
 2026
-</button>
+</span>
+
+<p>
+Processor design + advanced digital systems
+</p>
+
+</div>
 
 
-<button onclick="showExperience('2025')">
+<div>
+
+<span>
 2025
-</button>
+</span>
+
+<p>
+Engineering foundations + technical projects
+</p>
+
+</div>
 
 
-<button onclick="showExperience('2024')">
+<div>
+
+<span>
 2024
-</button>
+</span>
+
+<p>
+Programming, mathematics, and electronics foundation
+</p>
+
+</div>
 
 
 </div>
@@ -368,13 +497,74 @@ EXPERIENCE_LOG
 
 
 
-<div id="experience-display">
+</section>
 
+
+
+
+
+
+
+
+
+<!-- =====================================================
+ METRICS
+===================================================== -->
+
+
+<section class="card metrics reveal">
+
+
+<span class="label">
+
+ENGINEERING_METRICS
+
+</span>
+
+
+
+<div>
+
+<h2>
+3+
+</h2>
 
 <p>
-Select a year to view experience.
+Hardware Projects
+
 </p>
 
+</div>
+
+
+
+<div>
+
+<h2>
+5
+
+</h2>
+
+<p>
+Pipeline Stages
+
+</p>
+
+</div>
+
+
+
+<div>
+
+<h2>
+∞
+
+</h2>
+
+<p>
+Learning Capacity
+
+</p>
 
 </div>
 
@@ -388,50 +578,30 @@ Select a year to view experience.
 
 
 
+
+
 <!-- =====================================================
-     TECH TOOLKIT
+ TOOLKIT
 ===================================================== -->
 
 
 <section class="card toolkit reveal">
 
 
-<div class="terminal-bar">
-
-<div class="dots">
-
-<span class="dot red">
-<i>×</i>
-</span>
-
-<span class="dot yellow">
-<i>−</i>
-</span>
-
-<span class="dot green">
-<i>+</i>
-</span>
-
-</div>
-
-</div>
-
-
-
-
 <span class="label">
-SYSTEM_TOOLS
-</span>
 
+TECH_STACK
+
+</span>
 
 
 
 <div class="directory">
 
 
-<p>
+<h3>
 Languages/
-</p>
+</h3>
 
 
 <span>
@@ -447,52 +617,48 @@ C
 </span>
 
 <span>
-C#
+Python
 </span>
 
 <span>
 Java
 </span>
 
-<span>
-Python
-</span>
-
 
 </div>
-
-
 
 
 
 <div class="directory">
 
 
-<p>
-EDA_Tools/
-</p>
+<h3>
+Hardware_Tools/
+</h3>
 
-
-<span>
-GTKWave
-</span>
-
-<span>
-Icarus Verilog
-</span>
-
-<span>
-ModelSim
-</span>
 
 <span>
 Quartus Prime
 </span>
 
 
+<span>
+GTKWave
+</span>
+
+
+<span>
+ModelSim
+</span>
+
+
+<span>
+Icarus Verilog
+</span>
+
+
+
 </div>
-
-
 
 
 </section>
@@ -503,8 +669,10 @@ Quartus Prime
 
 
 
+
+
 <!-- =====================================================
-     SOCIAL
+ SOCIAL
 ===================================================== -->
 
 
@@ -512,33 +680,30 @@ Quartus Prime
 
 
 <span class="label">
-NETWORK
+
+CONNECT
+
 </span>
 
 
+<a href="#">
 
-<a href="https://github.com">
-
-<i class="fab fa-github"></i>
-
-GitHub
+$ github
 
 <code>
-$ git clone adam/projects
+git clone adam/projects
 </code>
 
 </a>
 
 
 
-<a href="https://linkedin.com">
+<a href="#">
 
-<i class="fab fa-linkedin"></i>
-
-LinkedIn
+$ linkedin
 
 <code>
-$ connect adam
+connect adam
 </code>
 
 </a>
@@ -553,8 +718,10 @@ $ connect adam
 
 
 
+
+
 <!-- =====================================================
-     QUOTE
+ QUOTE
 ===================================================== -->
 
 
@@ -563,13 +730,12 @@ $ connect adam
 
 <p>
 
-"Engineering is the art of turning ideas into systems."
+"From circuits to silicon."
 
 </p>
 
 
 </section>
-
 
 
 
