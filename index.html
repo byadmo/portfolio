@@ -30,70 +30,14 @@
 
 
 
-<!-- =========================
-NAVIGATION
-========================= -->
-
-
-<nav class="navbar">
-
-
-<div class="nav-logo">
-
-ADAM_MORGAN
-
-</div>
-
-
-
-<div class="nav-links">
-
-
-<a href="index.html">
-HOME
-</a>
-
-
-<a href="projects.html">
-PROJECTS
-</a>
-
-
-<a href="experience.html">
-EXPERIENCE
-</a>
-
-
-<a href="notes.html">
-NOTES
-</a>
-
-
-<a href="resume.html">
-RESUME
-</a>
-
-
-</div>
-
-
-</nav>
-
-
-
-
-
-
-
 <main class="bento-grid">
 
 
 
 
 
-
 <!-- =========================
-HERO
+ HERO
 ========================= -->
 
 
@@ -103,9 +47,7 @@ HERO
 <div class="terminal-dots">
 
 <span class="mac-red"></span>
-
 <span class="mac-yellow"></span>
-
 <span class="mac-green"></span>
 
 </div>
@@ -120,7 +62,6 @@ ELECTRICAL_ENGINEERING // COMPUTER_ARCHITECTURE
 
 
 
-
 <h1>
 
 Hi, I'm Adam.<br>
@@ -132,11 +73,12 @@ I design computer processors.
 
 
 
-
 <div class="typing-line">
 
 <span>
+
 Currently Building:
+
 </span>
 
 
@@ -147,7 +89,6 @@ Currently Building:
 
 
 </div>
-
 
 
 
@@ -168,7 +109,7 @@ and efficient hardware implementation.
 <div class="buttons">
 
 
-<a href="projects.html">
+<a href="#timeline-card" id="projects-button">
 
 $ view_projects
 
@@ -176,7 +117,7 @@ $ view_projects
 
 
 
-<a href="resume.html">
+<a href="resume.pdf" download>
 
 $ download_resume
 
@@ -192,8 +133,14 @@ $ contact_adam
 
 
 
-</div>
+<a href="notes.html">
 
+$ engineering_notes
+
+</a>
+
+
+</div>
 
 
 
@@ -208,7 +155,7 @@ $ contact_adam
 
 
 <!-- =========================
-PROFILE
+ PROFILE
 ========================= -->
 
 
@@ -228,6 +175,7 @@ ENGINEERING_PROFILE
 Current Focus
 
 </h2>
+
 
 
 
@@ -286,7 +234,7 @@ CPU Architecture + FPGA
 
 
 <!-- =========================
-HARDWARE PROJECT
+ PROCESSOR PROJECT
 ========================= -->
 
 
@@ -307,10 +255,7 @@ HARDWARE PROJECT
 +
 </span>
 
-
 </div>
-
-
 
 
 
@@ -319,7 +264,6 @@ HARDWARE PROJECT
 PROJECT_001 // PROCESSOR_DESIGN
 
 </div>
-
 
 
 
@@ -336,25 +280,17 @@ PROJECT_001 // PROCESSOR_DESIGN
 
 <div class="pipeline">
 
-<div>
-IF
-</div>
 
-<div>
-ID
-</div>
+<div>IF</div>
 
-<div>
-EX
-</div>
+<div>ID</div>
 
-<div>
-MEM
-</div>
+<div>EX</div>
 
-<div>
-WB
-</div>
+<div>MEM</div>
+
+<div>WB</div>
+
 
 </div>
 
@@ -393,121 +329,18 @@ endmodule
 5-stage instruction pipeline architecture
 </li>
 
-
 <li>
-Hazard detection and data forwarding paths
+Hazard detection and forwarding logic
 </li>
-
 
 <li>
 RTL verification using waveform simulation
 </li>
 
-
 </ul>
 
 
 
-</section>
-
-
-
-
-
-
-
-
-
-<!-- =========================
-LIVE HARDWARE
-========================= -->
-
-
-<section class="card live-hardware reveal">
-
-
-<div class="label">
-
-LIVE_HARDWARE
-
-</div>
-
-
-
-<h2>
-
-RISC-V Verification
-
-</h2>
-
-
-
-<div class="hardware-status">
-
-
-<div>
-
-<span>
-SIMULATION
-</span>
-
-
-<strong>
-PASS
-</strong>
-
-
-</div>
-
-
-
-
-<div>
-
-<span>
-PIPELINE
-</span>
-
-
-<strong>
-5-STAGE
-</strong>
-
-
-</div>
-
-
-
-
-<div>
-
-<span>
-RTL
-</span>
-
-
-<strong>
-VERIFIED
-</strong>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-<a href="projects.html">
-
-$ view_waveforms
-
-</a>
-
-
 
 </section>
 
@@ -520,13 +353,14 @@ $ view_waveforms
 
 
 <!-- =========================
-ENGINEERING JOURNEY
+ ENGINEERING JOURNEY
 ========================= -->
 
 
 <section 
 class="card timeline reveal"
 id="timeline-card">
+
 
 
 <div class="label">
@@ -537,25 +371,36 @@ ENGINEERING_JOURNEY
 
 
 
+
+
 <div class="year-buttons">
 
 
 <button data-year="2026">
+
 2026
+
 </button>
+
 
 
 <button data-year="2025">
+
 2025
+
 </button>
 
 
+
 <button data-year="2024">
+
 2024
+
 </button>
 
 
 </div>
+
 
 
 
@@ -572,7 +417,7 @@ Select a year
 
 <p>
 
-Explore engineering projects and experience.
+View projects and experience.
 
 </p>
 
@@ -593,7 +438,7 @@ Explore engineering projects and experience.
 
 
 <!-- =========================
-TECH STACK
+ TECH STACK
 ========================= -->
 
 
@@ -610,7 +455,9 @@ TECH_STACK
 
 
 <h3>
+
 HARDWARE/
+
 </h3>
 
 
@@ -620,13 +467,16 @@ HARDWARE/
 SystemVerilog
 </span>
 
+
 <span>
 Verilog
 </span>
 
+
 <span>
 FPGA
 </span>
+
 
 <span>
 RISC-V
@@ -638,8 +488,11 @@ RISC-V
 
 
 <h3>
+
 TOOLS/
+
 </h3>
+
 
 
 <div class="tags">
@@ -648,13 +501,16 @@ TOOLS/
 Quartus
 </span>
 
+
 <span>
 GTKWave
 </span>
 
+
 <span>
 ModelSim
 </span>
+
 
 <span>
 Icarus Verilog
@@ -676,7 +532,7 @@ Icarus Verilog
 
 
 <!-- =========================
-ENTREPRENEURSHIP
+ ENTREPRENEURSHIP
 ========================= -->
 
 
@@ -685,7 +541,7 @@ ENTREPRENEURSHIP
 
 <div class="label">
 
-ENTREPRENEERING
+ENTREPRENEURSHIP
 
 </div>
 
@@ -711,7 +567,6 @@ budgeting, branding, and product development.
 
 
 
-
 </section>
 
 
@@ -723,7 +578,7 @@ budgeting, branding, and product development.
 
 
 <!-- =========================
-CONNECT
+ CONNECT
 ========================= -->
 
 
@@ -747,12 +602,12 @@ $ github
 
 
 
+
 <a href="https://www.linkedin.com/in/adammorgan05/" target="_blank">
 
 $ linkedin
 
 </a>
-
 
 
 
@@ -773,6 +628,5 @@ $ linkedin
 
 
 </body>
-
 
 </html>
