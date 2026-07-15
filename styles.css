@@ -46,15 +46,17 @@ body {
 
     background:var(--bg);
 
-    color:white;
+    color:var(--white);
 
     font-family:
     "JetBrains Mono",
     monospace;
 
-    padding:40px;
+    padding:32px;
 
     overflow-x:hidden;
+
+    line-height:1.6;
 
 }
 
@@ -74,9 +76,10 @@ body {
     background-image:
     radial-gradient(
     white 1px,
-    transparent 1px);
+    transparent 1px
+    );
 
-    background-size:15px 15px;
+    background-size:14px 14px;
 
 }
 
@@ -124,11 +127,15 @@ body {
     border-radius:
     var(--radius);
 
-    padding:35px;
+    padding:34px;
 
     position:relative;
 
     overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
 
     opacity:0;
 
@@ -137,6 +144,10 @@ body {
 
     transition:
     var(--transition);
+
+
+    --x:50%;
+    --y:50%;
 
 }
 
@@ -163,51 +174,56 @@ body {
 
     box-shadow:
 
-    0 20px 50px
+    0 20px 60px
     rgba(0,240,255,.08);
 
 }
 
 
 
-
-
-.card::after {
+.card::before {
 
     content:"";
 
     position:absolute;
 
-    inset:0;
+    width:300px;
+
+    height:300px;
+
+    left:var(--x);
+
+    top:var(--y);
+
+    transform:
+    translate(-50%,-50%);
+
 
     background:
 
     radial-gradient(
-
-    circle at var(--x,50%) var(--y,50%),
-
-    rgba(0,240,255,.15),
-
-    transparent 35%
-
+        circle,
+        rgba(0,240,255,.16),
+        transparent 70%
     );
+
 
     opacity:0;
 
-    transition:.3s;
-
     pointer-events:none;
+
+    transition:
+    var(--transition);
 
 }
 
 
 
-.card:hover::after {
+.card:hover::before {
 
     opacity:1;
 
 }
-
 
 
 
@@ -237,7 +253,17 @@ h2 {
 
     font-size:28px;
 
-    margin-bottom:25px;
+    margin-bottom:24px;
+
+}
+
+
+
+h3 {
+
+    font-size:18px;
+
+    margin-bottom:15px;
 
 }
 
@@ -246,8 +272,6 @@ h2 {
 p {
 
     color:var(--muted);
-
-    line-height:1.8;
 
 }
 
@@ -261,110 +285,7 @@ p {
 
     letter-spacing:2px;
 
-    margin-bottom:25px;
-
-    display:block;
-
-}
-
-
-
-
-
-
-
-/* =====================
-   GRID POSITIONS
-===================== */
-
-
-.hero {
-
-    grid-column:
-    span 8;
-
-    grid-row:
-    span 2;
-
-}
-
-
-
-.profile {
-
-    grid-column:
-    span 4;
-
-}
-
-
-
-.hardware {
-
-    grid-column:
-    span 8;
-
-}
-
-
-
-.years + #timeline {
-
-    min-height:120px;
-
-}
-
-
-
-.years {
-
-    display:flex;
-
-    gap:12px;
-
-    margin-bottom:25px;
-
-}
-
-
-
-.years button {
-
-    background:#18181b;
-
-    color:white;
-
-    border:
-
-    1px solid var(--border);
-
-    padding:
-    12px 20px;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    font-family:inherit;
-
-}
-
-
-
-.years button:hover {
-
-    color:var(--green);
-
-    border-color:var(--green);
-
-}
-
-
-
-.card:nth-last-child(-n+3) {
-
-    grid-column:
-    span 4;
+    margin-bottom:24px;
 
 }
 
@@ -434,11 +355,37 @@ p {
 ===================== */
 
 
+.hero {
+
+    grid-column:
+    span 8;
+
+    grid-row:
+    span 2;
+
+    min-height:620px;
+
+}
+
+
+
+.hero p:not(.label) {
+
+    max-width:720px;
+
+    font-size:17px;
+
+    margin-top:25px;
+
+}
+
+
+
 .typing {
 
-    font-size:20px;
+    margin-top:10px;
 
-    margin-bottom:30px;
+    font-size:20px;
 
 }
 
@@ -462,7 +409,8 @@ p {
 
     background:var(--green);
 
-    animation:blink 1s infinite;
+    animation:
+    blink 1s infinite;
 
 }
 
@@ -481,14 +429,15 @@ p {
 
 
 
-
 .buttons {
-
-    margin-top:35px;
 
     display:flex;
 
     gap:15px;
+
+    margin-top:40px;
+
+    flex-wrap:wrap;
 
 }
 
@@ -497,17 +446,29 @@ p {
 .buttons a {
 
     padding:
-    14px 22px;
+
+    14px 24px;
+
+
+    border:
+
+    1px solid var(--border);
+
 
     border-radius:14px;
 
-    border:1px solid var(--border);
 
     color:white;
 
+
     text-decoration:none;
 
-    transition:.3s;
+
+    background:#18181b;
+
+
+    transition:
+    var(--transition);
 
 }
 
@@ -519,6 +480,9 @@ p {
 
     border-color:var(--green);
 
+    transform:
+    translateY(-3px);
+
 }
 
 
@@ -526,8 +490,99 @@ p {
 
 
 
+
 /* =====================
-   INFO
+   BENTO SIZING
+===================== */
+
+
+.profile {
+
+    grid-column:
+    span 4;
+
+    min-height:290px;
+
+}
+
+
+
+.hardware {
+
+    grid-column:
+    span 8;
+
+    grid-row:
+    span 2;
+
+    min-height:560px;
+
+}
+
+
+
+.card:nth-child(4) {
+
+    grid-column:
+    span 4;
+
+    min-height:350px;
+
+}
+
+
+
+.card:nth-child(5) {
+
+    grid-column:
+    span 4;
+
+    min-height:350px;
+
+}
+
+
+
+.card:nth-child(6) {
+
+    grid-column:
+    span 4;
+
+    min-height:350px;
+
+}
+
+
+
+.card:nth-child(7) {
+
+    grid-column:
+    span 6;
+
+    min-height:300px;
+
+}
+
+
+
+.card:nth-child(8) {
+
+    grid-column:
+    span 6;
+
+    min-height:300px;
+
+}
+
+
+
+
+
+
+
+
+/* =====================
+   PROFILE
 ===================== */
 
 
@@ -545,10 +600,10 @@ p {
 
 .info div {
 
+    padding-bottom:15px;
+
     border-bottom:
     1px solid var(--border);
-
-    padding-bottom:15px;
 
 }
 
@@ -569,9 +624,8 @@ p {
 
 
 
-
 /* =====================
-   CPU
+   CPU CARD
 ===================== */
 
 
@@ -581,7 +635,10 @@ p {
 
     gap:10px;
 
-    margin:30px 0;
+    flex-wrap:wrap;
+
+    margin:
+    30px 0;
 
 }
 
@@ -589,13 +646,20 @@ p {
 
 .pipeline span {
 
-    padding:15px;
+    padding:
+
+    14px 18px;
+
 
     background:#18181b;
 
-    border-radius:12px;
 
-    border:1px solid var(--border);
+    border:
+
+    1px solid var(--border);
+
+
+    border-radius:12px;
 
 }
 
@@ -605,11 +669,15 @@ pre {
 
     background:#080808;
 
-    padding:20px;
+    color:var(--green);
+
+    padding:22px;
 
     border-radius:15px;
 
-    color:var(--green);
+    border:
+
+    1px solid var(--border);
 
     overflow:auto;
 
@@ -619,13 +687,78 @@ pre {
 
 li {
 
-    margin-top:10px;
+    margin-top:12px;
 
     color:var(--muted);
 
 }
 
 
+
+
+
+
+
+/* =====================
+   TIMELINE
+===================== */
+
+
+.years {
+
+    display:flex;
+
+    gap:12px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.years button {
+
+    background:#18181b;
+
+    color:white;
+
+    border:
+
+    1px solid var(--border);
+
+
+    padding:
+
+    12px 18px;
+
+
+    border-radius:12px;
+
+
+    cursor:pointer;
+
+
+    font-family:inherit;
+
+}
+
+
+
+.years button:hover {
+
+    color:var(--green);
+
+    border-color:var(--green);
+
+}
+
+
+
+#timeline {
+
+    min-height:120px;
+
+}
 
 
 
@@ -640,11 +773,9 @@ li {
 
     display:flex;
 
-    flex-wrap:wrap;
-
     gap:10px;
 
-    margin-bottom:25px;
+    flex-wrap:wrap;
 
 }
 
@@ -654,12 +785,18 @@ li {
 
     background:#18181b;
 
+    border:
+
+    1px solid var(--border);
+
+
     padding:
-    8px 14px;
 
-    border-radius:20px;
+    9px 15px;
 
-    border:1px solid var(--border);
+
+    border-radius:999px;
+
 
     font-size:13px;
 
@@ -669,98 +806,95 @@ li {
 
 
 
-/* =====================
-   LINKS
-===================== */
-
-
-.card a {
-
-    display:block;
-
-    color:white;
-
-    padding:15px 0;
-
-    border-bottom:
-    1px solid var(--border);
-
-    text-decoration:none;
-
-}
-
-
-
-.card a:hover {
-
-    color:var(--green);
-
-}
-
-
-
-
-
 
 
 /* =====================
-   MOBILE
+   RESPONSIVE
 ===================== */
 
 
-@media(max-width:900px){
+@media(max-width:1100px){
 
 
-body {
+    .grid {
 
-    padding:20px;
+        grid-template-columns:
+        repeat(6,1fr);
+
+    }
+
+
+    .hero,
+    .hardware {
+
+        grid-column:
+        span 6;
+
+    }
+
+
+    .profile,
+    .card:nth-child(4),
+    .card:nth-child(5),
+    .card:nth-child(6) {
+
+        grid-column:
+        span 3;
+
+    }
+
 
 }
 
 
-.grid {
 
-    display:flex;
-
-    flex-direction:column;
-
-}
+@media(max-width:700px){
 
 
-.card {
+    body {
 
-    padding:25px;
+        padding:16px;
 
-}
-
-
-
-h1 {
-
-    font-size:2.7rem;
-
-}
+    }
 
 
-.buttons {
+    .grid {
 
-    flex-direction:column;
+        display:flex;
 
-}
+        flex-direction:column;
 
-
-.buttons a {
-
-    text-align:center;
-
-}
+    }
 
 
-.pipeline {
+    .card {
 
-    flex-wrap:wrap;
+        min-height:auto;
 
-}
+        padding:24px;
+
+    }
+
+
+    h1 {
+
+        font-size:2.6rem;
+
+    }
+
+
+    .buttons {
+
+        flex-direction:column;
+
+    }
+
+
+    .buttons a {
+
+        text-align:center;
+
+    }
 
 
 }
