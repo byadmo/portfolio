@@ -1306,12 +1306,14 @@ FPGA SYSTEMS
 
 
 /* =====================================================
-   RANDOM FPGA SIGNAL FIELD V3
+   RANDOM FPGA SIGNAL FIELD V4
+   MULTI-DIRECTION SIGNAL FLOW
 ===================================================== */
 
 
 const cpuField =
 document.getElementById("cpu-field");
+
 
 
 
@@ -1334,76 +1336,62 @@ pulse.className =
 
 
 
+// random streak length
 
-// random signal length
-
-const randomWidth =
-Math.random()*250+120;
-
-
-
-
-
-// random vertical position
-
-const randomTop =
-Math.random()*100;
+const randomLength =
+Math.random()*250+150;
 
 
 
 
 
-// ALWAYS start off screen
-// prevents stagnant appearing lines
+// random starting position
 
-const randomLeft =
-Math.random()*40-20;
-
+const startX =
+Math.random()*120-20;
 
 
-
-
-
-// controlled realistic speed
-// 14s minimum -> 28s maximum
-
-const randomDuration =
-Math.random()*5+7;
+const startY =
+Math.random()*120-20;
 
 
 
 
 
+// random direction
 
-// no long waiting delays
+const angle =
+Math.random()*360;
 
-const randomDelay =
-initial
-?
-Math.random()*1
-:
-0;
+
+
+
+
+// random travel distance
+
+const distance =
+Math.random()*700+600;
 
 
 
 
 
 
-// subtle angle changes
+// controlled speed
 
-const randomRotation =
-Math.random()*35-17;
-
-
+const duration =
+Math.random()*6+8;
 
 
 
 
 
-// softer brightness
 
-const randomOpacity =
-Math.random()*.3+.25;
+// brightness variation
+
+const opacity =
+Math.random()*.35+.25;
+
 
 
 
@@ -1411,39 +1399,56 @@ Math.random()*.3+.25;
 
 
 pulse.style.width =
-`${randomWidth}px`;
-
-
-
-pulse.style.top =
-`${randomTop}%`;
+`${randomLength}px`;
 
 
 
 pulse.style.left =
-`${randomLeft}%`;
+`${startX}%`;
 
 
 
-pulse.style.animationDuration =
-`${randomDuration}s`;
-
-
-
-pulse.style.animationDelay =
-`${randomDelay}s`;
+pulse.style.top =
+`${startY}%`;
 
 
 
 pulse.style.opacity =
-randomOpacity;
+opacity;
 
 
 
-pulse.style.transform =
-`
-rotate(${randomRotation}deg)
-`;
+
+
+pulse.style.setProperty(
+"--angle",
+`${angle}deg`
+);
+
+
+
+pulse.style.setProperty(
+"--distance",
+`${distance}px`
+);
+
+
+
+
+
+pulse.style.animationDuration =
+`${duration}s`;
+
+
+
+
+
+pulse.style.animationDelay =
+initial
+?
+`${Math.random()*1.5}s`
+:
+"0s";
 
 
 
@@ -1457,7 +1462,7 @@ pulse
 
 
 
-// cleanup
+
 
 setTimeout(()=>{
 
@@ -1465,12 +1470,10 @@ setTimeout(()=>{
 pulse.remove();
 
 
-
 },
 
-(randomDuration+randomDelay)
-*
-1000
+(duration+2)*1000
+
 
 );
 
@@ -1490,11 +1493,11 @@ function startSignalSystem(){
 
 
 
-// create signals immediately
+// instant startup signals
 
 for(
 let i=0;
-i<20;
+i<18;
 i++
 ){
 
@@ -1502,7 +1505,6 @@ i++
 createSignal(true);
 
 
-
 }
 
 
@@ -1511,7 +1513,7 @@ createSignal(true);
 
 
 
-// continuously generate new signals
+// continuous random generation
 
 setInterval(()=>{
 
@@ -1519,11 +1521,9 @@ setInterval(()=>{
 createSignal();
 
 
-
 },
 
-Math.random()*3000+3000
-
+Math.random()*2000+2000
 
 
 );
@@ -1531,8 +1531,6 @@ Math.random()*3000+3000
 
 
 }
-
-
 
 
 
@@ -1549,7 +1547,7 @@ startSignalSystem();
 
 
 /* =====================================================
-   RANDOM FPGA ACTIVITY BURSTS
+   RANDOM SIGNAL BURSTS
 ===================================================== */
 
 
@@ -1559,9 +1557,8 @@ function randomBurst(){
 
 const amount =
 Math.floor(
-Math.random()*3
+Math.random()*4
 )+2;
-
 
 
 
@@ -1574,20 +1571,18 @@ i++
 ){
 
 
-
 setTimeout(()=>{
 
 
 createSignal();
 
 
-
 },
 
-i*400
+i*250
+
 
 );
-
 
 
 }
@@ -1601,7 +1596,7 @@ setTimeout(
 
 randomBurst,
 
-Math.random()*20000+20000
+Math.random()*15000+15000
 
 );
 
@@ -1613,6 +1608,7 @@ Math.random()*20000+20000
 
 
 randomBurst();
+
 
 
 
