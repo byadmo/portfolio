@@ -1,1259 +1,437 @@
 /* =====================================================
    ADAM MORGAN PORTFOLIO
-   APPLE x TERMINAL ENGINEERING SYSTEM
+   INTERACTION ENGINE
 ===================================================== */
 
 
-:root {
+/* =====================================================
+   STAGGERED CARD REVEAL
+===================================================== */
 
 
-    --bg:#0a0a0c;
-
-    --card:#121214;
-
-    --border:#202023;
+const cards = document.querySelectorAll(".reveal");
 
 
-    --white:#ffffff;
-
-    --muted:#8e8e93;
+window.addEventListener("load", () => {
 
 
-    --cyan:#00f0ff;
-
-    --green:#00ff66;
+    cards.forEach((card, index) => {
 
 
-    --radius:26px;
+        setTimeout(() => {
 
 
-    --transition:
-    all .4s cubic-bezier(
-        .95,
-        .05,
-        .795,
-        .035
+            card.classList.add("active");
+
+
+        }, index * 120);
+
+
+    });
+
+
+});
+
+
+
+
+
+
+
+/* =====================================================
+   TYPEWRITER EFFECT
+===================================================== */
+
+
+const typingText = document.getElementById("typing");
+
+
+const words = [
+
+    "32-bit pipelined RISC-V cores...",
+
+    "synthesizable hardware...",
+
+    "optimized RTL architectures..."
+
+];
+
+
+
+let wordIndex = 0;
+
+let charIndex = 0;
+
+let deleting = false;
+
+
+
+function typeEffect(){
+
+
+    if(!typingText) return;
+
+
+
+    const current = words[wordIndex];
+
+
+
+    if(!deleting){
+
+
+        typingText.textContent =
+
+        current.substring(
+            0,
+            charIndex++
+        );
+
+
+
+        if(charIndex > current.length){
+
+
+            deleting = true;
+
+
+            setTimeout(
+                typeEffect,
+                1400
+            );
+
+
+            return;
+
+
+        }
+
+
+    }
+
+    else{
+
+
+        typingText.textContent =
+
+        current.substring(
+            0,
+            charIndex--
+        );
+
+
+
+        if(charIndex < 0){
+
+
+            deleting=false;
+
+
+            wordIndex =
+            (wordIndex + 1)
+            %
+            words.length;
+
+
+            charIndex=0;
+
+
+        }
+
+
+    }
+
+
+
+
+    setTimeout(
+
+        typeEffect,
+
+        deleting ? 45 : 90
+
     );
 
 }
 
 
 
+typeEffect();
 
 
-* {
 
-    margin:0;
 
-    padding:0;
 
-    box-sizing:border-box;
 
-}
 
 
+/* =====================================================
+   ENGINEERING TIMELINE
+===================================================== */
 
 
-html {
+const timelineData = {
 
-    scroll-behavior:smooth;
 
-}
+    "2026":
 
+    `
+    Processor architecture,
+    RTL design,
+    SystemVerilog development,
+    and digital hardware projects.
+    `,
 
 
+    "2025":
 
+    `
+    Engineering foundations,
+    programming,
+    mathematics,
+    physics,
+    and electronics development.
+    `,
 
-body {
 
+    "2024":
 
-    background:
+    `
+    Building fundamentals in
+    programming, problem solving,
+    and technical design.
+    `
 
-    var(--bg);
 
+};
 
-    color:
 
-    var(--white);
 
 
-    font-family:
+const yearButtons = document.querySelectorAll(
+    ".year-buttons button"
+);
 
-    "JetBrains Mono",
-    monospace;
 
 
-    padding:
+const timelineContent =
+document.getElementById(
+    "timeline-content"
+);
 
-    40px;
 
 
-    overflow-x:hidden;
+yearButtons.forEach(button => {
 
 
-    line-height:1.6;
 
+    button.addEventListener(
+        "mouseenter",
+        ()=>{
 
-}
 
+            const year =
+            button.dataset.year;
 
 
 
+            timelineContent.textContent =
+            timelineData[year];
 
 
-/* =========================
-   BACKGROUND TEXTURE
-========================= */
-
-
-.noise {
-
-
-    position:fixed;
-
-
-    inset:0;
-
-
-    pointer-events:none;
-
-
-    opacity:.03;
-
-
-    background-image:
-
-    radial-gradient(
-        white 1px,
-        transparent 1px
-    );
-
-
-    background-size:
-
-    15px 15px;
-
-
-}
-
-
-
-
-
-
-
-/* =========================
-   BENTO GRID
-========================= */
-
-
-.grid {
-
-
-    max-width:1600px;
-
-
-    margin:auto;
-
-
-    display:grid;
-
-
-    grid-template-columns:
-
-    repeat(12,1fr);
-
-
-    gap:22px;
-
-
-}
-
-
-
-
-
-
-
-
-/* =========================
-   CARD SYSTEM
-========================= */
-
-
-.card {
-
-
-    background:
-
-    var(--card);
-
-
-    border:
-
-    1px solid var(--border);
-
-
-    border-radius:
-
-    var(--radius);
-
-
-    padding:
-
-    34px;
-
-
-    position:relative;
-
-
-    overflow:hidden;
-
-
-    opacity:0;
-
-
-    transform:
-
-    translateY(30px);
-
-
-    transition:
-
-    var(--transition);
-
-
-    --x:50%;
-
-    --y:50%;
-
-
-}
-
-
-
-
-
-.card.active {
-
-
-    opacity:1;
-
-
-    transform:
-
-    translateY(0);
-
-
-}
-
-
-
-
-
-.card:hover {
-
-
-    transform:
-
-    translateY(-6px);
-
-
-    border-color:
-
-    var(--cyan);
-
-
-    box-shadow:
-
-
-    0 20px 60px
-
-    rgba(0,240,255,.08);
-
-
-}
-
-
-
-
-
-.card::before {
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-    width:300px;
-
-
-    height:300px;
-
-
-    left:var(--x);
-
-
-    top:var(--y);
-
-
-    transform:
-
-    translate(-50%,-50%);
-
-
-
-    background:
-
-    radial-gradient(
-
-        circle,
-
-        rgba(0,240,255,.15),
-
-        transparent 70%
+        }
 
     );
 
 
-    opacity:0;
 
 
-    transition:.3s;
+    button.addEventListener(
+        "mouseleave",
+        ()=>{
 
 
-    pointer-events:none;
+            timelineContent.textContent =
+            "Hover a year";
 
 
-}
+        }
 
+    );
 
 
 
+});
 
-.card:hover::before {
 
 
-    opacity:1;
 
 
-}
 
 
+/* =====================================================
+   TERMINAL DOT MICRO INTERACTION
+===================================================== */
 
 
+const dots =
+document.querySelectorAll(
+    ".terminal-dots span"
+);
 
 
 
-/* =========================
-   TYPOGRAPHY
-========================= */
+dots.forEach(dot=>{
 
 
-h1 {
+    dot.addEventListener(
+        "mouseenter",
+        ()=>{
 
 
-    font-size:
+            dot.style.transform =
+            "scale(1.3) rotate(15deg)";
 
-    clamp(3rem,6vw,5.5rem);
 
+        }
 
-    line-height:1.05;
+    );
 
 
-    letter-spacing:-3px;
 
+    dot.addEventListener(
+        "mouseleave",
+        ()=>{
 
-    margin-bottom:35px;
 
+            dot.style.transform =
+            "scale(1) rotate(0deg)";
 
-}
 
+        }
 
+    );
 
 
+});
 
-h2 {
 
 
-    font-size:30px;
 
 
-    margin-bottom:25px;
 
 
-}
 
+/* =====================================================
+   CARD MOUSE LIGHT EFFECT
+===================================================== */
 
 
+const allCards =
+document.querySelectorAll(".card");
 
 
-h3 {
 
+allCards.forEach(card=>{
 
-    font-size:18px;
 
+    card.addEventListener(
+        "mousemove",
+        e=>{
 
-    margin-bottom:15px;
 
+            const rect =
+            card.getBoundingClientRect();
 
-}
 
 
+            const x =
+            e.clientX - rect.left;
 
 
-p {
 
+            const y =
+            e.clientY - rect.top;
 
-    color:var(--muted);
 
 
-}
+            card.style.setProperty(
+                "--x",
+                `${x}px`
+            );
 
 
 
+            card.style.setProperty(
+                "--y",
+                `${y}px`
+            );
 
 
-.label {
+        }
 
+    );
 
-    color:var(--green);
 
 
-    font-size:12px;
+});
 
 
-    letter-spacing:2px;
 
 
-    margin-bottom:25px;
 
 
-    display:block;
 
 
-}
+/* =====================================================
+   BUTTON TERMINAL EFFECT
+===================================================== */
 
 
+const buttons =
+document.querySelectorAll(
+    ".buttons a"
+);
 
 
 
+buttons.forEach(button=>{
 
 
+    const original =
+    button.textContent;
 
 
-/* =========================
-   TERMINAL DOTS
-========================= */
 
+    button.addEventListener(
+        "mouseenter",
+        ()=>{
 
-.terminal {
 
+            button.textContent =
+            "> " +
+            original.trim();
 
-    display:flex;
 
+        }
 
-    gap:10px;
+    );
 
 
-    margin-bottom:25px;
 
+    button.addEventListener(
+        "mouseleave",
+        ()=>{
 
-}
 
+            button.textContent =
+            original;
 
 
-.terminal span {
+        }
 
+    );
 
-    width:14px;
 
 
-    height:14px;
-
-
-    border-radius:50%;
-
-
-}
-
-
-
-
-
-.red {
-
-
-    background:#ff5f57;
-
-}
-
-
-
-.yellow {
-
-
-    background:#febc2e;
-
-}
-
-
-
-.green {
-
-
-    background:#28c840;
-
-}
-
-
-
-
-
-
-
-
-/* =========================
-   GRID POSITIONS
-========================= */
-
-
-.hero {
-
-
-    grid-column:
-
-    span 8;
-
-
-    grid-row:
-
-    span 2;
-
-
-    min-height:650px;
-
-
-}
-
-
-
-
-.focus {
-
-
-    grid-column:
-
-    span 4;
-
-
-    min-height:310px;
-
-
-}
-
-
-
-
-
-.hardware {
-
-
-    grid-column:
-
-    span 8;
-
-
-    grid-row:
-
-    span 2;
-
-
-    min-height:650px;
-
-
-}
-
-
-
-
-
-.journey {
-
-
-    grid-column:
-
-    span 4;
-
-
-    min-height:350px;
-
-
-}
-
-
-
-
-
-.stack {
-
-
-    grid-column:
-
-    span 4;
-
-
-    min-height:350px;
-
-
-}
-
-
-
-
-
-.entrepreneurship {
-
-
-    grid-column:
-
-    span 4;
-
-
-    min-height:350px;
-
-
-}
-
-
-
-
-
-.connect {
-
-
-    grid-column:
-
-    span 12;
-
-
-    min-height:220px;
-
-
-}
-
-
-
-
-
-
-
-
-/* =========================
-   HERO
-========================= */
-
-
-.typing {
-
-
-    font-size:20px;
-
-
-    margin-bottom:30px;
-
-
-}
-
-
-
-#typing {
-
-
-    color:var(--green);
-
-
-}
-
-
-
-
-.cursor {
-
-
-    display:inline-block;
-
-
-    width:10px;
-
-
-    height:22px;
-
-
-    background:var(--green);
-
-
-    animation:
-
-    blink 1s infinite;
-
-
-}
-
-
-
-
-
-@keyframes blink {
-
-
-    50% {
-
-        opacity:0;
-
-    }
-
-
-}
-
-
-
-
-
-
-
-.buttons {
-
-
-    display:flex;
-
-
-    gap:15px;
-
-
-    margin-top:40px;
-
-
-    flex-wrap:wrap;
-
-
-}
-
-
-
-
-
-.buttons a {
-
-
-    padding:
-
-    14px 24px;
-
-
-    background:#18181b;
-
-
-    border:
-
-    1px solid var(--border);
-
-
-    border-radius:14px;
-
-
-    color:white;
-
-
-    text-decoration:none;
-
-
-    transition:var(--transition);
-
-
-}
-
-
-
-
-
-.buttons a:hover {
-
-
-    color:var(--green);
-
-
-    border-color:var(--green);
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-   PROFILE
-========================= */
-
-
-.info {
-
-
-    display:flex;
-
-
-    flex-direction:column;
-
-
-    gap:22px;
-
-
-}
-
-
-
-
-
-.info div {
-
-
-    padding-bottom:15px;
-
-
-    border-bottom:
-
-    1px solid var(--border);
-
-
-}
-
-
-
-
-
-.info span {
-
-
-    display:block;
-
-
-    font-size:12px;
-
-
-    color:var(--muted);
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-   CPU PROJECT
-========================= */
-
-
-.pipeline {
-
-
-    display:flex;
-
-
-    gap:12px;
-
-
-    margin:30px 0;
-
-
-}
-
-
-
-.pipeline span {
-
-
-    padding:
-
-    14px 18px;
-
-
-    background:#18181b;
-
-
-    border:
-
-    1px solid var(--border);
-
-
-    border-radius:12px;
-
-
-}
-
-
-
-
-
-pre {
-
-
-    background:#080808;
-
-
-    color:var(--green);
-
-
-    padding:25px;
-
-
-    border-radius:15px;
-
-
-    overflow:auto;
-
-
-    margin-bottom:25px;
-
-
-}
-
-
-
-
-
-.hardware li {
-
-
-    color:var(--muted);
-
-
-    margin-bottom:15px;
-
-
-}
-
-
-
-
-
-
-
-
-/* =========================
-   JOURNEY
-========================= */
-
-
-.years {
-
-
-    display:flex;
-
-
-    gap:10px;
-
-
-    margin-bottom:25px;
-
-
-}
-
-
-
-
-
-.years button {
-
-
-    padding:
-
-    12px 18px;
-
-
-    background:#18181b;
-
-
-    color:white;
-
-
-    border:
-
-    1px solid var(--border);
-
-
-    border-radius:12px;
-
-
-    cursor:pointer;
-
-
-    font-family:inherit;
-
-
-}
-
-
-
-
-
-.years button:hover {
-
-
-    color:var(--green);
-
-
-    border-color:var(--green);
-
-
-}
-
-
-
-
-
-#timeline {
-
-
-    min-height:120px;
-
-
-}
-
-
-
-
-
-
-
-
-/* =========================
-   TAGS
-========================= */
-
-
-.tags {
-
-
-    display:flex;
-
-
-    flex-wrap:wrap;
-
-
-    gap:10px;
-
-
-    margin-bottom:25px;
-
-
-}
-
-
-
-
-
-.tags span {
-
-
-    padding:
-
-    8px 14px;
-
-
-    background:#18181b;
-
-
-    border:
-
-    1px solid var(--border);
-
-
-    border-radius:999px;
-
-
-    font-size:13px;
-
-
-}
-
-
-
-
-
-
-
-
-/* =========================
-   CONNECT
-========================= */
-
-
-.connect a {
-
-
-    display:inline-block;
-
-
-    margin-right:40px;
-
-
-    color:white;
-
-
-    text-decoration:none;
-
-
-    font-size:18px;
-
-
-}
-
-
-
-
-
-.connect a:hover {
-
-
-    color:var(--green);
-
-
-}
-
-
-
-
-
-
-
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-
-@media(max-width:1100px){
-
-
-    body {
-
-        padding:24px;
-
-    }
-
-
-
-    .grid {
-
-
-        grid-template-columns:
-
-        repeat(6,1fr);
-
-
-    }
-
-
-
-    .hero,
-    .hardware {
-
-
-        grid-column:
-
-        span 6;
-
-
-    }
-
-
-
-    .focus,
-    .journey,
-    .stack,
-    .entrepreneurship {
-
-
-        grid-column:
-
-        span 3;
-
-
-    }
-
-
-}
-
-
-
-
-
-@media(max-width:700px){
-
-
-    body {
-
-        padding:16px;
-
-    }
-
-
-
-    .grid {
-
-
-        display:flex;
-
-
-        flex-direction:column;
-
-
-    }
-
-
-
-    .card {
-
-
-        min-height:auto;
-
-
-        padding:24px;
-
-
-    }
-
-
-
-    h1 {
-
-
-        font-size:2.7rem;
-
-
-    }
-
-
-
-    .buttons {
-
-
-        flex-direction:column;
-
-
-    }
-
-
-}
+});
