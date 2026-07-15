@@ -1,7 +1,8 @@
 /* =====================================================
    ADAM MORGAN PORTFOLIO
-   INTERACTION ENGINE
+   RESTORED INTERACTION ENGINE
 ===================================================== */
+
 
 
 /* =====================================================
@@ -9,7 +10,8 @@
 ===================================================== */
 
 
-const revealCards = document.querySelectorAll(".reveal");
+const revealCards =
+document.querySelectorAll(".reveal");
 
 
 window.addEventListener("load",()=>{
@@ -24,7 +26,7 @@ window.addEventListener("load",()=>{
             card.classList.add("active");
 
 
-        },index * 120);
+        }, index * 120);
 
 
     });
@@ -97,16 +99,17 @@ function typeWriter(){
         if(letterIndex > word.length){
 
 
-            deleting=true;
+            deleting = true;
 
 
             setTimeout(
                 typeWriter,
-                1300
+                1400
             );
 
 
             return;
+
 
         }
 
@@ -131,7 +134,7 @@ function typeWriter(){
 
 
             wordIndex =
-            (wordIndex+1)
+            (wordIndex + 1)
             %
             typingWords.length;
 
@@ -146,11 +149,12 @@ function typeWriter(){
 
 
 
+
     setTimeout(
 
         typeWriter,
 
-        deleting ? 40 : 90
+        deleting ? 45 : 90
 
     );
 
@@ -169,9 +173,8 @@ typeWriter();
 
 
 
-
 /* =====================================================
-   CARD MOUSE LIGHT
+   MOUSE CURSOR GLOW OVERLAY
 ===================================================== */
 
 
@@ -183,41 +186,42 @@ document.querySelectorAll(".card");
 cards.forEach(card=>{
 
 
-card.addEventListener(
-"mousemove",
-(e)=>{
+    card.addEventListener(
+        "mousemove",
+        event=>{
 
 
-const rect =
-card.getBoundingClientRect();
-
-
-
-const x =
-e.clientX - rect.left;
+            const rect =
+            card.getBoundingClientRect();
 
 
 
-const y =
-e.clientY - rect.top;
+            const x =
+            event.clientX - rect.left;
 
 
 
-card.style.setProperty(
-"--mouse-x",
-`${x}px`
-);
+            const y =
+            event.clientY - rect.top;
 
 
 
-card.style.setProperty(
-"--mouse-y",
-`${y}px`
-);
+            card.style.setProperty(
+                "--mouse-x",
+                `${x}px`
+            );
 
 
 
-});
+            card.style.setProperty(
+                "--mouse-y",
+                `${y}px`
+            );
+
+
+        }
+
+    );
 
 
 
@@ -236,70 +240,96 @@ card.style.setProperty(
 ===================================================== */
 
 
-const timelineInfo = {
+const timelineData = {
 
 
 "2026":`
 
 <h3>
-Processor Design
+2026 — Processor Architecture
 </h3>
 
 <p>
 
-Designed a 32-bit pipelined RISC-V processor using SystemVerilog.
+• 32-bit pipelined RISC-V CPU Core
 
 <br><br>
 
-Focus:
-• Pipeline architecture
-• Hazard detection
-• Forwarding logic
-• RTL verification
+• SystemVerilog RTL design
+
+<br>
+
+• Pipeline control and hazard handling
+
+<br>
+
+• Hardware verification workflow
 
 </p>
 
 `,
+
+
 
 
 "2025":`
 
 <h3>
-Engineering Foundations
+2025 — Engineering Development
 </h3>
+
 
 <p>
 
-Developed foundations in:
+• Digital systems foundations
 
-<br><br>
+<br>
 
-• Programming
-• Mathematics
-• Physics
-• Digital logic
-• Electronics
+• Programming development
+
+<br>
+
+• Mathematics and physics application
+
+<br>
+
+• Electronics exploration
 
 </p>
 
 `,
 
 
+
+
+
 "2024":`
 
 <h3>
-Technical Foundation
+2024 — Technical Foundation
 </h3>
+
 
 <p>
 
-Explored programming,
-problem solving,
-and engineering concepts.
+• Programming fundamentals
+
+<br>
+
+• Problem solving
+
+<br>
+
+• Engineering concepts
+
+<br>
+
+• Building technical curiosity
 
 </p>
 
 `
+
 
 };
 
@@ -307,14 +337,14 @@ and engineering concepts.
 
 
 
-const timelineButtons =
+const yearButtons =
 document.querySelectorAll(
 ".year-buttons button"
 );
 
 
 
-const timelineText =
+const timelineContent =
 document.getElementById(
 "timeline-content"
 );
@@ -323,51 +353,33 @@ document.getElementById(
 
 
 
-timelineButtons.forEach(button=>{
+yearButtons.forEach(button=>{
 
 
-button.addEventListener(
-"mouseenter",
-()=>{
+    button.addEventListener(
+        "click",
+        ()=>{
 
 
-const year =
-button.dataset.year;
-
-
-if(timelineText){
-
-timelineText.innerHTML =
-timelineInfo[year];
-
-}
-
-
-});
+            const year =
+            button.dataset.year;
 
 
 
+            if(timelineContent){
 
 
-button.addEventListener(
-"click",
-()=>{
+                timelineContent.innerHTML =
+                timelineData[year];
 
 
-const year =
-button.dataset.year;
+            }
 
 
 
-if(timelineText){
+        }
 
-timelineText.innerHTML =
-timelineInfo[year];
-
-}
-
-
-});
+    );
 
 
 
@@ -382,7 +394,7 @@ timelineInfo[year];
 
 
 /* =====================================================
-   VIEW PROJECT BUTTON
+   VIEW PROJECTS BUTTON
 ===================================================== */
 
 
@@ -400,17 +412,15 @@ document.getElementById(
 
 
 
-
-
 if(projectsButton && timelineCard){
 
 
 projectsButton.addEventListener(
 "click",
-(e)=>{
+(event)=>{
 
 
-e.preventDefault();
+event.preventDefault();
 
 
 
@@ -430,6 +440,8 @@ timelineCard.classList.add(
 
 
 
+
+
 setTimeout(()=>{
 
 
@@ -438,8 +450,7 @@ timelineCard.classList.remove(
 );
 
 
-
-},4500);
+},5000);
 
 
 
@@ -457,57 +468,7 @@ timelineCard.classList.remove(
 
 
 /* =====================================================
-   NAV ACTIVE EFFECT
-===================================================== */
-
-
-const navLinks =
-document.querySelectorAll(
-".nav-links a"
-);
-
-
-
-navLinks.forEach(link=>{
-
-
-link.addEventListener(
-"mouseenter",
-()=>{
-
-
-link.style.transform =
-"translateY(-2px)";
-
-
-});
-
-
-
-link.addEventListener(
-"mouseleave",
-()=>{
-
-
-link.style.transform =
-"translateY(0)";
-
-
-});
-
-
-});
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   TERMINAL DOT EFFECT
+   TERMINAL DOT ANIMATION
 ===================================================== */
 
 
@@ -527,10 +488,11 @@ dot.addEventListener(
 
 
 dot.style.transform =
-"scale(1.25)";
+"scale(1.3) rotate(10deg)";
 
 
 });
+
 
 
 
@@ -540,61 +502,10 @@ dot.addEventListener(
 
 
 dot.style.transform =
-"scale(1)";
+"scale(1) rotate(0deg)";
 
 
 });
 
 
 });
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   LIVE HARDWARE STATUS
-===================================================== */
-
-
-const hardwareCard =
-document.querySelector(
-".live-hardware"
-);
-
-
-
-if(hardwareCard){
-
-
-hardwareCard.addEventListener(
-"mouseenter",
-()=>{
-
-
-hardwareCard.style.boxShadow =
-
-"0 0 45px rgba(0,240,255,.15)";
-
-
-});
-
-
-
-hardwareCard.addEventListener(
-"mouseleave",
-()=>{
-
-
-hardwareCard.style.boxShadow =
-"";
-
-
-});
-
-
-}
