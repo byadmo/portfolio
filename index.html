@@ -6,24 +6,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>
-Adam Morgan | Electrical Engineering Portfolio
-</title>
-
-<meta name="description"
-content="Adam Morgan Electrical Engineering portfolio focused on computer architecture, RTL design, FPGA development, and digital systems.">
-
+<title>Adam Morgan | Electrical Engineering Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="./styles.css">
 
 </head>
-
 
 
 <body>
@@ -32,96 +23,56 @@ content="Adam Morgan Electrical Engineering portfolio focused on computer archit
 <div class="noise"></div>
 
 
-
 <main class="grid">
-
-
-
-
-
-
-<!-- ================= HERO ================= -->
 
 
 <section class="card hero reveal">
 
+<div class="terminal">
 
-<div class="terminal-bar">
-
-<div class="dots">
-
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-
-</div>
+<span class="red"></span>
+<span class="yellow"></span>
+<span class="green"></span>
 
 </div>
 
 
-
-<p class="eyebrow">
-
-ELECTRICAL_ENGINEERING //
-COMPUTER_ARCHITECTURE
-
+<p class="label">
+ELECTRICAL_ENGINEERING // COMPUTER_ARCHITECTURE
 </p>
 
 
-
 <h1>
-
 Hi, I'm Adam.<br>
-
 I design computer processors.
-
 </h1>
 
 
+<div class="typing">
 
-<div class="typing-line">
-
-<span>
 FOCUS:
-</span>
-
 <span id="typing"></span>
-
 <span class="cursor"></span>
 
 </div>
 
 
-
-
-<p class="hero-description">
-
-Electrical Engineering student focused on
-digital systems, processor architecture,
-RTL design, FPGA development,
+<p>
+Electrical Engineering student focused on digital systems,
+processor architecture, RTL design, FPGA development,
 and efficient hardware systems.
-
 </p>
 
 
+<div class="buttons">
 
-<div class="hero-buttons">
-
-
-<a href="#projects" class="button">
+<a href="#">
 $ view_projects
 </a>
 
-
-<a href="resume.pdf" class="button">
-$ download_resume
-</a>
-
-
-<a href="#contact" class="button secondary">
+<a href="#">
 $ contact_adam
 </a>
-
 
 </div>
 
@@ -132,73 +83,37 @@ $ contact_adam
 
 
 
+<section class="card reveal">
 
-
-
-<!-- ================= PROFILE ================= -->
-
-
-<section class="card profile reveal">
-
-
-<span class="label">
+<p class="label">
 ENGINEERING_PROFILE
-</span>
-
+</p>
 
 <h2>
 Current Focus
 </h2>
 
 
-
-<div class="status-grid">
-
+<div class="info">
 
 <div>
-
-<span>
-FIELD
-</span>
-
-<strong>
+<span>FIELD</span>
 Electrical Engineering
-</strong>
-
 </div>
 
 
-
 <div>
-
-<span>
-SPECIALIZATION
-</span>
-
-<strong>
+<span>SPECIALIZATION</span>
 Digital Systems
-</strong>
-
 </div>
-
 
 
 <div>
-
-<span>
-INTERESTS
-</span>
-
-<strong>
+<span>INTEREST</span>
 CPU Architecture + FPGA
-</strong>
-
 </div>
 
-
-
 </div>
-
 
 </section>
 
@@ -206,138 +121,72 @@ CPU Architecture + FPGA
 
 
 
-
-
-
-<!-- ================= CPU ================= -->
 
 
 <section class="card hardware reveal">
 
 
-<div class="terminal-bar">
+<div class="terminal">
 
-<div class="dots">
-
-<span class="dot red">
-<i>×</i>
-</span>
-
-<span class="dot yellow">
-<i>−</i>
-</span>
-
-<span class="dot green">
-<i>+</i>
-</span>
-
-</div>
+<span class="red"></span>
+<span class="yellow"></span>
+<span class="green"></span>
 
 </div>
 
 
-
-
-<span class="label">
-
+<p class="label">
 PROJECT_001 // PROCESSOR_DESIGN
-
-</span>
-
-
+</p>
 
 
 <h2>
-
 32-Bit Pipelined RISC-V CPU Core
-
 </h2>
-
-
-
-
-<div class="cpu-layout">
-
 
 
 <div class="pipeline">
 
-<div>IF</div>
-<div>ID</div>
-<div>EX</div>
-<div>MEM</div>
-<div>WB</div>
+<span>IF</span>
+<span>ID</span>
+<span>EX</span>
+<span>MEM</span>
+<span>WB</span>
 
 </div>
 
 
 
-
-
-<div class="code-window">
-
 <pre>
 
-module risc_v_cpu (
-
-input clk,
-input reset
-
-);
-
-
-control_unit CU();
+module risc_v_cpu();
 
 hazard_unit HU();
 
 forwarding_unit FU();
 
-
 endmodule
 
 </pre>
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div class="hardware-info">
-
-
-<h3>
-ARCHITECTURE
-</h3>
 
 
 <ul>
 
 <li>
-5-stage instruction pipeline
+5-stage pipeline architecture
 </li>
-
 
 <li>
-Hazard detection and forwarding logic
+Hazard resolution and forwarding
 </li>
-
 
 <li>
-RTL simulation and waveform verification
+RTL simulation with GTKWave
 </li>
-
 
 </ul>
 
 
-
-</div>
-
-
 </section>
 
 
@@ -346,303 +195,34 @@ RTL simulation and waveform verification
 
 
 
+<section class="card reveal">
 
-
-<!-- ================= ARCHITECTURE ================= -->
-
-
-<section class="card architecture reveal">
-
-
-<span class="label">
-SYSTEM_ARCHITECTURE
-</span>
-
-
-
-<h2>
-Processor Pipeline
-</h2>
-
-
-
-
-<div class="architecture-flow">
-
-
-<div>
-Instruction Fetch
-</div>
-
-<span>
-↓
-</span>
-
-
-<div>
-Instruction Decode
-</div>
-
-
-<span>
-↓
-</span>
-
-
-<div>
-Execute / ALU
-</div>
-
-
-<span>
-↓
-</span>
-
-
-<div>
-Memory Access
-</div>
-
-
-<span>
-↓
-</span>
-
-
-<div>
-Write Back
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-<!-- ================= VERIFICATION ================= -->
-
-
-<section class="card verification reveal">
-
-
-<span class="label">
-VERIFICATION_ENVIRONMENT
-</span>
-
-
-
-<h2>
-Hardware Validation
-</h2>
-
-
-
-
-<div class="directory">
-
-<h3>
-HDL/
-</h3>
-
-
-<span>
-SystemVerilog
-</span>
-
-</div>
-
-
-
-<div class="directory">
-
-<h3>
-SIMULATION/
-</h3>
-
-
-<span>
-GTKWave
-</span>
-
-
-<span>
-ModelSim
-</span>
-
-
-<span>
-Icarus Verilog
-</span>
-
-
-</div>
-
-
-
-<div class="workflow">
-
-Design
-
-<br>
-↓
-
-<br>
-
-Simulate
-
-<br>
-↓
-
-<br>
-
-Debug
-
-<br>
-↓
-
-<br>
-
-Validate
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- ================= PROJECTS ================= -->
-
-
-<section id="projects" class="card projects reveal">
-
-
-<span class="label">
-PROJECT_CASE_STUDIES
-</span>
-
-
-
-<h2>
-Engineering Projects
-</h2>
-
-
-
-
-<div class="project-item">
-
-
-<h3>
-32-Bit RISC-V CPU Core
-</h3>
-
-
-<p>
-Designed a pipelined processor architecture using SystemVerilog RTL.
-</p>
-
-
-<p>
-Focus:
-Pipeline control, hazards, forwarding, and verification.
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="project-item">
-
-
-<h3>
-Digital Systems Projects
-</h3>
-
-
-<p>
-Hardware design projects involving logic systems,
-simulation, and engineering analysis.
-</p>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- ================= TIMELINE ================= -->
-
-
-<section class="card experience reveal">
-
-
-<span class="label">
+<p class="label">
 ENGINEERING_JOURNEY
-</span>
+</p>
 
 
-
-
-<div class="year-buttons">
-
+<div class="years">
 
 <button data-year="2026">
 2026
 </button>
 
-
 <button data-year="2025">
 2025
 </button>
-
 
 <button data-year="2024">
 2024
 </button>
 
-
 </div>
 
 
+<div id="timeline">
 
-<div id="timeline-display">
-
-<p>
-Hover over a year.
-</p>
-
-
+Hover a year
 </div>
-
 
 
 </section>
@@ -653,103 +233,40 @@ Hover over a year.
 
 
 
+<section class="card reveal">
 
 
-<!-- ================= TOOLKIT ================= -->
+<p class="label">
+TECH_STACK
+</p>
 
-
-<section class="card toolkit reveal">
-
-
-<span class="label">
-ENGINEERING_STACK
-</span>
-
-
-
-
-<div class="directory">
 
 <h3>
 HARDWARE/
 </h3>
 
 
-<span>
-SystemVerilog
-</span>
+<div class="tags">
 
-
-<span>
-Verilog
-</span>
-
-
-<span>
-RTL Design
-</span>
-
-
-<span>
-FPGA
-</span>
-
+<span>SystemVerilog</span>
+<span>Verilog</span>
+<span>FPGA</span>
+<span>RISC-V</span>
 
 </div>
 
 
-
-
-
-<div class="directory">
-
-<h3>
-ARCHITECTURE/
-</h3>
-
-
-<span>
-RISC-V
-</span>
-
-
-<span>
-CPU Design
-</span>
-
-
-<span>
-Digital Logic
-</span>
-
-
-</div>
-
-
-
-
-
-<div class="directory">
 
 <h3>
 TOOLS/
 </h3>
 
 
-<span>
-Quartus
-</span>
+<div class="tags">
 
-
-<span>
-GTKWave
-</span>
-
-
-<span>
-ModelSim
-</span>
-
+<span>Quartus</span>
+<span>GTKWave</span>
+<span>ModelSim</span>
 
 </div>
 
@@ -761,20 +278,11 @@ ModelSim
 
 
 
+<section class="card reveal">
 
-
-
-<!-- ================= BUSINESS ================= -->
-
-
-<section class="card creative reveal">
-
-
-<span class="label">
-ENTREPRENEURIAL_ENGINEERING
-</span>
-
-
+<p class="label">
+ENTREPRENEURSHIP
+</p>
 
 
 <h2>
@@ -782,14 +290,10 @@ Founder & Product Developer
 </h2>
 
 
-
-
 <p>
-
-Built and managed an independent product venture involving
-manufacturing decisions, supplier communication,
-budgeting, branding, and product development.
-
+Managed product development, manufacturing,
+supplier communication, budgeting,
+branding, and marketing.
 </p>
 
 
@@ -800,81 +304,24 @@ budgeting, branding, and product development.
 
 
 
+<section class="card reveal">
 
-
-
-<!-- ================= PHILOSOPHY ================= -->
-
-
-<section class="card philosophy reveal">
-
-
-<span class="label">
-ENGINEERING_PHILOSOPHY
-</span>
-
-
-
-<h2>
-Design Principles
-</h2>
-
-
-
-<p>
-Understand the architecture.
-</p>
-
-
-<p>
-Build the system.
-</p>
-
-
-<p>
-Verify every assumption.
-</p>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-<!-- ================= CONTACT ================= -->
-
-
-<section id="contact" class="card socials-card reveal">
-
-
-<span class="label">
+<p class="label">
 CONNECT
-</span>
+</p>
 
 
-
-
-<a href="#">
+<a>
 $ github
 </a>
 
 
-
-<a href="#">
+<a>
 $ linkedin
 </a>
 
 
-
 </section>
-
-
-
 
 
 
@@ -882,10 +329,9 @@ $ linkedin
 
 
 
-<script src="script.js"></script>
+<script src="./script.js"></script>
 
 
 </body>
-
 
 </html>
