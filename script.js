@@ -1305,25 +1305,17 @@ FPGA SYSTEMS
 
 
 
-
-
-
-
-
 /* =====================================================
-   RANDOM FPGA SIGNAL FIELD V2
+   RANDOM FPGA SIGNAL FIELD V3
 ===================================================== */
 
 
 const cpuField =
-document.getElementById(
-"cpu-field"
-);
+document.getElementById("cpu-field");
 
 
 
-
-function createSignal(){
+function createSignal(initial=false){
 
 
 if(!cpuField)
@@ -1331,12 +1323,8 @@ return;
 
 
 
-
-
 const pulse =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 
 
@@ -1347,58 +1335,64 @@ pulse.className =
 
 
 
-
-
 // random signal length
 
 const randomWidth =
-Math.random()*300+150;
+Math.random()*250+120;
 
 
 
 
 
-// random position
+// random vertical position
 
 const randomTop =
 Math.random()*100;
 
 
 
+
+
+// ALWAYS start off screen
+// prevents stagnant appearing lines
+
 const randomLeft =
-Math.random()*120-20;
+-30;
 
 
 
 
 
 
-// slower controlled movement
-// minimum 12s, maximum 25s
+// controlled realistic speed
+// 14s minimum -> 28s maximum
 
 const randomDuration =
-Math.random()*13+12;
+Math.random()*14+14;
 
 
 
 
 
-// small delay only
-// prevents frozen signals
+
+// no long waiting delays
 
 const randomDelay =
-Math.random()*2;
+initial
+?
+Math.random()*1
+:
+0;
 
 
 
 
 
 
-
-// random angle
+// subtle angle changes
 
 const randomRotation =
-Math.random()*40-20;
+Math.random()*35-17;
 
 
 
@@ -1406,12 +1400,10 @@ Math.random()*40-20;
 
 
 
-// random brightness
+// softer brightness
 
 const randomOpacity =
-Math.random()*.35+.25;
-
-
+Math.random()*.3+.25;
 
 
 
@@ -1449,15 +1441,9 @@ randomOpacity;
 
 
 pulse.style.transform =
-
 `
-
-rotate(
-${randomRotation}deg
-)
-
+rotate(${randomRotation}deg)
 `;
-
 
 
 
@@ -1471,10 +1457,7 @@ pulse
 
 
 
-
-
-
-// remove old signals
+// cleanup
 
 setTimeout(()=>{
 
@@ -1507,38 +1490,16 @@ function startSignalSystem(){
 
 
 
-// initial random signals
-
-const initialAmount =
-Math.floor(
-Math.random()*8
-)+8;
-
-
-
-
-
+// create signals immediately
 
 for(
 let i=0;
-i<initialAmount;
+i<12;
 i++
 ){
 
 
-setTimeout(()=>{
-
-
-createSignal();
-
-
-
-},
-
-Math.random()*4000
-
-
-);
+createSignal(true);
 
 
 
@@ -1550,10 +1511,9 @@ Math.random()*4000
 
 
 
-// continuously create signals
+// continuously generate new signals
 
 setInterval(()=>{
-
 
 
 createSignal();
@@ -1562,7 +1522,7 @@ createSignal();
 
 },
 
-Math.random()*2500+2500
+Math.random()*3000+3000
 
 
 
@@ -1589,7 +1549,7 @@ startSignalSystem();
 
 
 /* =====================================================
-   RANDOM SIGNAL BURST EVENTS
+   RANDOM FPGA ACTIVITY BURSTS
 ===================================================== */
 
 
@@ -1599,7 +1559,7 @@ function randomBurst(){
 
 const amount =
 Math.floor(
-Math.random()*4
+Math.random()*3
 )+2;
 
 
@@ -1624,20 +1584,24 @@ createSignal();
 
 },
 
-i*300
+i*400
 
 );
 
 
 
 }
+
+
+
+
 
 
 setTimeout(
 
 randomBurst,
 
-Math.random()*15000+15000
+Math.random()*20000+20000
 
 );
 
@@ -1648,8 +1612,8 @@ Math.random()*15000+15000
 
 
 
-
 randomBurst();
+
 
 
 /* =====================================================
