@@ -6,6 +6,7 @@
 
 :root {
 
+
     --bg:#07080a;
 
     --card:#111319;
@@ -14,19 +15,21 @@
 
     --border:#252a35;
 
+
     --white:#ffffff;
 
     --muted:#9297a3;
+
 
     --cyan:#00eaff;
 
     --green:#00ff88;
 
+
     --radius:28px;
 
 
-    --ease:
-    cubic-bezier(
+    --ease:cubic-bezier(
         .22,
         1,
         .36,
@@ -40,9 +43,9 @@
 
 
 
-/* =========================
-RESET
-========================= */
+/* =====================================================
+   RESET
+===================================================== */
 
 
 * {
@@ -77,7 +80,6 @@ body {
     var(--bg);
 
 
-
     color:
 
     var(--white);
@@ -107,9 +109,11 @@ body {
 
 
 
-/* =========================
-BACKGROUND GRID
-========================= */
+
+
+/* =====================================================
+   BACKGROUND SYSTEM
+===================================================== */
 
 
 body::before {
@@ -142,6 +146,7 @@ body::before {
         transparent 1px
 
     ),
+
 
 
     linear-gradient(
@@ -231,9 +236,9 @@ body::before {
 
 
 
-/* =========================
-BENTO GRID
-========================= */
+/* =====================================================
+   BENTO GRID
+===================================================== */
 
 
 .bento-grid {
@@ -281,9 +286,9 @@ BENTO GRID
 
 
 
-/* =========================
-CARDS
-========================= */
+/* =====================================================
+   CARDS
+===================================================== */
 
 
 .card {
@@ -352,14 +357,19 @@ CARDS
 
     transform:
 
-    translateY(40px);
+    translateY(40px)
+
+    scale(.97);
 
 
 
     transition:
 
 
-    transform .7s var(--ease),
+    opacity .8s var(--ease),
+
+
+    transform .8s var(--ease),
 
 
     border-color .5s ease,
@@ -374,6 +384,8 @@ CARDS
 
 
 
+
+
 .card.active {
 
 
@@ -382,7 +394,9 @@ CARDS
 
     transform:
 
-    translateY(0);
+    translateY(0)
+
+    scale(1);
 
 
 }
@@ -423,6 +437,7 @@ CARDS
         .45
     ),
 
+
     0 0 45px rgba(
         0,
         234,
@@ -439,9 +454,10 @@ CARDS
 
 
 
-/* =========================
-CURSOR LIGHT
-========================= */
+
+/* =====================================================
+   CURSOR LIGHT EFFECT
+===================================================== */
 
 
 .card::before {
@@ -494,12 +510,14 @@ CURSOR LIGHT
 
         circle,
 
+
         rgba(
             0,
             234,
             255,
             .18
         ),
+
 
         transparent 65%
 
@@ -536,19 +554,9 @@ CURSOR LIGHT
     1;
 
 
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-BENTO POSITIONS
-========================= */
+}/* =====================================================
+   BENTO POSITIONS
+===================================================== */
 
 
 .hero {
@@ -626,6 +634,10 @@ BENTO POSITIONS
 
 
 
+    overflow:hidden;
+
+
+
     transition:
 
 
@@ -649,10 +661,11 @@ BENTO POSITIONS
 
     max-height:
 
-    750px;
+    850px;
 
 
 }
+
 
 
 
@@ -667,9 +680,44 @@ BENTO POSITIONS
 
 }
 
-/* =========================
-TERMINAL DOTS
-========================= */
+
+
+
+
+.entrepreneur {
+
+
+    grid-column:
+
+    span 4;
+
+
+}
+
+
+
+
+
+.connect {
+
+
+    grid-column:
+
+    span 4;
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   TERMINAL DOTS
+===================================================== */
 
 
 .terminal-dots {
@@ -689,16 +737,26 @@ TERMINAL DOTS
 
 
 
+
 .terminal-dots span {
 
 
-    width:14px;
+    width:
+
+    14px;
 
 
-    height:14px;
+
+    height:
+
+    14px;
 
 
-    border-radius:50%;
+
+    border-radius:
+
+    50%;
+
 
 
     display:flex;
@@ -710,16 +768,39 @@ TERMINAL DOTS
     justify-content:center;
 
 
-    font-size:10px;
+    font-size:
+
+    10px;
+
 
 
     color:#000;
 
 
-    transition:.35s var(--ease);
+
+    transition:
+
+    .35s var(--ease);
 
 
 }
+
+
+
+
+
+.terminal-dots span:hover {
+
+
+    transform:
+
+    scale(1.3)
+
+    rotate(12deg);
+
+
+}
+
 
 
 
@@ -727,27 +808,37 @@ TERMINAL DOTS
 .mac-red {
 
 
-    background:#ff5f57;
+    background:
+
+    #ff5f57;
 
 
 }
+
+
 
 
 
 .mac-yellow {
 
 
-    background:#febc2e;
+    background:
+
+    #febc2e;
 
 
 }
+
+
 
 
 
 .mac-green {
 
 
-    background:#28c840;
+    background:
+
+    #28c840;
 
 
 }
@@ -759,9 +850,10 @@ TERMINAL DOTS
 
 
 
-/* =========================
-TEXT
-========================= */
+
+/* =====================================================
+   TEXT SYSTEM
+===================================================== */
 
 
 .label {
@@ -836,6 +928,7 @@ h1 {
 
 
 
+
 h2 {
 
 
@@ -855,6 +948,7 @@ h2 {
 
 
 
+
 h3 {
 
 
@@ -864,6 +958,7 @@ h3 {
 
 
 }
+
 
 
 
@@ -892,9 +987,9 @@ p {
 
 
 
-/* =========================
-BUTTONS
-========================= */
+/* =====================================================
+   HERO BUTTONS
+===================================================== */
 
 
 .buttons {
@@ -916,7 +1011,6 @@ BUTTONS
 
 
 }
-
 
 
 
@@ -983,8 +1077,6 @@ BUTTONS
 
 
 
-
-
 .buttons a:hover {
 
 
@@ -1027,9 +1119,9 @@ BUTTONS
 
 
 
-/* =========================
-PROFILE
-========================= */
+/* =====================================================
+   PROFILE SECTION
+===================================================== */
 
 
 .profile-item {
@@ -1066,19 +1158,9 @@ PROFILE
     var(--muted);
 
 
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-PROCESSOR
-========================= */
+}/* =====================================================
+   PROCESSOR PROJECT
+===================================================== */
 
 
 .pipeline {
@@ -1137,10 +1219,39 @@ PROCESSOR
     12px;
 
 
+
+    transition:
+
+    .5s var(--ease);
+
+
 }
 
 
 
+
+
+.pipeline div:hover {
+
+
+    background:
+
+    #202631;
+
+
+
+    border-color:
+
+    var(--cyan);
+
+
+
+    transform:
+
+    translateY(-5px);
+
+
+}
 
 
 
@@ -1238,9 +1349,9 @@ pre {
 
 
 
-/* =========================
-YEAR BUTTONS
-========================= */
+/* =====================================================
+   YEAR BUTTONS
+===================================================== */
 
 
 .year-buttons {
@@ -1341,8 +1452,6 @@ YEAR BUTTONS
 
 
 
-
-
 .year-buttons button.active {
 
 
@@ -1365,7 +1474,7 @@ YEAR BUTTONS
         0,
         255,
         136,
-        .2
+        .25
     );
 
 
@@ -1378,9 +1487,39 @@ YEAR BUTTONS
 
 
 
-/* =========================
-TIMELINE ANIMATION
-========================= */
+
+/* =====================================================
+   TIMELINE PROJECT ANIMATION
+===================================================== */
+
+
+.timeline {
+
+
+    position:relative;
+
+
+}
+
+
+
+
+
+.timeline > * {
+
+
+    position:relative;
+
+
+    z-index:3;
+
+
+}
+
+
+
+
+
 
 
 .timeline.project-active {
@@ -1400,15 +1539,16 @@ TIMELINE ANIMATION
     box-shadow:
 
 
-    0 0 60px rgba(
+    0 0 70px rgba(
         0,
         234,
         255,
-        .15
+        .18
     );
 
 
 }
+
 
 
 
@@ -1426,6 +1566,7 @@ TIMELINE ANIMATION
 
 
     inset:-3px;
+
 
 
     border-radius:
@@ -1478,28 +1619,15 @@ TIMELINE ANIMATION
     animation:
 
 
-    timelineSweep 8s var(--ease) forwards;
+    timelineSweep 7s var(--ease) forwards;
 
 
 
     pointer-events:none;
 
 
-}
 
-
-
-
-
-
-
-.timeline > * {
-
-
-    position:relative;
-
-
-    z-index:5;
+    z-index:1;
 
 
 }
@@ -1513,58 +1641,73 @@ TIMELINE ANIMATION
 @keyframes timelineSweep {
 
 
-0%{
+    0% {
 
 
-opacity:0;
+        opacity:0;
 
 
-background-position:0%;
+        background-position:
+
+        0% 50%;
+
+
+    }
+
+
+
+    25% {
+
+
+        opacity:.8;
+
+
+    }
+
+
+
+    70% {
+
+
+        opacity:.45;
+
+
+        background-position:
+
+        100% 50%;
+
+
+    }
+
+
+
+    100% {
+
+
+        opacity:0;
+
+
+        background-position:
+
+        200% 50%;
+
+
+    }
 
 
 }
 
 
 
-25%{
-
-
-opacity:.8;
-
-
-}
 
 
 
-70%{
-
-
-opacity:.5;
-
-
-background-position:100%;
-
-
-}
 
 
 
-100%{
-
-
-opacity:0;
-
-
-background-position:200%;
-
-
-}
-
-
-}
-/* =========================
-PROJECT CARDS
-========================= */
+/* =====================================================
+   PROJECT CARDS INSIDE TIMELINE
+===================================================== */
 
 
 .project-grid {
@@ -1660,8 +1803,6 @@ PROJECT CARDS
 
 
 
-
-
 .project-item:hover {
 
 
@@ -1694,8 +1835,6 @@ PROJECT CARDS
 
 
 
-
-
 .project-item h4 {
 
 
@@ -1708,8 +1847,6 @@ PROJECT CARDS
 
 
 }
-
-
 
 
 
@@ -1734,53 +1871,42 @@ PROJECT CARDS
 
 
 
-
-
 @keyframes projectReveal {
 
 
-from {
+    from {
 
 
-    opacity:0;
+        opacity:0;
 
 
-    transform:
+        transform:
 
-    translateY(25px);
+        translateY(25px);
+
+
+    }
+
+
+
+    to {
+
+
+        opacity:1;
+
+
+        transform:
+
+        translateY(0);
+
+
+    }
 
 
 }
-
-
-
-to {
-
-
-    opacity:1;
-
-
-    transform:
-
-    translateY(0);
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-TECH STACK
-========================= */
+/* =====================================================
+   TECH STACK
+===================================================== */
 
 
 .tags {
@@ -1835,8 +1961,13 @@ TECH STACK
     13px;
 
 
-}
 
+    transition:
+
+    .35s var(--ease);
+
+
+}
 
 
 
@@ -1856,6 +1987,12 @@ TECH STACK
     var(--green);
 
 
+
+    transform:
+
+    translateY(-3px);
+
+
 }
 
 
@@ -1866,9 +2003,9 @@ TECH STACK
 
 
 
-/* =========================
-CONNECT
-========================= */
+/* =====================================================
+   CONNECT
+===================================================== */
 
 
 .connect {
@@ -1889,8 +2026,6 @@ CONNECT
 
 
 
-
-
 .connect a {
 
 
@@ -1903,7 +2038,7 @@ CONNECT
 
     transition:
 
-    .3s ease;
+    .3s var(--ease);
 
 
 }
@@ -1923,7 +2058,7 @@ CONNECT
 
     transform:
 
-    translateX(5px);
+    translateX(6px);
 
 
 }
@@ -1936,9 +2071,9 @@ CONNECT
 
 
 
-/* =========================
-HERO EXTRA DETAIL
-========================= */
+/* =====================================================
+   HERO AMBIENT LIGHT
+===================================================== */
 
 
 .hero {
@@ -1948,8 +2083,6 @@ HERO EXTRA DETAIL
 
 
 }
-
-
 
 
 
@@ -1978,13 +2111,13 @@ HERO EXTRA DETAIL
 
     right:
 
-    -200px;
+    -220px;
 
 
 
     top:
 
-    -200px;
+    -220px;
 
 
 
@@ -1999,7 +2132,7 @@ HERO EXTRA DETAIL
             0,
             234,
             255,
-            .12
+            .14
         ),
 
         transparent 70%
@@ -2011,6 +2144,10 @@ HERO EXTRA DETAIL
     pointer-events:none;
 
 
+
+    z-index:0;
+
+
 }
 
 
@@ -2020,9 +2157,211 @@ HERO EXTRA DETAIL
 
 
 
-/* =========================
-SCROLLBAR
-========================= */
+
+/* =====================================================
+   ENTRANCE SYSTEM
+===================================================== */
+
+
+body {
+
+
+    animation:
+
+
+    systemBoot 1.2s cubic-bezier(
+        .22,
+        1,
+        .36,
+        1
+    ) forwards;
+
+
+}
+
+
+
+
+
+@keyframes systemBoot {
+
+
+    0% {
+
+
+        filter:
+
+        brightness(.45);
+
+
+    }
+
+
+
+    45% {
+
+
+        filter:
+
+        brightness(.8);
+
+
+    }
+
+
+
+    100% {
+
+
+        filter:
+
+        brightness(1);
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   HERO LIGHT SWEEP
+===================================================== */
+
+
+.hero::before {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    inset:0;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        120deg,
+
+        transparent,
+
+        rgba(
+            0,
+            234,
+            255,
+            .12
+        ),
+
+        transparent
+
+    );
+
+
+
+    transform:
+
+    translateX(-120%);
+
+
+
+    animation:
+
+
+    bootSweep 1.8s var(--ease) forwards;
+
+
+
+    pointer-events:none;
+
+
+
+    z-index:1;
+
+
+}
+
+
+
+
+
+.hero > * {
+
+
+    position:relative;
+
+
+    z-index:2;
+
+
+}
+
+
+
+
+
+
+
+@keyframes bootSweep {
+
+
+    0% {
+
+
+        transform:
+
+        translateX(-120%);
+
+
+
+        opacity:0;
+
+
+    }
+
+
+
+    30% {
+
+
+        opacity:1;
+
+
+    }
+
+
+
+    100% {
+
+
+        transform:
+
+        translateX(120%);
+
+
+
+        opacity:0;
+
+
+    }
+
+
+}
+/* =====================================================
+   SCROLLBAR
+===================================================== */
 
 
 ::-webkit-scrollbar {
@@ -2034,6 +2373,8 @@ SCROLLBAR
 
 
 }
+
+
 
 
 
@@ -2049,10 +2390,13 @@ SCROLLBAR
 
 
 
+
+
 ::-webkit-scrollbar-thumb {
 
 
     background:
+
 
     #252a35;
 
@@ -2064,6 +2408,8 @@ SCROLLBAR
 
 
 }
+
+
 
 
 
@@ -2085,9 +2431,141 @@ SCROLLBAR
 
 
 
-/* =========================
-RESPONSIVE
-========================= */
+/* =====================================================
+   CURSOR / INTERACTION POLISH
+===================================================== */
+
+
+.card,
+button,
+a {
+
+
+    -webkit-tap-highlight-color:
+
+    transparent;
+
+
+}
+
+
+
+
+
+button {
+
+
+    outline:none;
+
+
+}
+
+
+
+
+
+button:focus-visible,
+a:focus-visible {
+
+
+    border-color:
+
+    var(--cyan);
+
+
+
+    box-shadow:
+
+    0 0 20px rgba(
+        0,
+        234,
+        255,
+        .3
+    );
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   TIMELINE SMOOTH CONTENT AREA
+===================================================== */
+
+
+#timeline-content {
+
+
+    transition:
+
+    height .8s var(--ease),
+
+
+    opacity .5s ease;
+
+
+}
+
+
+
+
+
+.project-grid {
+
+
+    animation:
+
+
+    fadeIn .5s var(--ease);
+
+
+}
+
+
+
+
+
+@keyframes fadeIn {
+
+
+    from {
+
+
+        opacity:0;
+
+
+    }
+
+
+
+    to {
+
+
+        opacity:1;
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   RESPONSIVE TABLET
+===================================================== */
 
 
 @media(max-width:1100px){
@@ -2112,6 +2590,7 @@ body {
 
 
     grid-template-columns:
+
 
     repeat(
         6,
@@ -2156,6 +2635,7 @@ body {
 }
 
 
+
 }
 
 
@@ -2165,6 +2645,10 @@ body {
 
 
 
+
+/* =====================================================
+   RESPONSIVE MOBILE
+===================================================== */
 
 
 @media(max-width:700px){
@@ -2222,6 +2706,12 @@ h1 {
     2.7rem;
 
 
+
+    letter-spacing:
+
+    -2px;
+
+
 }
 
 
@@ -2240,6 +2730,20 @@ h1 {
 
 
 
+.pipeline div {
+
+
+    min-width:
+
+    80px;
+
+
+}
+
+
+
+
+
 .year-buttons {
 
 
@@ -2249,16 +2753,13 @@ h1 {
 }
 
 
-}
 
 
 
-.entrepreneur {
+.buttons {
 
 
-    grid-column:
-
-    span 4;
+    flex-direction:column;
 
 
 }
@@ -2267,24 +2768,384 @@ h1 {
 
 
 
-.connect {
+.buttons a {
 
 
-    grid-column:
-
-    span 4;
+    text-align:center;
 
 
 }
 
-.pipeline div {
 
-    transition:
-    .6s cubic-bezier(
-        .22,
-        1,
-        .36,
-        1
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   REDUCED MOTION SUPPORT
+===================================================== */
+
+
+@media(prefers-reduced-motion:reduce){
+
+
+* {
+
+
+    animation-duration:
+
+    .01ms !important;
+
+
+
+    animation-iteration-count:
+
+    1 !important;
+
+
+
+    scroll-behavior:
+
+    auto !important;
+
+
+}
+
+
+
+}
+/* =====================================================
+   FINAL POLISH EFFECTS
+===================================================== */
+
+
+/* Smooth text rendering */
+
+body {
+
+    -webkit-font-smoothing:
+
+    antialiased;
+
+    -moz-osx-font-smoothing:
+
+    grayscale;
+
+}
+
+
+
+
+
+
+/* =====================================================
+   CARD INNER BORDER GLOW
+===================================================== */
+
+
+.card::after {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    inset:0;
+
+
+
+    border-radius:
+
+    var(--radius);
+
+
+
+    border:
+
+    1px solid transparent;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        rgba(
+            0,
+            234,
+            255,
+            .08
+        ),
+
+        transparent 40%,
+
+        transparent 60%,
+
+        rgba(
+            0,
+            255,
+            136,
+            .08
+        )
+
     );
 
+
+
+    opacity:0;
+
+
+
+    transition:
+
+    opacity .6s ease;
+
+
+
+    pointer-events:none;
+
+
 }
+
+
+
+
+
+.card:hover::after {
+
+
+    opacity:1;
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   ACTIVE YEAR BUTTON PULSE
+===================================================== */
+
+
+.year-buttons button.active {
+
+
+    animation:
+
+
+    buttonPulse 2s ease infinite;
+
+
+}
+
+
+
+
+
+@keyframes buttonPulse {
+
+
+    0% {
+
+
+        box-shadow:
+
+        0 0 0 rgba(
+            0,
+            255,
+            136,
+            0
+        );
+
+
+    }
+
+
+
+    50% {
+
+
+        box-shadow:
+
+
+        0 0 25px rgba(
+            0,
+            255,
+            136,
+            .25
+        );
+
+
+    }
+
+
+
+    100% {
+
+
+        box-shadow:
+
+        0 0 0 rgba(
+            0,
+            255,
+            136,
+            0
+        );
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   PROJECT CARD STAGGER
+===================================================== */
+
+
+.project-item:nth-child(1){
+
+    animation-delay:.05s;
+
+}
+
+
+.project-item:nth-child(2){
+
+    animation-delay:.15s;
+
+}
+
+
+.project-item:nth-child(3){
+
+    animation-delay:.25s;
+
+}
+
+
+.project-item:nth-child(4){
+
+    animation-delay:.35s;
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   LOADING CURSOR BLINK
+===================================================== */
+
+
+.cursor {
+
+
+    display:inline-block;
+
+
+    width:
+
+    10px;
+
+
+
+    height:
+
+    1.2em;
+
+
+
+    background:
+
+    var(--green);
+
+
+
+    margin-left:
+
+    5px;
+
+
+
+    vertical-align:
+
+    middle;
+
+
+
+    animation:
+
+
+    cursorBlink 1s infinite;
+
+
+}
+
+
+
+
+
+@keyframes cursorBlink {
+
+
+    0%,
+    50% {
+
+
+        opacity:1;
+
+
+    }
+
+
+
+    51%,
+    100% {
+
+
+        opacity:0;
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   END SYSTEM
+===================================================== */
