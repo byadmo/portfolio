@@ -8,7 +8,7 @@
 
 <title>Adam Morgan | Electrical Engineering Portfolio</title>
 
-<meta name="description" content="Adam Morgan — Electrical Engineering student specializing in digital systems, processor architecture, RTL design, and embedded hardware.">
+<meta name="description" content="Adam Morgan — Electrical Engineering student specializing in digital systems, processor architecture, RTL design, FPGA development, and embedded hardware.">
 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +23,6 @@
 </head>
 
 
-
 <body>
 
 
@@ -31,6 +30,8 @@
 
 
 <main class="grid">
+
+
 
 
 
@@ -57,10 +58,9 @@
 
 
 <p class="eyebrow">
-
-ELECTRICAL_ENGINEERING // DIGITAL_SYSTEMS
-
+ELECTRICAL_ENGINEERING // COMPUTER_ARCHITECTURE
 </p>
+
 
 
 
@@ -80,19 +80,24 @@ I design computer processors.
 Currently Building:
 </span>
 
+
 <span id="typing"></span>
 
+
 <span class="cursor"></span>
+
 
 </div>
 
 
 
+
+
 <p class="hero-description">
 
-Electrical Engineering student focused on digital design,
-computer architecture, FPGA development, and creating efficient
-hardware systems from transistor-level concepts to complete processors.
+Electrical Engineering student focused on digital systems,
+processor architecture, RTL design, FPGA development,
+and transforming hardware concepts into functional systems.
 
 </p>
 
@@ -101,18 +106,23 @@ hardware systems from transistor-level concepts to complete processors.
 
 <div class="hero-buttons">
 
-<a class="button" href="#">
+
+<a class="button" href="#projects">
+
 $ view_projects
+
 </a>
 
 
-<a class="button secondary" href="#">
+
+<a class="button secondary" href="#contact">
+
 $ contact_adam
+
 </a>
 
 
 </div>
-
 
 
 </section>
@@ -123,8 +133,10 @@ $ contact_adam
 
 
 
+
+
 <!-- =====================================================
- SYSTEM STATUS
+ ENGINEERING PROFILE
 ===================================================== -->
 
 
@@ -132,19 +144,15 @@ $ contact_adam
 
 
 <span class="label">
-SYSTEM_STATUS
+ENGINEERING_PROFILE
 </span>
+
 
 
 <h2>
-
-MISSION:
-<span class="blue">
-BUILDING SILICON
-
-</span>
-
+Current Focus
 </h2>
+
 
 
 
@@ -154,25 +162,14 @@ BUILDING SILICON
 <div>
 
 <span>
-RTL DESIGN
+DISCIPLINE
 </span>
 
-<strong>
-ACTIVE
-</strong>
-
-</div>
-
-
-<div>
-
-<span>
-FPGA DEVELOPMENT
-</span>
 
 <strong>
-ACTIVE
+Electrical Engineering
 </strong>
+
 
 </div>
 
@@ -181,21 +178,38 @@ ACTIVE
 <div>
 
 <span>
-CPU ARCHITECTURE
+SPECIALIZATION
 </span>
 
+
 <strong>
-ONLINE
+Digital Systems
 </strong>
 
-</div>
-
 
 </div>
 
 
 
-<div class="pulse-ring"></div>
+
+<div>
+
+<span>
+INTERESTS
+</span>
+
+
+<strong>
+Processors + FPGA
+</strong>
+
+
+</div>
+
+
+
+</div>
+
 
 
 </section>
@@ -224,9 +238,11 @@ ONLINE
 <i>×</i>
 </span>
 
+
 <span class="dot yellow">
 <i>−</i>
 </span>
+
 
 <span class="dot green">
 <i>+</i>
@@ -246,16 +262,16 @@ PROJECT_001 // PROCESSOR_DESIGN
 
 
 
+
 <h2>
-
 32-Bit Pipelined RISC-V CPU Core
-
 </h2>
 
 
 
 
 <div class="cpu-layout">
+
 
 
 <div class="pipeline">
@@ -265,17 +281,21 @@ PROJECT_001 // PROCESSOR_DESIGN
 IF
 </div>
 
+
 <div>
 ID
 </div>
+
 
 <div>
 EX
 </div>
 
+
 <div>
 MEM
 </div>
+
 
 <div>
 WB
@@ -302,26 +322,25 @@ input reset
 );
 
 
+control_unit CU();
+
 hazard_unit HU();
 
 forwarding_unit FU();
 
 
-pipeline_registers PR();
-
-
 endmodule
+
 
 </pre>
 
 
-
 </div>
 
 
 
-
 </div>
+
 
 
 
@@ -331,16 +350,10 @@ endmodule
 <div class="hardware-info">
 
 
-<p>
-Designed with:
-</p>
-
-
 <ul>
 
-
 <li>
-5-stage pipeline architecture
+5-stage instruction pipeline architecture
 </li>
 
 
@@ -350,7 +363,7 @@ Data forwarding and hazard resolution
 
 
 <li>
-RTL simulation using GTKWave and ModelSim
+RTL verification using GTKWave and ModelSim
 </li>
 
 
@@ -373,7 +386,7 @@ RTL simulation using GTKWave and ModelSim
 
 
 <!-- =====================================================
- FOUNDER
+ CREATIVE EXPERIENCE
 ===================================================== -->
 
 
@@ -381,45 +394,39 @@ RTL simulation using GTKWave and ModelSim
 
 
 <span class="label">
-
-CREATIVE_ENGINEERING
-
+ENTREPRENEURSHIP
 </span>
 
 
 
 <h2>
-
 Independent Streetwear Brand
-
 </h2>
 
 
 
+
 <h3>
-
 Founder & Creative Director
-
 </h3>
 
 
-<p class="date">
 
+<p>
 2021 — Present
-
 </p>
+
 
 
 
 <p>
 
-Managed product development,
-manufacturing decisions,
-capital allocation,
-branding strategy,
-and digital marketing.
+Managed product lifecycle from concept,
+manufacturing, sourcing, budgeting,
+branding, and digital marketing.
 
 </p>
+
 
 
 
@@ -434,7 +441,7 @@ and digital marketing.
 
 
 <!-- =====================================================
- EXPERIENCE TIMELINE
+ ENGINEERING TIMELINE
 ===================================================== -->
 
 
@@ -442,58 +449,44 @@ and digital marketing.
 
 
 <span class="label">
-
-ENGINEERING_TIMELINE
-
+ENGINEERING_JOURNEY
 </span>
 
 
 
 
-<div class="timeline">
+<div class="year-buttons">
 
 
-<div>
-
-<span>
+<button data-year="2026">
 2026
-</span>
-
-<p>
-Processor design + advanced digital systems
-</p>
-
-</div>
+</button>
 
 
-<div>
-
-<span>
+<button data-year="2025">
 2025
-</span>
-
-<p>
-Engineering foundations + technical projects
-</p>
-
-</div>
+</button>
 
 
-<div>
-
-<span>
+<button data-year="2024">
 2024
-</span>
+</button>
+
+
+</div>
+
+
+
+
+<div id="timeline-display">
+
 
 <p>
-Programming, mathematics, and electronics foundation
+Select a year to view development milestones.
 </p>
 
-</div>
-
 
 </div>
-
 
 
 
@@ -516,11 +509,13 @@ Programming, mathematics, and electronics foundation
 
 
 <span class="label">
-
 ENGINEERING_METRICS
-
 </span>
 
+
+
+
+<div class="metric-container">
 
 
 <div>
@@ -529,10 +524,11 @@ ENGINEERING_METRICS
 3+
 </h2>
 
+
 <p>
 Hardware Projects
-
 </p>
+
 
 </div>
 
@@ -542,13 +538,13 @@ Hardware Projects
 
 <h2>
 5
-
 </h2>
+
 
 <p>
 Pipeline Stages
-
 </p>
+
 
 </div>
 
@@ -557,16 +553,21 @@ Pipeline Stages
 <div>
 
 <h2>
-∞
-
+32
 </h2>
 
-<p>
-Learning Capacity
 
+<p>
+CPU Architecture Bits
 </p>
 
+
 </div>
+
+
+
+</div>
+
 
 
 
@@ -581,7 +582,7 @@ Learning Capacity
 
 
 <!-- =====================================================
- TOOLKIT
+ TECH STACK
 ===================================================== -->
 
 
@@ -589,10 +590,10 @@ Learning Capacity
 
 
 <span class="label">
-
 TECH_STACK
-
 </span>
+
+
 
 
 
@@ -600,7 +601,7 @@ TECH_STACK
 
 
 <h3>
-Languages/
+HDL/
 </h3>
 
 
@@ -608,17 +609,34 @@ Languages/
 SystemVerilog
 </span>
 
+
 <span>
 Verilog
 </span>
+
+
+</div>
+
+
+
+
+<div class="directory">
+
+
+<h3>
+Software/
+</h3>
+
 
 <span>
 C
 </span>
 
+
 <span>
 Python
 </span>
+
 
 <span>
 Java
@@ -629,11 +647,13 @@ Java
 
 
 
+
+
 <div class="directory">
 
 
 <h3>
-Hardware_Tools/
+EDA_TOOLS/
 </h3>
 
 
@@ -657,8 +677,8 @@ Icarus Verilog
 </span>
 
 
-
 </div>
+
 
 
 </section>
@@ -672,18 +692,86 @@ Icarus Verilog
 
 
 <!-- =====================================================
- SOCIAL
+ ENGINEERING LAB
 ===================================================== -->
 
 
-<section class="card socials-card reveal">
+<section id="projects" class="card projects reveal">
 
 
 <span class="label">
-
-CONNECT
-
+ENGINEERING_LAB
 </span>
+
+
+
+
+<h2>
+Selected Projects
+</h2>
+
+
+
+
+<div class="project-item">
+
+
+<h3>
+RISC-V Processor Core
+</h3>
+
+
+<p>
+SystemVerilog based 32-bit pipelined CPU architecture.
+</p>
+
+
+</div>
+
+
+
+
+<div class="project-item">
+
+
+<h3>
+Digital Systems Projects
+</h3>
+
+
+<p>
+Hardware design, simulation, and FPGA development.
+</p>
+
+
+</div>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- =====================================================
+ CONTACT
+===================================================== -->
+
+
+<section id="contact" class="card socials-card reveal">
+
+
+<span class="label">
+CONNECT
+</span>
+
+
 
 
 <a href="#">
@@ -691,10 +779,11 @@ CONNECT
 $ github
 
 <code>
-git clone adam/projects
+view engineering repositories
 </code>
 
 </a>
+
 
 
 
@@ -703,43 +792,24 @@ git clone adam/projects
 $ linkedin
 
 <code>
-connect adam
+connect professionally
 </code>
 
 </a>
 
 
 
-</section>
-
-
-
-
-
-
-
-
-
-<!-- =====================================================
- QUOTE
-===================================================== -->
-
-
-<section class="card quote reveal">
-
-
-<p>
-
-"From circuits to silicon."
-
-</p>
-
 
 </section>
+
+
+
+
 
 
 
 </main>
+
 
 
 
