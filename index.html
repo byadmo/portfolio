@@ -4,27 +4,20 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Adam | Computer Architecture Engineer</title>
+<title>Adam Morgan | Hardware Engineer</title>
 
+<meta name="description" content="Adam Morgan — Computer Engineering student designing processors, RTL architectures, and creative technology.">
 
-<!-- CSS -->
-<link rel="stylesheet" href="styles.css">
-
-
-<!-- Google Font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="styles.css">
 
-<!-- Font Awesome Icons -->
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+<script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -39,28 +32,20 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 
 
-<!-- HERO -->
+<!-- =====================================================
+     HERO CARD
+===================================================== -->
 
 <section class="card hero reveal">
 
 
 <div class="terminal-bar">
 
-<div class="dots">
-
-<div class="dot red">
-<i class="fa-solid fa-xmark"></i>
-</div>
-
-<div class="dot yellow">
-<i class="fa-solid fa-minus"></i>
-</div>
-
-<div class="dot green">
-<i class="fa-solid fa-expand"></i>
-</div>
-
-</div>
+    <div class="dots">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+    </div>
 
 </div>
 
@@ -70,9 +55,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 
 <p class="eyebrow">
-ENGINEERING • RTL • DIGITAL DESIGN
+SYSTEM_INIT // ADAM_MORGAN
 </p>
-
 
 
 <h1>
@@ -81,24 +65,24 @@ I design computer processors.
 </h1>
 
 
+<div class="typing-line">
 
-<p class="typing-line">
-
-Building
+<span>
+Currently Working on:
+</span>
 
 <span id="typing"></span>
 
 <span class="cursor"></span>
 
-</p>
+</div>
 
 
 
 <p class="hero-description">
 
-Engineering efficient digital systems from RTL to silicon.
-Focused on Computer Architecture, RISC-V processors,
-FPGA Design, Hardware Verification and High Performance Computing.
+Computer Engineering student focused on CPU architecture,
+RTL design, and building efficient hardware systems from the ground up.
 
 </p>
 
@@ -106,13 +90,14 @@ FPGA Design, Hardware Verification and High Performance Computing.
 
 <div class="hero-buttons">
 
-<a href="#" class="button">
-Resume
+
+<a href="https://github.com" class="button">
+GitHub
 </a>
 
 
-<a href="#" class="button secondary">
-Projects
+<a href="https://linkedin.com" class="button secondary">
+LinkedIn
 </a>
 
 
@@ -128,40 +113,212 @@ Projects
 
 
 
-<!-- CURRENT PROJECT -->
+<!-- =====================================================
+     FOCUS WIDGET
+===================================================== -->
 
 
-<section class="card small-card reveal">
+<section class="card focus reveal">
+
+
+<span class="label">
+FOCUS_STATE
+</span>
+
+
+
+<h2>
+STATUS:
+<span class="green-text">
+LOCKED IN
+</span>
+</h2>
+
+
+
+<div class="wave">
+
+
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+
+</div>
+
+
+
+<p>
+
+Layering Classical Piano &
+20Hz Beta Binaural Beats
+for deep focus.
+
+</p>
+
+
+
+</section>
+
+
+
+
+
+<!-- =====================================================
+     HARDWARE CORE
+===================================================== -->
+
+
+<section class="card hardware reveal">
 
 
 <div class="terminal-bar">
 
 <div class="dots">
 
-<div class="dot red"></div>
-<div class="dot yellow"></div>
-<div class="dot green"></div>
+<span class="dot red">
+<i>×</i>
+</span>
+
+<span class="dot yellow">
+<i>−</i>
+</span>
+
+<span class="dot green">
+<i>+</i>
+</span>
 
 </div>
 
 </div>
+
 
 
 <span class="label">
-CURRENT PROJECT
+PROJECT_001 // HARDWARE_CORE
 </span>
 
 
+
+<h2>
+32-Bit Pipelined RISC-V CPU Core
+</h2>
+
+
+
+<div class="hardware-layout">
+
+
+<div class="code-window">
+
+
+<pre>
+module cpu_core(
+
+input clk,
+input reset,
+
+output [31:0] pc
+
+);
+
+
+pipeline_stage IF;
+pipeline_stage ID;
+pipeline_stage EX;
+pipeline_stage MEM;
+pipeline_stage WB;
+
+
+
+forwarding_unit FU;
+
+hazard_detection HD;
+
+
+endmodule
+</pre>
+
+
+</div>
+
+
+
+<div class="hardware-info">
+
+
+<ul>
+
+<li>
+Hazard resolution and pipeline control logic
+</li>
+
+
+<li>
+Data forwarding paths reducing stalls
+</li>
+
+
+<li>
+Waveform simulation using GTKWave
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- =====================================================
+     CREATIVE BRAIN
+===================================================== -->
+
+
+<section class="card creative reveal">
+
+
+<span class="label">
+ENTREPRENEURSHIP
+</span>
+
+
+
+<h2>
+Independent Streetwear Brand
+</h2>
+
+
+
 <h3>
-32-bit Pipelined
-RISC-V CPU
+Founder & Creative Director
 </h3>
+
+
+<p class="date">
+Jan. 2021 — Present
+</p>
+
 
 
 <p>
 
-Designing a synthesizable processor in Verilog with
-hazard detection, forwarding and branch prediction.
+Directed complete product lifecycle including
+material sourcing, manufacturing decisions,
+capital allocation, branding, and digital marketing.
 
 </p>
 
@@ -173,77 +330,56 @@ hazard detection, forwarding and branch prediction.
 
 
 
-<!-- TECH STACK -->
 
-
-<section class="card skills reveal">
-
-
-<span class="label">
-TECH STACK
-</span>
-
-
-<div class="chips">
-
-<span>Verilog</span>
-<span>SystemVerilog</span>
-<span>C</span>
-<span>C++</span>
-<span>Python</span>
-<span>MATLAB</span>
-<span>Linux</span>
-<span>Git</span>
-<span>FPGA</span>
-<span>Vivado</span>
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<!-- EXPERIENCE -->
+<!-- =====================================================
+     EXPERIENCE
+===================================================== -->
 
 
 <section class="card experience reveal">
 
+
 <span class="label">
-EXPERIENCE
+EXPERIENCE_LOG
 </span>
 
 
+
 <div class="year-buttons">
+
 
 <button onclick="showExperience('2026')">
 2026
 </button>
 
+
 <button onclick="showExperience('2025')">
 2025
 </button>
+
 
 <button onclick="showExperience('2024')">
 2024
 </button>
 
+
 </div>
 
 
+
+
 <div id="experience-display">
+
 
 <p>
 Select a year to view experience.
 </p>
 
+
 </div>
 
 
+
 </section>
 
 
@@ -252,66 +388,111 @@ Select a year to view experience.
 
 
 
+<!-- =====================================================
+     TECH TOOLKIT
+===================================================== -->
 
-<!-- INVOLVEMENT -->
+
+<section class="card toolkit reveal">
 
 
-<section class="card reveal">
+<div class="terminal-bar">
+
+<div class="dots">
+
+<span class="dot red">
+<i>×</i>
+</span>
+
+<span class="dot yellow">
+<i>−</i>
+</span>
+
+<span class="dot green">
+<i>+</i>
+</span>
+
+</div>
+
+</div>
+
+
 
 
 <span class="label">
-INVOLVEMENT
+SYSTEM_TOOLS
 </span>
 
 
-<h3>
-Builder.<br>
-Researcher.<br>
-Entrepreneur.
-</h3>
+
+
+<div class="directory">
 
 
 <p>
-
-Building hardware projects while documenting the
-engineering process and growing technical communities.
-
+Languages/
 </p>
 
 
-</section>
-
-
-
-
-
-
-
-
-<!-- ABOUT -->
-
-
-<section class="card wide reveal">
-
-
-<span class="label">
-ABOUT
+<span>
+SystemVerilog
 </span>
+
+<span>
+Verilog
+</span>
+
+<span>
+C
+</span>
+
+<span>
+C#
+</span>
+
+<span>
+Java
+</span>
+
+<span>
+Python
+</span>
+
+
+</div>
+
+
+
+
+
+<div class="directory">
 
 
 <p>
-
-I'm passionate about low-level computing.
-
-My interests include processor design,
-computer architecture, FPGA development,
-embedded systems, operating systems and
-hardware/software co-design.
-
-I enjoy solving difficult engineering problems
-where performance, simplicity and elegance meet.
-
+EDA_Tools/
 </p>
+
+
+<span>
+GTKWave
+</span>
+
+<span>
+Icarus Verilog
+</span>
+
+<span>
+ModelSim
+</span>
+
+<span>
+Quartus Prime
+</span>
+
+
+</div>
+
+
 
 
 </section>
@@ -322,50 +503,46 @@ where performance, simplicity and elegance meet.
 
 
 
-<!-- CONNECT -->
+<!-- =====================================================
+     SOCIAL
+===================================================== -->
 
 
-<section class="card reveal">
+<section class="card socials-card reveal">
 
 
 <span class="label">
-CONNECT
+NETWORK
 </span>
 
 
-<div class="socials">
 
-
-<a href="https://github.com/" target="_blank">
+<a href="https://github.com">
 
 <i class="fab fa-github"></i>
 
 GitHub
 
+<code>
+$ git clone adam/projects
+</code>
+
 </a>
 
 
 
-<a href="https://linkedin.com/" target="_blank">
+<a href="https://linkedin.com">
 
 <i class="fab fa-linkedin"></i>
 
 LinkedIn
 
-</a>
-
-
-
-<a href="mailto:your@email.com">
-
-<i class="fa-solid fa-envelope"></i>
-
-Email
+<code>
+$ connect adam
+</code>
 
 </a>
 
-
-</div>
 
 
 </section>
@@ -376,7 +553,9 @@ Email
 
 
 
-<!-- QUOTE -->
+<!-- =====================================================
+     QUOTE
+===================================================== -->
 
 
 <section class="card quote reveal">
@@ -384,8 +563,7 @@ Email
 
 <p>
 
-"Good architecture disappears.
-Bad architecture becomes technical debt."
+"Engineering is the art of turning ideas into systems."
 
 </p>
 
@@ -394,13 +572,10 @@ Bad architecture becomes technical debt."
 
 
 
+
 </main>
 
 
-
-
-
-<!-- JavaScript -->
 
 <script src="script.js"></script>
 
@@ -408,4 +583,3 @@ Bad architecture becomes technical debt."
 </body>
 
 </html>
-
