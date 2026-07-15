@@ -1,6 +1,6 @@
 /* =====================================================
    ADAM MORGAN PORTFOLIO
-   INTERACTION ENGINE
+   PREMIUM INTERACTION SYSTEM
 ===================================================== */
 
 
@@ -73,92 +73,93 @@ let deleting = false;
 
 
 
+
 function typeWriter(){
 
 
-    if(!typingElement)
-        return;
+if(!typingElement)
+return;
 
 
 
-    const word =
-    typingWords[wordIndex];
+const word =
+typingWords[wordIndex];
 
 
 
-    if(!deleting){
+if(!deleting){
 
 
-        typingElement.textContent =
-        word.substring(
-            0,
-            letterIndex++
-        );
-
-
-
-        if(letterIndex > word.length){
-
-
-            deleting = true;
-
-
-            setTimeout(
-                typeWriter,
-                1400
-            );
-
-
-            return;
-
-
-        }
-
-
-    }
-
-    else{
-
-
-        typingElement.textContent =
-        word.substring(
-            0,
-            letterIndex--
-        );
+typingElement.textContent =
+word.substring(
+0,
+letterIndex++
+);
 
 
 
-        if(letterIndex < 0){
+if(letterIndex > word.length){
 
 
-            deleting=false;
+deleting=true;
+
+
+setTimeout(
+typeWriter,
+1400
+);
+
+
+return;
+
+
+}
+
+
+}
+
+else{
+
+
+typingElement.textContent =
+word.substring(
+0,
+letterIndex--
+);
 
 
 
-            wordIndex =
-            (wordIndex + 1)
-            %
-            typingWords.length;
+if(letterIndex < 0){
+
+
+deleting=false;
+
+
+wordIndex =
+(wordIndex+1)
+%
+typingWords.length;
 
 
 
-            letterIndex=0;
+letterIndex=0;
 
 
-        }
+}
 
 
-    }
+}
 
 
 
-    setTimeout(
 
-        typeWriter,
+setTimeout(
 
-        deleting ? 45 : 90
+typeWriter,
 
-    );
+deleting ? 45 : 90
+
+);
 
 
 }
@@ -176,7 +177,7 @@ typeWriter();
 
 
 /* =====================================================
-   CURSOR LIGHT OVERLAY
+   CURSOR GLOW
 ===================================================== */
 
 
@@ -188,42 +189,41 @@ document.querySelectorAll(".card");
 cards.forEach(card=>{
 
 
-    card.addEventListener(
-        "mousemove",
-        event=>{
+card.addEventListener(
+"mousemove",
+(e)=>{
 
 
-            const rect =
-            card.getBoundingClientRect();
-
-
-
-            const x =
-            event.clientX - rect.left;
+const rect =
+card.getBoundingClientRect();
 
 
 
-            const y =
-            event.clientY - rect.top;
+const x =
+e.clientX - rect.left;
 
 
 
-            card.style.setProperty(
-                "--mouse-x",
-                `${x}px`
-            );
+const y =
+e.clientY - rect.top;
 
 
 
-            card.style.setProperty(
-                "--mouse-y",
-                `${y}px`
-            );
+card.style.setProperty(
+"--mouse-x",
+`${x}px`
+);
 
 
-        }
 
-    );
+card.style.setProperty(
+"--mouse-y",
+`${y}px`
+);
+
+
+
+});
 
 
 });
@@ -237,7 +237,104 @@ cards.forEach(card=>{
 
 
 /* =====================================================
-   ENGINEERING JOURNEY
+   ENGINEERING JOURNEY DATA
+===================================================== */
+
+
+const projects = {
+
+
+
+"2026":[
+
+
+{
+title:"32-Bit Pipelined RISC-V CPU Core",
+
+text:
+"Designed a processor architecture using SystemVerilog RTL with a 5-stage pipeline, hazard detection, forwarding logic, and verification."
+},
+
+
+
+{
+title:"Processor Pipeline Architecture",
+
+text:
+"Implemented instruction fetch, decode, execute, memory, and write-back stages while analyzing data flow."
+},
+
+
+
+{
+title:"Verification Environment",
+
+text:
+"Used simulation tools including ModelSim and GTKWave to debug RTL behavior and validate hardware design."
+}
+
+
+
+],
+
+
+
+
+
+
+"2025":[
+
+
+{
+title:"Digital Systems Development",
+
+text:
+"Built foundations in digital logic, programming, electronics, and hardware design concepts."
+},
+
+
+{
+title:"Engineering Applications",
+
+text:
+"Applied mathematics, physics, and programming toward engineering problems and technical projects."
+}
+
+
+],
+
+
+
+
+
+
+
+"2024":[
+
+
+{
+title:"Technical Foundation",
+
+text:
+"Developed programming fundamentals, problem-solving skills, and engineering curiosity through technical exploration."
+}
+
+
+]
+
+
+};
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   TIMELINE EXPANSION
 ===================================================== */
 
 
@@ -249,8 +346,8 @@ document.getElementById(
 
 
 const timelineContent =
-document.getElementById(
-"timeline-content"
+document.querySelector(
+".project-grid"
 );
 
 
@@ -264,161 +361,64 @@ document.querySelectorAll(
 
 
 
-const timelineData = {
+function loadProjects(year){
+
+
+if(!timelineContent)
+return;
 
 
 
-"2026":`
-
-<h3>
-2026 — Processor Architecture
-</h3>
-
-
-<p>
-
-<b>
-32-Bit Pipelined RISC-V CPU Core
-</b>
-
-
-<br><br>
-
-
-Designed a custom processor architecture using SystemVerilog RTL.
-
-
-<br><br>
-
-
-Projects:
-
-<br>
-
-• 5-stage instruction pipeline
-
-<br>
-
-• Hazard detection unit
-
-<br>
-
-• Data forwarding logic
-
-<br>
-
-• RTL simulation and verification
-
-
-<br><br>
-
-
-Focus:
-
-Computer Architecture + Digital Systems
-
-
-</p>
-
-`,
+timelineContent.innerHTML="";
 
 
 
+projects[year].forEach(
+(item,index)=>{
+
+
+const project =
+document.createElement(
+"div"
+);
 
 
 
-"2025":`
+project.className =
+"project-item";
 
-<h3>
-2025 — Engineering Development
-</h3>
+
+
+project.style.animationDelay =
+`${index * .12}s`;
+
+
+
+project.innerHTML = `
+
+<h4>
+${item.title}
+</h4>
 
 
 <p>
-
-
-Projects:
-
-<br>
-
-
-• Digital systems projects
-
-<br>
-
-• Programming applications
-
-<br>
-
-• Mathematics and physics modelling
-
-<br>
-
-• Electronics fundamentals
-
-
-<br><br>
-
-
-Focus:
-
-Building engineering foundations.
-
-
+${item.text}
 </p>
 
-`,
+`;
 
 
 
+timelineContent.appendChild(
+project
+);
 
 
 
-"2024":`
-
-<h3>
-2024 — Technical Foundation
-</h3>
+});
 
 
-<p>
-
-
-Projects:
-
-<br>
-
-
-• Programming fundamentals
-
-<br>
-
-• Problem solving
-
-<br>
-
-• Engineering concepts
-
-<br>
-
-• Technical exploration
-
-
-<br><br>
-
-
-Focus:
-
-Developing engineering thinking.
-
-
-</p>
-
-`
-
-
-};
-
+}
 
 
 
@@ -430,64 +430,28 @@ Developing engineering thinking.
 yearButtons.forEach(button=>{
 
 
-    button.addEventListener(
-        "mouseenter",
-        ()=>{
+button.addEventListener(
+"mouseenter",
+()=>{
 
 
-            const year =
-            button.dataset.year;
-
-
-
-            timeline.classList.add(
-                "expanded"
-            );
+timeline.classList.add(
+"expanded"
+);
 
 
 
-            timelineContent.innerHTML =
-            timelineData[year];
+loadProjects(
+button.dataset.year
+);
 
-
-
-        }
-
-    );
-
-
-
-
-
-    button.addEventListener(
-        "mouseleave",
-        ()=>{
-
-
-            setTimeout(()=>{
-
-
-                if(!timeline.matches(":hover")){
-
-
-                    timeline.classList.remove(
-                        "expanded"
-                    );
-
-
-                }
-
-
-            },250);
-
-
-
-        }
-
-    );
 
 
 });
+
+
+});
+
 
 
 
@@ -514,7 +478,7 @@ timeline.classList.remove(
 
 
 /* =====================================================
-   VIEW PROJECTS BUTTON
+   VIEW PROJECT BUTTON
 ===================================================== */
 
 
@@ -522,6 +486,8 @@ const projectsButton =
 document.getElementById(
 "projects-button"
 );
+
+
 
 
 
@@ -558,6 +524,8 @@ timeline.classList.add(
 
 
 
+
+
 setTimeout(()=>{
 
 
@@ -571,7 +539,7 @@ timeline.classList.remove(
 
 
 
-},800);
+},700);
 
 
 
