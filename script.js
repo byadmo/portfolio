@@ -722,16 +722,14 @@ projectGrid.appendChild(item);
 
 }
 
-
-
-
-
-
-
-
 /* =====================================================
-   YEAR BUTTON SYSTEM V3
+   YEAR BUTTON SYSTEM V4
 ===================================================== */
+
+
+let timelineHovered = false;
+let collapseTimer;
+
 
 
 function activateYear(button){
@@ -774,7 +772,15 @@ loadProjects(year);
 
 
 
+
+
+// only start collapse timer if cursor is NOT inside
+
+if(!timelineHovered){
+
 resetTimelineTimer();
+
+}
 
 
 }
@@ -831,16 +837,12 @@ activateYear(button);
 
 
 /* =====================================================
-   TIMELINE AUTO COLLAPSE SYSTEM
+   TIMELINE AUTO COLLAPSE V2
 ===================================================== */
-
-
-let collapseTimer;
 
 
 
 function resetTimelineTimer(){
-
 
 
 clearTimeout(
@@ -851,14 +853,11 @@ collapseTimer
 
 
 collapseTimer =
-
 setTimeout(()=>{
 
 
 
-if(!timeline)
-return;
-
+if(!timelineHovered && timeline){
 
 
 
@@ -880,18 +879,15 @@ btn.classList.remove(
 
 
 
+}
 
-},
 
-4500
 
-);
+},4500);
 
 
 
 }
-
-
 
 
 
@@ -908,6 +904,9 @@ timeline.addEventListener(
 "mouseenter",
 
 ()=>{
+
+
+timelineHovered = true;
 
 
 clearTimeout(
@@ -930,161 +929,11 @@ timeline.addEventListener(
 ()=>{
 
 
+timelineHovered = false;
+
+
+
 resetTimelineTimer();
-
-
-}
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   VIEW PROJECT BUTTON SYSTEM
-===================================================== */
-
-
-function playTimelineGlow(){
-
-
-
-if(!timeline)
-return;
-
-
-
-
-timeline.classList.remove(
-"project-active"
-);
-
-
-
-
-
-// restart animation
-
-void timeline.offsetWidth;
-
-
-
-
-
-timeline.classList.add(
-"project-active"
-);
-
-
-
-
-
-
-setTimeout(()=>{
-
-
-timeline.classList.remove(
-"project-active"
-);
-
-
-
-},
-
-7000
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-
-
-if(projectsButton && timeline){
-
-
-
-projectsButton.addEventListener(
-
-"click",
-
-(e)=>{
-
-
-
-e.preventDefault();
-
-
-
-
-
-
-timeline.scrollIntoView({
-
-
-behavior:"smooth",
-
-
-block:"center"
-
-
-});
-
-
-
-
-
-
-
-setTimeout(()=>{
-
-
-
-// automatically open newest projects
-
-if(yearButtons[0]){
-
-
-activateYear(
-yearButtons[0]
-);
-
-
-}
-
-
-
-
-
-// trigger special glow
-
-playTimelineGlow();
-
-
-
-
-
-},
-
-700);
-
-
 
 
 
