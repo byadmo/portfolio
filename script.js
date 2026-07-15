@@ -1,7 +1,7 @@
 /* =====================================================
    ADAM MORGAN PORTFOLIO
-   OPTIMIZED INTERACTION ENGINE
-   FPGA SIGNAL SYSTEM + MOBILE OPTIMIZATION
+   PREMIUM INTERACTION ENGINE
+   OPTIMIZED VERSION
 ===================================================== */
 
 
@@ -45,55 +45,6 @@ document.querySelector(".project-grid");
 
 
 
-/* =====================================================
-   BOOT SCREEN
-===================================================== */
-
-
-window.addEventListener(
-"load",
-()=>{
-
-
-const boot =
-document.getElementById(
-"boot-screen"
-);
-
-
-
-if(boot){
-
-
-setTimeout(()=>{
-
-
-boot.classList.add(
-"hide"
-);
-
-
-
-document.body.classList.add(
-"loaded"
-);
-
-
-
-},2200);
-
-
-
-}
-
-
-
-}
-);
-
-
-
-
 
 
 
@@ -103,37 +54,27 @@ document.body.classList.add(
 ===================================================== */
 
 
-window.addEventListener(
-"load",
-()=>{
+window.addEventListener("load",()=>{
 
 
-revealCards.forEach(
-(card,index)=>{
+revealCards.forEach((card,index)=>{
 
 
 setTimeout(()=>{
 
 
-card.classList.add(
-"active"
-);
+card.classList.add("active");
+
+
+},index * 120);
 
 
 
-},
-index * 120
-);
+});
 
 
+});
 
-}
-);
-
-
-
-}
-);
 
 
 
@@ -165,9 +106,7 @@ const typingWords = [
 "high-performance digital logic..."
 
 
-
 ];
-
 
 
 
@@ -182,9 +121,7 @@ let deleting = false;
 
 
 
-
 function typeWriter(){
-
 
 
 if(!typingElement)
@@ -193,8 +130,7 @@ return;
 
 
 
-
-const word =
+const current =
 typingWords[wordIndex];
 
 
@@ -204,23 +140,19 @@ typingWords[wordIndex];
 if(!deleting){
 
 
-
 charIndex++;
 
 
 
-
 typingElement.textContent =
-word.substring(
+current.substring(
 0,
 charIndex
 );
 
 
 
-
-
-if(charIndex >= word.length){
+if(charIndex >= current.length){
 
 
 deleting = true;
@@ -228,7 +160,7 @@ deleting = true;
 
 setTimeout(
 typeWriter,
-1600
+1500
 );
 
 
@@ -244,15 +176,12 @@ return;
 else{
 
 
-
 charIndex--;
 
 
 
-
-
 typingElement.textContent =
-word.substring(
+current.substring(
 0,
 charIndex
 );
@@ -262,7 +191,6 @@ charIndex
 
 
 if(charIndex <= 0){
-
 
 
 deleting = false;
@@ -285,12 +213,11 @@ typingWords.length;
 
 
 
-
 setTimeout(
 
 typeWriter,
 
-deleting ? 40 : 80
+deleting ? 35 : 70
 
 );
 
@@ -315,22 +242,13 @@ typeWriter();
 ===================================================== */
 
 
-if(
-window.matchMedia(
-"(pointer:fine)"
-).matches
-){
-
-
-
-cards.forEach(
-card=>{
-
+cards.forEach(card=>{
 
 
 let mouseX = 0;
 
 let mouseY = 0;
+
 
 let currentX = 0;
 
@@ -341,19 +259,15 @@ let currentY = 0;
 
 
 
-
 function animateGlow(){
-
 
 
 currentX +=
 (mouseX-currentX)*0.15;
 
 
-
 currentY +=
 (mouseY-currentY)*0.15;
-
 
 
 
@@ -373,7 +287,6 @@ card.style.setProperty(
 
 
 
-
 requestAnimationFrame(
 animateGlow
 );
@@ -384,11 +297,7 @@ animateGlow
 
 
 
-
-
 animateGlow();
-
-
 
 
 
@@ -417,19 +326,15 @@ rect.top;
 
 
 }
+
+
+
 );
 
 
 
+});
 
-
-}
-);
-
-
-
-
-}
 
 
 
@@ -443,11 +348,7 @@ rect.top;
 ===================================================== */
 
 
-if(hero &&
-window.matchMedia(
-"(pointer:fine)"
-).matches
-){
+if(hero){
 
 
 
@@ -456,17 +357,14 @@ hero.addEventListener(
 (e)=>{
 
 
+
 const rect =
 hero.getBoundingClientRect();
 
 
 
-
 const x =
-(
-e.clientX -
-rect.left
-)
+(e.clientX - rect.left)
 /
 rect.width
 -
@@ -474,13 +372,8 @@ rect.width
 
 
 
-
-
 const y =
-(
-e.clientY -
-rect.top
-)
+(e.clientY - rect.top)
 /
 rect.height
 -
@@ -498,13 +391,14 @@ rotateY(${x*3}deg)
 
 rotateX(${-y*3}deg)
 
-translateY(-5px)
+translateY(-3px)
 
 `;
 
 
 
 }
+
 );
 
 
@@ -516,15 +410,23 @@ hero.addEventListener(
 ()=>{
 
 
-hero.style.transform="";
+hero.style.transform = "";
 
 
 }
+
 );
 
 
 
 }
+
+
+
+
+
+
+
 /* =====================================================
    TERMINAL DOT INTERACTION
 ===================================================== */
@@ -544,8 +446,8 @@ dot.style.transform =
 "scale(1.35) rotate(15deg)";
 
 
-}
-);
+});
+
 
 
 
@@ -558,20 +460,10 @@ dot.style.transform =
 "scale(1) rotate(0deg)";
 
 
-}
-);
-
-
-
 });
 
 
-
-
-
-
-
-
+});
 
 /* =====================================================
    PROJECT DATABASE
@@ -619,6 +511,7 @@ text:
 }
 
 
+
 ],
 
 
@@ -626,8 +519,8 @@ text:
 
 
 
-
 2025:[
+
 
 
 {
@@ -665,6 +558,7 @@ text:
 }
 
 
+
 ],
 
 
@@ -672,8 +566,8 @@ text:
 
 
 
-
 2024:[
+
 
 
 {
@@ -699,7 +593,9 @@ text:
 }
 
 
+
 ]
+
 
 
 };
@@ -727,23 +623,20 @@ return;
 
 
 
-projectGrid.innerHTML="";
+projectGrid.innerHTML = "";
 
 
 
 
 
 projects[year].forEach(
+
 (project,index)=>{
 
 
 
 const item =
-document.createElement(
-"div"
-);
-
-
+document.createElement("div");
 
 
 
@@ -752,11 +645,8 @@ item.className =
 
 
 
-
-
 item.style.animationDelay =
 `${index*0.12}s`;
-
 
 
 
@@ -785,14 +675,13 @@ ${project.text}
 
 
 
-
-projectGrid.appendChild(
-item
-);
+projectGrid.appendChild(item);
 
 
 
 }
+
+
 );
 
 
@@ -808,99 +697,13 @@ item
 
 
 /* =====================================================
-   TIMELINE SYSTEM
+   YEAR BUTTON SYSTEM
 ===================================================== */
 
 
 let timelineHovered = false;
 
 let collapseTimer;
-
-
-
-
-
-
-function resetTimeline(){
-
-
-
-clearTimeout(
-collapseTimer
-);
-
-
-
-
-
-collapseTimer =
-setTimeout(
-()=>{
-
-
-
-if(
-timeline &&
-!timelineHovered
-){
-
-
-
-timeline.classList.remove(
-"expanded"
-);
-
-
-
-yearButtons.forEach(
-button=>{
-
-
-button.classList.remove(
-"active"
-);
-
-
-}
-);
-
-
-
-
-
-if(projectGrid){
-
-
-projectGrid.innerHTML = `
-
-<p class="timeline-placeholder">
-
-Hover a year to explore projects.
-
-</p>
-
-`;
-
-
-
-}
-
-
-
-}
-
-
-
-},
-4500
-);
-
-
-
-}
-
-
-
 
 
 
@@ -917,9 +720,7 @@ button.dataset.year;
 
 
 
-
-yearButtons.forEach(
-btn=>{
+yearButtons.forEach(btn=>{
 
 
 btn.classList.remove(
@@ -927,9 +728,7 @@ btn.classList.remove(
 );
 
 
-
-}
-);
+});
 
 
 
@@ -952,9 +751,8 @@ timeline.classList.add(
 );
 
 
+
 }
-
-
 
 
 
@@ -962,7 +760,15 @@ loadProjects(year);
 
 
 
-resetTimeline();
+
+
+if(!timelineHovered){
+
+
+resetTimelineTimer();
+
+
+}
 
 
 
@@ -975,10 +781,7 @@ resetTimeline();
 
 
 
-
-yearButtons.forEach(
-button=>{
-
+yearButtons.forEach(button=>{
 
 
 button.addEventListener(
@@ -990,9 +793,8 @@ activateYear(button);
 
 
 }
+
 );
-
-
 
 
 
@@ -1005,15 +807,94 @@ activateYear(button);
 
 
 }
+
 );
 
+
+
+});
+
+
+
+
+
+
+
+
+/* =====================================================
+   TIMELINE COLLAPSE SYSTEM
+===================================================== */
+
+
+function resetTimelineTimer(){
+
+
+
+clearTimeout(
+collapseTimer
+);
+
+
+
+
+collapseTimer =
+setTimeout(()=>{
+
+
+
+if(!timelineHovered && timeline){
+
+
+
+timeline.classList.remove(
+"expanded"
+);
+
+
+
+yearButtons.forEach(btn=>{
+
+
+btn.classList.remove(
+"active"
+);
+
+
+});
+
+
+
+
+
+if(projectGrid){
+
+
+projectGrid.innerHTML = `
+
+<p>
+
+Hover a year to explore projects.
+
+</p>
+
+`;
+
+
+
+}
 
 
 
 
 }
-);
 
+
+
+},4500);
+
+
+
+}
 
 
 
@@ -1040,7 +921,9 @@ collapseTimer
 
 
 }
+
 );
+
 
 
 
@@ -1054,31 +937,24 @@ timeline.addEventListener(
 timelineHovered = false;
 
 
-
-resetTimeline();
+resetTimelineTimer();
 
 
 
 }
+
 );
 
 
 
 }
 
-
-
-
-
-
-
-
 /* =====================================================
    VIEW PROJECT BUTTON
 ===================================================== */
 
 
-function timelineHighlight(){
+function playTimelineGlow(){
 
 
 
@@ -1088,7 +964,6 @@ return;
 
 
 
-
 timeline.classList.remove(
 "project-active"
 );
@@ -1096,9 +971,9 @@ timeline.classList.remove(
 
 
 
+// restart animation
 
 void timeline.offsetWidth;
-
 
 
 
@@ -1111,9 +986,7 @@ timeline.classList.add(
 
 
 
-
-setTimeout(
-()=>{
+setTimeout(()=>{
 
 
 timeline.classList.remove(
@@ -1121,9 +994,8 @@ timeline.classList.remove(
 );
 
 
-},
-5000
-);
+
+},7000);
 
 
 
@@ -1135,10 +1007,7 @@ timeline.classList.remove(
 
 
 
-if(
-projectsButton &&
-timeline
-){
+if(projectsButton && timeline){
 
 
 
@@ -1147,7 +1016,9 @@ projectsButton.addEventListener(
 (e)=>{
 
 
+
 e.preventDefault();
+
 
 
 
@@ -1155,11 +1026,13 @@ e.preventDefault();
 
 timeline.scrollIntoView({
 
-behavior:
-"smooth",
 
-block:
-"center"
+behavior:"smooth",
+
+
+block:"center"
+
+
 
 });
 
@@ -1167,11 +1040,7 @@ block:
 
 
 
-setTimeout(
-()=>{
-
-
-timelineHighlight();
+setTimeout(()=>{
 
 
 timeline.classList.add(
@@ -1180,18 +1049,35 @@ timeline.classList.add(
 
 
 
-},
-700
-);
+playTimelineGlow();
+
+
+
+},800);
+
+
 
 
 
 }
+
+
+
 );
 
 
 
+
+
 }
+
+
+
+
+
+
+
+
 
 /* =====================================================
    PIPELINE ANIMATION
@@ -1210,26 +1096,26 @@ let pipelineIndex = 0;
 
 
 
+
+
 if(pipelineStages.length){
 
 
 
-setInterval(
-()=>{
+setInterval(()=>{
 
 
 
-pipelineStages.forEach(
-stage=>{
+pipelineStages.forEach(stage=>{
 
 
-stage.style.boxShadow="";
+stage.style.boxShadow = "";
 
-stage.style.color="";
+stage.style.color = "";
 
 
-}
-);
+});
+
 
 
 
@@ -1251,7 +1137,9 @@ pipelineStages[pipelineIndex].style.color =
 
 
 
+
 pipelineIndex++;
+
 
 
 
@@ -1261,15 +1149,15 @@ if(
 pipelineIndex >= pipelineStages.length
 ){
 
+
 pipelineIndex = 0;
+
 
 }
 
 
 
-},
-1200
-);
+},1200);
 
 
 
@@ -1295,14 +1183,19 @@ document.createElement(
 
 
 
+
+
 scrollBar.className =
 "scroll-progress";
+
 
 
 
 document.body.appendChild(
 scrollBar
 );
+
+
 
 
 
@@ -1315,6 +1208,7 @@ window.addEventListener(
 
 
 const height =
+
 document.documentElement.scrollHeight -
 window.innerHeight;
 
@@ -1322,23 +1216,22 @@ window.innerHeight;
 
 
 const progress =
-(
-window.scrollY /
-height
-)
-*
-100;
 
+(window.scrollY / height) * 100;
 
 
 
 
 scrollBar.style.width =
+
 `${progress}%`;
 
 
 
 }
+
+
+
 );
 
 
@@ -1348,9 +1241,48 @@ scrollBar.style.width =
 
 
 
+/* =====================================================
+   SYSTEM ONLINE
+===================================================== */
+
+
+window.addEventListener(
+"load",
+()=>{
+
+
+document.body.classList.add(
+"loaded"
+);
+
+
+
+console.log(`
+
+================================
+
+ADAM MORGAN PORTFOLIO
+
+SYSTEM ONLINE
+
+ARCHITECTURE:
+RISC-V
+RTL DESIGN
+FPGA SYSTEMS
+
+================================
+
+`);
+
+
+
+}
+
+);
 
 /* =====================================================
-   MULTI DIRECTION FPGA SIGNAL SYSTEM
+   RANDOM FPGA SIGNAL FIELD
+   MULTI-DIRECTION SIGNAL FLOW
 ===================================================== */
 
 
@@ -1363,43 +1295,15 @@ document.getElementById(
 
 
 
-const signalDirections = [
-
-
-0,
-
-45,
-
-90,
-
-135,
-
-180,
-
-225,
-
-270,
-
-315
-
-
-];
 
 
 
-
-
-
-
-function createSignal(
-initial=false
-){
+function createSignal(initial=false){
 
 
 
 if(!cpuField)
 return;
-
 
 
 
@@ -1420,79 +1324,53 @@ pulse.className =
 
 
 
-
-const angle =
-signalDirections[
-Math.floor(
-Math.random()
-*
-signalDirections.length
-)
-];
-
-
-
-
-
+/*
+    Random signal properties
+*/
 
 
 const length =
-Math.random()
-*
-300
-+
-150;
+Math.random()*250 + 150;
+
+
+
+const startX =
+Math.random()*120 - 20;
+
+
+
+const startY =
+Math.random()*120 - 20;
 
 
 
 
 
-
-
-const duration =
-Math.random()
-*
-6
-+
-9;
-
-
+const angle =
+Math.random()*360;
 
 
 
 
 
 const distance =
-Math.random()
-*
-600
-+
-700;
+Math.random()*600 + 500;
 
 
 
 
 
+// controlled realistic speed
 
-
-const startX =
-Math.random()
-*
-120
--
-20;
+const duration =
+Math.random()*5 + 8;
 
 
 
 
 
-const startY =
-Math.random()
-*
-120
--
-20;
-
+const opacity =
+Math.random()*.35 + .25;
 
 
 
@@ -1504,14 +1382,22 @@ pulse.style.width =
 
 
 
+
 pulse.style.left =
 `${startX}%`;
+
 
 
 
 pulse.style.top =
 `${startY}%`;
 
+
+
+
+
+pulse.style.opacity =
+opacity;
 
 
 
@@ -1543,31 +1429,14 @@ pulse.style.animationDuration =
 
 
 
-
-
-pulse.style.opacity =
-Math.random()
-*
-0.35
-+
-0.25;
-
-
-
-
-
-
-
 if(initial){
 
 
 pulse.style.animationDelay =
-`${Math.random()*1.5}s`;
+`${Math.random()*2}s`;
 
 
 }
-
-
 
 
 
@@ -1584,18 +1453,16 @@ pulse
 
 
 
-setTimeout(
-()=>{
+setTimeout(()=>{
 
 
 pulse.remove();
 
 
-
 },
-(duration+2)
-*
-1000
+
+(duration + 3) * 1000
+
 );
 
 
@@ -1614,20 +1481,19 @@ function startSignalSystem(){
 
 
 
+/*
+    Initial signals immediately
+*/
 
-
-// instant startup signals
 
 for(
 let i=0;
-i<22;
+i<20;
 i++
 ){
 
 
-
 createSignal(true);
-
 
 
 }
@@ -1638,19 +1504,21 @@ createSignal(true);
 
 
 
-// continuous generation
+/*
+    Continuous random generation
+*/
 
 
-setInterval(
-()=>{
+setInterval(()=>{
 
 
 createSignal();
 
 
-
 },
-1800
+
+2500
+
 );
 
 
@@ -1677,19 +1545,16 @@ startSignalSystem();
 ===================================================== */
 
 
-
 function randomBurst(){
 
 
 
-
-
 const amount =
+
 Math.floor(
 Math.random()*5
-)
-+
-2;
+)+2;
+
 
 
 
@@ -1704,8 +1569,7 @@ i++
 
 
 
-setTimeout(
-()=>{
+setTimeout(()=>{
 
 
 createSignal();
@@ -1713,35 +1577,30 @@ createSignal();
 
 
 },
-i*200
+
+i*250
+
 );
 
 
 
 }
-
-
-
 
 
 
 
 
 setTimeout(
+
 randomBurst,
 
-Math.random()
-*
-9000
-+
-9000
+Math.random()*10000 + 10000
 
 );
 
 
 
 }
-
 
 
 
@@ -1749,27 +1608,17 @@ Math.random()
 
 randomBurst();
 
-
-
-
-
-
-
-
-
 /* =====================================================
    MOBILE TOUCH OPTIMIZATION
 ===================================================== */
 
 
-if(
-window.innerWidth < 700
-){
+if(window.innerWidth < 700){
 
 
 
-cards.forEach(
-card=>{
+cards.forEach(card=>{
+
 
 
 card.addEventListener(
@@ -1783,7 +1632,9 @@ card.classList.add(
 
 
 }
+
 );
+
 
 
 
@@ -1794,8 +1645,7 @@ card.addEventListener(
 ()=>{
 
 
-setTimeout(
-()=>{
+setTimeout(()=>{
 
 
 card.classList.remove(
@@ -1803,19 +1653,17 @@ card.classList.remove(
 );
 
 
-},
-300
-);
+},300);
 
 
 
 }
+
 );
 
 
 
-}
-);
+});
 
 
 
@@ -1841,7 +1689,7 @@ document.addEventListener(
 
 
 if(
-e.key==="1" &&
+e.key === "1" &&
 yearButtons[0]
 ){
 
@@ -1855,8 +1703,10 @@ yearButtons[0]
 
 
 
+
+
 if(
-e.key==="2" &&
+e.key === "2" &&
 yearButtons[1]
 ){
 
@@ -1871,8 +1721,10 @@ yearButtons[1]
 
 
 
+
+
 if(
-e.key==="3" &&
+e.key === "3" &&
 yearButtons[2]
 ){
 
@@ -1886,34 +1738,7 @@ yearButtons[2]
 
 
 
+
 }
+
 );
-
-
-
-
-
-
-
-
-/* =====================================================
-   SYSTEM ONLINE MESSAGE
-===================================================== */
-
-
-console.log(`
-
-================================
-
-ADAM MORGAN PORTFOLIO
-
-SYSTEM ONLINE
-
-ARCHITECTURE:
-RISC-V
-RTL DESIGN
-FPGA SYSTEMS
-
-================================
-
-`);
