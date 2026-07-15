@@ -1,9 +1,8 @@
 /* =====================================================
    ADAM MORGAN PORTFOLIO
-   PREMIUM INTERACTION ENGINE
-   UPDATED FPGA SIGNAL SYSTEM
+   OPTIMIZED INTERACTION ENGINE
+   FPGA SIGNAL SYSTEM + MOBILE OPTIMIZATION
 ===================================================== */
-
 
 
 /* =====================================================
@@ -46,6 +45,57 @@ document.querySelector(".project-grid");
 
 
 
+/* =====================================================
+   BOOT SCREEN
+===================================================== */
+
+
+window.addEventListener(
+"load",
+()=>{
+
+
+const boot =
+document.getElementById(
+"boot-screen"
+);
+
+
+
+if(boot){
+
+
+setTimeout(()=>{
+
+
+boot.classList.add(
+"hide"
+);
+
+
+
+document.body.classList.add(
+"loaded"
+);
+
+
+
+},2200);
+
+
+
+}
+
+
+
+}
+);
+
+
+
+
+
+
 
 
 /* =====================================================
@@ -53,27 +103,37 @@ document.querySelector(".project-grid");
 ===================================================== */
 
 
-window.addEventListener("load",()=>{
+window.addEventListener(
+"load",
+()=>{
 
 
-revealCards.forEach((card,index)=>{
+revealCards.forEach(
+(card,index)=>{
 
 
 setTimeout(()=>{
 
 
-card.classList.add("active");
+card.classList.add(
+"active"
+);
 
 
-},index*120);
+
+},
+index * 120
+);
 
 
 
-});
+}
+);
 
 
-});
 
+}
+);
 
 
 
@@ -87,7 +147,7 @@ card.classList.add("active");
 ===================================================== */
 
 
-const typingWords=[
+const typingWords = [
 
 
 "32-bit pipelined RISC-V cores...",
@@ -105,15 +165,19 @@ const typingWords=[
 "high-performance digital logic..."
 
 
+
 ];
 
 
 
-let wordIndex=0;
 
-let charIndex=0;
+let wordIndex = 0;
 
-let deleting=false;
+let charIndex = 0;
+
+let deleting = false;
+
+
 
 
 
@@ -122,13 +186,17 @@ let deleting=false;
 function typeWriter(){
 
 
+
 if(!typingElement)
 return;
 
 
 
-const current =
+
+
+const word =
 typingWords[wordIndex];
+
 
 
 
@@ -141,8 +209,9 @@ charIndex++;
 
 
 
+
 typingElement.textContent =
-current.substring(
+word.substring(
 0,
 charIndex
 );
@@ -151,10 +220,10 @@ charIndex
 
 
 
-if(charIndex>=current.length){
+if(charIndex >= word.length){
 
 
-deleting=true;
+deleting = true;
 
 
 setTimeout(
@@ -180,8 +249,10 @@ charIndex--;
 
 
 
+
+
 typingElement.textContent =
-current.substring(
+word.substring(
 0,
 charIndex
 );
@@ -190,21 +261,23 @@ charIndex
 
 
 
-if(charIndex<=0){
+if(charIndex <= 0){
 
 
-deleting=false;
+
+deleting = false;
 
 
 
 wordIndex =
-(wordIndex+1)
+(wordIndex + 1)
 %
 typingWords.length;
 
 
 
 }
+
 
 
 }
@@ -217,9 +290,10 @@ setTimeout(
 
 typeWriter,
 
-deleting ? 35 : 75
+deleting ? 40 : 80
 
 );
+
 
 
 }
@@ -241,23 +315,34 @@ typeWriter();
 ===================================================== */
 
 
-cards.forEach(card=>{
-
-
-let mouseX=0;
-
-let mouseY=0;
-
-
-let currentX=0;
-
-let currentY=0;
+if(
+window.matchMedia(
+"(pointer:fine)"
+).matches
+){
 
 
 
+cards.forEach(
+card=>{
 
 
-function animate(){
+
+let mouseX = 0;
+
+let mouseY = 0;
+
+let currentX = 0;
+
+let currentY = 0;
+
+
+
+
+
+
+
+function animateGlow(){
 
 
 
@@ -274,22 +359,15 @@ currentY +=
 
 
 card.style.setProperty(
-
 "--mouse-x",
-
 `${currentX}px`
-
 );
 
 
 
-
 card.style.setProperty(
-
 "--mouse-y",
-
 `${currentY}px`
-
 );
 
 
@@ -297,7 +375,7 @@ card.style.setProperty(
 
 
 requestAnimationFrame(
-animate
+animateGlow
 );
 
 
@@ -308,7 +386,8 @@ animate
 
 
 
-animate();
+animateGlow();
+
 
 
 
@@ -316,9 +395,7 @@ animate();
 
 
 card.addEventListener(
-
 "mousemove",
-
 (e)=>{
 
 
@@ -340,9 +417,148 @@ rect.top;
 
 
 }
+);
 
 
 
+
+
+}
+);
+
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   HERO PARALLAX
+===================================================== */
+
+
+if(hero &&
+window.matchMedia(
+"(pointer:fine)"
+).matches
+){
+
+
+
+hero.addEventListener(
+"mousemove",
+(e)=>{
+
+
+const rect =
+hero.getBoundingClientRect();
+
+
+
+
+const x =
+(
+e.clientX -
+rect.left
+)
+/
+rect.width
+-
+0.5;
+
+
+
+
+
+const y =
+(
+e.clientY -
+rect.top
+)
+/
+rect.height
+-
+0.5;
+
+
+
+
+
+hero.style.transform = `
+
+perspective(1200px)
+
+rotateY(${x*3}deg)
+
+rotateX(${-y*3}deg)
+
+translateY(-5px)
+
+`;
+
+
+
+}
+);
+
+
+
+
+
+hero.addEventListener(
+"mouseleave",
+()=>{
+
+
+hero.style.transform="";
+
+
+}
+);
+
+
+
+}
+/* =====================================================
+   TERMINAL DOT INTERACTION
+===================================================== */
+
+
+document
+.querySelectorAll(".terminal-dots span")
+.forEach(dot=>{
+
+
+dot.addEventListener(
+"mouseenter",
+()=>{
+
+
+dot.style.transform =
+"scale(1.35) rotate(15deg)";
+
+
+}
+);
+
+
+
+dot.addEventListener(
+"mouseleave",
+()=>{
+
+
+dot.style.transform =
+"scale(1) rotate(0deg)";
+
+
+}
 );
 
 
@@ -358,149 +574,6 @@ rect.top;
 
 
 /* =====================================================
-   HERO PARALLAX
-===================================================== */
-
-
-if(hero){
-
-
-
-hero.addEventListener(
-
-"mousemove",
-
-(e)=>{
-
-
-
-const rect =
-hero.getBoundingClientRect();
-
-
-
-
-const x =
-(e.clientX-rect.left)
-/
-rect.width
--.5;
-
-
-
-
-const y =
-(e.clientY-rect.top)
-/
-rect.height
--.5;
-
-
-
-
-
-hero.style.transform = `
-
-perspective(1200px)
-
-rotateY(${x*3}deg)
-
-rotateX(${-y*3}deg)
-
-translateY(-3px)
-
-`;
-
-
-
-}
-
-
-
-);
-
-
-
-
-
-hero.addEventListener(
-
-"mouseleave",
-
-()=>{
-
-
-hero.style.transform="";
-
-
-}
-
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   TERMINAL DOT INTERACTION
-===================================================== */
-
-
-document
-.querySelectorAll(".terminal-dots span")
-.forEach(dot=>{
-
-
-dot.addEventListener(
-
-"mouseenter",
-
-()=>{
-
-
-dot.style.transform =
-
-"scale(1.35) rotate(15deg)";
-
-
-}
-
-
-
-);
-
-
-
-dot.addEventListener(
-
-"mouseleave",
-
-()=>{
-
-
-dot.style.transform =
-
-"scale(1) rotate(0deg)";
-
-
-}
-
-
-
-);
-
-
-
-});/* =====================================================
    PROJECT DATABASE
 ===================================================== */
 
@@ -546,7 +619,6 @@ text:
 }
 
 
-
 ],
 
 
@@ -556,7 +628,6 @@ text:
 
 
 2025:[
-
 
 
 {
@@ -594,7 +665,6 @@ text:
 }
 
 
-
 ],
 
 
@@ -604,7 +674,6 @@ text:
 
 
 2024:[
-
 
 
 {
@@ -630,9 +699,7 @@ text:
 }
 
 
-
 ]
-
 
 
 };
@@ -659,19 +726,24 @@ return;
 
 
 
+
 projectGrid.innerHTML="";
 
 
 
 
-projects[year].forEach(
 
+projects[year].forEach(
 (project,index)=>{
 
 
 
 const item =
-document.createElement("div");
+document.createElement(
+"div"
+);
+
+
 
 
 
@@ -680,8 +752,12 @@ item.className =
 
 
 
+
+
 item.style.animationDelay =
-`${index*.12}s`;
+`${index*0.12}s`;
+
+
 
 
 
@@ -696,6 +772,7 @@ ${project.title}
 </h4>
 
 
+
 <p>
 
 ${project.text}
@@ -708,31 +785,130 @@ ${project.text}
 
 
 
-projectGrid.appendChild(item);
+
+projectGrid.appendChild(
+item
+);
 
 
 
 }
-
-
-
 );
 
 
 
 }
 
+
+
+
+
+
+
+
+
 /* =====================================================
-   YEAR BUTTON SYSTEM V4
+   TIMELINE SYSTEM
 ===================================================== */
 
 
 let timelineHovered = false;
+
 let collapseTimer;
 
 
 
+
+
+
+function resetTimeline(){
+
+
+
+clearTimeout(
+collapseTimer
+);
+
+
+
+
+
+collapseTimer =
+setTimeout(
+()=>{
+
+
+
+if(
+timeline &&
+!timelineHovered
+){
+
+
+
+timeline.classList.remove(
+"expanded"
+);
+
+
+
+yearButtons.forEach(
+button=>{
+
+
+button.classList.remove(
+"active"
+);
+
+
+}
+);
+
+
+
+
+
+if(projectGrid){
+
+
+projectGrid.innerHTML = `
+
+<p class="timeline-placeholder">
+
+Hover a year to explore projects.
+
+</p>
+
+`;
+
+
+
+}
+
+
+
+}
+
+
+
+},
+4500
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
 function activateYear(button){
+
 
 
 const year =
@@ -740,19 +916,31 @@ button.dataset.year;
 
 
 
-yearButtons.forEach(btn=>{
+
+
+yearButtons.forEach(
+btn=>{
+
 
 btn.classList.remove(
 "active"
 );
 
-});
+
+
+}
+);
+
+
 
 
 
 button.classList.add(
 "active"
 );
+
+
+
 
 
 
@@ -768,19 +956,14 @@ timeline.classList.add(
 
 
 
+
+
 loadProjects(year);
 
 
 
+resetTimeline();
 
-
-// only start collapse timer if cursor is NOT inside
-
-if(!timelineHovered){
-
-resetTimelineTimer();
-
-}
 
 
 }
@@ -791,13 +974,15 @@ resetTimelineTimer();
 
 
 
-yearButtons.forEach(button=>{
+
+
+yearButtons.forEach(
+button=>{
+
 
 
 button.addEventListener(
-
 "mouseenter",
-
 ()=>{
 
 
@@ -805,15 +990,14 @@ activateYear(button);
 
 
 }
-
 );
+
+
 
 
 
 button.addEventListener(
-
 "click",
-
 ()=>{
 
 
@@ -821,73 +1005,16 @@ activateYear(button);
 
 
 }
-
 );
 
 
-
-});
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   TIMELINE AUTO COLLAPSE V2
-===================================================== */
-
-
-
-function resetTimelineTimer(){
-
-
-clearTimeout(
-collapseTimer
-);
-
-
-
-
-collapseTimer =
-setTimeout(()=>{
-
-
-
-if(!timelineHovered && timeline){
-
-
-
-timeline.classList.remove(
-"expanded"
-);
-
-
-
-yearButtons.forEach(btn=>{
-
-
-btn.classList.remove(
-"active"
-);
-
-
-});
 
 
 
 }
+);
 
 
-
-},4500);
-
-
-
-}
 
 
 
@@ -900,9 +1027,7 @@ if(timeline){
 
 
 timeline.addEventListener(
-
 "mouseenter",
-
 ()=>{
 
 
@@ -915,7 +1040,6 @@ collapseTimer
 
 
 }
-
 );
 
 
@@ -923,9 +1047,7 @@ collapseTimer
 
 
 timeline.addEventListener(
-
 "mouseleave",
-
 ()=>{
 
 
@@ -933,12 +1055,138 @@ timelineHovered = false;
 
 
 
-resetTimelineTimer();
+resetTimeline();
+
+
+
+}
+);
 
 
 
 }
 
+
+
+
+
+
+
+
+/* =====================================================
+   VIEW PROJECT BUTTON
+===================================================== */
+
+
+function timelineHighlight(){
+
+
+
+if(!timeline)
+return;
+
+
+
+
+
+timeline.classList.remove(
+"project-active"
+);
+
+
+
+
+
+void timeline.offsetWidth;
+
+
+
+
+
+timeline.classList.add(
+"project-active"
+);
+
+
+
+
+
+
+setTimeout(
+()=>{
+
+
+timeline.classList.remove(
+"project-active"
+);
+
+
+},
+5000
+);
+
+
+
+}
+
+
+
+
+
+
+
+if(
+projectsButton &&
+timeline
+){
+
+
+
+projectsButton.addEventListener(
+"click",
+(e)=>{
+
+
+e.preventDefault();
+
+
+
+
+
+timeline.scrollIntoView({
+
+behavior:
+"smooth",
+
+block:
+"center"
+
+});
+
+
+
+
+
+setTimeout(
+()=>{
+
+
+timelineHighlight();
+
+
+timeline.classList.add(
+"expanded"
+);
+
+
+
+},
+700
+);
+
+
+
+}
 );
 
 
@@ -957,8 +1205,7 @@ document.querySelectorAll(
 
 
 
-let pipelineIndex=0;
-
+let pipelineIndex = 0;
 
 
 
@@ -967,11 +1214,13 @@ if(pipelineStages.length){
 
 
 
-setInterval(()=>{
+setInterval(
+()=>{
 
 
 
-pipelineStages.forEach(stage=>{
+pipelineStages.forEach(
+stage=>{
 
 
 stage.style.boxShadow="";
@@ -979,8 +1228,8 @@ stage.style.boxShadow="";
 stage.style.color="";
 
 
-});
-
+}
+);
 
 
 
@@ -1008,54 +1257,59 @@ pipelineIndex++;
 
 
 
-if(pipelineIndex>=pipelineStages.length)
+if(
+pipelineIndex >= pipelineStages.length
+){
 
-pipelineIndex=0;
+pipelineIndex = 0;
+
+}
 
 
 
-
-},1200);
+},
+1200
+);
 
 
 
 }
+
+
+
+
+
+
+
+
+
 /* =====================================================
    SCROLL PROGRESS BAR
 ===================================================== */
 
 
 const scrollBar =
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 
 
-scrollBar.style.position="fixed";
+scrollBar.className =
+"scroll-progress";
 
-scrollBar.style.top="0";
 
-scrollBar.style.left="0";
 
-scrollBar.style.height="3px";
-
-scrollBar.style.width="0%";
-
-scrollBar.style.background =
-"linear-gradient(90deg,#00eaff,#00ff88)";
-
-scrollBar.style.zIndex="9999";
-
-document.body.appendChild(scrollBar);
-
+document.body.appendChild(
+scrollBar
+);
 
 
 
 
 
 window.addEventListener(
-
 "scroll",
-
 ()=>{
 
 
@@ -1066,8 +1320,15 @@ window.innerHeight;
 
 
 
+
 const progress =
-(window.scrollY/height)*100;
+(
+window.scrollY /
+height
+)
+*
+100;
+
 
 
 
@@ -1078,9 +1339,6 @@ scrollBar.style.width =
 
 
 }
-
-
-
 );
 
 
@@ -1092,60 +1350,51 @@ scrollBar.style.width =
 
 
 /* =====================================================
-   SYSTEM ONLINE
-===================================================== */
-
-
-window.addEventListener(
-
-"load",
-
-()=>{
-
-
-document.body.classList.add(
-"loaded"
-);
-
-
-
-console.log(`
-
-================================
-
-ADAM MORGAN PORTFOLIO
-
-SYSTEM ONLINE
-
-ARCHITECTURE:
-RISC-V
-RTL DESIGN
-FPGA SYSTEMS
-
-================================
-
-`);
-
-
-
-}
-
-);
-
-
-/* =====================================================
-   RANDOM FPGA SIGNAL FIELD V4
-   MULTI DIRECTION SIGNAL FLOW
+   MULTI DIRECTION FPGA SIGNAL SYSTEM
 ===================================================== */
 
 
 const cpuField =
-document.getElementById("cpu-field");
+document.getElementById(
+"cpu-field"
+);
 
 
 
 
-function createSignal(initial=false){
+
+const signalDirections = [
+
+
+0,
+
+45,
+
+90,
+
+135,
+
+180,
+
+225,
+
+270,
+
+315
+
+
+];
+
+
+
+
+
+
+
+function createSignal(
+initial=false
+){
+
 
 
 if(!cpuField)
@@ -1153,8 +1402,13 @@ return;
 
 
 
+
+
+
 const pulse =
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 
 
@@ -1164,55 +1418,80 @@ pulse.className =
 
 
 
-// random size
+
+
+
+const angle =
+signalDirections[
+Math.floor(
+Math.random()
+*
+signalDirections.length
+)
+];
+
+
+
+
+
+
 
 const length =
-Math.random()*250+150;
+Math.random()
+*
+300
++
+150;
 
 
 
-// random starting position
+
+
+
+
+const duration =
+Math.random()
+*
+6
++
+9;
+
+
+
+
+
+
+
+const distance =
+Math.random()
+*
+600
++
+700;
+
+
+
+
+
+
 
 const startX =
-Math.random()*120-20;
+Math.random()
+*
+120
+-
+20;
+
+
+
 
 
 const startY =
-Math.random()*120-20;
-
-
-
-
-
-// random direction
-
-const angle =
-Math.random()*360;
-
-
-
-
-
-// random travel distance
-
-const distance =
-Math.random()*700+600;
-
-
-
-
-
-// slower realistic speed
-
-const duration =
-Math.random()*5+8;
-
-
-
-
-
-const opacity =
-Math.random()*.35+.25;
+Math.random()
+*
+120
+-
+20;
 
 
 
@@ -1235,10 +1514,6 @@ pulse.style.top =
 
 
 
-pulse.style.opacity =
-opacity;
-
-
 
 
 
@@ -1246,6 +1521,8 @@ pulse.style.setProperty(
 "--angle",
 `${angle}deg`
 );
+
+
 
 
 
@@ -1258,6 +1535,7 @@ pulse.style.setProperty(
 
 
 
+
 pulse.style.animationDuration =
 `${duration}s`;
 
@@ -1265,12 +1543,31 @@ pulse.style.animationDuration =
 
 
 
+
+
+pulse.style.opacity =
+Math.random()
+*
+0.35
++
+0.25;
+
+
+
+
+
+
+
+if(initial){
+
+
 pulse.style.animationDelay =
-initial
-?
-`${Math.random()*1.5}s`
-:
-"0s";
+`${Math.random()*1.5}s`;
+
+
+}
+
+
 
 
 
@@ -1286,16 +1583,19 @@ pulse
 
 
 
-setTimeout(()=>{
+
+setTimeout(
+()=>{
 
 
 pulse.remove();
 
 
+
 },
-
-(duration+2)*1000
-
+(duration+2)
+*
+1000
 );
 
 
@@ -1314,16 +1614,20 @@ function startSignalSystem(){
 
 
 
-// create signals immediately when website loads
+
+
+// instant startup signals
 
 for(
 let i=0;
-i<18;
+i<22;
 i++
 ){
 
 
+
 createSignal(true);
+
 
 
 }
@@ -1333,20 +1637,20 @@ createSignal(true);
 
 
 
-// continuous random generation
 
-setInterval(()=>{
+// continuous generation
+
+
+setInterval(
+()=>{
 
 
 createSignal();
 
 
+
 },
-
-
-Math.random()*1500+2000
-
-
+1800
 );
 
 
@@ -1373,14 +1677,20 @@ startSignalSystem();
 ===================================================== */
 
 
+
 function randomBurst(){
+
+
 
 
 
 const amount =
 Math.floor(
-Math.random()*4
-)+2;
+Math.random()*5
+)
++
+2;
+
 
 
 
@@ -1394,22 +1704,23 @@ i++
 
 
 
-setTimeout(()=>{
+setTimeout(
+()=>{
 
 
 createSignal();
 
 
+
 },
-
-i*250
-
-
+i*200
 );
 
 
 
 }
+
+
 
 
 
@@ -1417,16 +1728,20 @@ i*250
 
 
 setTimeout(
-
 randomBurst,
 
-Math.random()*12000+12000
+Math.random()
+*
+9000
++
+9000
 
 );
 
 
 
 }
+
 
 
 
@@ -1435,23 +1750,30 @@ Math.random()*12000+12000
 randomBurst();
 
 
+
+
+
+
+
+
+
 /* =====================================================
    MOBILE TOUCH OPTIMIZATION
 ===================================================== */
 
 
-if(window.innerWidth < 700){
+if(
+window.innerWidth < 700
+){
 
 
 
-cards.forEach(card=>{
-
+cards.forEach(
+card=>{
 
 
 card.addEventListener(
-
 "touchstart",
-
 ()=>{
 
 
@@ -1461,19 +1783,19 @@ card.classList.add(
 
 
 }
-
 );
 
 
 
+
+
 card.addEventListener(
-
 "touchend",
-
 ()=>{
 
 
-setTimeout(()=>{
+setTimeout(
+()=>{
 
 
 card.classList.remove(
@@ -1481,17 +1803,19 @@ card.classList.remove(
 );
 
 
-},300);
-
-
-
-}
-
+},
+300
 );
 
 
 
-});
+}
+);
+
+
+
+}
+);
 
 
 
@@ -1511,14 +1835,15 @@ card.classList.remove(
 
 
 document.addEventListener(
-
 "keydown",
-
 (e)=>{
 
 
 
-if(e.key==="1" && yearButtons[0]){
+if(
+e.key==="1" &&
+yearButtons[0]
+){
 
 
 activateYear(
@@ -1530,8 +1855,10 @@ yearButtons[0]
 
 
 
-
-if(e.key==="2" && yearButtons[1]){
+if(
+e.key==="2" &&
+yearButtons[1]
+){
 
 
 activateYear(
@@ -1544,8 +1871,10 @@ yearButtons[1]
 
 
 
-
-if(e.key==="3" && yearButtons[2]){
+if(
+e.key==="3" &&
+yearButtons[2]
+){
 
 
 activateYear(
@@ -1554,7 +1883,37 @@ yearButtons[2]
 
 
 }
-   
-}
 
+
+
+}
 );
+
+
+
+
+
+
+
+
+/* =====================================================
+   SYSTEM ONLINE MESSAGE
+===================================================== */
+
+
+console.log(`
+
+================================
+
+ADAM MORGAN PORTFOLIO
+
+SYSTEM ONLINE
+
+ARCHITECTURE:
+RISC-V
+RTL DESIGN
+FPGA SYSTEMS
+
+================================
+
+`);
