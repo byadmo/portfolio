@@ -5,17 +5,17 @@
 
 
 /* =====================================================
-   STAGGERED CARD REVEAL
+   CARD LOAD ANIMATION
 ===================================================== */
 
 
-const cards = document.querySelectorAll(".reveal");
+const revealCards = document.querySelectorAll(".reveal");
 
 
 window.addEventListener("load", () => {
 
 
-    cards.forEach((card, index) => {
+    revealCards.forEach((card, index) => {
 
 
         setTimeout(() => {
@@ -39,14 +39,16 @@ window.addEventListener("load", () => {
 
 
 /* =====================================================
-   TYPEWRITER EFFECT
+   TYPEWRITER
 ===================================================== */
 
 
-const typingText = document.getElementById("typing");
+const typingElement =
+document.getElementById("typing");
 
 
-const words = [
+
+const typingWords = [
 
     "32-bit pipelined RISC-V cores...",
 
@@ -60,43 +62,45 @@ const words = [
 
 let wordIndex = 0;
 
-let charIndex = 0;
+let letterIndex = 0;
 
 let deleting = false;
 
 
 
-function typeEffect(){
+function typeWriter(){
 
 
-    if(!typingText) return;
+    if(!typingElement)
+        return;
 
 
 
-    const current = words[wordIndex];
+    let word =
+    typingWords[wordIndex];
 
 
 
     if(!deleting){
 
 
-        typingText.textContent =
-
-        current.substring(
+        typingElement.textContent =
+        word.substring(
             0,
-            charIndex++
+            letterIndex++
         );
 
 
 
-        if(charIndex > current.length){
+        if(letterIndex > word.length){
 
 
-            deleting = true;
+            deleting=true;
+
 
 
             setTimeout(
-                typeEffect,
+                typeWriter,
                 1400
             );
 
@@ -107,21 +111,21 @@ function typeEffect(){
         }
 
 
+
     }
 
     else{
 
 
-        typingText.textContent =
-
-        current.substring(
+        typingElement.textContent =
+        word.substring(
             0,
-            charIndex--
+            letterIndex--
         );
 
 
 
-        if(charIndex < 0){
+        if(letterIndex < 0){
 
 
             deleting=false;
@@ -130,10 +134,11 @@ function typeEffect(){
             wordIndex =
             (wordIndex + 1)
             %
-            words.length;
+            typingWords.length;
 
 
-            charIndex=0;
+
+            letterIndex=0;
 
 
         }
@@ -146,174 +151,19 @@ function typeEffect(){
 
     setTimeout(
 
-        typeEffect,
+        typeWriter,
 
         deleting ? 45 : 90
 
     );
 
+
 }
 
 
 
-typeEffect();
+typeWriter();
 
-
-
-
-
-
-
-
-/* =====================================================
-   ENGINEERING TIMELINE
-===================================================== */
-
-
-const timelineData = {
-
-
-    "2026":
-
-    `
-    Processor architecture,
-    RTL design,
-    SystemVerilog development,
-    and digital hardware projects.
-    `,
-
-
-    "2025":
-
-    `
-    Engineering foundations,
-    programming,
-    mathematics,
-    physics,
-    and electronics development.
-    `,
-
-
-    "2024":
-
-    `
-    Building fundamentals in
-    programming, problem solving,
-    and technical design.
-    `
-
-
-};
-
-
-
-
-const yearButtons = document.querySelectorAll(
-    ".year-buttons button"
-);
-
-
-
-const timelineContent =
-document.getElementById(
-    "timeline-content"
-);
-
-
-
-yearButtons.forEach(button => {
-
-
-
-    button.addEventListener(
-        "mouseenter",
-        ()=>{
-
-
-            const year =
-            button.dataset.year;
-
-
-
-            timelineContent.textContent =
-            timelineData[year];
-
-
-        }
-
-    );
-
-
-
-
-    button.addEventListener(
-        "mouseleave",
-        ()=>{
-
-
-            timelineContent.textContent =
-            "Hover a year";
-
-
-        }
-
-    );
-
-
-
-});
-
-
-
-
-
-
-
-/* =====================================================
-   TERMINAL DOT MICRO INTERACTION
-===================================================== */
-
-
-const dots =
-document.querySelectorAll(
-    ".terminal-dots span"
-);
-
-
-
-dots.forEach(dot=>{
-
-
-    dot.addEventListener(
-        "mouseenter",
-        ()=>{
-
-
-            dot.style.transform =
-            "scale(1.3) rotate(15deg)";
-
-
-        }
-
-    );
-
-
-
-    dot.addEventListener(
-        "mouseleave",
-        ()=>{
-
-
-            dot.style.transform =
-            "scale(1) rotate(0deg)";
-
-
-        }
-
-    );
-
-
-});
 
 
 
@@ -327,17 +177,19 @@ dots.forEach(dot=>{
 ===================================================== */
 
 
-const allCards =
+const cards =
 document.querySelectorAll(".card");
 
 
 
-allCards.forEach(card=>{
+cards.forEach(card=>{
 
 
     card.addEventListener(
+
         "mousemove",
-        e=>{
+
+        event=>{
 
 
             const rect =
@@ -346,26 +198,149 @@ allCards.forEach(card=>{
 
 
             const x =
-            e.clientX - rect.left;
+            event.clientX - rect.left;
 
 
 
             const y =
-            e.clientY - rect.top;
+            event.clientY - rect.top;
+
 
 
 
             card.style.setProperty(
-                "--x",
+
+                "--mouse-x",
+
                 `${x}px`
+
             );
 
 
 
             card.style.setProperty(
-                "--y",
+
+                "--mouse-y",
+
                 `${y}px`
+
             );
+
+
+
+        }
+
+    );
+
+
+});
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   ENGINEERING TIMELINE
+===================================================== */
+
+
+const timelineInfo = {
+
+
+    "2026":
+
+    `
+    Processor architecture,
+    SystemVerilog RTL development,
+    CPU pipeline design,
+    and advanced digital systems.
+    `,
+
+
+
+    "2025":
+
+    `
+    Engineering fundamentals,
+    programming,
+    mathematics,
+    physics,
+    and electronics development.
+    `,
+
+
+
+    "2024":
+
+    `
+    Building foundations in
+    programming,
+    problem solving,
+    and engineering concepts.
+    `
+
+};
+
+
+
+
+
+
+const timelineButtons =
+document.querySelectorAll(
+    ".year-buttons button"
+);
+
+
+
+const timelineText =
+document.getElementById(
+    "timeline-content"
+);
+
+
+
+
+
+timelineButtons.forEach(button=>{
+
+
+    button.addEventListener(
+        "mouseenter",
+        ()=>{
+
+
+            const year =
+            button.dataset.year;
+
+
+
+            timelineText.textContent =
+            timelineInfo[year];
+
+
+        }
+
+    );
+
+
+
+    button.addEventListener(
+        "click",
+        ()=>{
+
+
+            const year =
+            button.dataset.year;
+
+
+
+            timelineText.textContent =
+            timelineInfo[year];
 
 
         }
@@ -384,33 +359,107 @@ allCards.forEach(card=>{
 
 
 /* =====================================================
-   BUTTON TERMINAL EFFECT
+   VIEW PROJECTS BUTTON
 ===================================================== */
 
 
-const buttons =
-document.querySelectorAll(
-    ".buttons a"
+const projectsButton =
+document.getElementById(
+    "projects-button"
 );
 
 
 
-buttons.forEach(button=>{
+const timelineCard =
+document.getElementById(
+    "timeline-card"
+);
 
 
-    const original =
-    button.textContent;
 
 
 
-    button.addEventListener(
+if(projectsButton && timelineCard){
+
+
+    projectsButton.addEventListener(
+        "click",
+        event=>{
+
+
+            event.preventDefault();
+
+
+
+            timelineCard.scrollIntoView({
+
+                behavior:"smooth",
+
+                block:"center"
+
+            });
+
+
+
+
+            timelineCard.classList.add(
+                "project-active"
+            );
+
+
+
+
+
+            setTimeout(()=>{
+
+
+                timelineCard.classList.remove(
+                    "project-active"
+                );
+
+
+            },5000);
+
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   TERMINAL DOT EFFECT
+===================================================== */
+
+
+const terminalDots =
+document.querySelectorAll(
+    ".terminal-dots span"
+);
+
+
+
+terminalDots.forEach(dot=>{
+
+
+    dot.addEventListener(
+
         "mouseenter",
+
         ()=>{
 
 
-            button.textContent =
-            "> " +
-            original.trim();
+            dot.style.transform =
+            "scale(1.3) rotate(15deg)";
 
 
         }
@@ -419,13 +468,16 @@ buttons.forEach(button=>{
 
 
 
-    button.addEventListener(
+
+    dot.addEventListener(
+
         "mouseleave",
+
         ()=>{
 
 
-            button.textContent =
-            original;
+            dot.style.transform =
+            "scale(1) rotate(0deg)";
 
 
         }
