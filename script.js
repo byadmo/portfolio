@@ -1,6 +1,6 @@
 /* =========================================================
    ADAM MORGAN PORTFOLIO
-   INTERACTION ENGINE
+   INTERACTION SYSTEM
 ========================================================= */
 
 
@@ -40,71 +40,58 @@ window.addEventListener("load", () => {
 
 
 /* =========================================================
-   TYPEWRITER SYSTEM
+   TYPEWRITER EFFECT
 ========================================================= */
 
 
-const typingElement =
-document.getElementById("typing");
+const typing = document.getElementById("typing");
 
 
-const cursor =
-document.querySelector(".cursor");
+const words = [
 
-
-
-const phrases = [
-
-    "Computer Architecture",
-
-    "RTL Design",
-
-    "FPGA Development",
-
-    "Digital Systems"
+    "32-bit pipelined RISC-V cores...",
+    "synthesizable hardware...",
+    "optimized RTL architectures..."
 
 ];
 
 
+let word = 0;
 
-let phraseIndex = 0;
-
-let letterIndex = 0;
+let character = 0;
 
 let deleting = false;
 
 
 
 
-function typeWriter(){
+function typeEffect(){
 
 
-    if(!typingElement)
-        return;
+    if(!typing) return;
 
 
 
     const current =
-    phrases[phraseIndex];
+    words[word];
 
 
 
     if(!deleting){
 
 
-        typingElement.textContent =
+        typing.textContent =
         current.substring(
             0,
-            letterIndex
+            character
         );
 
 
-
-        letterIndex++;
-
+        character++;
 
 
-        if(letterIndex >
+
+        if(character >
         current.length){
 
 
@@ -112,7 +99,7 @@ function typeWriter(){
 
 
             setTimeout(
-                typeWriter,
+                typeEffect,
                 1200
             );
 
@@ -126,31 +113,30 @@ function typeWriter(){
     } else {
 
 
-        typingElement.textContent =
+        typing.textContent =
         current.substring(
             0,
-            letterIndex
+            character
         );
 
 
-
-        letterIndex--;
-
+        character--;
 
 
-        if(letterIndex < 0){
+
+        if(character < 0){
 
 
             deleting=false;
 
 
-            phraseIndex =
-            (phraseIndex + 1)
+            word =
+            (word+1)
             %
-            phrases.length;
+            words.length;
 
 
-            letterIndex=0;
+            character=0;
 
 
         }
@@ -162,9 +148,9 @@ function typeWriter(){
 
     setTimeout(
 
-        typeWriter,
+        typeEffect,
 
-        deleting ? 45 : 90
+        deleting ? 40 : 90
 
     );
 
@@ -173,7 +159,8 @@ function typeWriter(){
 
 
 
-typeWriter();
+typeEffect();
+
 
 
 
@@ -182,56 +169,39 @@ typeWriter();
 
 
 /* =========================================================
-   MOUSE FOLLOWING CARD LIGHT
+   CARD MOUSE LIGHT EFFECT
 ========================================================= */
 
 
-const glowCards =
-document.querySelectorAll(".card");
-
-
-
-glowCards.forEach(card => {
+document
+.querySelectorAll(".card")
+.forEach(card=>{
 
 
     card.addEventListener(
         "mousemove",
-        event => {
+        e=>{
 
 
-
-        const box =
+        const rect =
         card.getBoundingClientRect();
-
-
-
-        const x =
-        event.clientX -
-        box.left;
-
-
-
-        const y =
-        event.clientY -
-        box.top;
 
 
 
         card.style.setProperty(
             "--x",
-            `${x}px`
+            `${e.clientX - rect.left}px`
         );
 
 
         card.style.setProperty(
             "--y",
-            `${y}px`
+            `${e.clientY - rect.top}px`
         );
 
 
+
     });
-
-
 
 
 
@@ -255,8 +225,8 @@ glowCards.forEach(card => {
     });
 
 
-});
 
+});
 
 
 
@@ -271,65 +241,65 @@ glowCards.forEach(card => {
 
 const timeline =
 document.getElementById(
-"timeline-display"
+"timeline"
 );
 
 
 
 const yearButtons =
 document.querySelectorAll(
-".year-buttons button"
+".years button"
 );
 
 
 
-const timelineInfo = {
+const timelineContent = {
 
 
-    "2026":`
+    2026:
 
+    `
     <h3>
     Processor Architecture
     </h3>
 
     <p>
-    Developing processor design skills through
-    RTL architecture, SystemVerilog,
-    pipeline design, and hardware simulation.
+    Developing skills in CPU architecture,
+    SystemVerilog RTL design,
+    pipeline systems, and hardware simulation.
     </p>
-
     `,
 
 
 
-    "2025":`
+    2025:
 
+    `
     <h3>
-    Digital Systems Foundation
+    Digital Systems Development
     </h3>
 
     <p>
-    Built engineering fundamentals through
-    circuits, programming, mathematics,
-    and digital logic design.
+    Built foundations in circuits,
+    programming, mathematics,
+    and engineering design.
     </p>
-
     `,
 
 
 
-    "2024":`
+    2024:
 
+    `
     <h3>
     Engineering Foundations
     </h3>
 
     <p>
-    Developed programming and technical
-    foundations in preparation for
-    electrical engineering studies.
+    Studied programming,
+    electronics fundamentals,
+    physics, and mathematics.
     </p>
-
     `
 
 
@@ -338,8 +308,7 @@ const timelineInfo = {
 
 
 
-
-yearButtons.forEach(button => {
+yearButtons.forEach(button=>{
 
 
     button.addEventListener(
@@ -353,180 +322,11 @@ yearButtons.forEach(button => {
 
 
         timeline.innerHTML =
-        timelineInfo[year];
+        timelineContent[year];
+
 
 
     });
 
 
 });
-
-
-
-
-
-
-
-/* =========================================================
-   PIPELINE ACTIVITY SIMULATION
-========================================================= */
-
-
-const stages =
-document.querySelectorAll(
-".pipeline div"
-);
-
-
-
-let activeStage = 0;
-
-
-
-function runPipeline(){
-
-
-    if(!stages.length)
-        return;
-
-
-
-    stages.forEach(stage=>{
-
-
-        stage.style.color="";
-
-        stage.style.borderColor="";
-
-
-    });
-
-
-
-    stages[activeStage].style.color =
-    "#00ff66";
-
-
-    stages[activeStage].style.borderColor =
-    "#00ff66";
-
-
-
-    activeStage++;
-
-
-
-    if(activeStage >= stages.length){
-
-        activeStage=0;
-
-    }
-
-
-}
-
-
-
-setInterval(
-    runPipeline,
-    900
-);
-
-
-
-
-
-
-
-
-/* =========================================================
-   TERMINAL BUTTON MICRO EFFECT
-========================================================= */
-
-
-const buttons =
-document.querySelectorAll(
-".button"
-);
-
-
-
-buttons.forEach(button=>{
-
-
-    button.addEventListener(
-        "mouseenter",
-        ()=>{
-
-
-        button.dataset.text =
-        button.textContent;
-
-
-
-        if(!button.textContent.startsWith(">")){
-
-
-            button.textContent =
-            "> " +
-            button.textContent;
-
-
-        }
-
-
-    });
-
-
-
-
-    button.addEventListener(
-        "mouseleave",
-        ()=>{
-
-
-        button.textContent =
-        button.dataset.text;
-
-
-    });
-
-
-
-});
-
-
-
-
-
-
-
-
-/* =========================================================
-   ACCESSIBILITY
-========================================================= */
-
-
-const reduceMotion =
-window.matchMedia(
-"(prefers-reduced-motion: reduce)"
-);
-
-
-
-if(reduceMotion.matches){
-
-
-    document
-    .querySelectorAll("*")
-    .forEach(element=>{
-
-
-        element.style.transition =
-        "none";
-
-
-    });
-
-
-}
