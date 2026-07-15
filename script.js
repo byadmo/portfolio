@@ -1,38 +1,46 @@
 /* =========================================================
-   APPLE x TERMINAL PORTFOLIO
+   SILICON ARCHITECT PORTFOLIO
    INTERACTION ENGINE
 ========================================================= */
 
 
 
 /* =========================================================
-   STAGGERED BENTO LOAD ANIMATION
+   SILICON BOOT SEQUENCE
 ========================================================= */
 
 
-const cards = document.querySelectorAll(".reveal");
+const bootLines = [
 
+    "BIOS CHECK ........ PASS",
 
-window.addEventListener("load", () => {
+    "MEMORY ARRAY ...... ONLINE",
 
+    "RTL MODULES ....... LOADED",
 
-    cards.forEach((card, index) => {
+    "FPGA INTERFACE .... READY",
 
+    "ADAM_SYSTEM ....... ONLINE"
 
-        setTimeout(() => {
-
-
-            card.classList.add("active");
-
-
-        }, index * 80);
+];
 
 
 
-    });
+function bootSequence(){
 
 
-});
+    console.log(
+        "%c" +
+        bootLines.join("\n"),
+        "color:#4cc9f0;font-family:monospace;"
+    );
+
+
+}
+
+
+
+bootSequence();
 
 
 
@@ -41,41 +49,99 @@ window.addEventListener("load", () => {
 
 
 /* =========================================================
-   TYPEWRITER ENGINE
+   BENTO CARD REVEAL
 ========================================================= */
 
 
-const phrases = [
+const cards =
+document.querySelectorAll(".reveal");
+
+
+
+window.addEventListener(
+    "load",
+    ()=>{
+
+
+        cards.forEach(
+            (card,index)=>{
+
+
+                setTimeout(
+                    ()=>{
+
+
+                        card.classList.add(
+                            "active"
+                        );
+
+
+                    },
+
+                    index * 80
+
+                );
+
+
+            }
+
+        );
+
+
+    }
+
+);
+
+
+
+
+
+
+
+/* =========================================================
+   TYPEWRITER SYSTEM
+========================================================= */
+
+
+const words = [
 
     "synthesizable hardware...",
 
     "32-bit pipelined RISC-V cores...",
 
-    "optimized RTL architectures..."
+    "optimized RTL architectures...",
+
+    "FPGA-based digital systems..."
 
 ];
 
 
-const typing = document.getElementById("typing");
+
+const typing =
+document.getElementById(
+    "typing"
+);
 
 
-let phraseIndex = 0;
 
-let characterIndex = 0;
+let word = 0;
+
+let char = 0;
 
 let deleting = false;
 
 
 
-function typeWriter(){
+function type(){
 
 
-    if(!typing) return;
+    if(!typing)
+        return;
 
 
 
     const current =
-    phrases[phraseIndex];
+    words[word];
 
 
 
@@ -85,60 +151,58 @@ function typeWriter(){
         typing.textContent =
         current.substring(
             0,
-            characterIndex++
+            char++
         );
 
 
 
-        if(characterIndex > current.length){
+        if(char > current.length){
 
 
-            deleting = true;
+            deleting=true;
 
 
             setTimeout(
-                typeWriter,
-                1500
+                type,
+                1200
             );
 
 
             return;
 
-
         }
 
 
-
     }
-    else {
+
+    else{
 
 
         typing.textContent =
         current.substring(
             0,
-            characterIndex--
+            char--
         );
 
 
 
-        if(characterIndex < 0){
+        if(char < 0){
 
 
-            deleting = false;
+            deleting=false;
 
 
-            phraseIndex =
-            (phraseIndex + 1)
+            word =
+            (word+1)
             %
-            phrases.length;
+            words.length;
 
 
 
-            characterIndex = 0;
+            char=0;
 
 
         }
-
 
 
     }
@@ -147,20 +211,18 @@ function typeWriter(){
 
     setTimeout(
 
-        typeWriter,
+        type,
 
-        deleting ? 45 : 90
+        deleting ? 40 : 90
 
     );
-
 
 
 }
 
 
 
-typeWriter();
-
+type();
 
 
 
@@ -169,59 +231,50 @@ typeWriter();
 
 
 /* =========================================================
-   MOUSE FOLLOWING CARD GLOW
+   CIRCUIT TRACE MOUSE EFFECT
 ========================================================= */
 
 
-const glowCards =
+const cardsGlow =
 document.querySelectorAll(".card");
 
 
 
-glowCards.forEach(card => {
-
+cardsGlow.forEach(card=>{
 
 
     card.addEventListener(
         "mousemove",
-        event => {
+        event=>{
 
 
-            const rect =
+            const box =
             card.getBoundingClientRect();
 
 
 
             const x =
             event.clientX -
-            rect.left;
+            box.left;
 
 
 
             const y =
             event.clientY -
-            rect.top;
+            box.top;
 
 
 
             card.style.setProperty(
-
                 "--x",
-
                 `${x}px`
-
             );
-
 
 
             card.style.setProperty(
-
                 "--y",
-
                 `${y}px`
-
             );
-
 
 
         }
@@ -233,7 +286,7 @@ glowCards.forEach(card => {
 
     card.addEventListener(
         "mouseleave",
-        () => {
+        ()=>{
 
 
             card.style.setProperty(
@@ -248,11 +301,9 @@ glowCards.forEach(card => {
             );
 
 
-
         }
 
     );
-
 
 
 });
@@ -265,106 +316,63 @@ glowCards.forEach(card => {
 
 
 /* =========================================================
-   EXPERIENCE DATABASE
+   CPU PIPELINE CLOCK
 ========================================================= */
 
 
-const experiences = {
+const pipelineStages =
+document.querySelectorAll(
+    ".pipeline div"
+);
 
 
 
-    "2026": `
-
-    <p>
-
-    Currently focused on computer architecture,
-    RTL design, and developing processor systems.
-
-    Working on:
-
-    <br><br>
-
-    • RISC-V CPU pipeline optimization
-    <br>
-    • Hardware simulation workflows
-    <br>
-    • Digital system design
-
-    </p>
-
-    `,
+let pipelineIndex=0;
 
 
 
+function clockCycle(){
 
 
-    "2025": `
-
-    <p>
-
-    Engineering development phase.
-
-    <br><br>
-
-    • Expanded programming knowledge
-    <br>
-    • Built technical projects
-    <br>
-    • Studied computer architecture fundamentals
-
-    </p>
-
-    `,
+    pipelineStages.forEach(
+        stage=>{
 
 
+            stage.style.background =
+            "transparent";
 
 
+        }
 
-    "2024": `
-
-    <p>
-
-    Foundation year focused on:
-
-    <br><br>
-
-    • Mathematics
-    <br>
-    • Physics
-    <br>
-    • Programming fundamentals
-    <br>
-    • Engineering problem solving
-
-    </p>
-
-    `
-
-
-};
-
-
-
-
-
-
-
-function showExperience(year){
-
-
-    const display =
-    document.getElementById(
-        "experience-display"
     );
 
 
 
-    if(!display) return;
+    if(
+        pipelineStages[pipelineIndex]
+    ){
+
+
+        pipelineStages[pipelineIndex]
+        .style.background =
+        "rgba(76,201,240,.2)";
+
+
+    }
 
 
 
-    display.innerHTML =
-    experiences[year];
+    pipelineIndex++;
+
+
+
+    if(
+        pipelineIndex >= pipelineStages.length
+    ){
+
+        pipelineIndex=0;
+
+    }
 
 
 
@@ -372,54 +380,11 @@ function showExperience(year){
 
 
 
+setInterval(
+    clockCycle,
+    700
+);
 
-
-
-
-/* =========================================================
-   TERMINAL DOT MICRO INTERACTION
-========================================================= */
-
-
-const dots =
-document.querySelectorAll(".dot");
-
-
-
-dots.forEach(dot => {
-
-
-    dot.addEventListener(
-        "mouseenter",
-        ()=>{
-
-
-            dot.style.transform =
-            "scale(1.3) rotate(15deg)";
-
-
-        }
-
-    );
-
-
-
-    dot.addEventListener(
-        "mouseleave",
-        ()=>{
-
-
-            dot.style.transform =
-            "scale(1) rotate(0deg)";
-
-
-        }
-
-    );
-
-
-
-});
 
 
 
@@ -428,27 +393,29 @@ dots.forEach(dot => {
 
 
 /* =========================================================
-   TERMINAL STYLE LINK COMMAND EFFECT
+   TERMINAL LINK COMMAND EFFECT
 ========================================================= */
 
 
-const terminalLinks =
+const links =
 document.querySelectorAll(
     ".socials-card a"
 );
 
 
 
-terminalLinks.forEach(link => {
+links.forEach(link=>{
+
+
+    const code =
+    link.querySelector(
+        "code"
+    );
 
 
 
-    const command =
-    link.querySelector("code");
-
-
-
-    if(!command) return;
+    if(!code)
+        return;
 
 
 
@@ -457,7 +424,7 @@ terminalLinks.forEach(link => {
         ()=>{
 
 
-            command.style.opacity="1";
+            code.style.opacity="1";
 
 
         }
@@ -471,7 +438,7 @@ terminalLinks.forEach(link => {
         ()=>{
 
 
-            command.style.opacity="0";
+            code.style.opacity="0";
 
 
         }
@@ -489,7 +456,7 @@ terminalLinks.forEach(link => {
 
 
 /* =========================================================
-   BUTTON TERMINAL PREFIX EFFECT
+   BUTTON TERMINAL PROMPT
 ========================================================= */
 
 
@@ -500,8 +467,7 @@ document.querySelectorAll(
 
 
 
-buttons.forEach(button => {
-
+buttons.forEach(button=>{
 
 
     const original =
@@ -520,7 +486,6 @@ buttons.forEach(button => {
             original;
 
 
-
         }
 
     );
@@ -534,7 +499,6 @@ buttons.forEach(button => {
 
             button.textContent =
             original;
-
 
 
         }
@@ -551,19 +515,80 @@ buttons.forEach(button => {
 
 
 
+
 /* =========================================================
-   ACCESSIBILITY
+   SCROLL PROGRESS CIRCUIT LINE
 ========================================================= */
 
 
-const reducedMotion =
+const circuitLine =
+document.createElement(
+    "div"
+);
+
+
+
+circuitLine.className =
+"circuit-progress";
+
+
+
+document.body.appendChild(
+    circuitLine
+);
+
+
+
+window.addEventListener(
+    "scroll",
+    ()=>{
+
+
+        const scroll =
+        window.scrollY;
+
+
+
+        const height =
+        document.documentElement
+        .scrollHeight -
+        window.innerHeight;
+
+
+
+        const progress =
+        (scroll / height) * 100;
+
+
+
+        circuitLine.style.width =
+        progress + "%";
+
+
+    }
+
+);
+
+
+
+
+
+
+
+
+/* =========================================================
+   REDUCED MOTION SUPPORT
+========================================================= */
+
+
+const reduce =
 window.matchMedia(
 "(prefers-reduced-motion: reduce)"
 );
 
 
 
-if(reducedMotion.matches){
+if(reduce.matches){
 
 
     document
@@ -571,16 +596,15 @@ if(reducedMotion.matches){
     .forEach(element=>{
 
 
-        element.style.transition =
-        "none";
-
-
         element.style.animation =
         "none";
 
 
-    });
+        element.style.transition =
+        "none";
 
+
+    });
 
 
 }
