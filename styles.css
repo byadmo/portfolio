@@ -1,816 +1,126 @@
-/* =====================================================
-   ADAM MORGAN PORTFOLIO
-   PREMIUM ENGINEERING BENTO SYSTEM
-===================================================== */
+/* ==========================================
+   TIMELINE PROJECT GLOW ANIMATION FIX
+========================================== */
 
 
-:root {
+.timeline {
 
---bg:#08090b;
+    overflow:hidden;
 
---card:#111216;
+    position:relative;
 
---border:#24262d;
-
---white:#ffffff;
-
---muted:#8b8f98;
-
---cyan:#00eaff;
-
---green:#00ff88;
-
---radius:26px;
-
-
---ease:
-
-cubic-bezier(
-.22,
-1,
-.36,
-1
-);
-
-}
-
-
-
-
-
-*{
-
-margin:0;
-
-padding:0;
-
-box-sizing:border-box;
-
-}
-
-
-
-
-html{
-
-scroll-behavior:smooth;
-
-}
-
-
-
-
-body{
-
-
-background:var(--bg);
-
-color:white;
-
-font-family:
-
-"JetBrains Mono",
-monospace;
-
-
-padding:40px;
-
-
-overflow-x:hidden;
-
-
-}
-
-
-
-
-
-
-
-/* =========================
-BACKGROUND
-========================= */
-
-
-.noise{
-
-
-position:fixed;
-
-
-inset:0;
-
-
-pointer-events:none;
-
-
-opacity:.035;
-
-
-background-image:
-
-radial-gradient(
-white 1px,
-transparent 1px
-);
-
-
-background-size:18px 18px;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-BENTO GRID
-========================= */
-
-
-.bento-grid{
-
-
-max-width:1600px;
-
-
-margin:auto;
-
-
-display:grid;
-
-
-grid-template-columns:
-
-repeat(12,1fr);
-
-
-gap:22px;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-CARDS
-========================= */
-
-
-.card{
-
-
-background:
-
-rgba(
-17,
-18,
-22,
-.96
-);
-
-
-border:
-
-1px solid var(--border);
-
-
-
-border-radius:
-
-var(--radius);
-
-
-
-padding:34px;
-
-
-
-position:relative;
-
-
-
-overflow:hidden;
-
-
-
-opacity:0;
-
-
-
-transform:
-
-translateY(30px);
-
-
-
-transition:
-
-.5s var(--ease);
-
-
-
-}
-
-
-
-
-.card.active{
-
-
-opacity:1;
-
-
-transform:
-
-translateY(0);
-
-
-}
-
-
-
-
-
-.card:hover{
-
-
-transform:
-
-translateY(-5px);
-
-
-border-color:
-
-var(--cyan);
-
-
-}
-
-
-
-
-
-
-
-
-/* CURSOR GLOW */
-
-
-.card::before{
-
-
-content:"";
-
-
-position:absolute;
-
-
-width:300px;
-
-
-height:300px;
-
-
-
-left:
-
-var(--mouse-x,50%);
-
-
-
-top:
-
-var(--mouse-y,50%);
-
-
-
-transform:
-
-translate(-50%,-50%);
-
-
-
-background:
-
-radial-gradient(
-
-circle,
-
-rgba(
-0,
-234,
-255,
-.16
-),
-
-transparent 70%
-
-);
-
-
-
-opacity:0;
-
-
-transition:.5s;
-
-
-pointer-events:none;
-
-
-}
-
-
-
-
-.card:hover::before{
-
-
-opacity:1;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-BENTO POSITIONS
-========================= */
-
-
-.hero{
-
-
-grid-column:
-
-span 8;
-
-
-grid-row:
-
-span 2;
-
-
-min-height:600px;
-
-
-}
-
-
-
-
-.profile{
-
-
-grid-column:
-
-span 4;
-
-
-}
-
-
-
-
-.hardware{
-
-
-grid-column:
-
-span 8;
-
-
-grid-row:
-
-span 2;
-
-
-}
-
-
-
-
-.timeline{
-
-
-grid-column:
-
-span 4;
-
-
-max-height:300px;
-
-
-transition:
-
-
-max-height .9s var(--ease),
-
-
-box-shadow 1s ease,
-
-
-border-color 1s ease;
-
-
-
-}
-
-
-
-
-
-.timeline.expanded{
-
-
-max-height:750px;
-
-
-}
-
-
-
-
-
-.stack{
-
-
-grid-column:
-
-span 4;
-
-
-}
-
-
-
-
-.entrepreneur{
-
-
-grid-column:
-
-span 4;
-
-
-}
-
-
-
-
-.connect{
-
-
-grid-column:
-
-span 4;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-TIMELINE GLOW ANIMATION
-========================= */
-
-
-.timeline.project-active::after{
-
-
-content:"";
-
-
-position:absolute;
-
-
-inset:-2px;
-
-
-
-border-radius:
-
-28px;
-
-
-
-background:
-
-linear-gradient(
-
-90deg,
-
-transparent,
-
-var(--cyan),
-
-var(--green),
-
-var(--cyan),
-
-transparent
-
-);
-
-
-
-background-size:
-
-300% 100%;
-
-
-
-animation:
-
-borderFlow 5s var(--ease) forwards;
-
-
-
-pointer-events:none;
-
-
-
-z-index:0;
-
-
-}
-
-
-
-
-
-@keyframes borderFlow{
-
-
-0%{
-
-
-background-position:
-
-0%;
-
-
-
-opacity:0;
-
-
-}
-
-
-
-20%{
-
-
-opacity:1;
-
-
-}
-
-
-
-70%{
-
-
-background-position:
-
-100%;
-
-
-opacity:1;
-
-
-}
-
-
-
-100%{
-
-
-background-position:
-
-200%;
-
-
-opacity:0;
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-TERMINAL DOTS
-========================= */
-
-
-.terminal-dots{
-
-
-display:flex;
-
-
-gap:10px;
-
-
-margin-bottom:25px;
-
-
-}
-
-
-
-.terminal-dots span{
-
-
-width:14px;
-
-
-height:14px;
-
-
-border-radius:50%;
-
-
-display:flex;
-
-
-align-items:center;
-
-
-justify-content:center;
-
-
-font-size:10px;
-
-
-color:black;
-
-
-transition:.3s;
-
-
-}
-
-
-
-.mac-red{
-
-
-background:#ff5f57;
-
-
 }
-
-
 
-.mac-yellow{
 
 
-background:#febc2e;
 
 
-}
-
-
-
-.mac-green{
+.timeline > * {
 
+    position:relative;
 
-background:#28c840;
+    z-index:3;
 
-
 }
-
-
-
 
 
 
 
 
 
-/* =========================
-TEXT
-========================= */
 
+/* ==========================================
+   MOVING COLOR SWIPE
+========================================== */
 
-.label{
 
+.timeline.project-active::after {
 
-color:var(--green);
 
+    content:"";
 
-font-size:12px;
 
+    position:absolute;
 
-letter-spacing:2px;
 
+    inset:-3px;
 
-margin-bottom:25px;
 
+    border-radius:28px;
 
-}
-
-
-
-
-
-h1{
-
-
-font-size:
 
-clamp(
-3rem,
-6vw,
-5.5rem
-);
 
+    background:
 
-line-height:1.05;
 
+    linear-gradient(
 
-letter-spacing:-3px;
+        90deg,
 
+        transparent,
 
-margin-bottom:35px;
+        rgba(
+            0,
+            234,
+            255,
+            .25
+        ),
 
+        rgba(
+            0,
+            255,
+            136,
+            .25
+        ),
 
-}
-
-
-
+        rgba(
+            0,
+            234,
+            255,
+            .25
+        ),
 
-h2{
+        transparent
 
+    );
 
-font-size:30px;
 
 
-margin-bottom:25px;
+    background-size:
 
+    250% 100%;
 
-}
-
 
 
+    filter:
 
+    blur(8px);
 
-h3{
 
 
-margin-bottom:15px;
+    opacity:0;
 
 
-}
 
+    animation:
 
+    borderFlow 7s cubic-bezier(
+        .22,
+        1,
+        .36,
+        1
+    ) forwards;
 
 
-p{
 
+    pointer-events:none;
 
-color:var(--muted);
 
 
-line-height:1.8;
+    z-index:1;
 
 
 }
-
 
 
 
@@ -818,618 +128,399 @@ line-height:1.8;
 
 
 
+/* subtle inner dark layer */
 
-/* =========================
-BUTTONS
-========================= */
+.timeline.project-active::before {
 
 
-.buttons{
+    content:"";
 
 
-display:flex;
+    position:absolute;
 
 
-flex-wrap:wrap;
+    inset:0;
 
 
-gap:14px;
+    border-radius:26px;
 
 
-margin-top:40px;
 
+    background:
 
-}
-
-
-
-
-.buttons a{
-
-
-background:#181a20;
-
+    rgba(
+        8,
+        9,
+        11,
+        .45
+    );
 
-border:
 
-1px solid var(--border);
 
+    opacity:0;
 
 
-padding:
 
-14px 22px;
+    animation:
 
+    innerFade 7s ease forwards;
 
 
-border-radius:14px;
 
+    pointer-events:none;
 
-text-decoration:none;
 
 
-color:white;
+    z-index:2;
 
 
-transition:.4s var(--ease);
-
-
 }
 
 
 
 
-.buttons a:hover{
 
 
-color:var(--green);
 
+@keyframes innerFade {
 
-border-color:var(--green);
 
+0% {
 
-transform:
 
-translateY(-3px);
+    opacity:0;
 
-
 }
-
-
-
-
-
 
 
+20% {
 
 
-/* =========================
-PROFILE
-========================= */
+    opacity:.15;
 
-
-.profile-item{
-
-
-padding:18px 0;
-
-
-border-bottom:
-
-1px solid var(--border);
-
-
 }
 
 
+70% {
 
 
-.profile-item span{
+    opacity:.15;
 
-
-font-size:12px;
-
-
-color:var(--muted);
-
-
 }
-
-
-
 
 
+100% {
 
 
+    opacity:0;
 
-
-/* =========================
-PROCESSOR
-========================= */
-
-
-.pipeline{
-
-
-display:flex;
-
-
-gap:12px;
-
-
-margin:35px 0;
-
-
 }
-
-
-
-.pipeline div{
-
-
-flex:1;
 
 
-text-align:center;
-
-
-padding:14px;
-
-
-background:#181a20;
-
-
-border:
-
-1px solid var(--border);
-
-
-border-radius:12px;
-
-
 }
 
 
 
 
 
-pre{
 
 
-background:#050505;
 
+@keyframes borderFlow {
 
-color:var(--green);
 
+0% {
 
-padding:25px;
 
+    background-position:
 
-border-radius:18px;
+    0% 50%;
 
 
-overflow:auto;
+    opacity:0;
 
 
 }
-
 
 
 
-.hardware li{
+20% {
 
 
-margin-top:15px;
+    opacity:.45;
 
 
-color:var(--muted);
-
-
 }
-
-
 
 
 
+50% {
 
 
+    background-position:
 
+    100% 50%;
 
-/* =========================
-YEAR BUTTONS
-========================= */
 
+    opacity:.45;
 
-.year-buttons{
 
-
-display:flex;
-
-
-gap:12px;
-
-
-margin-bottom:25px;
-
-
 }
-
-
-
-.year-buttons button{
-
-
-background:#181a20;
-
-
-color:white;
-
-
-border:
 
-1px solid var(--border);
 
 
-padding:
+80% {
 
-12px 22px;
 
+    background-position:
 
-border-radius:12px;
+    170% 50%;
 
 
-cursor:pointer;
+    opacity:.25;
 
 
-font-family:inherit;
-
-
-transition:.4s var(--ease);
-
-
 }
 
 
 
+100% {
 
-.year-buttons button:hover{
 
+    background-position:
 
-color:var(--green);
+    220% 50%;
 
 
-border-color:var(--green);
+    opacity:0;
 
 
-transform:
-
-translateY(-3px);
-
-
 }
-
-
-
-
-
-
-
-
-
-/* =========================
-PROJECT CARDS INSIDE TIMELINE
-========================= */
 
 
-.project-grid{
-
-
-display:flex;
-
-
-flex-direction:column;
-
-
-gap:15px;
-
-
 }
 
 
 
 
-.project-item{
 
 
-background:#181a20;
 
+/* ==========================================
+   SMOOTH TIMELINE EXPANSION
+========================================== */
 
-border:
 
-1px solid var(--border);
+.timeline {
 
 
-border-radius:18px;
+    transition:
 
 
-padding:20px;
+    max-height .9s cubic-bezier(
+        .22,
+        1,
+        .36,
+        1
+    ),
 
+    padding .7s ease,
 
-opacity:0;
+    box-shadow .8s ease;
 
 
-transform:
-
-translateY(20px);
-
-
-
-animation:
-
-projectReveal .6s var(--ease) forwards;
-
-
 }
-
 
 
 
-.project-item h4{
 
 
-color:white;
+.timeline.expanded {
 
 
-margin-bottom:10px;
+    max-height:750px;
 
 
 }
 
 
 
-.project-item p{
 
 
-font-size:14px;
 
 
-}
-
-
-
+/* ==========================================
+   PROJECT CARDS
+========================================== */
 
 
-@keyframes projectReveal{
+.project-grid {
 
 
-to{
+    display:flex;
 
 
-opacity:1;
+    flex-direction:column;
 
 
-transform:
-
-translateY(0);
-
-
-}
+    gap:15px;
 
 
 }
-
-
-
-
-
-
-
-
 
-/* =========================
-TECH TAGS
-========================= */
 
 
-.tags{
 
 
-display:flex;
+.project-item {
 
 
-flex-wrap:wrap;
+    background:
 
+    rgba(
+        24,
+        26,
+        32,
+        .9
+    );
 
-gap:10px;
 
 
-}
-
-
-
-
-.tags span{
-
-
-background:#181a20;
-
+    border:
 
-padding:
+    1px solid rgba(
+        255,
+        255,
+        255,
+        .08
+    );
 
-8px 14px;
 
 
-border-radius:999px;
+    border-radius:18px;
 
 
-border:
 
-1px solid var(--border);
+    padding:20px;
 
 
-font-size:13px;
 
+    opacity:0;
 
-}
 
 
+    transform:
 
+    translateY(20px);
 
-.tags span:hover{
 
 
-color:var(--green);
+    animation:
 
+    projectReveal .7s cubic-bezier(
+        .22,
+        1,
+        .36,
+        1
+    ) forwards;
 
-border-color:var(--green);
 
 
 }
-
-
-
 
 
 
 
 
+.project-item:hover {
 
-/* =========================
-CONNECT
-========================= */
 
+    border-color:
 
-.connect{
+    rgba(
+        0,
+        234,
+        255,
+        .5
+    );
 
 
-display:flex;
+    transform:
 
+    translateY(-3px);
 
-flex-direction:column;
 
+    transition:.4s ease;
 
-gap:18px;
 
-
 }
-
-
-
-.connect a{
 
 
-color:white;
 
 
-text-decoration:none;
 
 
-}
-
+.project-item h4 {
 
 
-.connect a:hover{
+    margin-bottom:10px;
 
 
-color:var(--green);
+    color:white;
 
 
 }
-
-
-
-
-
-
-
-
-
-/* =========================
-RESPONSIVE
-========================= */
-
-
-@media(max-width:1100px){
-
-
-.bento-grid{
-
 
-grid-template-columns:
 
-repeat(6,1fr);
 
 
-}
-
+.project-item p {
 
 
+    color:#8b8f98;
 
-.hero,
-.hardware{
 
+    line-height:1.7;
 
-grid-column:
 
-span 6;
+    font-size:14px;
 
 
 }
-
-
-
-
-.profile,
-.timeline,
-.stack,
-.entrepreneur,
-.connect{
-
-
-grid-column:
 
-span 3;
 
 
-}
 
 
-}
 
 
+@keyframes projectReveal {
 
 
+from {
 
-@media(max-width:700px){
 
+    opacity:0;
 
-body{
 
+    transform:
 
-padding:16px;
+    translateY(25px);
 
 
 }
-
-
 
-.bento-grid{
 
 
-display:flex;
-
-
-flex-direction:column;
-
-
-}
+to {
 
 
+    opacity:1;
 
-.card{
 
+    transform:
 
-padding:24px;
+    translateY(0);
 
 
 }
