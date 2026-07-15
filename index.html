@@ -30,12 +30,70 @@
 
 
 
+<!-- =========================
+NAVIGATION
+========================= -->
+
+
+<nav class="navbar">
+
+
+<div class="nav-logo">
+
+ADAM_MORGAN
+
+</div>
+
+
+
+<div class="nav-links">
+
+
+<a href="index.html">
+HOME
+</a>
+
+
+<a href="projects.html">
+PROJECTS
+</a>
+
+
+<a href="experience.html">
+EXPERIENCE
+</a>
+
+
+<a href="notes.html">
+NOTES
+</a>
+
+
+<a href="resume.html">
+RESUME
+</a>
+
+
+</div>
+
+
+</nav>
+
+
+
+
+
+
+
 <main class="bento-grid">
 
 
 
+
+
+
 <!-- =========================
- HERO
+HERO
 ========================= -->
 
 
@@ -45,7 +103,9 @@
 <div class="terminal-dots">
 
 <span class="mac-red"></span>
+
 <span class="mac-yellow"></span>
+
 <span class="mac-green"></span>
 
 </div>
@@ -72,17 +132,22 @@ I design computer processors.
 
 
 
+
 <div class="typing-line">
 
 <span>
 Currently Building:
 </span>
 
+
 <span id="typing"></span>
+
 
 <span class="cursor"></span>
 
+
 </div>
+
 
 
 
@@ -103,7 +168,7 @@ and efficient hardware implementation.
 <div class="buttons">
 
 
-<a href="#timeline-card" id="projects-button">
+<a href="projects.html">
 
 $ view_projects
 
@@ -111,7 +176,7 @@ $ view_projects
 
 
 
-<a href="resume.pdf" download>
+<a href="resume.html">
 
 $ download_resume
 
@@ -126,7 +191,9 @@ $ contact_adam
 </a>
 
 
+
 </div>
+
 
 
 
@@ -138,8 +205,10 @@ $ contact_adam
 
 
 
+
+
 <!-- =========================
- PROFILE
+PROFILE
 ========================= -->
 
 
@@ -159,7 +228,6 @@ ENGINEERING_PROFILE
 Current Focus
 
 </h2>
-
 
 
 
@@ -218,7 +286,7 @@ CPU Architecture + FPGA
 
 
 <!-- =========================
- HARDWARE PROJECT
+HARDWARE PROJECT
 ========================= -->
 
 
@@ -239,7 +307,9 @@ CPU Architecture + FPGA
 +
 </span>
 
+
 </div>
+
 
 
 
@@ -253,11 +323,13 @@ PROJECT_001 // PROCESSOR_DESIGN
 
 
 
+
 <h2>
 
 32-Bit Pipelined RISC-V CPU Core
 
 </h2>
+
 
 
 
@@ -284,7 +356,6 @@ MEM
 WB
 </div>
 
-
 </div>
 
 
@@ -292,6 +363,7 @@ WB
 
 
 <pre>
+
 module risc_v_cpu (
 
 input clk,
@@ -308,6 +380,7 @@ forwarding_unit FU();
 
 
 endmodule
+
 </pre>
 
 
@@ -346,7 +419,108 @@ RTL verification using waveform simulation
 
 
 <!-- =========================
- ENGINEERING JOURNEY
+LIVE HARDWARE
+========================= -->
+
+
+<section class="card live-hardware reveal">
+
+
+<div class="label">
+
+LIVE_HARDWARE
+
+</div>
+
+
+
+<h2>
+
+RISC-V Verification
+
+</h2>
+
+
+
+<div class="hardware-status">
+
+
+<div>
+
+<span>
+SIMULATION
+</span>
+
+
+<strong>
+PASS
+</strong>
+
+
+</div>
+
+
+
+
+<div>
+
+<span>
+PIPELINE
+</span>
+
+
+<strong>
+5-STAGE
+</strong>
+
+
+</div>
+
+
+
+
+<div>
+
+<span>
+RTL
+</span>
+
+
+<strong>
+VERIFIED
+</strong>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<a href="projects.html">
+
+$ view_waveforms
+
+</a>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- =========================
+ENGINEERING JOURNEY
 ========================= -->
 
 
@@ -355,14 +529,11 @@ class="card timeline reveal"
 id="timeline-card">
 
 
-
 <div class="label">
 
 ENGINEERING_JOURNEY
 
 </div>
-
-
 
 
 
@@ -379,11 +550,9 @@ ENGINEERING_JOURNEY
 </button>
 
 
-
 <button data-year="2024">
 2024
 </button>
-
 
 
 </div>
@@ -391,8 +560,7 @@ ENGINEERING_JOURNEY
 
 
 
-
-<div class="timeline-content" id="timeline-content">
+<div id="timeline-content">
 
 
 <h3>
@@ -404,17 +572,9 @@ Select a year
 
 <p>
 
-Explore projects and engineering experience.
+Explore engineering projects and experience.
 
 </p>
-
-
-
-<div id="project-list">
-
-
-</div>
-
 
 
 </div>
@@ -433,7 +593,7 @@ Explore projects and engineering experience.
 
 
 <!-- =========================
- TECH STACK
+TECH STACK
 ========================= -->
 
 
@@ -450,11 +610,8 @@ TECH_STACK
 
 
 <h3>
-
 HARDWARE/
-
 </h3>
-
 
 
 <div class="tags">
@@ -480,38 +637,28 @@ RISC-V
 
 
 
-
 <h3>
-
 TOOLS/
-
 </h3>
 
 
-
-
 <div class="tags">
-
 
 <span>
 Quartus
 </span>
 
-
 <span>
 GTKWave
 </span>
-
 
 <span>
 ModelSim
 </span>
 
-
 <span>
 Icarus Verilog
 </span>
-
 
 
 </div>
@@ -529,7 +676,7 @@ Icarus Verilog
 
 
 <!-- =========================
- ENTREPRENEURSHIP
+ENTREPRENEURSHIP
 ========================= -->
 
 
@@ -538,7 +685,7 @@ Icarus Verilog
 
 <div class="label">
 
-ENTREPRENEURSHIP
+ENTREPRENEERING
 
 </div>
 
@@ -564,6 +711,7 @@ budgeting, branding, and product development.
 
 
 
+
 </section>
 
 
@@ -575,7 +723,7 @@ budgeting, branding, and product development.
 
 
 <!-- =========================
- CONNECT
+CONNECT
 ========================= -->
 
 
@@ -599,7 +747,6 @@ $ github
 
 
 
-
 <a href="https://www.linkedin.com/in/adammorgan05/" target="_blank">
 
 $ linkedin
@@ -610,7 +757,6 @@ $ linkedin
 
 
 </section>
-
 
 
 
