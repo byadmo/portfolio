@@ -1,30 +1,42 @@
-/* =======================================================
-   APPLE x TERMINAL PORTFOLIO
+/* =========================================================
+   APPLE x TERMINAL ENGINEERING PORTFOLIO
    COMPLETE DESIGN SYSTEM
-======================================================= */
+========================================================= */
+
+
+/* =========================================================
+   ROOT VARIABLES
+========================================================= */
 
 :root {
 
     --bg:#0a0a0c;
     --card:#121214;
-    --border:#222225;
+    --border:#202023;
 
     --text:#ffffff;
     --muted:#8e8e93;
 
-    --accent:#00f0ff;
+    --cyan:#00f0ff;
     --green:#00ff66;
 
     --radius:26px;
 
     --transition:
-    all 0.5s cubic-bezier(
-    0.95,
-    0.05,
-    0.795,
-    0.035);
+    all .4s cubic-bezier(
+        0.95,
+        0.05,
+        0.795,
+        0.035
+    );
 
 }
+
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 
 * {
@@ -34,6 +46,7 @@
     box-sizing:border-box;
 
 }
+
 
 
 html {
@@ -52,21 +65,24 @@ body {
 
     font-family:
     "JetBrains Mono",
+    "Fira Code",
     monospace;
+
+    padding:40px;
 
     overflow-x:hidden;
 
     line-height:1.6;
 
-    padding:40px;
-
 }
 
 
 
-/* =======================================================
-   NOISE TEXTURE
-======================================================= */
+
+
+/* =========================================================
+   BACKGROUND NOISE
+========================================================= */
 
 
 .noise {
@@ -77,10 +93,13 @@ body {
 
     pointer-events:none;
 
-    opacity:.03;
+    opacity:.035;
 
     background-image:
-    radial-gradient(#fff 1px, transparent 0);
+    radial-gradient(
+        white 1px,
+        transparent 1px
+    );
 
     background-size:14px 14px;
 
@@ -88,9 +107,11 @@ body {
 
 
 
-/* =======================================================
+
+
+/* =========================================================
    BENTO GRID
-======================================================= */
+========================================================= */
 
 
 .grid {
@@ -110,31 +131,44 @@ body {
 
 
 
-/* =======================================================
-   CARDS
-======================================================= */
+
+
+/* =========================================================
+   CARD SYSTEM
+========================================================= */
 
 
 .card {
 
-    position:relative;
+    background:
+    linear-gradient(
+        145deg,
+        #151518,
+        #101012
+    );
 
-    overflow:hidden;
+    border:
 
-    background:var(--card);
+    1px solid var(--border);
 
-    border:1px solid var(--border);
 
     border-radius:var(--radius);
 
     padding:34px;
 
-    transition:var(--transition);
+    position:relative;
+
+    overflow:hidden;
+
 
     opacity:0;
 
     transform:
     translateY(30px);
+
+
+    transition:var(--transition);
+
 
     --x:50%;
     --y:50%;
@@ -143,7 +177,7 @@ body {
 
 
 
-.active {
+.card.active {
 
     opacity:1;
 
@@ -156,14 +190,20 @@ body {
 
 .card:hover {
 
-    border-color:var(--accent);
 
     transform:
-    translateY(-5px)
-    scale(1.015);
+    translateY(-6px);
+
+
+    border-color:
+    var(--cyan);
+
 
     box-shadow:
-    0 0 30px rgba(0,240,255,.08);
+
+    0 15px 40px
+    rgba(0,240,255,.08);
+
 
 }
 
@@ -171,32 +211,40 @@ body {
 
 .card::before {
 
+
     content:"";
 
     position:absolute;
 
-    width:260px;
+    width:300px;
 
-    height:260px;
+    height:300px;
+
 
     background:
+
     radial-gradient(
-    circle,
-    rgba(0,240,255,.18),
-    transparent 70%);
+        circle,
+        rgba(0,240,255,.15),
+        transparent 70%
+    );
+
 
     left:var(--x);
 
     top:var(--y);
 
+
     transform:
     translate(-50%,-50%);
+
 
     opacity:0;
 
     transition:var(--transition);
 
     pointer-events:none;
+
 
 }
 
@@ -210,59 +258,188 @@ body {
 
 
 
-/* =======================================================
-   HERO
-======================================================= */
+
+
+/* =========================================================
+   BENTO SIZING
+========================================================= */
 
 
 .hero {
 
-    grid-column:span 8;
+    grid-column:
+    span 8;
 
-    min-height:560px;
+    grid-row:
+    span 2;
 
-    display:flex;
+    min-height:600px;
 
-    flex-direction:column;
+}
+
+
+
+.focus {
+
+    grid-column:
+    span 4;
 
 }
 
 
 
-.hero-content {
+.hardware {
 
-    margin-top:40px;
+    grid-column:
+    span 8;
+
+    grid-row:
+    span 2;
 
 }
 
+
+
+.creative {
+
+    grid-column:
+    span 4;
+
+}
+
+
+
+.experience {
+
+    grid-column:
+    span 6;
+
+}
+
+
+
+.toolkit {
+
+    grid-column:
+    span 6;
+
+}
+
+
+
+.socials-card {
+
+    grid-column:
+    span 4;
+
+}
+
+
+
+.quote {
+
+    grid-column:
+    span 8;
+
+}
+
+
+
+
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+
+h1 {
+
+    font-size:
+
+    clamp(
+        3rem,
+        6vw,
+        5.5rem
+    );
+
+
+    line-height:1.05;
+
+    letter-spacing:-3px;
+
+    margin-bottom:35px;
+
+}
+
+
+
+h2 {
+
+    font-size:30px;
+
+    line-height:1.3;
+
+    margin-bottom:20px;
+
+}
+
+
+
+h3 {
+
+    color:var(--green);
+
+    font-size:18px;
+
+}
+
+
+
+p {
+
+    color:var(--muted);
+
+}
+
+
+
+
+
+.label {
+
+
+    display:block;
+
+    color:var(--green);
+
+    font-size:12px;
+
+    letter-spacing:3px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+
+
+/* =========================================================
+   HERO
+========================================================= */
 
 
 .eyebrow {
 
-    font-size:12px;
-
-    letter-spacing:2px;
 
     color:var(--green);
 
-    margin-bottom:24px;
+    font-size:12px;
 
-}
-
-
-
-.hero h1 {
-
-    font-size:
-    clamp(3rem,6vw,5.6rem);
-
-    font-weight:700;
-
-    line-height:1.05;
-
-    letter-spacing:-2px;
+    letter-spacing:3px;
 
     margin-bottom:40px;
+
 
 }
 
@@ -272,50 +449,61 @@ body {
 
     max-width:700px;
 
-    font-size:18px;
+    font-size:17px;
 
-    color:var(--muted);
+    margin-top:30px;
 
-    margin-top:34px;
 
 }
 
-
-
-/* =======================================================
-   BUTTONS
-======================================================= */
 
 
 .hero-buttons {
 
+
     display:flex;
 
-    gap:16px;
+    gap:15px;
 
     margin-top:40px;
 
-    flex-wrap:wrap;
 
 }
 
 
 
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+
 .button {
 
-    padding:15px 26px;
+
+    padding:
+
+    14px 26px;
+
 
     border-radius:14px;
 
-    border:1px solid var(--border);
 
-    background:#171719;
+    border:
+
+    1px solid var(--border);
+
 
     color:white;
 
+    background:#18181b;
+
     text-decoration:none;
 
+
     transition:var(--transition);
+
 
 }
 
@@ -323,43 +511,49 @@ body {
 
 .button:hover {
 
-    border-color:var(--green);
 
     color:var(--green);
 
+    border-color:var(--green);
+
+
     transform:
-    translateY(-3px);
+    translateY(-4px);
+
 
 }
+
+
 
 
 
 .secondary {
 
+
     background:transparent;
+
 
 }
 
 
 
-/* =======================================================
-   TYPING
-======================================================= */
+
+
+/* =========================================================
+   TYPEWRITER
+========================================================= */
 
 
 .typing-line {
 
-    font-size:22px;
-
-    margin-top:10px;
 
     display:flex;
 
-    align-items:center;
+    flex-wrap:wrap;
 
     gap:8px;
 
-    flex-wrap:wrap;
+    font-size:22px;
 
 }
 
@@ -375,21 +569,18 @@ body {
 
 .cursor {
 
-    width:11px;
 
-    height:26px;
+    width:10px;
+
+    height:25px;
 
     background:var(--green);
 
-    animation:blink 1s infinite;
+    display:inline-block;
 
-}
+    animation:
+    blink 1s infinite;
 
-
-
-.cursor.typing {
-
-    animation:none;
 
 }
 
@@ -405,69 +596,25 @@ body {
 
 }
 
-/* =======================================================
-   LABELS
-======================================================= */
-
-
-.label {
-
-    display:block;
-
-    font-size:12px;
-
-    letter-spacing:2px;
-
-    margin-bottom:22px;
-
-    color:var(--green);
-
-}
 
 
 
-/* =======================================================
-   TYPOGRAPHY
-======================================================= */
 
-
-h2,
-h3 {
-
-    font-weight:700;
-
-}
-
-
-
-.card p {
-
-    color:var(--muted);
-
-    font-size:15px;
-
-}
-
-
-
-/* =======================================================
-   TERMINAL CONTROLS
-======================================================= */
+/* =========================================================
+   TERMINAL WINDOW
+========================================================= */
 
 
 .terminal-bar {
 
-    display:flex;
-
-    align-items:center;
-
-    margin-bottom:18px;
+    margin-bottom:20px;
 
 }
 
 
 
 .dots {
+
 
     display:flex;
 
@@ -479,6 +626,7 @@ h3 {
 
 .dot {
 
+
     width:14px;
 
     height:14px;
@@ -487,15 +635,15 @@ h3 {
 
     display:flex;
 
-    align-items:center;
-
     justify-content:center;
 
-    font-size:7px;
+    align-items:center;
 
-    color:#000;
 
-    cursor:pointer;
+    font-size:8px;
+
+    color:black;
+
 
     transition:var(--transition);
 
@@ -506,32 +654,8 @@ h3 {
 .dot:hover {
 
     transform:
-    scale(1.25)
+    scale(1.3)
     rotate(15deg);
-
-}
-
-
-
-.red {
-
-    background:#ff5f57;
-
-}
-
-
-
-.yellow {
-
-    background:#febc2e;
-
-}
-
-
-
-.green {
-
-    background:#28c840;
 
 }
 
@@ -540,8 +664,6 @@ h3 {
 .dot i {
 
     opacity:0;
-
-    transition:var(--transition);
 
 }
 
@@ -555,466 +677,115 @@ h3 {
 
 
 
-/* =======================================================
-   BENTO CARD SIZING
-======================================================= */
+.red {
+
+    background:#ff5f57;
+
+}
 
 
-.small-card {
+.yellow {
 
-    grid-column:span 4;
+    background:#febc2e;
+
+}
+
+
+.green {
+
+    background:#28c840;
 
 }
 
 
 
-.skills {
-
-    grid-column:span 4;
-
-}
 
 
-
-.wide {
-
-    grid-column:span 8;
-
-}
+/* =========================================================
+   FOCUS WIDGET
+========================================================= */
 
 
-
-/* =======================================================
-   SKILLS
-======================================================= */
-
-
-.chips {
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:12px;
-
-}
-
-
-
-.chips span {
-
-    padding:10px 16px;
-
-    border-radius:999px;
-
-    border:1px solid var(--border);
-
-    background:#18181b;
-
-    font-size:13px;
-
-    transition:var(--transition);
-
-}
-
-
-
-.chips span:hover {
-
-    border-color:var(--green);
+.green-text {
 
     color:var(--green);
 
-    transform:
-    translateY(-3px);
-
 }
 
 
 
-/* =======================================================
-   EXPERIENCE TIMELINE
-======================================================= */
+.wave {
 
-
-.timeline {
-
-    list-style:none;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:20px;
-
-}
-
-
-
-.timeline li {
 
     display:flex;
 
     align-items:center;
 
-    gap:20px;
+    gap:7px;
 
-    padding-bottom:16px;
+    height:80px;
 
-    border-bottom:1px solid var(--border);
+    margin:30px 0;
+
 
 }
 
 
 
-.timeline li:last-child {
+.wave div {
 
-    border-bottom:none;
 
-}
+    width:6px;
 
-
-
-.year {
-
-    color:var(--green);
-
-    font-size:13px;
-
-    min-width:50px;
-
-}
-
-
-
-/* =======================================================
-   INVOLVEMENT
-======================================================= */
-
-
-.card h3 {
-
-    font-size:28px;
-
-    line-height:1.3;
-
-    margin-bottom:18px;
-
-}
-
-
-
-/* =======================================================
-   SOCIAL LINKS
-======================================================= */
-
-
-.socials {
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:18px;
-
-}
-
-
-
-.socials a {
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    color:white;
-
-    text-decoration:none;
-
-    font-size:16px;
-
-    transition:var(--transition);
-
-}
-
-
-
-.socials i {
-
-    font-size:22px;
-
-    transition:var(--transition);
-
-}
-
-
-
-.socials a:hover {
-
-    color:var(--green);
-
-    transform:
-    translateX(8px);
-
-}
-
-
-
-.socials a:hover i {
-
-    color:var(--accent);
-
-    transform:
-    rotate(12deg)
-    scale(1.2);
-
-}
-
-
-
-.socials a:hover::after {
-
-    content:"_";
-
-    color:var(--green);
-
-}
-
-
-
-/* =======================================================
-   QUOTE
-======================================================= */
-
-
-.quote {
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-align:center;
-
-}
-
-
-
-.quote p {
-
-    color:white;
-
-    font-size:24px;
-
-    font-weight:600;
-
-}
-
-
-
-/* =======================================================
-   SCROLLBAR
-======================================================= */
-
-
-::-webkit-scrollbar {
-
-    width:10px;
-
-}
-
-
-
-::-webkit-scrollbar-track {
-
-    background:var(--bg);
-
-}
-
-
-
-::-webkit-scrollbar-thumb {
-
-    background:#242426;
-
-    border-radius:10px;
-
-}
-
-
-
-::-webkit-scrollbar-thumb:hover {
+    height:30px;
 
     background:var(--green);
 
-}
+    animation:
 
-
-
-/* =======================================================
-   TABLET RESPONSIVE
-======================================================= */
-
-
-@media(max-width:1100px) {
-
-
-    body {
-
-        padding:24px;
-
-    }
-
-
-    .grid {
-
-        grid-template-columns:
-        repeat(6,1fr);
-
-    }
-
-
-    .hero {
-
-        grid-column:span 6;
-
-    }
-
-
-    .small-card,
-    .skills {
-
-        grid-column:span 3;
-
-    }
-
-
-    .wide {
-
-        grid-column:span 6;
-
-    }
+    wave 1s infinite ease-in-out;
 
 
 }
 
 
 
-/* =======================================================
-   MOBILE RESPONSIVE
-======================================================= */
+.wave div:nth-child(2){
 
+    animation-delay:.1s;
 
-@media(max-width:700px) {
+}
 
 
-    body {
+.wave div:nth-child(3){
 
-        padding:16px;
+    animation-delay:.2s;
 
-    }
+}
 
 
+.wave div:nth-child(4){
 
-    .grid {
+    animation-delay:.3s;
 
-        display:flex;
+}
 
-        flex-direction:column;
 
-        gap:16px;
+.wave div:nth-child(5){
 
-    }
+    animation-delay:.4s;
 
+}
 
 
-    .card {
 
-        padding:24px;
 
-        border-radius:20px;
+@keyframes wave {
 
-    }
 
+    50% {
 
-
-    .hero {
-
-        min-height:auto;
-
-    }
-
-
-
-    .hero h1 {
-
-        font-size:
-        clamp(2.4rem,12vw,3.5rem);
-
-        letter-spacing:-1px;
-
-    }
-
-
-
-    .hero-description {
-
-        font-size:15px;
-
-    }
-
-
-
-    .typing-line {
-
-        font-size:16px;
-
-    }
-
-
-
-    .hero-buttons {
-
-        flex-direction:column;
-
-    }
-
-
-
-    .button {
-
-        width:100%;
-
-        text-align:center;
-
-    }
-
-
-
-    .card h3 {
-
-        font-size:22px;
-
-    }
-
-
-
-    .wide p {
-
-        font-size:15px;
-
-        line-height:1.8;
-
-    }
-
-
-
-    .quote p {
-
-        font-size:18px;
+        height:70px;
 
     }
 
@@ -1023,132 +794,124 @@ h3 {
 
 
 
-/* =======================================================
-   SMALL PHONES
-======================================================= */
 
 
-@media(max-width:380px) {
+/* =========================================================
+   HARDWARE CORE
+========================================================= */
 
 
-    .hero h1 {
-
-        font-size:2.1rem;
-
-    }
+.hardware-layout {
 
 
-    .card {
+    display:grid;
 
-        padding:20px;
+    grid-template-columns:
 
-    }
+    1fr 1fr;
+
+    gap:30px;
+
+}
+
+
+
+.code-window {
+
+
+    background:#09090b;
+
+    border:
+
+    1px solid var(--border);
+
+
+    border-radius:18px;
+
+    padding:25px;
 
 
 }
 
 
 
-/* =======================================================
-   LOAD ANIMATION
-======================================================= */
+pre {
 
 
-.reveal {
+    color:var(--green);
 
-    transition:
-    opacity .8s cubic-bezier(
-    0.95,
-    0.05,
-    0.795,
-    0.035
-    ),
-    transform .8s cubic-bezier(
-    0.95,
-    0.05,
-    0.795,
-    0.035
-    );
+    font-size:14px;
 
 }
 
 
 
-/* =======================================================
-   ACCESSIBILITY
-======================================================= */
+.hardware-info ul {
 
 
-@media(prefers-reduced-motion:reduce) {
-
-
-    * {
-
-        animation:none!important;
-
-        transition:none!important;
-
-    }
-
+    list-style:none;
 
 }
-/* =======================================================
-   FIXED BENTO LAYOUT
-======================================================= */
 
 
-.hero {
-    grid-column: span 8;
-    grid-row: span 2;
-}
+
+.hardware-info li {
 
 
-.small-card {
-    grid-column: span 4;
-}
+    margin-bottom:20px;
+
+    color:var(--muted);
 
 
-.skills {
-    grid-column: span 4;
-}
-
-
-.experience {
-    grid-column: span 4;
-}
-
-
-.card:nth-child(5) {
-    grid-column: span 4;
-}
-
-
-.wide {
-    grid-column: span 8;
-}
-
-
-.socials {
-    grid-column: span 4;
-}
-
-
-.quote {
-    grid-column: span 4;
 }
 
 
 
-/* EXPERIENCE BUTTONS */
+.hardware-info li::before {
+
+
+    content:"> ";
+
+    color:var(--cyan);
+
+}
+
+
+
+
+
+/* =========================================================
+   CREATIVE
+========================================================= */
+
+
+.date {
+
+
+    color:var(--green);
+
+    margin:15px 0;
+
+}
+
+
+
+
+
+/* =========================================================
+   EXPERIENCE BUTTONS
+========================================================= */
 
 
 .year-buttons {
 
+
     display:flex;
 
-    gap:10px;
+    gap:12px;
 
     margin-bottom:25px;
+
 
 }
 
@@ -1159,19 +922,27 @@ h3 {
 
     background:#18181b;
 
-    border:1px solid var(--border);
-
     color:white;
 
-    padding:12px 18px;
+    border:
+
+    1px solid var(--border);
+
+
+    padding:
+
+    12px 18px;
+
 
     border-radius:12px;
 
-    cursor:pointer;
-
     font-family:inherit;
 
+    cursor:pointer;
+
+
     transition:var(--transition);
+
 
 }
 
@@ -1179,26 +950,346 @@ h3 {
 
 .year-buttons button:hover {
 
+
     color:var(--green);
 
     border-color:var(--green);
 
-    transform:translateY(-3px);
 
 }
 
 
 
-#experience-display {
 
-    min-height:120px;
+
+/* =========================================================
+   TOOLKIT
+========================================================= */
+
+
+.directory {
+
+
+    margin-bottom:25px;
 
 }
 
 
 
-#experience-display p {
+.directory p {
 
-    line-height:1.8;
+
+    color:var(--green);
+
+    margin-bottom:12px;
+
+
+}
+
+
+
+.directory span {
+
+
+    display:inline-block;
+
+    padding:
+
+    8px 14px;
+
+
+    margin:
+
+    5px;
+
+
+    background:#18181b;
+
+    border:
+
+    1px solid var(--border);
+
+
+    border-radius:20px;
+
+
+    font-size:13px;
+
+
+}
+
+
+
+
+
+/* =========================================================
+   SOCIAL
+========================================================= */
+
+
+.socials-card a {
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+
+    margin-bottom:25px;
+
+    color:white;
+
+    text-decoration:none;
+
+    transition:var(--transition);
+
+
+}
+
+
+
+.socials-card a:hover {
+
+
+    color:var(--green);
+
+    transform:
+    translateX(8px);
+
+
+}
+
+
+
+.socials-card code {
+
+
+    opacity:0;
+
+    color:var(--green);
+
+    transition:var(--transition);
+
+
+}
+
+
+
+.socials-card a:hover code {
+
+
+    opacity:1;
+
+
+}
+
+
+
+
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+
+.quote {
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+
+}
+
+
+
+.quote p {
+
+
+    color:white;
+
+    font-size:26px;
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+
+@media(max-width:1100px){
+
+
+body {
+
+    padding:25px;
+
+}
+
+
+.grid {
+
+    grid-template-columns:
+    repeat(6,1fr);
+
+}
+
+
+.hero,
+.hardware {
+
+    grid-column:
+    span 6;
+
+}
+
+
+.focus,
+.creative {
+
+    grid-column:
+    span 3;
+
+}
+
+
+.experience,
+.toolkit {
+
+    grid-column:
+    span 6;
+
+}
+
+
+}
+
+
+
+
+
+@media(max-width:700px){
+
+
+body {
+
+    padding:16px;
+
+}
+
+
+.grid {
+
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+.card {
+
+
+    padding:24px;
+
+}
+
+
+
+.hardware-layout {
+
+
+    grid-template-columns:1fr;
+
+
+}
+
+
+
+h1 {
+
+
+    font-size:2.8rem;
+
+}
+
+
+
+.typing-line {
+
+
+    font-size:16px;
+
+}
+
+
+
+.hero-buttons {
+
+
+    flex-direction:column;
+
+}
+
+
+
+.button {
+
+
+    text-align:center;
+
+}
+
+
+
+}
+
+
+
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+
+::-webkit-scrollbar {
+
+    width:10px;
+
+}
+
+
+::-webkit-scrollbar-thumb {
+
+
+    background:#252529;
+
+    border-radius:20px;
+
+
+}
+
+
+
+::-webkit-scrollbar-thumb:hover {
+
+
+    background:var(--green);
+
 
 }
