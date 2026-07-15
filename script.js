@@ -56,74 +56,9 @@ const ease = {
    REVEAL ANIMATION
 ===================================================== */
 
-/* =====================================================
-   SYSTEM BOOT CARD SEQUENCE
-===================================================== */
 
-
-window.addEventListener("load",()=>{
-
-
-revealCards.forEach((card,index)=>{
-
-
-setTimeout(()=>{
-
-
-card.classList.add(
-"active"
-);
-
-
-},
-
-
-350 + index * 120
-
-
-);
-
-
-});
-
-
-});
-
-(entries)=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("active");
-
-observer.unobserve(entry.target);
-
-}
-
-});
-
-},
-
-{
-
-threshold:.12
-
-}
-
-);
-
-
-
-revealCards.forEach(card=>{
-
-observer.observe(card);
-
-});
-
-
-
-
+const observer =
+new IntersectionObserver(
 
 
 
