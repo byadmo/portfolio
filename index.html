@@ -8,11 +8,17 @@
 
 <title>Adam Morgan | Electrical Engineering Portfolio</title>
 
+<meta name="description" content="Adam Morgan Electrical Engineering portfolio focused on digital systems, processor architecture, RTL design, FPGA development and hardware engineering.">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="./styles.css">
+
+<link rel="stylesheet" href="styles.css">
 
 </head>
 
@@ -23,10 +29,18 @@
 <div class="noise"></div>
 
 
+
 <main class="grid">
 
 
+
+<!-- =========================
+ HERO
+========================= -->
+
+
 <section class="card hero reveal">
+
 
 <div class="terminal">
 
@@ -37,31 +51,43 @@
 </div>
 
 
-<p class="label">
+
+<span class="label">
 ELECTRICAL_ENGINEERING // COMPUTER_ARCHITECTURE
-</p>
+</span>
+
 
 
 <h1>
+
 Hi, I'm Adam.<br>
+
 I design computer processors.
+
 </h1>
+
 
 
 <div class="typing">
 
-FOCUS:
+Currently Building:
+
 <span id="typing"></span>
+
 <span class="cursor"></span>
 
 </div>
 
 
+
 <p>
+
 Electrical Engineering student focused on digital systems,
 processor architecture, RTL design, FPGA development,
 and efficient hardware systems.
+
 </p>
+
 
 
 <div class="buttons">
@@ -70,11 +96,19 @@ and efficient hardware systems.
 $ view_projects
 </a>
 
+
+<a href="#">
+$ download_resume
+</a>
+
+
 <a href="#">
 $ contact_adam
 </a>
 
+
 </div>
+
 
 
 </section>
@@ -83,37 +117,67 @@ $ contact_adam
 
 
 
-<section class="card reveal">
 
-<p class="label">
+<!-- =========================
+ CURRENT FOCUS
+========================= -->
+
+
+<section class="card focus reveal">
+
+
+<span class="label">
 ENGINEERING_PROFILE
-</p>
+</span>
+
+
 
 <h2>
 Current Focus
 </h2>
 
 
+
 <div class="info">
 
+
 <div>
-<span>FIELD</span>
+
+<span>
+FIELD
+</span>
+
 Electrical Engineering
+
 </div>
 
 
+
 <div>
-<span>SPECIALIZATION</span>
+
+<span>
+SPECIALIZATION
+</span>
+
 Digital Systems
+
 </div>
+
 
 
 <div>
-<span>INTEREST</span>
+
+<span>
+INTERESTS
+</span>
+
 CPU Architecture + FPGA
-</div>
 
 </div>
+
+
+</div>
+
 
 </section>
 
@@ -121,6 +185,11 @@ CPU Architecture + FPGA
 
 
 
+
+
+<!-- =========================
+ RISC-V PROJECT
+========================= -->
 
 
 <section class="card hardware reveal">
@@ -128,21 +197,26 @@ CPU Architecture + FPGA
 
 <div class="terminal">
 
-<span class="red"></span>
-<span class="yellow"></span>
-<span class="green"></span>
+<span class="red">×</span>
+<span class="yellow">−</span>
+<span class="green">+</span>
 
 </div>
 
 
-<p class="label">
+
+<span class="label">
 PROJECT_001 // PROCESSOR_DESIGN
-</p>
+</span>
+
 
 
 <h2>
+
 32-Bit Pipelined RISC-V CPU Core
+
 </h2>
+
 
 
 <div class="pipeline">
@@ -157,34 +231,50 @@ PROJECT_001 // PROCESSOR_DESIGN
 
 
 
+
 <pre>
 
-module risc_v_cpu();
+module risc_v_cpu (
+
+input clk,
+input reset
+
+);
+
+
+control_unit CU();
 
 hazard_unit HU();
 
 forwarding_unit FU();
+
 
 endmodule
 
 </pre>
 
 
+
+
 <ul>
 
 <li>
-5-stage pipeline architecture
+5-stage instruction pipeline architecture
 </li>
 
-<li>
-Hazard resolution and forwarding
-</li>
 
 <li>
-RTL simulation with GTKWave
+Hazard detection and data forwarding logic
 </li>
+
+
+<li>
+RTL simulation and waveform verification
+</li>
+
 
 </ul>
+
 
 
 </section>
@@ -195,11 +285,18 @@ RTL simulation with GTKWave
 
 
 
-<section class="card reveal">
+<!-- =========================
+ ENGINEERING JOURNEY
+========================= -->
 
-<p class="label">
+
+<section class="card journey reveal">
+
+
+<span class="label">
 ENGINEERING_JOURNEY
-</p>
+</span>
+
 
 
 <div class="years">
@@ -208,9 +305,11 @@ ENGINEERING_JOURNEY
 2026
 </button>
 
+
 <button data-year="2025">
 2025
 </button>
+
 
 <button data-year="2024">
 2024
@@ -219,10 +318,15 @@ ENGINEERING_JOURNEY
 </div>
 
 
+
 <div id="timeline">
 
+<p>
 Hover a year
+</p>
+
 </div>
+
 
 
 </section>
@@ -233,12 +337,18 @@ Hover a year
 
 
 
-<section class="card reveal">
+<!-- =========================
+ TECH STACK
+========================= -->
 
 
-<p class="label">
+<section class="card stack reveal">
+
+
+<span class="label">
 TECH_STACK
-</p>
+</span>
+
 
 
 <h3>
@@ -248,12 +358,28 @@ HARDWARE/
 
 <div class="tags">
 
-<span>SystemVerilog</span>
-<span>Verilog</span>
-<span>FPGA</span>
-<span>RISC-V</span>
+<span>
+SystemVerilog
+</span>
+
+
+<span>
+Verilog
+</span>
+
+
+<span>
+FPGA
+</span>
+
+
+<span>
+RISC-V
+</span>
+
 
 </div>
+
 
 
 
@@ -264,11 +390,23 @@ TOOLS/
 
 <div class="tags">
 
-<span>Quartus</span>
-<span>GTKWave</span>
-<span>ModelSim</span>
+<span>
+Quartus
+</span>
+
+
+<span>
+GTKWave
+</span>
+
+
+<span>
+ModelSim
+</span>
+
 
 </div>
+
 
 
 </section>
@@ -278,11 +416,19 @@ TOOLS/
 
 
 
-<section class="card reveal">
 
-<p class="label">
+<!-- =========================
+ ENTREPRENEURSHIP
+========================= -->
+
+
+<section class="card entrepreneurship reveal">
+
+
+<span class="label">
 ENTREPRENEURSHIP
-</p>
+</span>
+
 
 
 <h2>
@@ -290,10 +436,16 @@ Founder & Product Developer
 </h2>
 
 
+
 <p>
-Managed product development, manufacturing,
-supplier communication, budgeting,
-branding, and marketing.
+
+Managed product development,
+manufacturing decisions,
+supplier communication,
+budgeting,
+branding,
+and marketing.
+
 </p>
 
 
@@ -304,19 +456,26 @@ branding, and marketing.
 
 
 
-<section class="card reveal">
 
-<p class="label">
+<!-- =========================
+ CONNECT
+========================= -->
+
+
+<section class="card connect reveal">
+
+
+<span class="label">
 CONNECT
-</p>
+</span>
 
 
-<a>
+<a href="#">
 $ github
 </a>
 
 
-<a>
+<a href="#">
 $ linkedin
 </a>
 
@@ -329,7 +488,7 @@ $ linkedin
 
 
 
-<script src="./script.js"></script>
+<script src="script.js"></script>
 
 
 </body>
