@@ -6,21 +6,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Adam Morgan | Electrical Engineering Portfolio</title>
 
-<meta name="description" content="Adam Morgan — Electrical Engineering student specializing in digital systems, processor architecture, RTL design, FPGA development, and embedded hardware.">
+<title>
+Adam Morgan | Electrical Engineering Portfolio
+</title>
+
+
+<meta name="description"
+content="Adam Morgan - Electrical Engineering student specializing in computer architecture, RTL design, FPGA development, and digital systems.">
+
 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
 
+
 </head>
+
+
+
 
 
 <body>
@@ -29,7 +40,12 @@
 <div class="noise"></div>
 
 
+
+
+
 <main class="grid">
+
+
 
 
 
@@ -51,15 +67,21 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 
+
 </div>
 
 </div>
+
 
 
 
 <p class="eyebrow">
-ELECTRICAL_ENGINEERING // COMPUTER_ARCHITECTURE
+
+ELECTRICAL_ENGINEERING //
+COMPUTER_ARCHITECTURE
+
 </p>
+
 
 
 
@@ -74,10 +96,14 @@ I design computer processors.
 
 
 
+
+
+
 <div class="typing-line">
 
+
 <span>
-Currently Building:
+FOCUS:
 </span>
 
 
@@ -95,11 +121,13 @@ Currently Building:
 
 <p class="hero-description">
 
-Electrical Engineering student focused on digital systems,
-processor architecture, RTL design, FPGA development,
-and transforming hardware concepts into functional systems.
+Electrical Engineering student focused on
+digital systems, processor architecture,
+RTL design, FPGA development, and building
+efficient hardware systems.
 
 </p>
+
 
 
 
@@ -107,7 +135,7 @@ and transforming hardware concepts into functional systems.
 <div class="hero-buttons">
 
 
-<a class="button" href="#projects">
+<a href="#projects" class="button">
 
 $ view_projects
 
@@ -115,14 +143,25 @@ $ view_projects
 
 
 
-<a class="button secondary" href="#contact">
+<a href="resume.pdf" class="button">
+
+$ download_resume
+
+</a>
+
+
+
+
+<a href="#contact" class="button secondary">
 
 $ contact_adam
 
 </a>
 
 
+
 </div>
+
 
 
 </section>
@@ -140,17 +179,22 @@ $ contact_adam
 ===================================================== -->
 
 
-<section class="card status reveal">
+<section class="card profile reveal">
 
 
 <span class="label">
+
 ENGINEERING_PROFILE
+
 </span>
 
 
 
+
 <h2>
+
 Current Focus
+
 </h2>
 
 
@@ -162,9 +206,8 @@ Current Focus
 <div>
 
 <span>
-DISCIPLINE
+FIELD
 </span>
-
 
 <strong>
 Electrical Engineering
@@ -172,6 +215,7 @@ Electrical Engineering
 
 
 </div>
+
 
 
 
@@ -200,7 +244,7 @@ INTERESTS
 
 
 <strong>
-Processors + FPGA
+CPU Architecture + FPGA
 </strong>
 
 
@@ -223,11 +267,12 @@ Processors + FPGA
 
 
 <!-- =====================================================
- RISC-V CORE
+ RISC-V CPU CORE
 ===================================================== -->
 
 
 <section class="card hardware reveal">
+
 
 
 <div class="terminal-bar">
@@ -238,11 +283,9 @@ Processors + FPGA
 <i>×</i>
 </span>
 
-
 <span class="dot yellow">
 <i>−</i>
 </span>
-
 
 <span class="dot green">
 <i>+</i>
@@ -256,21 +299,32 @@ Processors + FPGA
 
 
 
+
 <span class="label">
+
 PROJECT_001 // PROCESSOR_DESIGN
+
 </span>
 
 
 
 
+
 <h2>
+
 32-Bit Pipelined RISC-V CPU Core
+
 </h2>
 
 
 
 
+
+
+
 <div class="cpu-layout">
+
+
 
 
 
@@ -281,28 +335,26 @@ PROJECT_001 // PROCESSOR_DESIGN
 IF
 </div>
 
-
 <div>
 ID
 </div>
-
 
 <div>
 EX
 </div>
 
-
 <div>
 MEM
 </div>
-
 
 <div>
 WB
 </div>
 
 
+
 </div>
+
 
 
 
@@ -335,11 +387,15 @@ endmodule
 </pre>
 
 
+
+</div>
+
+
+
+
 </div>
 
 
-
-</div>
 
 
 
@@ -350,24 +406,177 @@ endmodule
 <div class="hardware-info">
 
 
+<h3>
+
+ARCHITECTURE
+
+</h3>
+
+
+
 <ul>
 
+
 <li>
-5-stage instruction pipeline architecture
+5-stage instruction pipeline
 </li>
 
 
 <li>
-Data forwarding and hazard resolution
+Hazard detection and forwarding logic
 </li>
 
 
 <li>
-RTL verification using GTKWave and ModelSim
+RTL simulation and waveform verification
 </li>
+
 
 
 </ul>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- =====================================================
+ SYSTEM ARCHITECTURE
+===================================================== -->
+
+
+<section class="card architecture reveal">
+
+
+<span class="label">
+
+SYSTEM_ARCHITECTURE
+
+</span>
+
+
+
+<h2>
+
+Processor Pipeline
+
+</h2>
+
+
+
+
+<div class="architecture-flow">
+
+
+<div>
+Instruction Fetch
+</div>
+
+
+<span>
+↓
+</span>
+
+
+<div>
+Instruction Decode
+</div>
+
+
+<span>
+↓
+</span>
+
+
+<div>
+Execute / ALU
+</div>
+
+
+<span>
+↓
+</span>
+
+
+<div>
+Memory Access
+</div>
+
+
+<span>
+↓
+</span>
+
+
+<div>
+Write Back
+</div>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- =====================================================
+ VERIFICATION
+===================================================== -->
+
+
+<section class="card verification reveal">
+
+
+<span class="label">
+
+VERIFICATION_ENVIRONMENT
+
+</span>
+
+
+
+
+<h2>
+
+Hardware Validation
+
+</h2>
+
+
+
+<div class="directory">
+
+
+<h3>
+
+HDL/
+
+</h3>
+
+
+<span>
+SystemVerilog
+</span>
 
 
 </div>
@@ -375,6 +584,56 @@ RTL verification using GTKWave and ModelSim
 
 
 
+
+<div class="directory">
+
+
+<h3>
+
+SIMULATION/
+
+</h3>
+
+
+<span>
+ModelSim
+</span>
+
+
+<span>
+GTKWave
+</span>
+
+
+</div>
+
+
+
+
+
+
+<div class="workflow">
+
+
+Design
+
+↓
+
+Simulate
+
+↓
+
+Debug
+
+↓
+
+Validate
+
+
+</div>
+
+
+
 </section>
 
 
@@ -386,47 +645,91 @@ RTL verification using GTKWave and ModelSim
 
 
 <!-- =====================================================
- CREATIVE EXPERIENCE
+ PROJECTS
 ===================================================== -->
 
 
-<section class="card creative reveal">
+<section id="projects" class="card projects reveal">
 
 
 <span class="label">
-ENTREPRENEURSHIP
+
+PROJECT_CASE_STUDIES
+
 </span>
 
 
 
+
 <h2>
-Independent Streetwear Brand
+
+Engineering Projects
+
 </h2>
 
 
 
 
+
+<div class="project-item">
+
+
 <h3>
-Founder & Creative Director
+
+32-Bit RISC-V CPU Core
+
+</h3>
+
+
+<p>
+
+Designed a pipelined processor architecture
+using SystemVerilog RTL.
+
+</p>
+
+
+
+<p>
+
+Focus:
+Pipeline control, hazards,
+forwarding, verification.
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="project-item">
+
+
+<h3>
+
+Digital Systems Projects
+
 </h3>
 
 
 
 <p>
-2021 — Present
-</p>
 
-
-
-
-<p>
-
-Managed product lifecycle from concept,
-manufacturing, sourcing, budgeting,
-branding, and digital marketing.
+Hardware design projects involving
+logic systems, simulation,
+and engineering analysis.
 
 </p>
 
+
+
+</div>
 
 
 
@@ -441,7 +744,7 @@ branding, and digital marketing.
 
 
 <!-- =====================================================
- ENGINEERING TIMELINE
+ TIMELINE
 ===================================================== -->
 
 
@@ -449,8 +752,11 @@ branding, and digital marketing.
 
 
 <span class="label">
+
 ENGINEERING_JOURNEY
+
 </span>
+
 
 
 
@@ -478,96 +784,18 @@ ENGINEERING_JOURNEY
 
 
 
+
 <div id="timeline-display">
 
 
 <p>
-Select a year to view development milestones.
+
+Select a year.
+
 </p>
 
 
 </div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- =====================================================
- METRICS
-===================================================== -->
-
-
-<section class="card metrics reveal">
-
-
-<span class="label">
-ENGINEERING_METRICS
-</span>
-
-
-
-
-<div class="metric-container">
-
-
-<div>
-
-<h2>
-3+
-</h2>
-
-
-<p>
-Hardware Projects
-</p>
-
-
-</div>
-
-
-
-<div>
-
-<h2>
-5
-</h2>
-
-
-<p>
-Pipeline Stages
-</p>
-
-
-</div>
-
-
-
-<div>
-
-<h2>
-32
-</h2>
-
-
-<p>
-CPU Architecture Bits
-</p>
-
-
-</div>
-
-
-
-</div>
-
 
 
 
@@ -590,9 +818,10 @@ CPU Architecture Bits
 
 
 <span class="label">
-TECH_STACK
-</span>
 
+ENGINEERING_STACK
+
+</span>
 
 
 
@@ -601,7 +830,9 @@ TECH_STACK
 
 
 <h3>
-HDL/
+
+HARDWARE/
+
 </h3>
 
 
@@ -615,31 +846,13 @@ Verilog
 </span>
 
 
-</div>
-
-
-
-
-<div class="directory">
-
-
-<h3>
-Software/
-</h3>
-
-
 <span>
-C
+RTL Design
 </span>
 
 
 <span>
-Python
-</span>
-
-
-<span>
-Java
+FPGA
 </span>
 
 
@@ -649,21 +862,51 @@ Java
 
 
 
+
 <div class="directory">
 
 
 <h3>
-EDA_TOOLS/
+
+ARCHITECTURE/
+
 </h3>
 
 
 <span>
-Quartus Prime
+RISC-V
 </span>
 
 
 <span>
-GTKWave
+CPU Design
+</span>
+
+
+<span>
+Digital Logic
+</span>
+
+
+</div>
+
+
+
+
+
+
+<div class="directory">
+
+
+<h3>
+
+TOOLS/
+
+</h3>
+
+
+<span>
+Quartus
 </span>
 
 
@@ -673,11 +916,13 @@ ModelSim
 
 
 <span>
-Icarus Verilog
+GTKWave
 </span>
 
 
 </div>
+
+
 
 
 
@@ -692,60 +937,97 @@ Icarus Verilog
 
 
 <!-- =====================================================
- ENGINEERING LAB
+ ENTREPRENEURSHIP
 ===================================================== -->
 
 
-<section id="projects" class="card projects reveal">
+<section class="card creative reveal">
 
 
 <span class="label">
-ENGINEERING_LAB
+
+ENTREPRENEURIAL_ENGINEERING
+
+</span>
+
+
+
+
+
+<h2>
+
+Founder & Product Developer
+
+</h2>
+
+
+
+
+<p>
+
+Independent streetwear venture focused on
+product development, manufacturing,
+supplier coordination, budgeting,
+branding, and customer feedback.
+
+</p>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- =====================================================
+ PHILOSOPHY
+===================================================== -->
+
+
+<section class="card philosophy reveal">
+
+
+<span class="label">
+
+ENGINEERING_PHILOSOPHY
+
 </span>
 
 
 
 
 <h2>
-Selected Projects
+
+Design Principles
+
 </h2>
 
 
 
-
-<div class="project-item">
-
-
-<h3>
-RISC-V Processor Core
-</h3>
-
-
 <p>
-SystemVerilog based 32-bit pipelined CPU architecture.
+
+Understand the architecture.
+
 </p>
 
 
-</div>
-
-
-
-
-<div class="project-item">
-
-
-<h3>
-Digital Systems Projects
-</h3>
-
-
 <p>
-Hardware design, simulation, and FPGA development.
+
+Build the system.
+
 </p>
 
 
-</div>
+<p>
 
+Verify every assumption.
+
+</p>
 
 
 
@@ -768,8 +1050,11 @@ Hardware design, simulation, and FPGA development.
 
 
 <span class="label">
+
 CONNECT
+
 </span>
+
 
 
 
@@ -792,7 +1077,7 @@ view engineering repositories
 $ linkedin
 
 <code>
-connect professionally
+professional networking
 </code>
 
 </a>
@@ -801,6 +1086,8 @@ connect professionally
 
 
 </section>
+
+
 
 
 
