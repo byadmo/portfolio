@@ -2288,3 +2288,219 @@ h1 {
     );
 
 }
+/* =====================================================
+   SYSTEM BOOT ENTRANCE ANIMATION
+===================================================== */
+
+
+body {
+
+    opacity:0;
+
+    animation:
+
+    systemBoot 1.2s cubic-bezier(
+        .22,
+        1,
+        .36,
+        1
+    ) forwards;
+
+}
+
+
+
+
+
+@keyframes systemBoot {
+
+
+0% {
+
+    opacity:0;
+
+    filter:
+    brightness(.4);
+
+}
+
+
+
+40% {
+
+    opacity:1;
+
+    filter:
+    brightness(.8);
+
+}
+
+
+
+100% {
+
+    opacity:1;
+
+    filter:
+    brightness(1);
+
+}
+
+
+}
+
+
+
+
+
+/* CARD POWER ON EFFECT */
+
+
+.card.reveal {
+
+
+    opacity:0;
+
+
+    transform:
+
+    translateY(40px)
+
+    scale(.97);
+
+
+
+}
+
+
+
+
+
+.card.active {
+
+
+    opacity:1;
+
+
+    transform:
+
+    translateY(0)
+
+    scale(1);
+
+
+
+    transition:
+
+
+    opacity .9s cubic-bezier(
+        .22,
+        1,
+        .36,
+        1
+    ),
+
+
+    transform .9s cubic-bezier(
+        .22,
+        1,
+        .36,
+        1
+    );
+
+
+}
+
+
+
+
+
+
+
+
+/* HERO BOOT GLOW */
+
+
+.hero::before {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    inset:0;
+
+
+    background:
+
+
+    linear-gradient(
+
+        120deg,
+
+        transparent,
+
+        rgba(
+            0,
+            234,
+            255,
+            .12
+        ),
+
+        transparent
+
+    );
+
+
+
+    transform:
+
+    translateX(-120%);
+
+
+
+    animation:
+
+    bootSweep 1.8s ease forwards;
+
+
+
+    pointer-events:none;
+
+
+}
+
+
+
+
+
+
+@keyframes bootSweep {
+
+
+0% {
+
+
+    transform:
+
+    translateX(-120%);
+
+
+}
+
+
+
+100% {
+
+
+    transform:
+
+    translateX(120%);
+
+
+}
+
+
+}
