@@ -1,23 +1,22 @@
 /* =========================================================
-   ADAM MORGAN
-   ELECTRICAL ENGINEERING PORTFOLIO
-   INTERACTION SYSTEM
+   ADAM MORGAN PORTFOLIO
+   INTERACTION ENGINE
 ========================================================= */
 
 
 
 /* =========================================================
-   BENTO CARD REVEAL
+   BENTO LOAD ANIMATION
 ========================================================= */
 
 
-const revealCards = document.querySelectorAll(".reveal");
+const cards = document.querySelectorAll(".reveal");
 
 
 window.addEventListener("load", () => {
 
 
-    revealCards.forEach((card, index) => {
+    cards.forEach((card, index) => {
 
 
         setTimeout(() => {
@@ -41,36 +40,43 @@ window.addEventListener("load", () => {
 
 
 /* =========================================================
-   TYPEWRITER EFFECT
+   TYPEWRITER SYSTEM
 ========================================================= */
-
-
-const words = [
-
-    "synthesizable hardware...",
-
-    "32-bit pipelined RISC-V cores...",
-
-    "optimized RTL architectures..."
-
-];
-
 
 
 const typingElement =
 document.getElementById("typing");
 
 
+const cursor =
+document.querySelector(".cursor");
 
-let wordIndex = 0;
 
-let charIndex = 0;
+
+const phrases = [
+
+    "Computer Architecture",
+
+    "RTL Design",
+
+    "FPGA Development",
+
+    "Digital Systems"
+
+];
+
+
+
+let phraseIndex = 0;
+
+let letterIndex = 0;
 
 let deleting = false;
 
 
 
-function typeEffect(){
+
+function typeWriter(){
 
 
     if(!typingElement)
@@ -78,8 +84,8 @@ function typeEffect(){
 
 
 
-    const currentWord =
-    words[wordIndex];
+    const current =
+    phrases[phraseIndex];
 
 
 
@@ -87,57 +93,64 @@ function typeEffect(){
 
 
         typingElement.textContent =
-        currentWord.substring(
+        current.substring(
             0,
-            charIndex++
+            letterIndex
         );
 
 
 
-        if(charIndex > currentWord.length){
+        letterIndex++;
+
+
+
+        if(letterIndex >
+        current.length){
 
 
             deleting = true;
 
 
             setTimeout(
-                typeEffect,
+                typeWriter,
                 1200
             );
 
 
             return;
 
-
         }
+
 
 
     } else {
 
 
-
         typingElement.textContent =
-        currentWord.substring(
+        current.substring(
             0,
-            charIndex--
+            letterIndex
         );
 
 
 
-        if(charIndex < 0){
+        letterIndex--;
+
+
+
+        if(letterIndex < 0){
 
 
             deleting=false;
 
 
-            wordIndex =
-            (wordIndex + 1)
+            phraseIndex =
+            (phraseIndex + 1)
             %
-            words.length;
+            phrases.length;
 
 
-
-            charIndex=0;
+            letterIndex=0;
 
 
         }
@@ -149,7 +162,7 @@ function typeEffect(){
 
     setTimeout(
 
-        typeEffect,
+        typeWriter,
 
         deleting ? 45 : 90
 
@@ -160,8 +173,7 @@ function typeEffect(){
 
 
 
-typeEffect();
-
+typeWriter();
 
 
 
@@ -170,16 +182,16 @@ typeEffect();
 
 
 /* =========================================================
-   CARD LIGHT TRACKING
+   MOUSE FOLLOWING CARD LIGHT
 ========================================================= */
 
 
-const cards =
+const glowCards =
 document.querySelectorAll(".card");
 
 
 
-cards.forEach(card => {
+glowCards.forEach(card => {
 
 
     card.addEventListener(
@@ -187,37 +199,38 @@ cards.forEach(card => {
         event => {
 
 
-            const rect =
-            card.getBoundingClientRect();
+
+        const box =
+        card.getBoundingClientRect();
 
 
 
-            const x =
-            event.clientX -
-            rect.left;
+        const x =
+        event.clientX -
+        box.left;
 
 
 
-            const y =
-            event.clientY -
-            rect.top;
+        const y =
+        event.clientY -
+        box.top;
 
 
 
-            card.style.setProperty(
-                "--x",
-                `${x}px`
-            );
+        card.style.setProperty(
+            "--x",
+            `${x}px`
+        );
 
 
-            card.style.setProperty(
-                "--y",
-                `${y}px`
-            );
+        card.style.setProperty(
+            "--y",
+            `${y}px`
+        );
 
 
-        }
-    );
+    });
+
 
 
 
@@ -227,20 +240,19 @@ cards.forEach(card => {
         ()=>{
 
 
-            card.style.setProperty(
-                "--x",
-                "50%"
-            );
+        card.style.setProperty(
+            "--x",
+            "50%"
+        );
 
 
-            card.style.setProperty(
-                "--y",
-                "50%"
-            );
+        card.style.setProperty(
+            "--y",
+            "50%"
+        );
 
 
-        }
-    );
+    });
 
 
 });
@@ -257,71 +269,65 @@ cards.forEach(card => {
 ========================================================= */
 
 
-const timelineButtons =
-document.querySelectorAll(
-    ".year-buttons button"
-);
-
-
-
-const timelineDisplay =
+const timeline =
 document.getElementById(
-    "timeline-display"
+"timeline-display"
 );
 
 
 
-const timelineData = {
+const yearButtons =
+document.querySelectorAll(
+".year-buttons button"
+);
 
 
-    "2026": `
+
+const timelineInfo = {
+
+
+    "2026":`
 
     <h3>
-    Computer Architecture
+    Processor Architecture
     </h3>
 
     <p>
-
-    Developing processor architecture,
-    RTL design concepts, and
-    digital hardware systems.
-
+    Developing processor design skills through
+    RTL architecture, SystemVerilog,
+    pipeline design, and hardware simulation.
     </p>
 
     `,
 
 
 
-    "2025": `
+    "2025":`
 
     <h3>
-    Engineering Foundation
+    Digital Systems Foundation
     </h3>
 
     <p>
-
-    Building skills in programming,
-    digital logic, circuit analysis,
-    and engineering design.
-
+    Built engineering fundamentals through
+    circuits, programming, mathematics,
+    and digital logic design.
     </p>
 
     `,
 
 
 
-    "2024": `
+    "2024":`
 
     <h3>
-    Technical Foundation
+    Engineering Foundations
     </h3>
 
     <p>
-
-    Exploring mathematics,
-    physics, programming,
-    and electronics fundamentals.
-
+    Developed programming and technical
+    foundations in preparation for
+    electrical engineering studies.
     </p>
 
     `
@@ -332,41 +338,25 @@ const timelineData = {
 
 
 
-timelineButtons.forEach(button => {
 
+yearButtons.forEach(button => {
 
 
     button.addEventListener(
-        "click",
+        "mouseenter",
         ()=>{
 
 
-            timelineButtons.forEach(btn=>{
-
-                btn.classList.remove(
-                    "active"
-                );
-
-            });
+        const year =
+        button.dataset.year;
 
 
 
-            button.classList.add(
-                "active"
-            );
+        timeline.innerHTML =
+        timelineInfo[year];
 
 
-
-            timelineDisplay.innerHTML =
-            timelineData[
-                button.dataset.year
-            ];
-
-
-
-        }
-
-    );
+    });
 
 
 });
@@ -377,60 +367,58 @@ timelineButtons.forEach(button => {
 
 
 
-
 /* =========================================================
-   CPU PIPELINE ANIMATION
+   PIPELINE ACTIVITY SIMULATION
 ========================================================= */
 
 
-const pipelineStages =
+const stages =
 document.querySelectorAll(
-    ".pipeline div"
+".pipeline div"
 );
 
 
 
-let currentStage = 0;
+let activeStage = 0;
 
 
 
-function animatePipeline(){
+function runPipeline(){
 
 
-    pipelineStages.forEach(stage=>{
+    if(!stages.length)
+        return;
 
 
-        stage.style.background =
-        "transparent";
+
+    stages.forEach(stage=>{
+
+
+        stage.style.color="";
+
+        stage.style.borderColor="";
 
 
     });
 
 
 
-    if(
-        pipelineStages[currentStage]
-    ){
+    stages[activeStage].style.color =
+    "#00ff66";
 
 
-        pipelineStages[currentStage]
-        .style.background =
-        "rgba(76,201,240,.18)";
-
-
-    }
+    stages[activeStage].style.borderColor =
+    "#00ff66";
 
 
 
-    currentStage++;
+    activeStage++;
 
 
 
-    if(
-        currentStage >= pipelineStages.length
-    ){
+    if(activeStage >= stages.length){
 
-        currentStage=0;
+        activeStage=0;
 
     }
 
@@ -440,8 +428,8 @@ function animatePipeline(){
 
 
 setInterval(
-    animatePipeline,
-    650
+    runPipeline,
+    900
 );
 
 
@@ -452,64 +440,13 @@ setInterval(
 
 
 /* =========================================================
-   TERMINAL LINK HOVER
-========================================================= */
-
-
-const socialLinks =
-document.querySelectorAll(
-    ".socials-card a"
-);
-
-
-
-socialLinks.forEach(link=>{
-
-
-    link.addEventListener(
-        "mouseenter",
-        ()=>{
-
-
-            link.style.transform =
-            "translateX(10px)";
-
-
-        }
-    );
-
-
-
-    link.addEventListener(
-        "mouseleave",
-        ()=>{
-
-
-            link.style.transform =
-            "translateX(0)";
-
-
-        }
-    );
-
-
-});
-
-
-
-
-
-
-
-
-/* =========================================================
-   HERO BUTTON TERMINAL STYLE
+   TERMINAL BUTTON MICRO EFFECT
 ========================================================= */
 
 
 const buttons =
 document.querySelectorAll(
-    ".button"
+".button"
 );
 
 
@@ -517,24 +454,29 @@ document.querySelectorAll(
 buttons.forEach(button=>{
 
 
-    const original =
-    button.textContent;
-
-
-
     button.addEventListener(
         "mouseenter",
         ()=>{
 
 
+        button.dataset.text =
+        button.textContent;
+
+
+
+        if(!button.textContent.startsWith(">")){
+
+
             button.textContent =
-            "> "
-            +
-            original.trim();
+            "> " +
+            button.textContent;
 
 
         }
-    );
+
+
+    });
+
 
 
 
@@ -543,12 +485,12 @@ buttons.forEach(button=>{
         ()=>{
 
 
-            button.textContent =
-            original;
+        button.textContent =
+        button.dataset.text;
 
 
-        }
-    );
+    });
+
 
 
 });
@@ -561,7 +503,7 @@ buttons.forEach(button=>{
 
 
 /* =========================================================
-   REDUCED MOTION SUPPORT
+   ACCESSIBILITY
 ========================================================= */
 
 
@@ -578,10 +520,6 @@ if(reduceMotion.matches){
     document
     .querySelectorAll("*")
     .forEach(element=>{
-
-
-        element.style.animation =
-        "none";
 
 
         element.style.transition =
