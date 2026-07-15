@@ -3138,104 +3138,46 @@ body {
 
 
 }
-
 /* =====================================================
-   CONTINUOUS CLOCK SIGNAL SYSTEM
+   CLOCK SIGNAL SYSTEM V2
 ===================================================== */
 
 
 .clock-system {
 
-    position:fixed;
+position:fixed;
 
-    inset:0;
+inset:0;
 
-    pointer-events:none;
+z-index:1;
 
-    z-index:0;
+pointer-events:none;
 
-    overflow:hidden;
+overflow:hidden;
 
-    opacity:.55;
-
-}
-
-
-
-/* subtle engineering grid */
-
-.clock-system::before {
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-
-    background:
-
-    linear-gradient(
-        90deg,
-        rgba(0,234,255,.035) 1px,
-        transparent 1px
-    ),
-
-    linear-gradient(
-        rgba(0,234,255,.035) 1px,
-        transparent 1px
-    );
-
-
-    background-size:
-
-    80px 80px;
-
-
-    mask-image:
-
-    radial-gradient(
-        circle,
-        black,
-        transparent 75%
-    );
-
+opacity:.7;
 
 }
 
 
-
-
-
-
-
-/* waveform */
 
 .clock-wave {
 
 
-    position:absolute;
+position:absolute;
 
+width:130%;
 
-    width:120%;
+height:250px;
 
+left:-15%;
 
-    height:220px;
+top:50%;
 
-
-    left:-10%;
-
-
-    top:50%;
-
-
-    transform:
-
-    translateY(-50%);
+transform:translateY(-50%);
 
 
 }
-
 
 
 
@@ -3243,41 +3185,21 @@ body {
 .clock-wave path {
 
 
-    fill:none;
+fill:none;
 
 
-    stroke:
+stroke:
 
-    rgba(
-        0,
-        234,
-        255,
-        .18
-    );
-
-
-    stroke-width:2;
-
-
-    stroke-linecap:round;
+rgba(
+0,
+234,
+255,
+.12
+);
 
 
 
-    stroke-dasharray:
-
-    500;
-
-
-
-    stroke-dashoffset:
-
-    500;
-
-
-
-    animation:
-
-    clockTravel 5s linear infinite;
+stroke-width:2;
 
 
 
@@ -3286,43 +3208,35 @@ body {
 
 
 
+.clock-wave path {
 
 
-@keyframes clockTravel {
+stroke-dasharray:1200;
 
 
-0% {
+animation:
 
-
-stroke-dashoffset:500;
-
-
-opacity:.15;
+clockLine 6s linear infinite;
 
 
 }
 
 
 
-40% {
+@keyframes clockLine {
 
 
-opacity:.6;
+from {
 
+stroke-dashoffset:1200;
 
 }
 
 
-
-100% {
-
+to {
 
 stroke-dashoffset:0;
 
-
-opacity:.15;
-
-
 }
 
 
@@ -3331,79 +3245,55 @@ opacity:.15;
 
 
 
-
-
-
-
-
-/* moving bright pulse */
-
-
-.clock-wave::after {
+.clock-system::after {
 
 
 content:"";
 
 
-}
-
-
-
-
-
-
-
-.clock-core {
-
-
 position:absolute;
-
-
-width:12px;
-
-
-height:12px;
-
-
-left:50%;
 
 
 top:50%;
 
 
-transform:
-
-translate(-50%,-50%);
+left:-200px;
 
 
+width:200px;
 
-border-radius:50%;
+
+height:3px;
 
 
 
 background:
 
-var(--cyan);
+linear-gradient(
+
+90deg,
+
+transparent,
+
+#00eaff,
+
+transparent
+
+);
 
 
 
 box-shadow:
 
+0 0 30px #00eaff,
 
-0 0 20px var(--cyan),
-
-0 0 60px rgba(
-0,
-234,
-255,
-.6
-);
+0 0 80px #00eaff;
 
 
 
 animation:
 
-clockHeartbeat 2.5s ease-in-out infinite;
+pulseMove 4s linear infinite;
 
 
 
@@ -3412,59 +3302,13 @@ clockHeartbeat 2.5s ease-in-out infinite;
 
 
 
-
-@keyframes clockHeartbeat {
+@keyframes pulseMove {
 
 
 0% {
 
 
-transform:
-
-translate(-50%,-50%)
-
-scale(.7);
-
-
-
-opacity:.4;
-
-
-}
-
-
-
-30% {
-
-
-transform:
-
-translate(-50%,-50%)
-
-scale(1.4);
-
-
-
-opacity:1;
-
-
-}
-
-
-
-50% {
-
-
-transform:
-
-translate(-50%,-50%)
-
-scale(.8);
-
-
-
-opacity:.5;
-
+left:-200px;
 
 }
 
@@ -3473,16 +3317,7 @@ opacity:.5;
 100% {
 
 
-transform:
-
-translate(-50%,-50%)
-
-scale(.7);
-
-
-
-opacity:.4;
-
+left:100%;
 
 }
 
@@ -3492,134 +3327,12 @@ opacity:.4;
 
 
 
-
-
-
-
-
-/* keep website above clock */
 
 
 .bento-grid {
 
-
 position:relative;
-
 
 z-index:2;
 
-
-}
-
-
-
-
-
-
-
-/* cards react slightly to clock */
-
-
-.card {
-
-
-backdrop-filter:
-
-blur(8px);
-
-
-}
-
-
-
-
-
-
-
-
-/* startup animation */
-
-
-.clock-system {
-
-
-animation:
-
-clockStartup 2s var(--ease) forwards;
-
-
-}
-
-
-
-@keyframes clockStartup {
-
-
-0% {
-
-
-opacity:0;
-
-
-transform:
-
-scale(1.1);
-
-
-}
-
-
-
-40% {
-
-
-opacity:.8;
-
-
-}
-
-
-
-100% {
-
-
-opacity:.55;
-
-
-transform:
-
-scale(1);
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-
-/* pulse becomes stronger when hovering */
-
-
-.card:hover ~ .clock-system {
-
-
-opacity:.8;
-
-
-}
-
-.clock-system {
-    opacity:1 !important;
-    z-index:999 !important;
-}
-
-.clock-wave path {
-    stroke:red !important;
-    stroke-width:5 !important;
 }
