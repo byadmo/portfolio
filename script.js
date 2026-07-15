@@ -1,50 +1,8 @@
 /* =========================================================
-   SILICON ARCHITECT PORTFOLIO
-   INTERACTION ENGINE
+   ADAM MORGAN
+   ELECTRICAL ENGINEERING PORTFOLIO
+   INTERACTION SYSTEM
 ========================================================= */
-
-
-
-/* =========================================================
-   SILICON BOOT SEQUENCE
-========================================================= */
-
-
-const bootLines = [
-
-    "BIOS CHECK ........ PASS",
-
-    "MEMORY ARRAY ...... ONLINE",
-
-    "RTL MODULES ....... LOADED",
-
-    "FPGA INTERFACE .... READY",
-
-    "ADAM_SYSTEM ....... ONLINE"
-
-];
-
-
-
-function bootSequence(){
-
-
-    console.log(
-        "%c" +
-        bootLines.join("\n"),
-        "color:#4cc9f0;font-family:monospace;"
-    );
-
-
-}
-
-
-
-bootSequence();
-
-
-
-
 
 
 
@@ -53,44 +11,28 @@ bootSequence();
 ========================================================= */
 
 
-const cards =
-document.querySelectorAll(".reveal");
+const revealCards = document.querySelectorAll(".reveal");
 
 
-
-window.addEventListener(
-    "load",
-    ()=>{
+window.addEventListener("load", () => {
 
 
-        cards.forEach(
-            (card,index)=>{
+    revealCards.forEach((card, index) => {
 
 
-                setTimeout(
-                    ()=>{
+        setTimeout(() => {
 
 
-                        card.classList.add(
-                            "active"
-                        );
+            card.classList.add("active");
 
 
-                    },
-
-                    index * 80
-
-                );
+        }, index * 80);
 
 
-            }
-
-        );
+    });
 
 
-    }
-
-);
+});
 
 
 
@@ -99,7 +41,7 @@ window.addEventListener(
 
 
 /* =========================================================
-   TYPEWRITER SYSTEM
+   TYPEWRITER EFFECT
 ========================================================= */
 
 
@@ -109,97 +51,93 @@ const words = [
 
     "32-bit pipelined RISC-V cores...",
 
-    "optimized RTL architectures...",
-
-    "FPGA-based digital systems..."
+    "optimized RTL architectures..."
 
 ];
 
 
 
-const typing =
-document.getElementById(
-    "typing"
-);
+const typingElement =
+document.getElementById("typing");
 
 
 
-let word = 0;
+let wordIndex = 0;
 
-let char = 0;
+let charIndex = 0;
 
 let deleting = false;
 
 
 
-function type(){
+function typeEffect(){
 
 
-    if(!typing)
+    if(!typingElement)
         return;
 
 
 
-    const current =
-    words[word];
+    const currentWord =
+    words[wordIndex];
 
 
 
     if(!deleting){
 
 
-        typing.textContent =
-        current.substring(
+        typingElement.textContent =
+        currentWord.substring(
             0,
-            char++
+            charIndex++
         );
 
 
 
-        if(char > current.length){
+        if(charIndex > currentWord.length){
 
 
-            deleting=true;
+            deleting = true;
 
 
             setTimeout(
-                type,
+                typeEffect,
                 1200
             );
 
 
             return;
 
+
         }
 
 
-    }
-
-    else{
+    } else {
 
 
-        typing.textContent =
-        current.substring(
+
+        typingElement.textContent =
+        currentWord.substring(
             0,
-            char--
+            charIndex--
         );
 
 
 
-        if(char < 0){
+        if(charIndex < 0){
 
 
             deleting=false;
 
 
-            word =
-            (word+1)
+            wordIndex =
+            (wordIndex + 1)
             %
             words.length;
 
 
 
-            char=0;
+            charIndex=0;
 
 
         }
@@ -211,9 +149,9 @@ function type(){
 
     setTimeout(
 
-        type,
+        typeEffect,
 
-        deleting ? 40 : 90
+        deleting ? 45 : 90
 
     );
 
@@ -222,7 +160,8 @@ function type(){
 
 
 
-type();
+typeEffect();
+
 
 
 
@@ -231,37 +170,37 @@ type();
 
 
 /* =========================================================
-   CIRCUIT TRACE MOUSE EFFECT
+   CARD LIGHT TRACKING
 ========================================================= */
 
 
-const cardsGlow =
+const cards =
 document.querySelectorAll(".card");
 
 
 
-cardsGlow.forEach(card=>{
+cards.forEach(card => {
 
 
     card.addEventListener(
         "mousemove",
-        event=>{
+        event => {
 
 
-            const box =
+            const rect =
             card.getBoundingClientRect();
 
 
 
             const x =
             event.clientX -
-            box.left;
+            rect.left;
 
 
 
             const y =
             event.clientY -
-            box.top;
+            rect.top;
 
 
 
@@ -278,7 +217,6 @@ cardsGlow.forEach(card=>{
 
 
         }
-
     );
 
 
@@ -302,6 +240,131 @@ cardsGlow.forEach(card=>{
 
 
         }
+    );
+
+
+});
+
+
+
+
+
+
+
+
+/* =========================================================
+   ENGINEERING TIMELINE
+========================================================= */
+
+
+const timelineButtons =
+document.querySelectorAll(
+    ".year-buttons button"
+);
+
+
+
+const timelineDisplay =
+document.getElementById(
+    "timeline-display"
+);
+
+
+
+const timelineData = {
+
+
+    "2026": `
+
+    <h3>
+    Computer Architecture
+    </h3>
+
+    <p>
+
+    Developing processor architecture,
+    RTL design concepts, and
+    digital hardware systems.
+
+    </p>
+
+    `,
+
+
+
+    "2025": `
+
+    <h3>
+    Engineering Foundation
+    </h3>
+
+    <p>
+
+    Building skills in programming,
+    digital logic, circuit analysis,
+    and engineering design.
+
+    </p>
+
+    `,
+
+
+
+    "2024": `
+
+    <h3>
+    Technical Foundation
+    </h3>
+
+    <p>
+
+    Exploring mathematics,
+    physics, programming,
+    and electronics fundamentals.
+
+    </p>
+
+    `
+
+
+};
+
+
+
+
+timelineButtons.forEach(button => {
+
+
+
+    button.addEventListener(
+        "click",
+        ()=>{
+
+
+            timelineButtons.forEach(btn=>{
+
+                btn.classList.remove(
+                    "active"
+                );
+
+            });
+
+
+
+            button.classList.add(
+                "active"
+            );
+
+
+
+            timelineDisplay.innerHTML =
+            timelineData[
+                button.dataset.year
+            ];
+
+
+
+        }
 
     );
 
@@ -316,7 +379,7 @@ cardsGlow.forEach(card=>{
 
 
 /* =========================================================
-   CPU PIPELINE CLOCK
+   CPU PIPELINE ANIMATION
 ========================================================= */
 
 
@@ -327,53 +390,49 @@ document.querySelectorAll(
 
 
 
-let pipelineIndex=0;
+let currentStage = 0;
 
 
 
-function clockCycle(){
+function animatePipeline(){
 
 
-    pipelineStages.forEach(
-        stage=>{
+    pipelineStages.forEach(stage=>{
 
 
-            stage.style.background =
-            "transparent";
+        stage.style.background =
+        "transparent";
 
 
-        }
-
-    );
+    });
 
 
 
     if(
-        pipelineStages[pipelineIndex]
+        pipelineStages[currentStage]
     ){
 
 
-        pipelineStages[pipelineIndex]
+        pipelineStages[currentStage]
         .style.background =
-        "rgba(76,201,240,.2)";
+        "rgba(76,201,240,.18)";
 
 
     }
 
 
 
-    pipelineIndex++;
+    currentStage++;
 
 
 
     if(
-        pipelineIndex >= pipelineStages.length
+        currentStage >= pipelineStages.length
     ){
 
-        pipelineIndex=0;
+        currentStage=0;
 
     }
-
 
 
 }
@@ -381,8 +440,8 @@ function clockCycle(){
 
 
 setInterval(
-    clockCycle,
-    700
+    animatePipeline,
+    650
 );
 
 
@@ -393,30 +452,18 @@ setInterval(
 
 
 /* =========================================================
-   TERMINAL LINK COMMAND EFFECT
+   TERMINAL LINK HOVER
 ========================================================= */
 
 
-const links =
+const socialLinks =
 document.querySelectorAll(
     ".socials-card a"
 );
 
 
 
-links.forEach(link=>{
-
-
-    const code =
-    link.querySelector(
-        "code"
-    );
-
-
-
-    if(!code)
-        return;
-
+socialLinks.forEach(link=>{
 
 
     link.addEventListener(
@@ -424,11 +471,11 @@ links.forEach(link=>{
         ()=>{
 
 
-            code.style.opacity="1";
+            link.style.transform =
+            "translateX(10px)";
 
 
         }
-
     );
 
 
@@ -438,13 +485,12 @@ links.forEach(link=>{
         ()=>{
 
 
-            code.style.opacity="0";
+            link.style.transform =
+            "translateX(0)";
 
 
         }
-
     );
-
 
 
 });
@@ -455,8 +501,9 @@ links.forEach(link=>{
 
 
 
+
 /* =========================================================
-   BUTTON TERMINAL PROMPT
+   HERO BUTTON TERMINAL STYLE
 ========================================================= */
 
 
@@ -483,11 +530,10 @@ buttons.forEach(button=>{
             button.textContent =
             "> "
             +
-            original;
+            original.trim();
 
 
         }
-
     );
 
 
@@ -502,72 +548,10 @@ buttons.forEach(button=>{
 
 
         }
-
     );
 
 
-
 });
-
-
-
-
-
-
-
-
-/* =========================================================
-   SCROLL PROGRESS CIRCUIT LINE
-========================================================= */
-
-
-const circuitLine =
-document.createElement(
-    "div"
-);
-
-
-
-circuitLine.className =
-"circuit-progress";
-
-
-
-document.body.appendChild(
-    circuitLine
-);
-
-
-
-window.addEventListener(
-    "scroll",
-    ()=>{
-
-
-        const scroll =
-        window.scrollY;
-
-
-
-        const height =
-        document.documentElement
-        .scrollHeight -
-        window.innerHeight;
-
-
-
-        const progress =
-        (scroll / height) * 100;
-
-
-
-        circuitLine.style.width =
-        progress + "%";
-
-
-    }
-
-);
 
 
 
@@ -581,14 +565,14 @@ window.addEventListener(
 ========================================================= */
 
 
-const reduce =
+const reduceMotion =
 window.matchMedia(
 "(prefers-reduced-motion: reduce)"
 );
 
 
 
-if(reduce.matches){
+if(reduceMotion.matches){
 
 
     document
