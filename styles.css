@@ -155,6 +155,13 @@ body::before {
   transition: opacity .5s ease;
 }
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 71d279b11368ffe317a04262883b6cb557a61088
 .card:hover::after {
   opacity: 1;
 }
@@ -186,6 +193,13 @@ body::before {
   grid-row: 2 / 4;
   min-height: 320px;
 }
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 71d279b11368ffe317a04262883b6cb557a61088
 
 .stack {
   grid-column: 9 / 13;
@@ -748,11 +762,627 @@ a {
    MOBILE
 ===================================================== */
 
+<<<<<<< HEAD
 @media (max-width: 700px) {
   body {
     padding: 14px;
     font-size: 14px;
   }
+=======
+
+@media(max-width:700px){
+
+
+
+body {
+
+
+padding:
+
+14px;
+
+
+
+font-size:
+
+14px;
+
+
+}
+
+
+
+
+
+.cpu-field {
+
+
+opacity:
+
+.55;
+
+
+}
+
+
+
+
+
+.bento-grid {
+
+
+gap:
+
+14px;
+
+
+}
+
+
+
+
+
+.card {
+
+
+border-radius:
+
+22px;
+
+
+
+padding:
+
+22px;
+
+
+}
+
+
+
+
+
+.card:hover {
+
+
+transform:
+
+translateY(-3px);
+
+
+}
+
+
+
+
+
+.hero {
+
+
+min-height:
+
+auto;
+
+
+}
+
+
+
+
+
+.label {
+
+
+font-size:
+
+10px;
+
+
+
+letter-spacing:
+
+1px;
+
+
+}
+
+
+
+
+
+h1 {
+
+
+font-size:
+
+
+clamp(2.2rem,12vw,3.2rem);
+
+
+
+letter-spacing:
+
+-1.5px;
+
+
+
+margin-bottom:
+
+25px;
+
+
+}
+
+
+
+
+
+h2 {
+
+
+font-size:
+
+24px;
+
+
+}
+
+
+
+
+
+h3 {
+
+
+font-size:
+
+18px;
+
+
+}
+
+
+
+
+
+p {
+
+
+line-height:
+
+1.6;
+
+
+}
+
+
+
+
+
+
+
+/* BUTTONS */
+
+
+.buttons {
+
+
+flex-direction:
+
+column;
+
+
+
+gap:
+
+12px;
+
+
+}
+
+
+
+
+
+.buttons a {
+
+
+width:
+
+100%;
+
+
+
+text-align:
+
+center;
+
+
+
+padding:
+
+14px 18px;
+
+
+}
+
+
+
+
+
+
+/* PIPELINE */
+
+
+.pipeline {
+
+
+display:grid;
+
+
+
+grid-template-columns:
+
+repeat(2,1fr);
+
+
+
+gap:
+
+10px;
+
+
+}
+
+
+
+
+
+.pipeline-node {
+
+
+padding:
+
+12px;
+
+
+
+font-size:
+
+12px;
+
+
+}
+
+
+
+
+
+
+/* CPU DEBUG VIEW */
+
+
+.cpu-console {
+
+
+height:
+
+170px;
+
+
+}
+
+
+
+
+
+
+
+/* YEAR BUTTONS */
+
+
+.year-buttons {
+
+
+width:
+
+100%;
+
+
+}
+
+
+
+
+
+.year-buttons button {
+
+
+flex:
+
+1;
+
+
+
+padding:
+
+10px;
+
+
+
+font-size:
+
+12px;
+
+
+}
+
+
+
+
+
+
+/* PROJECT CARDS */
+
+
+.project-item {
+
+
+padding:
+
+16px;
+
+
+}
+
+
+
+
+.project-item h4 {
+
+
+font-size:
+
+15px;
+
+
+}
+
+
+
+
+.project-item p {
+
+
+font-size:
+
+13px;
+
+
+}
+
+
+
+
+
+
+
+/* TAGS */
+
+
+.tags span {
+
+
+font-size:
+
+12px;
+
+
+
+padding:
+
+8px 12px;
+
+
+}
+
+
+
+
+
+
+
+/* CONNECT */
+
+
+.connect a {
+
+
+width:
+
+100%;
+
+
+
+text-align:
+
+center;
+
+
+}
+
+
+
+
+
+
+
+
+/* REMOVE HEAVY HOVER EFFECTS */
+
+
+.card::before,
+.card::after {
+
+
+display:none;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   VERY SMALL DEVICES
+   UNDER 400px
+===================================================== */
+
+
+@media(max-width:400px){
+
+
+
+body {
+
+
+padding:
+
+10px;
+
+
+}
+
+
+
+
+
+.card {
+
+
+padding:
+
+18px;
+
+
+
+border-radius:
+
+18px;
+
+
+}
+
+
+
+
+
+h1 {
+
+
+font-size:
+
+2rem;
+
+
+}
+
+
+
+
+
+.year-buttons {
+
+
+flex-direction:
+
+column;
+
+
+}
+
+
+
+
+
+.year-buttons button {
+
+
+width:
+
+100%;
+
+
+}
+
+
+
+
+
+.pipeline {
+
+
+grid-template-columns:
+
+1fr;
+
+
+}
+
+
+
+
+
+.buttons a {
+
+
+font-size:
+
+12px;
+
+
+}
+
+
+
+
+
+.connect a {
+
+
+font-size:
+
+12px;
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   ACCESSIBILITY
+   REDUCED MOTION
+===================================================== */
+
+>>>>>>> 71d279b11368ffe317a04262883b6cb557a61088
 
   .cpu-field {
     opacity: .55;
