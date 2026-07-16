@@ -685,37 +685,6 @@ opacity .5s ease;
 }
 
 
-<<<<<<< HEAD
-/* ===== BENTO POSITIONS =====
-   Desktop: Hero, Hardware, Entrepreneurship, Connect (left) | Profile, Journey, Stack (right) */
-
-.hero { grid-column: 1 / 9; grid-row: 1; min-height: 600px; isolation: isolate; }
-.hardware {
-  grid-column: 1 / 9;
-  grid-row: 2;
-  /* Keep this card content-sized when the adjacent timeline expands. */
-  align-self: start;
-}
-.right-column {
-  grid-column: 9 / 13;
-  grid-row: 1 / span 3;
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-  align-self: start;
-}
-.right-column > .card { width: 100%; }
-.timeline {
-  max-height: 300px;
-  overflow: hidden;
-  contain: layout paint;
-  transition: max-height 1s var(--ease), transform .7s var(--ease), border-color .5s ease, box-shadow .5s ease;
-}
-.timeline.expanded { max-height: 850px; }
-.timeline:hover { transform: translateY(-8px); }
-.entrepreneur { grid-column: 1 / 5; grid-row: 3; }
-.connect { grid-column: 5 / 9; grid-row: 3; }
-=======
 
 
 
@@ -871,7 +840,6 @@ min-height:
 
 
 }
->>>>>>> e720bc8629c3f9140eb386022d0aece368bdfe79
 
 
 
@@ -3126,27 +3094,6 @@ max-height:
    UNDER 700px
 ===================================================== */
 
-<<<<<<< HEAD
-@media (max-width: 1200px) {
-  body { padding: 25px; }
-  .bento-grid { grid-template-columns: repeat(8, 1fr); }
-  .hero { grid-column: 1 / -1; grid-row: auto; min-height: 520px; }
-  .hardware { grid-column: 1 / -1; grid-row: auto; }
-  .right-column {
-    grid-column: 1 / -1;
-    grid-row: auto;
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 22px;
-  }
-  .profile { grid-column: span 4; }
-  .timeline { grid-column: span 4; }
-  .stack { grid-column: 1 / -1; }
-  .entrepreneur { grid-column: 1 / 5; grid-row: auto; }
-  .connect { grid-column: 5 / 9; grid-row: auto; }
-  h1 { font-size: clamp(2.8rem, 6vw, 4.5rem); }
-  .card { padding: 28px; }
-=======
 
 @media(max-width:700px){
 
@@ -3166,7 +3113,6 @@ font-size:
 14px;
 
 
->>>>>>> e720bc8629c3f9140eb386022d0aece368bdfe79
 }
 
 
@@ -3626,24 +3572,6 @@ display:none;
    UNDER 400px
 ===================================================== */
 
-<<<<<<< HEAD
-@media (max-width: 900px) {
-  body { padding: 20px; }
-  .bento-grid { display: flex; flex-direction: column; gap: 18px; }
-  .right-column { display: flex; flex-direction: column; gap: 18px; order: 3; width: 100%; }
-  .card { width: 100%; }
-  .hero { min-height: auto; }
-  .hardware { order: 2; }
-  .profile { order: 3; }
-  .timeline { order: 4; max-height: none; }
-  .timeline.expanded { max-height: 1000px; }
-  .stack { order: 5; }
-  .entrepreneur { order: 6; }
-  .connect { order: 7; }
-  .pipeline { flex-wrap: wrap; }
-  .pipeline div { min-width: 80px; }
-  h1 { letter-spacing: -2px; }
-=======
 
 @media(max-width:400px){
 
@@ -3657,7 +3585,6 @@ padding:
 10px;
 
 
->>>>>>> e720bc8629c3f9140eb386022d0aece368bdfe79
 }
 
 
@@ -3780,22 +3707,6 @@ font-size:
    REDUCED MOTION
 ===================================================== */
 
-<<<<<<< HEAD
-@media (max-width: 700px) {
-  body { padding: 14px; font-size: 14px; }
-  .cpu-field { opacity: .55; }
-  .bento-grid { gap: 14px; }
-  .right-column { gap: 14px; }
-  .card { border-radius: 22px; padding: 22px; }
-  .card:hover { transform: translateY(-3px); }
-  .hero { min-height: auto; }
-  .label { font-size: 10px; letter-spacing: 1px; }
-  h1 { font-size: clamp(2.2rem, 12vw, 3.2rem); letter-spacing: -1.5px; margin-bottom: 25px; }
-  h2 { font-size: 24px; }
-  h3 { font-size: 18px; }
-  p { line-height: 1.6; }
-=======
->>>>>>> e720bc8629c3f9140eb386022d0aece368bdfe79
 
 @media(prefers-reduced-motion:reduce){
 
