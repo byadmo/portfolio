@@ -41,6 +41,11 @@ document.querySelector(".bento-grid");
 
 
 
+const cursorLight =
+document.querySelector(".cursor-light");
+
+
+
 const revealCards =
 document.querySelectorAll(".reveal");
 
@@ -48,6 +53,11 @@ document.querySelectorAll(".reveal");
 
 const hero =
 document.querySelector(".hero");
+
+
+
+const hardwareCard =
+document.querySelector(".hardware");
 
 
 
@@ -419,6 +429,97 @@ typeWriter();
 /* =====================================================
    CARD CURSOR GLOW
 ===================================================== */
+
+
+if(
+cursorLight &&
+!isTouchDevice &&
+!prefersReducedMotion
+){
+
+
+let cursorFrame = null;
+
+
+let cursorX = window.innerWidth / 2;
+
+
+let cursorY = window.innerHeight / 2;
+
+
+document.addEventListener(
+"mousemove",
+(event)=>{
+
+
+cursorX =
+event.clientX;
+
+
+cursorY =
+event.clientY;
+
+
+document.body.classList.add(
+"cursor-active"
+);
+
+
+if(cursorFrame)
+return;
+
+
+cursorFrame =
+requestAnimationFrame(()=>{
+
+
+cursorLight.style.transform =
+`translate3d(${cursorX - 260}px, ${cursorY - 260}px, 0)`;
+
+
+cursorFrame =
+null;
+
+
+});
+
+
+},
+{
+passive:true
+}
+);
+
+
+document.addEventListener(
+"mouseleave",
+()=>{
+
+
+document.body.classList.remove(
+"cursor-active"
+);
+
+
+}
+);
+
+
+document.addEventListener(
+"mouseenter",
+()=>{
+
+
+document.body.classList.add(
+"cursor-active"
+);
+
+
+}
+);
+
+
+}
 
 
 if(
@@ -905,6 +1006,91 @@ passive:true
 bentoGrid.addEventListener(
 "mouseleave",
 resetBentoPressure
+);
+
+
+}
+
+
+if(hardwareCard){
+
+
+const expandHardware =
+()=>{
+
+
+if(hardwareCard.classList.contains("is-expanded"))
+return;
+
+
+animateBentoLayout(()=>{
+
+
+hardwareCard.classList.add(
+"is-expanded"
+);
+
+
+});
+
+
+};
+
+
+const collapseHardware =
+()=>{
+
+
+if(!hardwareCard.classList.contains("is-expanded"))
+return;
+
+
+animateBentoLayout(()=>{
+
+
+hardwareCard.classList.remove(
+"is-expanded"
+);
+
+
+});
+
+
+};
+
+
+hardwareCard.addEventListener(
+"pointerenter",
+expandHardware
+);
+
+
+hardwareCard.addEventListener(
+"pointerleave",
+collapseHardware
+);
+
+
+hardwareCard.addEventListener(
+"touchstart",
+()=>{
+
+
+animateBentoLayout(()=>{
+
+
+hardwareCard.classList.toggle(
+"is-expanded"
+);
+
+
+});
+
+
+},
+{
+passive:true
+}
 );
 
 

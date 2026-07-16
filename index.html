@@ -52,6 +52,7 @@
 
 <!-- BACKGROUND SYSTEM -->
 <div class="cpu-field" id="cpu-field"></div>
+<div class="cursor-light" aria-hidden="true"></div>
 <div class="noise"></div>
 
 <main class="bento-grid" id="main-content">
@@ -108,13 +109,30 @@
       <div class="pipeline-node">WB</div>
     </div>
 
-    <div class="cpu-console"></div>
+    <div class="cpu-console">
+      <div class="cpu-core-label">RV32I</div>
+    </div>
 
     <ul>
       <li>5-stage instruction pipeline architecture</li>
       <li>Hazard detection and forwarding logic</li>
       <li>RTL verification using waveform simulation</li>
     </ul>
+
+    <div class="hardware-details">
+      <p>
+        This project took me through the real engineering tradeoffs behind processor design:
+        turning an instruction set into datapaths, control logic, timing boundaries, hazards,
+        forwarding paths, and verification signals that could be reasoned about cycle by cycle.
+      </p>
+
+      <p>
+        I learned how performance depends on disciplined architecture decisions, not just code:
+        clean pipeline stages, predictable control, simulation-driven debugging, and the ability
+        to connect low-level RTL behavior to the kind of efficient compute systems that matter at
+        AMD, NVIDIA, and Qualcomm.
+      </p>
+    </div>
   </section>
 
   <!-- MODULE 003 - ENGINEERING PROFILE -->

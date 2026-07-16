@@ -75,6 +75,27 @@ body::before {
   background-size: 18px 18px;
 }
 
+.cursor-light {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 520px;
+  height: 520px;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(-50%, -50%, 0);
+  background:
+    radial-gradient(circle, rgba(0, 234, 255, .18), rgba(0, 255, 136, .1) 28%, transparent 68%);
+  mix-blend-mode: screen;
+  filter: blur(4px);
+  transition: opacity .45s ease, width .6s var(--ease), height .6s var(--ease);
+}
+
+body.cursor-active .cursor-light {
+  opacity: 1;
+}
+
 .cpu-field {
   position: fixed;
   inset: 0;
@@ -224,6 +245,10 @@ body::before {
   align-self: stretch;
 }
 
+.hardware.is-expanded {
+  grid-row: span 36;
+}
+
 .profile {
   grid-column: 9 / 13;
   grid-row: span 15;
@@ -241,7 +266,7 @@ body::before {
 
 .entrepreneur {
   grid-column: 1 / 5;
-  grid-row: span 15;
+  grid-row: span 18;
 }
 
 .connect {
@@ -394,23 +419,36 @@ p {
 .cpu-console::after {
   content: "";
   position: absolute;
-  width: 128px;
-  height: 128px;
+  width: 138px;
+  height: 138px;
   left: 50%;
   top: 50%;
   border: 1px solid rgba(0, 234, 255, .45);
-  border-radius: 28px;
+  border-radius: 30px;
   background:
-    linear-gradient(90deg, transparent 46%, rgba(0, 234, 255, .6) 48%, rgba(0, 255, 136, .65) 52%, transparent 54%),
-    linear-gradient(0deg, transparent 46%, rgba(0, 234, 255, .5) 48%, rgba(0, 255, 136, .55) 52%, transparent 54%),
-    radial-gradient(circle, rgba(0, 255, 136, .24), rgba(0, 234, 255, .08) 52%, transparent 70%);
-  box-shadow: 0 0 30px rgba(0, 234, 255, .55), inset 0 0 28px rgba(0, 255, 136, .16);
+    repeating-linear-gradient(90deg, transparent 0 14px, rgba(0, 234, 255, .32) 15px 16px),
+    repeating-linear-gradient(0deg, transparent 0 14px, rgba(0, 255, 136, .26) 15px 16px),
+    radial-gradient(circle, rgba(0, 255, 136, .3), rgba(0, 234, 255, .08) 52%, transparent 70%);
+  box-shadow: 0 0 36px rgba(0, 234, 255, .62), inset 0 0 34px rgba(0, 255, 136, .2);
   transform: translate(-50%, -50%);
-  animation: cpuCore 7s ease-in-out infinite;
+  animation: cpuCore 5.4s ease-in-out infinite;
 }
 
 .cpu-console span {
   display: block;
+}
+
+.cpu-core-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-shadow: 0 0 18px rgba(0, 255, 136, .9);
+  transform: translate(-50%, -50%);
 }
 
 .cpu-console::marker {
@@ -513,6 +551,31 @@ p {
 .hardware li {
   margin-top: 15px;
   color: var(--muted);
+}
+
+.hardware-details {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  transform: translateY(14px);
+  transition: max-height 1.05s var(--ease), opacity .75s ease, margin-top .75s var(--ease), transform .75s var(--ease);
+}
+
+.hardware-details p {
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.hardware-details p + p {
+  margin-top: 16px;
+}
+
+.hardware.is-expanded .hardware-details {
+  max-height: 360px;
+  opacity: 1;
+  margin-top: 28px;
+  transform: translateY(0);
 }
 
 .timeline {
@@ -667,13 +730,24 @@ p {
 }
 
 .entrepreneur ul {
-  margin-top: 25px;
+  margin-top: 18px;
   padding-left: 20px;
+}
+
+.entrepreneur p,
+.entrepreneur li {
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .entrepreneur li {
   color: var(--muted);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
+}
+
+.entrepreneur h2 {
+  font-size: 26px;
+  line-height: 1.25;
 }
 
 .connect {
@@ -767,6 +841,10 @@ a {
     grid-row: auto;
   }
 
+  .hardware.is-expanded {
+    grid-row: auto;
+  }
+
   .entrepreneur {
     grid-column: 1 / 5;
     grid-row: auto;
@@ -805,6 +883,14 @@ a {
 
   .timeline.expanded {
     grid-row: auto;
+  }
+
+  .hardware-details,
+  .hardware.is-expanded .hardware-details {
+    max-height: none;
+    opacity: 1;
+    margin-top: 24px;
+    transform: none;
   }
 }
 
@@ -965,7 +1051,8 @@ a {
   }
 
   .card::before,
-  .card::after {
+  .card::after,
+  .cursor-light {
     display: none;
   }
 }
