@@ -762,9 +762,16 @@ const dy =
 rect.top - next.top;
 
 
+const scaleY =
+next.height > 0 ?
+rect.height / next.height :
+1;
+
+
 if(
 Math.abs(dx) < 1 &&
-Math.abs(dy) < 1
+Math.abs(dy) < 1 &&
+Math.abs(scaleY - 1) < .02
 )
 return;
 
@@ -782,6 +789,12 @@ card.style.setProperty(
 card.style.setProperty(
 "--layout-y",
 `${dy}px`
+);
+
+
+card.style.setProperty(
+"--layout-scale-y",
+scaleY
 );
 
 
@@ -809,6 +822,11 @@ card.style.removeProperty(
 
 card.style.removeProperty(
 "--layout-y"
+);
+
+
+card.style.removeProperty(
+"--layout-scale-y"
 );
 
 
@@ -2991,6 +3009,7 @@ cards.forEach(card=>{
 "--push-y",
 "--layout-x",
 "--layout-y",
+"--layout-scale-y",
 "--card-scale",
 "--lift",
 "--tilt-x",
@@ -3007,6 +3026,19 @@ property
 
 
 });
+
+
+
+updateExpandableCardSize(
+hardwareCard,
+".hardware-details"
+);
+
+
+updateExpandableCardSize(
+prostheticCard,
+".prosthetic-details"
+);
 
 
 

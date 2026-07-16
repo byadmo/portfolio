@@ -155,6 +155,7 @@ body.cursor-active .cursor-light {
 .card {
   --layout-x: 0px;
   --layout-y: 0px;
+  --layout-scale-y: 1;
   --push-x: 0px;
   --push-y: 0px;
   --lift: 40px;
@@ -169,6 +170,7 @@ body.cursor-active .cursor-light {
   overflow: hidden;
   opacity: 0;
   height: 100%;
+  transform-origin: top center;
   transform: perspective(1200px)
     translate3d(
       calc(var(--layout-x) + var(--push-x)),
@@ -177,8 +179,9 @@ body.cursor-active .cursor-light {
     )
     rotateY(var(--tilt-y))
     rotateX(var(--tilt-x))
+    scaleY(var(--layout-scale-y))
     scale(var(--card-scale));
-  transition: opacity .8s var(--ease), transform .95s var(--ease), border-color .5s ease, box-shadow .5s ease;
+  transition: opacity .8s var(--ease), transform 1.15s cubic-bezier(.19, 1, .22, 1), border-color .5s ease, box-shadow .5s ease;
 }
 
 .card.active {
