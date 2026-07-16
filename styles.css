@@ -1,32 +1,39 @@
 /* =====================================================
    ADAM MORGAN PORTFOLIO
-   HARDWARE LAB BENTO SYSTEM
+   PREMIUM HARDWARE BENTO SYSTEM
 ===================================================== */
 
 
+/* =====================================================
+   ROOT VARIABLES
+===================================================== */
+
 :root {
 
-  --bg:#07080a;
+  --bg: #07080a;
 
-  --card:#111319;
+  --card: #111319;
 
-  --card-light:#171a21;
+  --card-light: #171a21;
 
-  --border:#252a35;
+  --border: #252a35;
 
-  --white:#ffffff;
+  --white: #ffffff;
 
-  --muted:#9297a3;
+  --muted: #9297a3;
 
-  --cyan:#00eaff;
+  --cyan: #00eaff;
 
-  --green:#00ff88;
+  --green: #00ff88;
 
-  --radius:28px;
+  --radius: 28px;
 
-  --ease:cubic-bezier(.22,1,.36,1);
+  --ease:
+  cubic-bezier(.22,1,.36,1);
 
 }
+
+
 
 
 
@@ -57,13 +64,22 @@ html {
 
 body {
 
-  background:var(--bg);
+  background:
 
-  color:var(--white);
+  var(--bg);
 
-  font-family:"JetBrains Mono", monospace;
+  color:
 
-  padding:40px;
+  var(--white);
+
+  font-family:
+
+  "JetBrains Mono",
+  monospace;
+
+  padding:
+
+  40px;
 
   overflow-x:hidden;
 
@@ -85,43 +101,64 @@ body::before {
 
 content:"";
 
+
 position:fixed;
 
+
 inset:0;
+
 
 
 background:
 
 
 linear-gradient(
+
 90deg,
+
 rgba(0,234,255,.025) 1px,
+
 transparent 1px
+
 ),
 
 
 linear-gradient(
+
 rgba(0,234,255,.025) 1px,
+
 transparent 1px
+
 );
 
 
-background-size:70px 70px;
+
+background-size:
+
+70px 70px;
+
 
 
 mask-image:
 
 radial-gradient(
+
 circle,
+
 black,
+
 transparent 75%
+
 );
+
 
 
 pointer-events:none;
 
 
 }
+
+
 
 
 
@@ -137,25 +174,38 @@ pointer-events:none;
 
 position:fixed;
 
+
 inset:0;
+
 
 pointer-events:none;
 
+
 opacity:.035;
+
 
 
 background-image:
 
 radial-gradient(
+
 white 1px,
+
 transparent 1px
+
 );
 
 
-background-size:18px 18px;
+
+background-size:
+
+18px 18px;
 
 
 }
+
+
+
 
 
 
@@ -171,11 +221,15 @@ background-size:18px 18px;
 
 position:fixed;
 
+
 inset:0;
+
 
 overflow:hidden;
 
+
 pointer-events:none;
+
 
 z-index:0;
 
@@ -185,15 +239,19 @@ z-index:0;
 
 
 
+
+
 .cpu-pulse {
 
 
 position:absolute;
 
+
 height:2px;
 
 
 background:
+
 
 linear-gradient(
 
@@ -201,9 +259,9 @@ linear-gradient(
 
 transparent,
 
-rgba(0,234,255,.9),
+var(--cyan),
 
-rgba(0,255,136,.8),
+var(--green),
 
 transparent
 
@@ -216,14 +274,13 @@ box-shadow:
 
 0 0 15px rgba(0,234,255,.8),
 
-0 0 40px rgba(0,255,136,.35);
+0 0 35px rgba(0,255,136,.35);
 
 
 
 animation:
 
 signalMove linear infinite;
-
 
 
 }
@@ -252,7 +309,7 @@ opacity:0;
 
 
 
-15% {
+20% {
 
 
 opacity:.8;
@@ -295,6 +352,7 @@ opacity:0;
 
 
 
+
 /* =====================================================
    MAIN BENTO GRID
 ===================================================== */
@@ -303,12 +361,19 @@ opacity:0;
 .bento-grid {
 
 
-max-width:1600px;
+max-width:
 
-margin:auto;
+1600px;
+
+
+margin:
+
+auto;
+
 
 
 display:grid;
+
 
 
 grid-template-columns:
@@ -317,13 +382,24 @@ repeat(12,1fr);
 
 
 
-gap:24px;
+grid-auto-flow:
+
+dense;
+
+
+
+gap:
+
+24px;
 
 
 
 position:relative;
 
+
+
 z-index:2;
+
 
 
 align-items:start;
@@ -337,7 +413,7 @@ align-items:start;
 
 
 /* =====================================================
-   CARD SYSTEM
+   CARD BASE
 ===================================================== */
 
 
@@ -345,6 +421,7 @@ align-items:start;
 
 
 background:
+
 
 linear-gradient(
 
@@ -390,6 +467,7 @@ opacity:0;
 
 transform:
 
+
 translateY(40px)
 
 scale(.97);
@@ -413,6 +491,7 @@ box-shadow .5s ease;
 
 
 
+
 .card.active {
 
 
@@ -420,6 +499,7 @@ opacity:1;
 
 
 transform:
+
 
 translateY(0)
 
@@ -437,7 +517,7 @@ scale(1);
 
 transform:
 
-translateY(-8px);
+translateY(-7px);
 
 
 
@@ -452,14 +532,15 @@ box-shadow:
 
 0 30px 80px rgba(0,0,0,.45),
 
-
 0 0 45px rgba(0,234,255,.15);
 
 
 
 }
 
-
+/* =====================================================
+   CARD LIGHT EFFECTS
+===================================================== */
 
 
 .card::before {
@@ -471,16 +552,28 @@ content:"";
 position:absolute;
 
 
-width:420px;
+
+width:
+
+420px;
 
 
-height:420px;
+
+height:
+
+420px;
 
 
-left:var(--mouse-x,50%);
+
+left:
+
+var(--mouse-x,50%);
 
 
-top:var(--mouse-y,50%);
+
+top:
+
+var(--mouse-y,50%);
 
 
 
@@ -490,7 +583,9 @@ translate(-50%,-50%);
 
 
 
+
 background:
+
 
 radial-gradient(
 
@@ -507,7 +602,9 @@ transparent 65%
 opacity:0;
 
 
+
 pointer-events:none;
+
 
 
 transition:
@@ -515,8 +612,9 @@ transition:
 opacity .5s ease;
 
 
-
 }
+
+
 
 
 
@@ -527,27 +625,116 @@ opacity:1;
 
 
 }
+
+
+
+
+
+
+.card::after {
+
+
+content:"";
+
+
+position:absolute;
+
+
+inset:0;
+
+
+
+border-radius:
+
+var(--radius);
+
+
+
+background:
+
+
+linear-gradient(
+
+135deg,
+
+rgba(0,234,255,.08),
+
+transparent 40%,
+
+transparent 60%,
+
+rgba(0,255,136,.08)
+
+);
+
+
+
+opacity:0;
+
+
+
+pointer-events:none;
+
+
+
+transition:
+
+opacity .5s ease;
+
+
+}
+
+
+
+
+
+.card:hover::after {
+
+
+opacity:1;
+
+
+}
+
+
+
+
+
+
+
 /* =====================================================
-   BENTO LAYOUT STRUCTURE
+   BENTO LAYOUT SYSTEM
 ===================================================== */
 
 
 /*
-Desktop layout:
 
-┌──────────────────────┬──────────────┐
-│                      │ PROFILE      │
-│       HERO           ├──────────────┤
-│                      │ MODULE_002   │
-├──────────────────────┤              │
-│                      │              │
-│    MODULE_001        │ MODULE_003   │
-│                      │              │
-├──────────────────────┤──────────────┤
-│ MODULE_004           │ CONNECT      │
-└──────────────────────┴──────────────┘
+DESKTOP STRUCTURE:
+
+------------------------------------------------
+
+|                 HERO                 | PROFILE |
+
+|                                      |         |
+
+|                 HERO                 | JOURNEY |
+
+------------------------------------------------
+
+|             MODULE 001                       |
+
+|             PROCESSOR                         |
+
+------------------------------------------------
+
+| ENTREPRENEUR | TECH STACK | CONNECT          |
+
+------------------------------------------------
+
 
 */
+
+
 
 
 
@@ -576,6 +763,7 @@ min-height:
 
 
 
+
 .hardware {
 
 
@@ -584,7 +772,15 @@ grid-column:
 span 8;
 
 
+
+grid-row:
+
+span 1;
+
+
 }
+
+
 
 
 
@@ -597,14 +793,20 @@ span 4;
 
 
 
-display:flex;
-
-
-flex-direction:column;
+display:grid;
 
 
 
-gap:24px;
+grid-template-columns:
+
+1fr;
+
+
+
+gap:
+
+24px;
+
 
 
 position:relative;
@@ -615,14 +817,68 @@ position:relative;
 
 
 
-.profile,
-.timeline,
-.stack,
-.entrepreneur,
+
+.profile {
+
+
+min-height:
+
+260px;
+
+
+}
+
+
+
+
+.timeline {
+
+
+min-height:
+
+320px;
+
+
+}
+
+
+
+
+
+.stack {
+
+
+min-height:
+
+430px;
+
+
+}
+
+
+
+
+
+.entrepreneur {
+
+
+grid-column:
+
+span 4;
+
+
+}
+
+
+
+
+
 .connect {
 
 
-width:100%;
+grid-column:
+
+span 4;
 
 
 }
@@ -632,12 +888,252 @@ width:100%;
 
 
 
+
 /* =====================================================
-   HERO
+   IMPORTANT LAYOUT FIX
+   KEEPS MODULE 001 AND MODULE 002 TOGETHER
 ===================================================== */
 
 
-.hero h1 {
+
+
+
+.hardware {
+
+
+order:
+
+2;
+
+
+}
+
+
+
+.timeline {
+
+
+order:
+
+3;
+
+
+}
+
+
+
+.right-column {
+
+
+order:
+
+4;
+
+
+}
+
+
+
+
+
+
+/*
+
+The right column now does NOT force
+everything beside the hero.
+
+The processor module and engineering
+journey remain the main left stack.
+
+*/
+
+
+
+
+
+
+
+/* =====================================================
+   TERMINAL DOTS
+===================================================== */
+
+
+.terminal-dots {
+
+
+display:flex;
+
+
+
+gap:
+
+10px;
+
+
+
+margin-bottom:
+
+25px;
+
+
+
+}
+
+
+
+
+
+.terminal-dots span {
+
+
+width:
+
+14px;
+
+
+
+height:
+
+14px;
+
+
+
+border-radius:
+
+50%;
+
+
+
+display:flex;
+
+
+
+align-items:center;
+
+
+
+justify-content:center;
+
+
+
+font-size:
+
+10px;
+
+
+
+color:
+
+#000;
+
+
+
+transition:
+
+.35s var(--ease);
+
+
+}
+
+
+
+
+
+.terminal-dots span:hover {
+
+
+transform:
+
+scale(1.35)
+
+rotate(15deg);
+
+
+}
+
+
+
+
+
+.mac-red {
+
+
+background:
+
+#ff5f57;
+
+
+}
+
+
+
+.mac-yellow {
+
+
+background:
+
+#febc2e;
+
+
+}
+
+
+
+.mac-green {
+
+
+background:
+
+#28c840;
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   TYPOGRAPHY
+===================================================== */
+
+
+.label {
+
+
+color:
+
+var(--green);
+
+
+
+font-size:
+
+12px;
+
+
+
+letter-spacing:
+
+2px;
+
+
+
+margin-bottom:
+
+25px;
+
+
+
+}
+
+
+
+
+h1 {
 
 
 font-size:
@@ -663,19 +1159,92 @@ margin-bottom:
 35px;
 
 
+
+}
+
+
+
+
+h2 {
+
+
+font-size:
+
+30px;
+
+
+
+margin-bottom:
+
+25px;
+
+
+
+}
+
+
+
+
+h3 {
+
+
+margin-bottom:
+
+15px;
+
+
+
+}
+
+
+
+
+p {
+
+
+color:
+
+var(--muted);
+
+
+
+line-height:
+
+1.8;
+
+
+
 }
 
 
 
 
 
+/* =====================================================
+   CURRENTLY WORKING ON COLOR FIX
+===================================================== */
 
-.description {
+
+.typing-line {
 
 
-max-width:
+display:flex;
 
-720px;
+
+flex-wrap:wrap;
+
+
+
+gap:
+
+8px;
+
+
+
+margin-bottom:
+
+30px;
+
 
 
 }
@@ -694,8 +1263,7 @@ var(--cyan);
 
 font-weight:
 
-500;
-
+700;
 
 
 }
@@ -703,32 +1271,16 @@ font-weight:
 
 
 
-.typing-line {
-
-
-display:flex;
-
-
-flex-wrap:wrap;
-
-
-gap:8px;
-
-
-margin-bottom:30px;
-
+#typing {
 
 
 color:
 
-var(--green);
+var(--cyan);
 
-
-font-size:16px;
 
 
 }
-
 
 
 
@@ -738,10 +1290,16 @@ font-size:16px;
 .cursor {
 
 
-width:8px;
+width:
+
+8px;
 
 
-height:20px;
+
+height:
+
+20px;
+
 
 
 background:
@@ -764,8 +1322,6 @@ blink .8s infinite;
 
 
 
-
-
 @keyframes blink {
 
 
@@ -780,16 +1336,8 @@ opacity:0;
 
 }
 
-
-
-
-
-
-
-
-
 /* =====================================================
-   BUTTON SYSTEM
+   HERO BUTTONS
 ===================================================== */
 
 
@@ -805,12 +1353,11 @@ flex-wrap:wrap;
 gap:14px;
 
 
-
 margin-top:40px;
 
 
-}
 
+}
 
 
 
@@ -818,6 +1365,7 @@ margin-top:40px;
 
 
 background:
+
 
 linear-gradient(
 
@@ -833,11 +1381,13 @@ linear-gradient(
 
 border:
 
+
 1px solid rgba(255,255,255,.12);
 
 
 
 padding:
+
 
 15px 24px;
 
@@ -845,11 +1395,8 @@ padding:
 
 border-radius:
 
+
 16px;
-
-
-
-color:white;
 
 
 
@@ -857,10 +1404,15 @@ text-decoration:none;
 
 
 
+color:
+
+white;
+
+
+
 transition:
 
 .45s var(--ease);
-
 
 
 }
@@ -896,9 +1448,7 @@ box-shadow:
 0 15px 40px rgba(0,255,136,.15);
 
 
-
 }
-
 
 
 
@@ -908,22 +1458,180 @@ box-shadow:
 
 
 /* =====================================================
-   PROFILE
+   CPU DEBUG VISUALIZATION
+   REPLACES STATIC SYSTEM STATUS TEXT
 ===================================================== */
 
 
-.profile-item {
+
+.cpu-console {
 
 
-padding:
+height:
 
-18px 0;
+220px;
 
 
 
-border-bottom:
+margin:
 
-1px solid var(--border);
+35px 0;
+
+
+
+border-radius:
+
+22px;
+
+
+
+background:
+
+
+linear-gradient(
+
+145deg,
+
+#050608,
+
+#10151c
+
+);
+
+
+
+border:
+
+
+1px solid rgba(0,234,255,.2);
+
+
+
+position:
+
+relative;
+
+
+
+overflow:hidden;
+
+
+}
+
+
+
+
+.cpu-console::before {
+
+
+content:"";
+
+
+
+position:absolute;
+
+
+
+inset:
+
+20px;
+
+
+
+background:
+
+
+linear-gradient(
+
+90deg,
+
+transparent 95%,
+
+rgba(0,234,255,.3) 95%
+
+);
+
+
+
+background-size:
+
+45px 45px;
+
+
+
+opacity:.25;
+
+
+}
+
+
+
+
+
+.cpu-console::after {
+
+
+content:"";
+
+
+position:absolute;
+
+
+
+height:
+
+3px;
+
+
+
+width:
+
+120%;
+
+
+
+left:
+
+-20%;
+
+
+
+top:
+
+50%;
+
+
+
+background:
+
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+var(--cyan),
+
+var(--green),
+
+transparent
+
+);
+
+
+
+box-shadow:
+
+
+0 0 25px var(--cyan);
+
+
+
+animation:
+
+
+cpuScan 3s linear infinite;
 
 
 
@@ -931,12 +1639,186 @@ border-bottom:
 
 
 
-.profile-item span {
+
+@keyframes cpuScan {
 
 
-font-size:
+0% {
+
+
+transform:
+
+translateX(-80%);
+
+
+}
+
+
+
+100% {
+
+
+transform:
+
+translateX(80%);
+
+
+}
+
+
+
+}
+
+
+
+
+.cpu-console {
+
+
+}
+
+
+
+.cpu-console:active {
+
+
+}
+
+
+
+
+/* =====================================================
+   PIPELINE
+===================================================== */
+
+
+
+.pipeline {
+
+
+display:flex;
+
+
+
+gap:
 
 12px;
+
+
+
+margin:
+
+35px 0;
+
+
+
+}
+
+
+
+.pipeline-node {
+
+
+flex:1;
+
+
+
+text-align:center;
+
+
+
+padding:
+
+15px;
+
+
+
+background:
+
+
+#181a20;
+
+
+
+border:
+
+
+1px solid var(--border);
+
+
+
+border-radius:
+
+12px;
+
+
+
+transition:
+
+.5s var(--ease);
+
+
+
+font-weight:
+
+700;
+
+
+}
+
+
+
+
+.pipeline-node:hover {
+
+
+background:
+
+#202631;
+
+
+
+border-color:
+
+var(--cyan);
+
+
+
+transform:
+
+translateY(-5px);
+
+
+
+}
+
+
+
+
+
+/* =====================================================
+   PROCESSOR LIST
+===================================================== */
+
+
+.hardware ul {
+
+
+margin-top:
+
+20px;
+
+
+}
+
+
+
+.hardware li {
+
+
+margin-top:
+
+15px;
 
 
 
@@ -945,28 +1827,7 @@ color:
 var(--muted);
 
 
-
 }
-
-
-
-
-
-.profile-item p {
-
-
-margin-top:
-
-8px;
-
-
-color:
-
-var(--white);
-
-
-}
-
 
 
 
@@ -975,8 +1836,9 @@ var(--white);
 
 
 /* =====================================================
-   MODULE 002 TIMELINE
+   ENGINEERING JOURNEY
 ===================================================== */
+
 
 
 .timeline {
@@ -992,17 +1854,22 @@ overflow:hidden;
 
 
 
+position:relative;
+
+
+
 transition:
 
 
-height 1.3s cubic-bezier(.22,1,.36,1),
+height .25s cubic-bezier(.68,-0.2,.32,1.3),
+
+box-shadow .6s ease;
 
 
-box-shadow .8s ease,
 
+will-change:
 
-transform .8s var(--ease);
-
+height;
 
 
 }
@@ -1015,18 +1882,17 @@ transform .8s var(--ease);
 
 height:
 
-760px;
+780px;
 
 
 
 box-shadow:
 
 
-0 40px 90px rgba(0,0,0,.6),
+0 40px 90px rgba(0,0,0,.65),
 
 
-0 0 50px rgba(0,234,255,.18);
-
+0 0 50px rgba(0,234,255,.2);
 
 
 }
@@ -1034,26 +1900,51 @@ box-shadow:
 
 
 
+
+
+
+/*
+
+Opening:
+
+slow and controlled
+
+Closing:
+
+fast and sharp
+
+*/
 
 
 
 .timeline.collapsing {
 
 
-height:
-
-330px;
-
-
-
 transition:
 
 
-height .7s cubic-bezier(.55,0,.1,1);
-
+height .45s cubic-bezier(.55,0,1,.45);
 
 
 }
+
+
+
+
+
+
+
+
+.timeline:hover {
+
+
+transform:
+
+translateY(-5px);
+
+
+}
+
 
 
 
@@ -1069,21 +1960,12 @@ margin-bottom:
 20px;
 
 
-
 font-size:
 
 13px;
 
 
-
-color:
-
-var(--muted);
-
-
 }
-
-
 
 
 
@@ -1095,17 +1977,18 @@ var(--muted);
 display:flex;
 
 
-gap:12px;
+gap:
+
+12px;
+
 
 
 margin-bottom:
 
-25px;
-
+20px;
 
 
 }
-
 
 
 
@@ -1114,6 +1997,7 @@ margin-bottom:
 
 
 background:
+
 
 #181a20;
 
@@ -1127,17 +2011,20 @@ white;
 
 border:
 
+
 1px solid var(--border);
 
 
 
 padding:
 
+
 12px 22px;
 
 
 
 border-radius:
+
 
 12px;
 
@@ -1154,7 +2041,7 @@ font-family:inherit;
 transition:
 
 
-.5s var(--ease);
+.4s var(--ease);
 
 
 
@@ -1184,8 +2071,8 @@ transform:
 translateY(-4px);
 
 
-
 }
+
 
 
 
@@ -1207,6 +2094,7 @@ var(--green);
 
 background:
 
+
 rgba(0,234,255,.08);
 
 
@@ -1217,677 +2105,12 @@ box-shadow:
 0 0 20px rgba(0,234,255,.15);
 
 
-
-}
-
-/* =====================================================
-   MODULE 001 — CPU DEBUG VISUALIZATION
-===================================================== */
-
-
-.cpu-debug {
-
-
-margin-top:
-
-35px;
-
-
-
-background:
-
-linear-gradient(
-
-145deg,
-
-rgba(5,10,15,.95),
-
-rgba(15,20,28,.95)
-
-);
-
-
-
-border:
-
-1px solid rgba(0,234,255,.18);
-
-
-
-border-radius:
-
-22px;
-
-
-
-padding:
-
-24px;
-
-
-
-overflow:hidden;
-
-
-
-position:relative;
-
-
-
-}
-
-
-
-
-.cpu-debug::before {
-
-
-content:"";
-
-position:absolute;
-
-
-inset:0;
-
-
-
-background:
-
-
-linear-gradient(
-
-90deg,
-
-transparent,
-
-rgba(0,234,255,.08),
-
-transparent
-
-);
-
-
-
-animation:
-
-cpuScan 4s linear infinite;
-
-
-
-}
-
-
-
-
-@keyframes cpuScan {
-
-
-0% {
-
-
-transform:
-
-translateX(-100%);
-
-
-}
-
-
-
-100% {
-
-
-transform:
-
-translateX(100%);
-
-
-}
-
-
-
 }
 
 
 
 
 
-
-
-
-.cpu-header {
-
-
-display:flex;
-
-
-justify-content:space-between;
-
-
-align-items:center;
-
-
-margin-bottom:
-
-30px;
-
-
-
-font-size:
-
-13px;
-
-
-
-letter-spacing:
-
-1px;
-
-
-
-color:
-
-var(--cyan);
-
-
-}
-
-
-
-
-.status-active {
-
-
-color:
-
-var(--green);
-
-
-
-animation:
-
-statusPulse 1.5s infinite;
-
-
-}
-
-
-
-
-@keyframes statusPulse {
-
-
-50% {
-
-
-opacity:.4;
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-
-.cpu-core {
-
-
-display:flex;
-
-
-align-items:center;
-
-
-justify-content:center;
-
-
-gap:10px;
-
-
-
-flex-wrap:wrap;
-
-
-
-}
-
-
-
-
-
-.pipeline-node {
-
-
-width:
-
-100px;
-
-
-
-height:
-
-50px;
-
-
-
-display:flex;
-
-
-align-items:center;
-
-
-justify-content:center;
-
-
-
-background:
-
-
-linear-gradient(
-
-145deg,
-
-#171b22,
-
-#0d1015
-
-);
-
-
-
-border:
-
-1px solid rgba(0,234,255,.25);
-
-
-
-border-radius:
-
-14px;
-
-
-
-font-size:
-
-12px;
-
-
-
-color:
-
-var(--white);
-
-
-
-position:relative;
-
-
-
-overflow:hidden;
-
-
-
-}
-
-
-
-
-.pipeline-node::after {
-
-
-content:"";
-
-
-position:absolute;
-
-
-width:20px;
-
-
-height:100%;
-
-
-background:
-
-rgba(0,234,255,.35);
-
-
-
-left:-30px;
-
-
-
-animation:
-
-instructionFlow 3s infinite;
-
-
-
-}
-
-
-
-
-@keyframes instructionFlow {
-
-
-0% {
-
-
-left:-30px;
-
-
-}
-
-
-
-50% {
-
-
-left:120%;
-
-
-}
-
-
-
-100% {
-
-
-left:120%;
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-.arrow {
-
-
-color:
-
-var(--green);
-
-
-
-font-size:
-
-20px;
-
-
-
-}
-
-
-
-
-
-
-
-
-.signal-monitor {
-
-
-margin-top:
-
-35px;
-
-
-
-display:flex;
-
-
-flex-direction:column;
-
-
-gap:12px;
-
-
-
-}
-
-
-
-
-
-.signal-row {
-
-
-display:flex;
-
-
-align-items:center;
-
-
-
-gap:15px;
-
-
-
-font-size:
-
-12px;
-
-
-
-color:
-
-var(--muted);
-
-
-
-}
-
-
-
-
-
-.signal-row span {
-
-
-width:
-
-50px;
-
-
-
-}
-
-
-
-
-
-
-
-.signal-bar {
-
-
-height:
-
-5px;
-
-
-flex:1;
-
-
-
-background:
-
-rgba(255,255,255,.08);
-
-
-
-border-radius:
-
-20px;
-
-
-
-overflow:hidden;
-
-
-
-position:relative;
-
-
-
-}
-
-
-
-
-.signal-bar::after {
-
-
-content:"";
-
-
-position:absolute;
-
-
-
-height:100%;
-
-
-width:30%;
-
-
-
-background:
-
-linear-gradient(
-
-90deg,
-
-var(--cyan),
-
-var(--green)
-
-);
-
-
-
-animation:
-
-signalWave 2s infinite;
-
-
-
-}
-
-
-
-
-@keyframes signalWave {
-
-
-0% {
-
-
-left:-30%;
-
-
-}
-
-
-
-100% {
-
-
-left:120%;
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   PIPELINE LEGACY SUPPORT
-===================================================== */
-
-
-.pipeline {
-
-
-display:flex;
-
-
-gap:12px;
-
-
-
-margin:
-
-35px 0;
-
-
-}
-
-
-
-
-
-.pipeline div {
-
-
-flex:1;
-
-
-
-padding:
-
-14px;
-
-
-
-text-align:center;
-
-
-
-background:
-
-#181a20;
-
-
-
-border:
-
-1px solid var(--border);
-
-
-
-border-radius:
-
-12px;
-
-
-}
 
 /* =====================================================
    PROJECT DISPLAY
@@ -1900,21 +2123,19 @@ border-radius:
 display:flex;
 
 
-flex-direction:column;
+
+flex-direction:
+
+column;
 
 
 
-gap:15px;
+gap:
 
-
-
-transition:
-
-opacity .4s ease;
+15px;
 
 
 }
-
 
 
 
@@ -1923,6 +2144,7 @@ opacity .4s ease;
 
 
 background:
+
 
 linear-gradient(
 
@@ -1937,6 +2159,7 @@ rgba(15,17,22,.95)
 
 
 border:
+
 
 1px solid rgba(255,255,255,.12);
 
@@ -1954,17 +2177,21 @@ padding:
 
 
 
-opacity:0;
+opacity:
+
+0;
 
 
 
 transform:
+
 
 translateY(25px);
 
 
 
 animation:
+
 
 projectReveal .7s var(--ease) forwards;
 
@@ -1986,6 +2213,7 @@ var(--cyan);
 
 transform:
 
+
 translateY(-5px);
 
 
@@ -1994,7 +2222,6 @@ box-shadow:
 
 
 0 20px 45px rgba(0,234,255,.12);
-
 
 
 }
@@ -2010,10 +2237,10 @@ margin-bottom:
 10px;
 
 
+
 color:
 
 var(--white);
-
 
 
 }
@@ -2028,8 +2255,8 @@ color:
 var(--muted);
 
 
-
 }
+
 
 
 
@@ -2041,6 +2268,7 @@ from {
 
 
 opacity:0;
+
 
 
 transform:
@@ -2059,6 +2287,7 @@ to {
 opacity:1;
 
 
+
 transform:
 
 translateY(0);
@@ -2068,11 +2297,86 @@ translateY(0);
 }
 
 
+}
+
+/* =====================================================
+   PROFILE MODULE
+===================================================== */
+
+
+.profile-item {
+
+
+padding:
+
+18px 0;
+
+
+
+border-bottom:
+
+1px solid var(--border);
+
+
 
 }
 
 
 
+.profile-item:last-child {
+
+
+border-bottom:
+
+none;
+
+
+}
+
+
+
+
+.profile-item span {
+
+
+font-size:
+
+12px;
+
+
+
+color:
+
+var(--muted);
+
+
+
+letter-spacing:
+
+1px;
+
+
+}
+
+
+
+
+
+.profile-item p {
+
+
+margin-top:
+
+8px;
+
+
+
+color:
+
+var(--white);
+
+
+}
 
 
 
@@ -2081,19 +2385,25 @@ translateY(0);
 
 
 /* =====================================================
-   MODULE 003 — TECH STACK
+   TECH STACK MODULE
 ===================================================== */
+
 
 
 .stack {
 
 
-min-height:
+display:flex;
 
-350px;
+
+
+flex-direction:
+
+column;
 
 
 }
+
 
 
 
@@ -2105,7 +2415,9 @@ display:flex;
 
 
 
-flex-wrap:wrap;
+flex-wrap:
+
+wrap;
 
 
 
@@ -2117,8 +2429,7 @@ gap:
 
 margin-bottom:
 
-30px;
-
+28px;
 
 
 }
@@ -2132,11 +2443,13 @@ margin-bottom:
 
 background:
 
+
 rgba(255,255,255,.05);
 
 
 
 border:
+
 
 1px solid var(--border);
 
@@ -2144,11 +2457,13 @@ border:
 
 padding:
 
+
 10px 16px;
 
 
 
 border-radius:
+
 
 12px;
 
@@ -2157,6 +2472,12 @@ border-radius:
 font-size:
 
 13px;
+
+
+
+color:
+
+var(--white);
 
 
 
@@ -2191,7 +2512,6 @@ transform:
 translateY(-4px);
 
 
-
 }
 
 
@@ -2201,11 +2521,10 @@ translateY(-4px);
 
 
 
-
-
 /* =====================================================
-   MODULE 004 — ENTREPRENEURSHIP
+   ENTREPRENEUR MODULE
 ===================================================== */
+
 
 
 .entrepreneur {
@@ -2213,8 +2532,25 @@ translateY(-4px);
 
 min-height:
 
-420px;
+350px;
 
+
+}
+
+
+
+.entrepreneur ul {
+
+
+margin-top:
+
+25px;
+
+
+
+padding-left:
+
+20px;
 
 
 }
@@ -2222,133 +2558,21 @@ min-height:
 
 
 
-.entrepreneur p {
-
-
-margin-bottom:
-
-30px;
-
-
-}
-
-
-
-
-.entrepreneur-list {
-
-
-display:flex;
-
-
-flex-direction:column;
-
-
-
-gap:
-
-14px;
-
-
-
-}
-
-
-
-
-
-.entrepreneur-list div {
-
-
-background:
-
-rgba(255,255,255,.04);
-
-
-
-border:
-
-1px solid var(--border);
-
-
-
-border-radius:
-
-16px;
-
-
-
-padding:
-
-16px 20px;
-
-
-
-display:flex;
-
-
-
-gap:
-
-15px;
-
-
-
-align-items:center;
-
-
-
-transition:
-
-.4s var(--ease);
-
-
-
-}
-
-
-
-
-
-.entrepreneur-list span {
+.entrepreneur li {
 
 
 color:
 
-var(--green);
+var(--muted);
 
 
 
-font-size:
+margin-bottom:
 
 12px;
 
 
-
 }
-
-
-
-
-
-.entrepreneur-list div:hover {
-
-
-border-color:
-
-var(--cyan);
-
-
-
-transform:
-
-translateX(6px);
-
-
-
-}
-
-
 
 
 
@@ -2357,7 +2581,7 @@ translateX(6px);
 
 
 /* =====================================================
-   CONNECT
+   CONNECT MODULE
 ===================================================== */
 
 
@@ -2367,7 +2591,10 @@ translateX(6px);
 display:flex;
 
 
-flex-direction:column;
+
+flex-direction:
+
+column;
 
 
 
@@ -2375,6 +2602,11 @@ gap:
 
 14px;
 
+
+
+min-height:
+
+250px;
 
 
 }
@@ -2387,6 +2619,7 @@ gap:
 
 
 background:
+
 
 linear-gradient(
 
@@ -2402,17 +2635,20 @@ linear-gradient(
 
 border:
 
+
 1px solid rgba(255,255,255,.12);
 
 
 
 padding:
 
+
 15px 24px;
 
 
 
 border-radius:
+
 
 16px;
 
@@ -2457,7 +2693,10 @@ var(--green);
 
 transform:
 
-translateY(-5px);
+
+translateX(6px)
+
+translateY(-4px);
 
 
 
@@ -2467,8 +2706,13 @@ box-shadow:
 0 15px 40px rgba(0,255,136,.15);
 
 
-
 }
+
+
+
+
+
+
 
 /* =====================================================
    FOOTER
@@ -2478,10 +2722,15 @@ box-shadow:
 .site-footer {
 
 
-position:relative;
+position:
+
+relative;
 
 
-z-index:2;
+
+z-index:
+
+2;
 
 
 
@@ -2499,7 +2748,7 @@ margin:
 
 padding:
 
-20px 34px 0;
+20px 34px;
 
 
 
@@ -2514,21 +2763,15 @@ text-align:center;
 .site-footer p {
 
 
-color:
-
-var(--muted);
-
-
-
 font-size:
 
 12px;
 
 
 
-letter-spacing:
+color:
 
-.5px;
+var(--muted);
 
 
 
@@ -2540,8 +2783,9 @@ letter-spacing:
 
 
 
+
 /* =====================================================
-   SCROLL PROGRESS
+   SCROLL BAR
 ===================================================== */
 
 
@@ -2560,19 +2804,26 @@ left:0;
 
 
 
-height:3px;
+height:
+
+3px;
 
 
 
-width:0%;
+width:
+
+0%;
 
 
 
-z-index:9999;
+z-index:
+
+9999;
 
 
 
 background:
+
 
 linear-gradient(
 
@@ -2585,7 +2836,6 @@ var(--green)
 );
 
 
-
 }
 
 
@@ -2596,81 +2846,8 @@ var(--green)
 
 
 /* =====================================================
-   SKIP LINK
-===================================================== */
-
-
-.skip-link {
-
-
-position:absolute;
-
-
-top:-60px;
-
-
-left:16px;
-
-
-
-background:
-
-var(--green);
-
-
-
-color:#000;
-
-
-
-padding:
-
-10px 18px;
-
-
-
-border-radius:
-
-10px;
-
-
-
-z-index:10000;
-
-
-
-text-decoration:none;
-
-
-
-transition:
-
-.3s ease;
-
-
-
-}
-
-
-
-
-.skip-link:focus {
-
-
-top:16px;
-
-
-}
-
-
-
-
-
-
-
-
-/* =====================================================
-   TABLET
+   TABLET LAYOUT
+   1200px
 ===================================================== */
 
 
@@ -2701,6 +2878,11 @@ repeat(8,1fr);
 
 
 
+gap:
+
+20px;
+
+
 }
 
 
@@ -2719,8 +2901,6 @@ span 8;
 
 
 
-
-
 .hardware {
 
 
@@ -2728,6 +2908,18 @@ grid-column:
 
 span 8;
 
+
+}
+
+
+
+
+.timeline {
+
+
+grid-column:
+
+span 8;
 
 
 }
@@ -2752,20 +2944,14 @@ grid-template-columns:
 repeat(2,1fr);
 
 
-
-gap:22px;
-
-
-
 }
 
 
 
 
 
-.timeline,
-.stack,
 .profile,
+.stack,
 .entrepreneur,
 .connect {
 
@@ -2773,9 +2959,7 @@ gap:22px;
 width:100%;
 
 
-
 }
-
 
 
 }
@@ -2785,12 +2969,12 @@ width:100%;
 
 
 /* =====================================================
-   SMALL TABLET
+   SMALL TABLETS
+   900px
 ===================================================== */
 
 
 @media(max-width:900px){
-
 
 
 body {
@@ -2806,7 +2990,6 @@ padding:
 
 
 
-
 .bento-grid {
 
 
@@ -2814,14 +2997,15 @@ display:flex;
 
 
 
-flex-direction:column;
+flex-direction:
+
+column;
 
 
 
 gap:
 
-20px;
-
+18px;
 
 
 }
@@ -2832,6 +3016,7 @@ gap:
 
 .hero,
 .hardware,
+.timeline,
 .right-column {
 
 
@@ -2843,13 +3028,16 @@ width:100%;
 
 
 
-
-
 .right-column {
 
 
 display:flex;
 
+
+
+flex-direction:
+
+column;
 
 
 }
@@ -2866,17 +3054,16 @@ padding:
 28px;
 
 
-
 }
-
-
 
 
 
 .timeline {
 
 
-height:auto;
+height:
+
+auto;
 
 
 
@@ -2885,10 +3072,7 @@ max-height:
 330px;
 
 
-
 }
-
-
 
 
 
@@ -2897,24 +3081,17 @@ max-height:
 
 max-height:
 
-1400px;
-
-
-
-}
-
-
-
+1500px;
 
 
 }
 
 
-
-
+}
 
 /* =====================================================
    MOBILE
+   UNDER 700px
 ===================================================== */
 
 
@@ -2936,8 +3113,22 @@ font-size:
 14px;
 
 
+}
+
+
+
+
+
+.cpu-field {
+
+
+opacity:
+
+.55;
+
 
 }
+
 
 
 
@@ -2948,7 +3139,6 @@ font-size:
 gap:
 
 14px;
-
 
 
 }
@@ -2969,214 +3159,6 @@ border-radius:
 padding:
 
 22px;
-
-
-
-}
-
-
-
-
-
-.hero {
-
-
-min-height:auto;
-
-
-
-}
-
-
-
-
-
-h1 {
-
-
-font-size:
-
-clamp(2.2rem,12vw,3.2rem);
-
-
-
-letter-spacing:
-
--1.5px;
-
-
-
-}
-
-
-
-
-
-h2 {
-
-
-font-size:
-
-24px;
-
-
-
-}
-
-
-
-
-
-.buttons {
-
-
-flex-direction:column;
-
-
-
-}
-
-
-
-
-
-.buttons a {
-
-
-width:100%;
-
-
-
-text-align:center;
-
-
-
-}
-
-
-
-
-
-.cpu-core {
-
-
-flex-direction:column;
-
-
-
-}
-
-
-
-
-
-.arrow {
-
-
-transform:
-
-rotate(90deg);
-
-
-
-}
-
-
-
-
-
-.pipeline-node {
-
-
-width:
-
-100%;
-
-
-
-}
-
-
-
-
-
-.year-buttons {
-
-
-width:100%;
-
-
-
-}
-
-
-
-
-
-.year-buttons button {
-
-
-flex:1;
-
-
-
-padding:
-
-10px;
-
-
-
-}
-
-
-
-
-
-.project-item {
-
-
-padding:
-
-16px;
-
-
-
-}
-
-
-
-
-
-.tags span {
-
-
-font-size:
-
-12px;
-
-
-
-padding:
-
-8px 12px;
-
-
-
-}
-
-
-
-
-
-.connect a {
-
-
-width:100%;
-
-
-
-text-align:center;
-
 
 
 }
@@ -3193,6 +3175,19 @@ transform:
 translateY(-3px);
 
 
+}
+
+
+
+
+
+.hero {
+
+
+min-height:
+
+auto;
+
 
 }
 
@@ -3200,10 +3195,381 @@ translateY(-3px);
 
 
 
+.label {
+
+
+font-size:
+
+10px;
+
+
+
+letter-spacing:
+
+1px;
+
+
 }
+
+
+
+
+
+h1 {
+
+
+font-size:
+
+
+clamp(2.2rem,12vw,3.2rem);
+
+
+
+letter-spacing:
+
+-1.5px;
+
+
+
+margin-bottom:
+
+25px;
+
+
+}
+
+
+
+
+
+h2 {
+
+
+font-size:
+
+24px;
+
+
+}
+
+
+
+
+
+h3 {
+
+
+font-size:
+
+18px;
+
+
+}
+
+
+
+
+
+p {
+
+
+line-height:
+
+1.6;
+
+
+}
+
+
+
+
+
+
+
+/* BUTTONS */
+
+
+.buttons {
+
+
+flex-direction:
+
+column;
+
+
+
+gap:
+
+12px;
+
+
+}
+
+
+
+
+
+.buttons a {
+
+
+width:
+
+100%;
+
+
+
+text-align:
+
+center;
+
+
+
+padding:
+
+14px 18px;
+
+
+}
+
+
+
+
+
+
+/* PIPELINE */
+
+
+.pipeline {
+
+
+display:grid;
+
+
+
+grid-template-columns:
+
+repeat(2,1fr);
+
+
+
+gap:
+
+10px;
+
+
+}
+
+
+
+
+
+.pipeline-node {
+
+
+padding:
+
+12px;
+
+
+
+font-size:
+
+12px;
+
+
+}
+
+
+
+
+
+
+/* CPU DEBUG VIEW */
+
+
+.cpu-console {
+
+
+height:
+
+170px;
+
+
+}
+
+
+
+
+
+
+
+/* YEAR BUTTONS */
+
+
+.year-buttons {
+
+
+width:
+
+100%;
+
+
+}
+
+
+
+
+
+.year-buttons button {
+
+
+flex:
+
+1;
+
+
+
+padding:
+
+10px;
+
+
+
+font-size:
+
+12px;
+
+
+}
+
+
+
+
+
+
+/* PROJECT CARDS */
+
+
+.project-item {
+
+
+padding:
+
+16px;
+
+
+}
+
+
+
+
+.project-item h4 {
+
+
+font-size:
+
+15px;
+
+
+}
+
+
+
+
+.project-item p {
+
+
+font-size:
+
+13px;
+
+
+}
+
+
+
+
+
+
+
+/* TAGS */
+
+
+.tags span {
+
+
+font-size:
+
+12px;
+
+
+
+padding:
+
+8px 12px;
+
+
+}
+
+
+
+
+
+
+
+/* CONNECT */
+
+
+.connect a {
+
+
+width:
+
+100%;
+
+
+
+text-align:
+
+center;
+
+
+}
+
+
+
+
+
+
+
+
+/* REMOVE HEAVY HOVER EFFECTS */
+
+
+.card::before,
+.card::after {
+
+
+display:none;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
 
 /* =====================================================
    VERY SMALL DEVICES
+   UNDER 400px
 ===================================================== */
 
 
@@ -3219,8 +3585,8 @@ padding:
 10px;
 
 
-
 }
+
 
 
 
@@ -3239,7 +3605,6 @@ border-radius:
 18px;
 
 
-
 }
 
 
@@ -3252,7 +3617,6 @@ h1 {
 font-size:
 
 2rem;
-
 
 
 }
@@ -3269,7 +3633,6 @@ flex-direction:
 column;
 
 
-
 }
 
 
@@ -3279,23 +3642,9 @@ column;
 .year-buttons button {
 
 
-width:100%;
+width:
 
-
-
-}
-
-
-
-
-
-.cpu-debug {
-
-
-padding:
-
-18px;
-
+100%;
 
 
 }
@@ -3304,20 +3653,47 @@ padding:
 
 
 
-.pipeline-node {
+.pipeline {
+
+
+grid-template-columns:
+
+1fr;
+
+
+}
+
+
+
+
+
+.buttons a {
 
 
 font-size:
 
-11px;
+12px;
 
+
+}
+
+
+
+
+
+.connect a {
+
+
+font-size:
+
+12px;
 
 
 }
 
 
-
 }
+
 
 
 
@@ -3327,7 +3703,8 @@ font-size:
 
 
 /* =====================================================
-   ACCESSIBILITY — REDUCED MOTION
+   ACCESSIBILITY
+   REDUCED MOTION
 ===================================================== */
 
 
@@ -3361,19 +3738,19 @@ scroll-behavior:
 auto !important;
 
 
-
 }
 
 
 
 
 
+
+.cpu-pulse,
 .cpu-field,
 .noise {
 
 
 display:none;
-
 
 
 }
@@ -3396,12 +3773,12 @@ transform:
 none !important;
 
 
-
 }
 
 
 
 }
+
 
 
 
@@ -3411,7 +3788,7 @@ none !important;
 
 
 /* =====================================================
-   GPU OPTIMIZATION
+   PERFORMANCE OPTIMIZATION
 ===================================================== */
 
 
@@ -3419,8 +3796,7 @@ none !important;
 .cpu-pulse,
 .project-item,
 .buttons a,
-.year-buttons button,
-.pipeline-node {
+.year-buttons button {
 
 
 transform:
@@ -3429,12 +3805,12 @@ translateZ(0);
 
 
 
-backface-visibility:hidden;
+backface-visibility:
 
+hidden;
 
 
 }
-
 
 
 
@@ -3462,7 +3838,6 @@ min-height:
 touch;
 
 
-
 }
 
 
@@ -3473,7 +3848,7 @@ touch;
 
 
 /* =====================================================
-   FINAL LOADED STATE
+   FINAL LOAD STATE
 ===================================================== */
 
 
@@ -3492,66 +3867,52 @@ transform .8s var(--ease),
 border-color .5s ease;
 
 
-
 }
 
-
-
-
-
-
-
-
 /* =====================================================
-   EXTRA POLISH
+   FINAL BENTO ALIGNMENT PATCH
+   Prevents right-side stacking issue
 ===================================================== */
 
 
-.label {
+/*
+   Desktop:
+   Hero + Processor stay left
+   Journey stays directly below Processor
+   Right modules remain in sidebar
+*/
 
 
-color:
-
-var(--green);
+@media(min-width:1201px){
 
 
-
-font-size:
-
-12px;
+.bento-grid {
 
 
-
-letter-spacing:
-
-2px;
+display:grid;
 
 
 
-margin-bottom:
+grid-template-columns:
 
-25px;
-
-
-
-}
+repeat(12,1fr);
 
 
 
+grid-template-areas:
 
 
-h2 {
+"hero hero hero hero hero hero hero hero profile profile profile profile"
 
+"hero hero hero hero hero hero hero hero timeline timeline timeline timeline"
 
-font-size:
+"hardware hardware hardware hardware hardware hardware hardware hardware timeline timeline timeline timeline"
 
-30px;
+"hardware hardware hardware hardware hardware hardware hardware hardware stack stack stack stack"
 
+"hardware hardware hardware hardware hardware hardware hardware hardware entrepreneur entrepreneur entrepreneur entrepreneur"
 
-
-margin-bottom:
-
-25px;
+"hardware hardware hardware hardware hardware hardware hardware hardware connect connect connect connect";
 
 
 
@@ -3561,117 +3922,79 @@ margin-bottom:
 
 
 
-h3 {
+.hero {
 
 
-margin-bottom:
+grid-area:
 
-15px;
-
-
-
-}
-
-
-
-
-
-p {
-
-
-line-height:
-
-1.8;
-
-
-
-color:
-
-var(--muted);
-
+hero;
 
 
 }
 
 
-
-
-
-ul {
-
-
-margin-top:
-
-25px;
-
-
-
-}
-
-
-
-
-
-li {
-
-
-margin-bottom:
-
-15px;
-
-
-
-color:
-
-var(--muted);
-
-
-
-}
-
-
-
-
-
-
-/* =====================================================
-   CPU CARD ACTIVE GLOW
-===================================================== */
-
-
-.hardware:hover .cpu-debug {
-
-
-border-color:
-
-rgba(0,234,255,.4);
-
-
-
-box-shadow:
-
-
-0 0 40px rgba(0,234,255,.12);
-
-
-
-}
-
-
-
-
-/* =====================================================
-   MODULE ALIGNMENT FINAL FIX
-===================================================== */
 
 
 .hardware {
 
 
-margin-top:
+grid-area:
 
-0;
+hardware;
 
+
+}
+
+
+
+
+
+.right-column {
+
+
+display:
+
+contents;
+
+
+}
+
+
+
+
+
+.profile {
+
+
+grid-area:
+
+profile;
+
+
+}
+
+
+
+
+.timeline {
+
+
+grid-area:
+
+timeline;
+
+
+}
+
+
+
+
+.stack {
+
+
+grid-area:
+
+stack;
 
 
 }
@@ -3682,7 +4005,26 @@ margin-top:
 .entrepreneur {
 
 
-grid-column:auto;
+grid-area:
+
+entrepreneur;
+
+
+}
+
+
+
+
+.connect {
+
+
+grid-area:
+
+connect;
+
+
+}
+
 
 
 
@@ -3691,21 +4033,200 @@ grid-column:auto;
 
 
 
-.right-column > .stack,
-.right-column > .connect {
-
-
-flex:
-
-none;
-
-
-
-}
 
 
 
 
 /* =====================================================
-   END
+   CPU DEBUG ANIMATION DETAILS
 ===================================================== */
+
+
+.cpu-console span {
+
+
+display:block;
+
+
+}
+
+
+
+
+
+.cpu-console::marker {
+
+
+display:none;
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   SMOOTH EXPANSION OVERRIDE
+===================================================== */
+
+
+.timeline {
+
+
+transition-property:
+
+height,
+
+box-shadow,
+
+transform;
+
+
+
+transition-duration:
+
+
+.9s,
+
+.6s,
+
+.5s;
+
+
+
+transition-timing-function:
+
+cubic-bezier(.22,1,.36,1);
+
+
+}
+
+
+
+
+
+.timeline.collapsing {
+
+
+transition-duration:
+
+
+.35s,
+
+.25s,
+
+.25s;
+
+
+
+transition-timing-function:
+
+cubic-bezier(.55,0,1,.45);
+
+
+}
+
+
+
+
+
+
+
+/* =====================================================
+   PROJECT BUTTON ACTIVE EFFECT
+===================================================== */
+
+
+.timeline.project-active {
+
+
+animation:
+
+
+timelinePulse 2s ease;
+
+
+}
+
+
+
+
+
+@keyframes timelinePulse {
+
+
+0% {
+
+
+box-shadow:
+
+0 0 0 rgba(0,234,255,0);
+
+
+}
+
+
+
+
+40% {
+
+
+box-shadow:
+
+0 0 60px rgba(0,234,255,.5);
+
+
+}
+
+
+
+
+100% {
+
+
+box-shadow:
+
+0 0 0 rgba(0,234,255,0);
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+/* =====================================================
+   CLEAN LINK DEFAULTS
+===================================================== */
+
+
+a {
+
+
+font-family:
+
+inherit;
+
+
+}
+
+
+
+
+
+
+
+/* =====================================================
+   END OF PORTFOLIO SYSTEM
+===================================================== */
+
