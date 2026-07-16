@@ -208,6 +208,26 @@ function loadProjects(year) {
    YEAR BUTTON SYSTEM
 ===================================================== */
 
+// How long the timeline stays expanded after it's no longer being
+// hovered/focused before it collapses back down on its own.
+const TIMELINE_COLLAPSE_DELAY = 2500; // ms
+let timelineCollapseTimer = null;
+
+function cancelTimelineCollapse() {
+  if (timelineCollapseTimer) {
+    clearTimeout(timelineCollapseTimer);
+    timelineCollapseTimer = null;
+  }
+}
+
+function scheduleTimelineCollapse() {
+  cancelTimelineCollapse();
+  timelineCollapseTimer = setTimeout(() => {
+    if (timeline) timeline.classList.remove("expanded");
+    timelineCollapseTimer = null;
+  }, TIMELINE_COLLAPSE_DELAY);
+}
+
 function activateYear(button) {
   const year = button.dataset.year;
 
@@ -223,6 +243,9 @@ function activateYear(button) {
 
   loadProjects(year);
 
+  // Every interaction (hover, click, focus, or a tap on touch) refreshes
+  // the auto-collapse countdown, so it only fires once things go idle.
+  scheduleTimelineCollapse();
 }
 
 yearButtons.forEach((button) => {
@@ -240,6 +263,25 @@ if (yearButtonsContainer) {
   yearButtonsContainer.addEventListener("mouseover", (e) => {
     const btn = e.target.closest("button[data-year]");
     if (btn) activateYear(btn);
+  });
+}
+
+// While the pointer/keyboard focus is actually inside the timeline card,
+// keep it expanded — cancel any pending collapse. The moment focus/hover
+// leaves the card entirely, start (or restart) the collapse countdown.
+// This is what makes it shrink back — and, since .timeline already
+// transitions max-height with the same duration/easing used to expand it,
+// the neighboring cards (stack, entrepreneurship, connect) that CSS Grid
+// reflows underneath it move back up at that same speed automatically.
+if (timeline) {
+  timeline.addEventListener("mouseenter", cancelTimelineCollapse);
+  timeline.addEventListener("mouseleave", scheduleTimelineCollapse);
+
+  timeline.addEventListener("focusin", cancelTimelineCollapse);
+  timeline.addEventListener("focusout", (e) => {
+    if (!timeline.contains(e.relatedTarget)) {
+      scheduleTimelineCollapse();
+    }
   });
 }
 
