@@ -149,17 +149,11 @@ id="main-content">
 
 
 
-
-<!-- =====================================================
-     MODULE 001 — HERO
-===================================================== -->
-
+<!-- ================= HERO ================= -->
 
 <section class="card hero reveal">
 
-
-
-<div class="terminal-dots">
+<div class="terminal-dots" aria-hidden="true">
 
 <span class="mac-red"></span>
 <span class="mac-yellow"></span>
@@ -168,50 +162,29 @@ id="main-content">
 </div>
 
 
-
 <div class="label">
-
 ELECTRICAL_ENGINEERING // COMPUTER_ARCHITECTURE
-
 </div>
 
 
-
-
 <h1>
-
 Hi, I'm Adam.<br>
-
 I design computer processors.
-
 </h1>
-
-
 
 
 
 <div class="typing-line">
 
-
-<span class="working-label">
-
+<span>
 Currently Working On:
-
 </span>
-
-
 
 <span id="typing"></span>
 
-
 <span class="cursor"></span>
 
-
-
 </div>
-
-
-
 
 
 
@@ -225,62 +198,40 @@ and efficient hardware implementation.
 
 
 
-
-
-
 <div class="buttons">
 
-
-<a href="#module-002"
-id="projects-button">
-
+<a href="#module-002" id="projects-button">
 $ view_projects
-
 </a>
 
 
-
-<a href="resume.pdf"
-download>
-
+<a href="resume.pdf" download>
 $ download_resume
-
 </a>
 
 
-
-
-<a href="https://github.com/byadmo"
-target="_blank">
-
+<a href="https://github.com/byadmo" target="_blank">
 $ view_github
-
 </a>
 
 
-
-
-<a href="https://www.linkedin.com/in/adammorgan05/"
-target="_blank">
-
+<a href="https://www.linkedin.com/in/adammorgan05/" target="_blank">
 $ contact_adam
-
 </a>
-
 
 </div>
 
 
-
-
 </section>
-<!-- =====================================================
-     MODULE 001 — CPU PROCESSOR VISUALIZATION
-===================================================== -->
 
 
-<section class="card hardware reveal"
-id="module-001">
+
+
+
+<!-- ================= MODULE 001 ================= -->
+
+
+<section class="card hardware reveal">
 
 
 <div class="terminal-dots">
@@ -294,203 +245,65 @@ id="module-001">
 
 
 <div class="label">
-
-MODULE_001 // PROCESSOR_LAB
-
+MODULE_001 // PROCESSOR_DESIGN
 </div>
 
 
 
-
 <h2>
-
 32-Bit Pipelined RISC-V CPU Core
-
 </h2>
 
 
 
 
-
-
-<div class="cpu-debug">
-
-
-
-<div class="cpu-header">
-
-<span>
-CPU_CORE_SIMULATION
-</span>
-
-
-<span class="status-active">
-● ACTIVE
-</span>
-
-
-</div>
-
-
-
-
-
-<div class="cpu-core">
-
-
+<div class="pipeline">
 
 <div class="pipeline-node">
-
-FETCH
-
+IF
 </div>
-
-
-<div class="arrow">
-
-↓
-
-</div>
-
-
 
 <div class="pipeline-node">
-
-DECODE
-
+ID
 </div>
-
-
-
-<div class="arrow">
-
-↓
-
-</div>
-
-
 
 <div class="pipeline-node">
-
-EXECUTE
-
+EX
 </div>
-
-
-
-<div class="arrow">
-
-↓
-
-</div>
-
-
 
 <div class="pipeline-node">
-
-MEMORY
-
+MEM
 </div>
-
-
-
-<div class="arrow">
-
-↓
-
-</div>
-
-
 
 <div class="pipeline-node">
-
-WRITEBACK
-
+WB
 </div>
-
-
-
-</div>
-
-
-
-
-
-
-
-<div class="signal-monitor">
-
-
-<div class="signal-row">
-
-<span>
-CLK
-</span>
-
-<div class="signal-bar"></div>
 
 </div>
 
 
 
 
-<div class="signal-row">
-
-<span>
-DATA
-</span>
-
-<div class="signal-bar"></div>
+<div class="cpu-console">
 
 </div>
-
-
-
-
-
-<div class="signal-row">
-
-<span>
-CTRL
-</span>
-
-<div class="signal-bar"></div>
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-</div>
-
-
 
 
 
 
 <ul>
 
-
 <li>
 5-stage instruction pipeline architecture
 </li>
-
 
 <li>
 Hazard detection and forwarding logic
 </li>
 
-
 <li>
 RTL verification using waveform simulation
 </li>
-
-
 
 </ul>
 
@@ -503,6 +316,269 @@ RTL verification using waveform simulation
 
 
 
+
+<!-- ================= PROFILE ================= -->
+
+
+<section class="card profile reveal">
+
+
+<div class="label">
+ENGINEERING_PROFILE
+</div>
+
+
+<h2>
+Current Focus
+</h2>
+
+
+
+<div class="profile-item">
+
+<span>
+FIELD
+</span>
+
+<p>
+Electrical Engineering
+</p>
+
+</div>
+
+
+
+<div class="profile-item">
+
+<span>
+SPECIALIZATION
+</span>
+
+<p>
+Digital Systems
+</p>
+
+</div>
+
+
+
+<div class="profile-item">
+
+<span>
+INTERESTS
+</span>
+
+<p>
+CPU Architecture + FPGA
+</p>
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ================= MODULE 002 ================= -->
+
+
+<section class="card timeline reveal" id="module-002">
+
+
+<div class="label">
+MODULE_002 // ENGINEERING_JOURNEY
+</div>
+
+
+
+<p class="timeline-hint">
+Hover over a year to explore projects.
+</p>
+
+
+
+<div class="year-buttons">
+
+
+<button data-year="2026">
+2026
+</button>
+
+
+<button data-year="2025">
+2025
+</button>
+
+
+<button data-year="2024">
+2024
+</button>
+
+
+</div>
+
+
+
+
+<div class="timeline-content">
+
+
+<div class="project-grid">
+
+<p>
+Hover over a year to explore projects.
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ================= TECH STACK ================= -->
+
+
+<section class="card stack reveal">
+
+
+<div class="label">
+MODULE_003 // TECH_STACK
+</div>
+
+
+
+<h3>
+HARDWARE/
+</h3>
+
+
+<div class="tags">
+
+<span>SystemVerilog</span>
+<span>Verilog</span>
+<span>FPGA</span>
+<span>RISC-V</span>
+
+</div>
+
+
+
+<h3>
+TOOLS/
+</h3>
+
+
+<div class="tags">
+
+<span>Quartus</span>
+<span>GTKWave</span>
+<span>ModelSim</span>
+<span>Icarus Verilog</span>
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ================= ENTREPRENEURSHIP ================= -->
+
+
+<section class="card entrepreneur reveal">
+
+
+<div class="label">
+MODULE_004 // ENTREPRENEURSHIP
+</div>
+
+
+
+<h2>
+Founder & Product Developer
+</h2>
+
+
+
+<p>
+
+Built and managed an independent product venture involving:
+
+<br><br>
+
+• Manufacturing decisions
+
+<br>
+• Supplier communication
+
+<br>
+• Budget planning
+
+<br>
+• Branding strategy
+
+<br>
+• Product development
+
+</p>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ================= CONNECT ================= -->
+
+
+<section class="card connect reveal">
+
+
+<div class="label">
+CONNECT
+</div>
+
+
+
+<a href="https://github.com/byadmo" target="_blank">
+$ github
+</a>
+
+
+
+<a href="https://www.linkedin.com/in/adammorgan05/" target="_blank">
+$ linkedin
+</a>
+
+
+
+</section>
 
 
 
