@@ -110,18 +110,16 @@ body::before {
 }
 
 /* ===== BENTO GRID ===== */
-
 .bento-grid {
   max-width: 1600px;
   margin: auto;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(5, minmax(180px, auto));
+  grid-auto-rows: minmax(180px, auto);
   gap: 22px;
   position: relative;
   z-index: 2;
 }
-
 /* ===== CARD SYSTEM ===== */
 
 .card {
@@ -190,13 +188,26 @@ body::before {
 }
 .timeline {
   grid-column: span 4;
-  max-height: 300px;
+
+  max-height: 320px;
   overflow: hidden;
-  contain: layout paint;
-  transition: max-height 1s var(--ease), transform .7s var(--ease), border-color .5s ease, box-shadow .5s ease;
+
+  transition:
+    max-height 1.4s cubic-bezier(.22, 1, .36, 1),
+    transform .7s var(--ease),
+    border-color .5s ease,
+    box-shadow .5s ease;
+
+  will-change: max-height;
 }
-.timeline.expanded { max-height: 850px; }
-.timeline:hover { transform: translateY(-8px); }
+
+.timeline.expanded {
+  max-height: 700px;
+}
+
+.timeline:hover {
+  transform: translateY(-8px);
+}
 .stack { grid-column: span 4; }
 .entrepreneur { grid-column: span 4; }
 .connect { grid-column: span 4; }
@@ -414,7 +425,7 @@ pre code { font-family: inherit; background: transparent; }
   body { padding: 25px; }
   .bento-grid {
     grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(5, minmax(180px, auto));
+    grid-auto-rows: minmax(180px, auto);
   }
   .hero { grid-column: span 8; min-height: 520px; }
   .profile { grid-column: span 4; }
