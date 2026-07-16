@@ -701,41 +701,75 @@ opacity:1;
 
 
 
-
 /* =====================================================
    BENTO LAYOUT SYSTEM
+   PREMIUM ENGINEERING DASHBOARD
 ===================================================== */
 
 
 /*
-
 DESKTOP STRUCTURE:
 
-------------------------------------------------
-
-|                 HERO                 | PROFILE |
-
-|                                      |         |
-
-|                 HERO                 | JOURNEY |
-
-------------------------------------------------
-
-|             MODULE 001                       |
-
-|             PROCESSOR                         |
-
-------------------------------------------------
-
-| ENTREPRENEUR | TECH STACK | CONNECT          |
-
-------------------------------------------------
-
++--------------------------------+----------------+
+|                                | MODULE_003     |
+|                                | PROFILE        |
+|          MODULE_000            |                |
+|          HERO                  +----------------+
+|                                | MODULE_002     |
+|                                | JOURNEY        |
++--------------------------------+----------------+
+|                                | MODULE_004     |
+|          MODULE_001            | TECH STACK     |
+|          PROCESSOR             |                |
+|                                |                |
++----------------------+---------+----------------+
+| MODULE_005           | MODULE_006               |
+| ENTREPRENEURSHIP     | CONNECT                  |
++----------------------+--------------------------+
 
 */
 
 
 
+@media(min-width:1201px){
+
+
+
+.bento-grid {
+
+
+display:grid;
+
+
+
+grid-template-columns:
+
+repeat(12,1fr);
+
+
+
+gap:
+
+24px;
+
+
+
+align-items:start;
+
+
+
+}
+
+
+
+
+
+
+
+/* =====================================================
+   MODULE 000
+   HERO
+===================================================== */
 
 
 .hero {
@@ -743,7 +777,7 @@ DESKTOP STRUCTURE:
 
 grid-column:
 
-span 8;
+1 / 9;
 
 
 
@@ -758,130 +792,9 @@ min-height:
 620px;
 
 
-}
-
-
-
-
-
-.hardware {
-
-
-grid-column:
-
-span 8;
-
-
-
-grid-row:
-
-span 1;
-
 
 }
 
-
-
-
-
-.right-column {
-
-
-grid-column:
-
-span 4;
-
-
-
-display:grid;
-
-
-
-grid-template-columns:
-
-1fr;
-
-
-
-gap:
-
-24px;
-
-
-
-position:relative;
-
-
-}
-
-
-
-
-
-.profile {
-
-
-min-height:
-
-260px;
-
-
-}
-
-
-
-
-.timeline {
-
-
-min-height:
-
-320px;
-
-
-}
-
-
-
-
-
-.stack {
-
-
-min-height:
-
-430px;
-
-
-}
-
-
-
-
-
-.entrepreneur {
-
-
-grid-column:
-
-span 4;
-
-
-}
-
-
-
-
-
-.connect {
-
-
-grid-column:
-
-span 4;
-
-
-}
 
 
 
@@ -890,9 +803,228 @@ span 4;
 
 
 /* =====================================================
-   IMPORTANT LAYOUT FIX
-   KEEPS MODULE 001 AND MODULE 002 TOGETHER
+   MODULE 001
+   PROCESSOR DESIGN
 ===================================================== */
+
+
+.hardware {
+
+
+grid-column:
+
+1 / 9;
+
+
+
+min-height:
+
+500px;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   MODULE 002
+   ENGINEERING JOURNEY
+===================================================== */
+
+
+.timeline {
+
+
+grid-column:
+
+9 / 13;
+
+
+
+grid-row:
+
+2 / span 2;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   MODULE 003
+   ENGINEERING PROFILE
+===================================================== */
+
+
+.profile {
+
+
+grid-column:
+
+9 / 13;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   MODULE 004
+   TECH STACK
+===================================================== */
+
+
+.stack {
+
+
+grid-column:
+
+9 / 13;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   MODULE 005
+   ENTREPRENEURSHIP
+===================================================== */
+
+
+.entrepreneur {
+
+
+grid-column:
+
+1 / 5;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   MODULE 006
+   CONNECT
+===================================================== */
+
+
+.connect {
+
+
+grid-column:
+
+5 / 9;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* Remove wrapper restrictions */
+
+.right-column {
+
+
+display:
+
+contents;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+
+@media(max-width:1200px){
+
+
+
+.bento-grid {
+
+
+grid-template-columns:
+
+repeat(8,1fr);
+
+
+
+gap:
+
+20px;
+
+
+}
+
+
+
+
+
+.hero {
+
+
+grid-column:
+
+1 / 9;
+
+
+}
 
 
 
@@ -901,21 +1033,125 @@ span 4;
 .hardware {
 
 
-order:
+grid-column:
 
-2;
+1 / 9;
 
 
 }
 
 
 
+
+
 .timeline {
 
 
-order:
+grid-column:
 
-3;
+1 / 9;
+
+
+}
+
+
+
+
+
+.right-column {
+
+
+grid-column:
+
+1 / 9;
+
+
+
+display:flex;
+
+
+
+flex-direction:column;
+
+
+
+gap:
+
+20px;
+
+
+}
+
+
+
+
+
+.entrepreneur,
+.connect {
+
+
+width:
+
+100%;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+
+@media(max-width:900px){
+
+
+
+.bento-grid {
+
+
+display:flex;
+
+
+
+flex-direction:column;
+
+
+
+gap:
+
+18px;
+
+
+}
+
+
+
+
+
+.hero,
+.hardware,
+.timeline,
+.profile,
+.stack,
+.entrepreneur,
+.connect {
+
+
+width:
+
+100%;
+
 
 
 }
@@ -925,33 +1161,18 @@ order:
 .right-column {
 
 
-order:
+display:flex;
 
-4;
+
+
+flex-direction:column;
 
 
 }
 
 
 
-
-
-
-/*
-
-The right column now does NOT force
-everything beside the hero.
-
-The processor module and engineering
-journey remain the main left stack.
-
-*/
-
-
-
-
-
-
+}
 
 /* =====================================================
    TERMINAL DOTS
