@@ -53,6 +53,8 @@
 
 <main class="bento-grid" id="main-content">
 
+  <div class="bento-column bento-primary">
+
   <!-- HERO -->
   <section class="card hero reveal" aria-labelledby="hero-heading">
     <div class="terminal-dots" aria-hidden="true">
@@ -82,27 +84,6 @@
       <a href="resume.pdf" download>$ download_resume</a>
       <a href="https://github.com/byadmo" target="_blank" rel="noopener noreferrer">$ view_github</a>
       <a href="https://www.linkedin.com/in/adammorgan05/" target="_blank" rel="noopener noreferrer">$ contact_adam</a>
-    </div>
-  </section>
-
-  <!-- PROFILE -->
-  <section class="card profile reveal" aria-labelledby="profile-heading">
-    <div class="label">ENGINEERING_PROFILE</div>
-    <h2 id="profile-heading">Current Focus</h2>
-
-    <div class="profile-item">
-      <span>FIELD</span>
-      <p>Electrical Engineering</p>
-    </div>
-
-    <div class="profile-item">
-      <span>SPECIALIZATION</span>
-      <p>Digital Systems</p>
-    </div>
-
-    <div class="profile-item">
-      <span>INTERESTS</span>
-      <p>CPU Architecture + FPGA</p>
     </div>
   </section>
 
@@ -143,44 +124,6 @@ endmodule</code></pre>
     </ul>
   </section>
 
-  <!-- ENGINEERING JOURNEY -->
-  <section class="card timeline reveal" id="timeline-card" aria-labelledby="timeline-heading">
-    <div class="label" id="timeline-heading">ENGINEERING_JOURNEY</div>
-
-    <div class="year-buttons" role="tablist" aria-label="Select a year to view projects">
-      <button data-year="2026" role="tab" aria-selected="false">2026</button>
-      <button data-year="2025" role="tab" aria-selected="false">2025</button>
-      <button data-year="2024" role="tab" aria-selected="false">2024</button>
-    </div>
-
-    <div id="timeline-content">
-      <div class="project-grid" role="tabpanel" aria-live="polite">
-        <p>Select a year to explore projects.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TECH STACK -->
-  <section class="card stack reveal" aria-labelledby="stack-heading">
-    <div class="label" id="stack-heading">TECH_STACK</div>
-
-    <h3>HARDWARE/</h3>
-    <div class="tags">
-      <span>SystemVerilog</span>
-      <span>Verilog</span>
-      <span>FPGA</span>
-      <span>RISC-V</span>
-    </div>
-
-    <h3>TOOLS/</h3>
-    <div class="tags">
-      <span>Quartus</span>
-      <span>GTKWave</span>
-      <span>ModelSim</span>
-      <span>Icarus Verilog</span>
-    </div>
-  </section>
-
   <!-- ENTREPRENEURSHIP -->
   <section class="card entrepreneur reveal" aria-labelledby="entrepreneur-heading">
     <div class="label">ENTREPRENEURSHIP</div>
@@ -200,6 +143,38 @@ endmodule</code></pre>
       <a href="https://www.linkedin.com/in/adammorgan05/" target="_blank" rel="noopener noreferrer">$ linkedin</a>
     </div>
   </section>
+  </div>
+
+  <div class="bento-column bento-secondary">
+    <!-- PROFILE -->
+    <section class="card profile reveal" aria-labelledby="profile-heading">
+      <div class="label">ENGINEERING_PROFILE</div>
+      <h2 id="profile-heading">Current Focus</h2>
+      <div class="profile-item"><span>FIELD</span><p>Electrical Engineering</p></div>
+      <div class="profile-item"><span>SPECIALIZATION</span><p>Digital Systems</p></div>
+      <div class="profile-item"><span>INTERESTS</span><p>CPU Architecture + FPGA</p></div>
+    </section>
+
+    <!-- ENGINEERING JOURNEY -->
+    <section class="card timeline reveal" id="timeline-card" aria-labelledby="timeline-heading">
+      <div class="label" id="timeline-heading">ENGINEERING_JOURNEY</div>
+      <div class="year-buttons" role="tablist" aria-label="Select a year to view projects">
+        <button data-year="2026" role="tab" aria-selected="false">2026</button>
+        <button data-year="2025" role="tab" aria-selected="false">2025</button>
+        <button data-year="2024" role="tab" aria-selected="false">2024</button>
+      </div>
+      <div id="timeline-content"><div class="project-grid" role="tabpanel" aria-live="polite"><p>Select a year to explore projects.</p></div></div>
+    </section>
+
+    <!-- TECH STACK -->
+    <section class="card stack reveal" aria-labelledby="stack-heading">
+      <div class="label" id="stack-heading">TECH_STACK</div>
+      <h3>HARDWARE/</h3>
+      <div class="tags"><span>SystemVerilog</span><span>Verilog</span><span>FPGA</span><span>RISC-V</span></div>
+      <h3>TOOLS/</h3>
+      <div class="tags"><span>Quartus</span><span>GTKWave</span><span>ModelSim</span><span>Icarus Verilog</span></div>
+    </section>
+  </div>
 
 </main>
 
