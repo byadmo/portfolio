@@ -698,65 +698,27 @@ opacity:1;
 
 
 
-
-
-
 /* =====================================================
    BENTO LAYOUT SYSTEM
-   PREMIUM ENGINEERING DASHBOARD
+   ENGINEERING DASHBOARD GRID
 ===================================================== */
-
-
-/*
-DESKTOP STRUCTURE:
-
-+--------------------------------+----------------+
-|                                | MODULE_003     |
-|                                | PROFILE        |
-|          MODULE_000            |                |
-|          HERO                  +----------------+
-|                                | MODULE_002     |
-|                                | JOURNEY        |
-+--------------------------------+----------------+
-|                                | MODULE_004     |
-|          MODULE_001            | TECH STACK     |
-|          PROCESSOR             |                |
-|                                |                |
-+----------------------+---------+----------------+
-| MODULE_005           | MODULE_006               |
-| ENTREPRENEURSHIP     | CONNECT                  |
-+----------------------+--------------------------+
-
-*/
-
 
 
 @media(min-width:1201px){
 
 
-
 .bento-grid {
 
+    display:grid;
 
-display:grid;
+    grid-template-columns:
+    repeat(12,1fr);
 
+    grid-auto-flow:dense;
 
+    gap:24px;
 
-grid-template-columns:
-
-repeat(12,1fr);
-
-
-
-gap:
-
-24px;
-
-
-
-align-items:start;
-
-
+    align-items:start;
 
 }
 
@@ -774,23 +736,14 @@ align-items:start;
 
 .hero {
 
+    grid-column:
 
-grid-column:
-
-1 / 9;
-
+    1 / 9;
 
 
-grid-row:
+    grid-row:
 
-span 2;
-
-
-
-min-height:
-
-620px;
-
+    span 2;
 
 
 }
@@ -811,20 +764,13 @@ min-height:
 .hardware {
 
 
-grid-column:
+    grid-column:
 
-1 / 9;
-
-
-
-min-height:
-
-500px;
+    1 / 9;
 
 
 
 }
-
 
 
 
@@ -834,78 +780,38 @@ min-height:
 
 
 /* =====================================================
-   MODULE 002
-   ENGINEERING JOURNEY
+   RIGHT COLUMN
 ===================================================== */
 
 
-.timeline {
+.right-column {
 
 
-grid-column:
+    grid-column:
 
-9 / 13;
+    9 / 13;
 
 
 
-grid-row:
+    display:flex;
 
-2 / span 2;
+
+
+    flex-direction:column;
+
+
+
+    gap:24px;
+
+
+
+    grid-row:
+
+    1 / span 4;
 
 
 
 }
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   MODULE 003
-   ENGINEERING PROFILE
-===================================================== */
-
-
-.profile {
-
-
-grid-column:
-
-9 / 13;
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   MODULE 004
-   TECH STACK
-===================================================== */
-
-
-.stack {
-
-
-grid-column:
-
-9 / 13;
-
-
-
-}
-
 
 
 
@@ -923,9 +829,9 @@ grid-column:
 .entrepreneur {
 
 
-grid-column:
+    grid-column:
 
-1 / 5;
+    1 / 5;
 
 
 
@@ -948,37 +854,24 @@ grid-column:
 .connect {
 
 
-grid-column:
+    grid-column:
 
-5 / 9;
+    5 / 9;
+
+
+
+}
+
+
+
+
+
+
 
 
 
 }
 
-
-
-
-
-
-
-
-
-/* Remove wrapper restrictions */
-
-.right-column {
-
-
-display:
-
-contents;
-
-
-}
-
-
-
-}
 
 
 
@@ -999,15 +892,16 @@ contents;
 .bento-grid {
 
 
+display:grid;
+
+
 grid-template-columns:
 
 repeat(8,1fr);
 
 
 
-gap:
-
-20px;
+gap:20px;
 
 
 }
@@ -1016,34 +910,8 @@ gap:
 
 
 
-.hero {
-
-
-grid-column:
-
-1 / 9;
-
-
-}
-
-
-
-
-
-.hardware {
-
-
-grid-column:
-
-1 / 9;
-
-
-}
-
-
-
-
-
+.hero,
+.hardware,
 .timeline {
 
 
@@ -1052,7 +920,9 @@ grid-column:
 1 / 9;
 
 
+
 }
+
 
 
 
@@ -1066,21 +936,18 @@ grid-column:
 1 / 9;
 
 
-
 display:flex;
-
 
 
 flex-direction:column;
 
 
+gap:20px;
 
-gap:
-
-20px;
 
 
 }
+
 
 
 
@@ -1090,16 +957,18 @@ gap:
 .connect {
 
 
-width:
+grid-column:
 
-100%;
-
-
-}
+1 / 9;
 
 
 
 }
+
+
+
+}
+
 
 
 
@@ -1123,14 +992,10 @@ width:
 display:flex;
 
 
-
 flex-direction:column;
 
 
-
-gap:
-
-18px;
+gap:18px;
 
 
 }
@@ -1142,15 +1007,12 @@ gap:
 .hero,
 .hardware,
 .timeline,
-.profile,
-.stack,
+.right-column,
 .entrepreneur,
 .connect {
 
 
-width:
-
-100%;
+width:100%;
 
 
 
@@ -1164,15 +1026,18 @@ width:
 display:flex;
 
 
-
 flex-direction:column;
 
 
+
+}
+
+
+
 }
 
 
 
-}
 
 /* =====================================================
    TERMINAL DOTS
