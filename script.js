@@ -1,6 +1,6 @@
 /* =====================================================
    ADAM MORGAN PORTFOLIO
-   HARDWARE LAB INTERACTION ENGINE
+   HARDWARE INTERACTION ENGINE
 ===================================================== */
 
 
@@ -26,52 +26,38 @@ navigator.maxTouchPoints > 0;
 
 
 
-
-
 /* =====================================================
    DOM REFERENCES
 ===================================================== */
 
 
 const cards =
-document.querySelectorAll(
-".card"
-);
+document.querySelectorAll(".card");
 
 
 
 const revealCards =
-document.querySelectorAll(
-".reveal"
-);
+document.querySelectorAll(".reveal");
 
 
 
 const hero =
-document.querySelector(
-".hero"
-);
+document.querySelector(".hero");
 
 
 
 const typingElement =
-document.getElementById(
-"typing"
-);
-
-
-
-const projectsButton =
-document.getElementById(
-"projects-button"
-);
+document.getElementById("typing");
 
 
 
 const timeline =
-document.getElementById(
-"module-002"
-);
+document.getElementById("module-002");
+
+
+
+const projectsButton =
+document.getElementById("projects-button");
 
 
 
@@ -99,10 +85,8 @@ document.getElementById(
 
 
 
-
-
 /* =====================================================
-   CARD REVEAL ANIMATION
+   CARD REVEAL SYSTEM
 ===================================================== */
 
 
@@ -112,10 +96,10 @@ if(
 
 
 
-const observer =
+const revealObserver =
 new IntersectionObserver(
 
-entries=>{
+(entries)=>{
 
 
 entries.forEach(
@@ -135,12 +119,13 @@ entry.target.classList.add(
 );
 
 
-
-},index*120);
-
+},index*100);
 
 
-observer.unobserve(
+
+
+
+revealObserver.unobserve(
 entry.target
 );
 
@@ -152,19 +137,17 @@ entry.target
 
 }
 
-
 );
 
 
 
 },
 
-
 {
+
 threshold:.15
+
 }
-
-
 
 );
 
@@ -172,22 +155,26 @@ threshold:.15
 
 
 
-revealCards.forEach(card=>{
+revealCards.forEach(
+(card)=>{
 
 
-observer.observe(
+revealObserver.observe(
 card
 );
 
 
+}
 
-});
+);
+
 
 
 
 }
 
-else{
+else {
+
 
 
 window.addEventListener(
@@ -195,7 +182,11 @@ window.addEventListener(
 ()=>{
 
 
-revealCards.forEach(card=>{
+revealCards.forEach(
+(card,index)=>{
+
+
+setTimeout(()=>{
 
 
 card.classList.add(
@@ -203,8 +194,14 @@ card.classList.add(
 );
 
 
+},index*120);
 
-});
+
+
+}
+
+);
+
 
 
 }
@@ -242,7 +239,7 @@ const typingWords = [
 "processor microarchitecture...",
 
 
-"digital logic optimization..."
+"high-performance digital logic..."
 
 
 ];
@@ -250,13 +247,11 @@ const typingWords = [
 
 
 
+let wordIndex = 0;
 
-let wordIndex=0;
+let charIndex = 0;
 
-let charIndex=0;
-
-let deleting=false;
-
+let deleting = false;
 
 
 
@@ -267,14 +262,14 @@ let deleting=false;
 function typeWriter(){
 
 
-
 if(!typingElement)
 return;
 
 
 
 
-const word =
+
+const current =
 typingWords[wordIndex];
 
 
@@ -284,13 +279,13 @@ typingWords[wordIndex];
 if(!deleting){
 
 
-
 charIndex++;
 
 
 
+
 typingElement.textContent =
-word.substring(
+current.substring(
 0,
 charIndex
 );
@@ -299,11 +294,13 @@ charIndex
 
 
 
-if(charIndex >= word.length){
+if(
+charIndex >= current.length
+){
 
 
 
-deleting=true;
+deleting = true;
 
 
 
@@ -322,9 +319,10 @@ return;
 
 
 
+
 }
 
-else{
+else {
 
 
 
@@ -332,8 +330,10 @@ charIndex--;
 
 
 
+
+
 typingElement.textContent =
-word.substring(
+current.substring(
 0,
 charIndex
 );
@@ -343,7 +343,6 @@ charIndex
 
 
 if(charIndex<=0){
-
 
 
 deleting=false;
@@ -371,11 +370,7 @@ setTimeout(
 
 typeWriter,
 
-deleting
-?
-35
-:
-70
+deleting ? 35 : 70
 
 );
 
@@ -397,27 +392,27 @@ if(prefersReducedMotion){
 if(typingElement){
 
 
+
 typingElement.textContent =
 typingWords[0];
 
 
-}
-
-
 
 }
 
-else{
+
+
+}
+
+else {
 
 
 typeWriter();
 
 
-
 }
-
 /* =====================================================
-   CARD CURSOR LIGHTING
+   CARD CURSOR GLOW
 ===================================================== */
 
 
@@ -427,15 +422,12 @@ if(
 ){
 
 
-
 cards.forEach(card=>{
 
 
 card.addEventListener(
-
 "mousemove",
-
-event=>{
+(event)=>{
 
 
 const rect =
@@ -464,7 +456,6 @@ card.style.setProperty(
 
 
 }
-
 
 );
 
@@ -497,14 +488,13 @@ hero &&
 
 
 hero.addEventListener(
-
 "mousemove",
-
-event=>{
+(event)=>{
 
 
 const rect =
 hero.getBoundingClientRect();
+
 
 
 
@@ -514,6 +504,7 @@ const x =
 rect.width
 -
 0.5;
+
 
 
 
@@ -528,23 +519,18 @@ rect.height
 
 
 
-hero.style.transform = `
+hero.style.transform =
 
+`
 perspective(1200px)
-
 rotateY(${x*3}deg)
-
 rotateX(${-y*3}deg)
-
-translateY(-3px)
-
+translateY(-4px)
 `;
 
 
 
 }
-
-
 
 );
 
@@ -553,19 +539,14 @@ translateY(-3px)
 
 
 hero.addEventListener(
-
 "mouseleave",
-
 ()=>{
 
 
-hero.style.transform="";
-
+hero.style.transform = "";
 
 
 }
-
-
 
 );
 
@@ -581,7 +562,7 @@ hero.style.transform="";
 
 
 /* =====================================================
-   TERMINAL DOTS
+   TERMINAL BUTTON EFFECT
 ===================================================== */
 
 
@@ -592,44 +573,33 @@ document
 .forEach(dot=>{
 
 
-
 dot.addEventListener(
-
 "mouseenter",
-
 ()=>{
 
 
 dot.style.transform =
+
 "scale(1.35) rotate(15deg)";
 
 
-
 }
-
-
 
 );
 
 
 
-
-
 dot.addEventListener(
-
 "mouseleave",
-
 ()=>{
 
 
 dot.style.transform =
-"";
 
+"scale(1) rotate(0deg)";
 
 
 }
-
-
 
 );
 
@@ -646,68 +616,81 @@ dot.style.transform =
 
 
 /* =====================================================
-   CPU PIPELINE SIMULATION
+   CPU DEBUG VISUALIZATION
 ===================================================== */
 
 
-const cpuStages =
-document.querySelectorAll(
-".pipeline-node"
+const cpuConsole =
+document.querySelector(
+".cpu-console"
 );
 
 
 
-let cpuIndex=0;
+function createCPUNode(){
 
 
-
-let cpuTimer=null;
-
-
-
-
-
-
-
-function animateCPU(){
-
-
-
-if(!cpuStages.length)
+if(!cpuConsole)
 return;
 
 
 
 
-cpuStages.forEach(stage=>{
-
-
-
-stage.classList.remove(
-"cpu-active"
+const node =
+document.createElement(
+"span"
 );
 
 
 
-});
+node.className =
+"cpu-node";
 
 
 
 
 
-cpuStages[cpuIndex]
-.classList.add(
-"cpu-active"
+node.style.left =
+`${Math.random()*90}%`;
+
+
+
+
+
+node.style.top =
+`${Math.random()*80}%`;
+
+
+
+
+
+node.style.animationDelay =
+`${Math.random()*2}s`;
+
+
+
+
+
+cpuConsole.appendChild(
+node
 );
 
 
 
 
 
-cpuIndex =
-(cpuIndex+1)
-%
-cpuStages.length;
+setTimeout(
+()=>{
+
+
+node.remove();
+
+
+},
+
+4000
+
+);
 
 
 
@@ -719,27 +702,23 @@ cpuStages.length;
 
 
 
-
-function startCPU(){
-
+function startCPUAnimation(){
 
 
 if(
-prefersReducedMotion ||
-cpuTimer ||
-!cpuStages.length
+!cpuConsole ||
+prefersReducedMotion
 )
 return;
 
 
 
 
-cpuTimer =
 setInterval(
 
-animateCPU,
+createCPUNode,
 
-900
+700
 
 );
 
@@ -750,39 +729,7 @@ animateCPU,
 
 
 
-
-
-
-
-function stopCPU(){
-
-
-
-if(cpuTimer){
-
-
-
-clearInterval(
-cpuTimer
-);
-
-
-
-cpuTimer=null;
-
-
-
-}
-
-
-
-}
-
-
-
-
-
-startCPU();
+startCPUAnimation();
 
 
 
@@ -793,44 +740,170 @@ startCPU();
 
 
 /* =====================================================
-   PROJECT DATABASE
+   PIPELINE PROCESSOR ANIMATION
 ===================================================== */
 
 
-const projects = {
+const pipelineStages =
+document.querySelectorAll(
+".pipeline-node"
+);
 
 
-2026:[
 
+let pipelineIndex = 0;
+
+
+
+let pipelineInterval = null;
+
+
+
+
+
+
+function stepPipeline(){
+
+
+
+if(!pipelineStages.length)
+return;
+
+
+
+
+
+pipelineStages.forEach(stage=>{
+
+
+stage.style.boxShadow =
+"";
+
+
+stage.style.color =
+"";
+
+
+
+});
+
+
+
+
+
+const active =
+pipelineStages[pipelineIndex];
+
+
+
+
+active.style.boxShadow =
+
+"0 0 25px rgba(0,234,255,.5)";
+
+
+
+
+
+active.style.color =
+"#00ff88";
+
+
+
+
+
+pipelineIndex =
+
+(pipelineIndex+1)
+%
+pipelineStages.length;
+
+
+
+}
+
+
+
+
+
+
+
+function startPipeline(){
+
+
+
+if(
+!pipelineStages.length ||
+prefersReducedMotion
+)
+return;
+
+
+
+
+pipelineInterval =
+setInterval(
+
+stepPipeline,
+
+1200
+
+);
+
+
+
+}
+
+
+
+
+function stopPipeline(){
+
+
+
+if(pipelineInterval){
+
+
+clearInterval(
+pipelineInterval
+);
+
+
+pipelineInterval=null;
+
+
+
+}
+
+
+
+}
+
+
+
+
+startPipeline();
+/* =====================================================
+   ENGINEERING JOURNEY DATA
+===================================================== */
+
+
+const journeyProjects = {
+
+
+"2026":[
 
 
 {
-
 
 title:
 
 "32-Bit Pipelined RISC-V CPU Core",
 
 
-text:
+description:
 
-"Designed a custom SystemVerilog processor architecture using a 5-stage pipeline, hazard detection, forwarding logic, and RTL verification."
-
-},
-
-
-
-{
-
-
-title:
-
-"RTL Verification Environment",
-
-
-text:
-
-"Built simulation workflows using ModelSim, GTKWave, and Icarus Verilog for debugging and waveform analysis."
+"Designing a custom RV32I processor architecture using SystemVerilog with pipeline stages, hazard detection, forwarding logic, and RTL verification."
 
 },
 
@@ -838,18 +911,31 @@ text:
 
 {
 
+title:
+
+"FPGA Hardware Development",
+
+
+description:
+
+"Building synthesizable digital systems and testing hardware implementations on FPGA platforms."
+
+},
+
+
+
+{
 
 title:
 
-"Computer Architecture Research",
+"Processor Verification Environment",
 
 
-text:
+description:
 
-"Exploring datapaths, instruction pipelines, control logic, memory systems, and processor optimization."
+"Creating simulation workflows using ModelSim, GTKWave, and automated RTL testing."
 
 }
-
 
 
 ],
@@ -858,38 +944,19 @@ text:
 
 
 
-
-2025:[
-
+"2025":[
 
 
 {
-
 
 title:
 
 "Digital Systems Development",
 
 
-text:
+description:
 
-"Developed foundations in digital logic, programming, electronics, and hardware design."
-
-},
-
-
-
-{
-
-
-title:
-
-"FPGA Exploration",
-
-
-text:
-
-"Started working with programmable logic, hardware acceleration concepts, and embedded systems."
+"Developed foundations in digital logic design, Boolean systems, hardware description languages, and computer architecture."
 
 },
 
@@ -897,18 +964,16 @@ text:
 
 {
 
-
 title:
 
-"Engineering Applications",
+"Embedded Hardware Projects",
 
 
-text:
+description:
 
-"Applied mathematics, physics, and programming toward engineering problems."
+"Created hardware-focused projects involving microcontrollers, sensors, and low-level programming."
 
 }
-
 
 
 ],
@@ -917,22 +982,19 @@ text:
 
 
 
-
-2024:[
-
+"2024":[
 
 
 {
 
-
 title:
 
-"Programming Foundation",
+"Engineering Foundations",
 
 
-text:
+description:
 
-"Built programming fundamentals and technical problem-solving skills."
+"Started developing programming, mathematics, physics, and engineering fundamentals."
 
 },
 
@@ -940,18 +1002,16 @@ text:
 
 {
 
-
 title:
 
-"Engineering Curiosity",
+"First Hardware Experiments",
 
 
-text:
+description:
 
-"Explored computer systems, electronics, and modern technology."
+"Explored electronics, circuits, and early digital design concepts."
 
 }
-
 
 
 ]
@@ -960,12 +1020,34 @@ text:
 
 };
 
+
+
+
+
+
+
+
 /* =====================================================
-   PROJECT LOADER
+   TIMELINE ELEMENTS
 ===================================================== */
 
 
-function loadProjects(year){
+const timelineHint =
+document.querySelector(
+".timeline-hint"
+);
+
+
+
+let collapseTimer = null;
+
+
+
+
+
+
+
+function renderProjects(year){
 
 
 
@@ -975,107 +1057,78 @@ return;
 
 
 
-projectGrid.style.opacity="0";
+projectGrid.innerHTML = "";
 
 
 
 
 
-setTimeout(()=>{
-
-
-
-projectGrid.innerHTML="";
+const projects =
+journeyProjects[year];
 
 
 
 
 
-projects[year].forEach(
-
+projects.forEach(
 (project,index)=>{
 
 
-
-const item =
+const card =
 document.createElement(
 "div"
 );
 
 
 
-item.className =
+card.className =
 "project-item";
 
 
 
-item.style.animationDelay =
-`${index*.15}s`;
+
+
+card.style.animationDelay =
+
+`${index*120}ms`;
 
 
 
 
 
-const title =
-document.createElement(
-"h4"
-);
+card.innerHTML =
 
 
+`
 
-title.textContent =
-project.title;
+<h4>
+${project.title}
+</h4>
 
+<p>
+${project.description}
+</p>
 
+`;
 
-
-
-const text =
-document.createElement(
-"p"
-);
-
-
-
-text.textContent =
-project.text;
-
-
-
-
-
-item.append(
-title,
-text
-);
 
 
 
 
 
 projectGrid.appendChild(
-item
+card
 );
+
+
+
+});
+
 
 
 
 }
 
-);
-
-
-
-
-
-projectGrid.style.opacity="1";
-
-
-
-},250);
-
-
-
-}
 
 
 
@@ -1085,49 +1138,43 @@ projectGrid.style.opacity="1";
 
 
 /* =====================================================
-   ENGINEERING JOURNEY MODULE
+   TIMELINE EXPAND SYSTEM
 ===================================================== */
 
 
-let selectedYear =
-localStorage.getItem(
-"selectedYear"
-)
-||
-"2026";
+
+function expandTimeline(){
 
 
 
-let collapseTimer=null;
-
-
-
-const COLLAPSE_TIME =
-4000;
+if(!timeline)
+return;
 
 
 
 
 
-
-
-
-function cancelCollapse(){
-
-
-
-if(collapseTimer){
-
-
-
-clearTimeout(
-collapseTimer
+timeline.classList.remove(
+"collapsing"
 );
 
 
 
-collapseTimer=null;
+timeline.classList.add(
+"expanded"
+);
 
+
+
+
+
+
+if(timelineHint){
+
+
+timelineHint.textContent =
+
+"Select another year to explore projects.";
 
 
 }
@@ -1142,19 +1189,7 @@ collapseTimer=null;
 
 
 
-
-function scheduleCollapse(){
-
-
-
-cancelCollapse();
-
-
-
-
-
-collapseTimer =
-setTimeout(()=>{
+function collapseTimeline(){
 
 
 
@@ -1171,29 +1206,23 @@ timeline.classList.add(
 
 
 
-
-
-setTimeout(()=>{
-
-
-
 timeline.classList.remove(
 "expanded"
 );
 
 
 
-timeline.classList.remove(
-"collapsing"
-);
 
 
-
-},900);
-
+if(timelineHint){
 
 
-},COLLAPSE_TIME);
+timelineHint.textContent =
+
+"Hover a year to explore projects.";
+
+
+}
 
 
 
@@ -1207,143 +1236,32 @@ timeline.classList.remove(
 
 
 
-function activateYear(button){
+function resetCollapseTimer(){
 
 
 
-if(!button)
-return;
-
-
-
-
-const year =
-button.dataset.year;
-
-
-
-
-
-selectedYear =
-year;
-
-
-
-localStorage.setItem(
-
-"selectedYear",
-
-year
-
+clearTimeout(
+collapseTimer
 );
 
 
 
 
 
-yearButtons.forEach(btn=>{
+collapseTimer =
+setTimeout(
+
+()=>{
 
 
-
-btn.classList.remove(
-"active"
-);
+collapseTimeline();
 
 
+},
 
-btn.setAttribute(
-"aria-selected",
-"false"
-);
-
-
-
-});
-
-
-
-
-
-button.classList.add(
-"active"
-);
-
-
-
-button.setAttribute(
-"aria-selected",
-"true"
-);
-
-
-
-
-
-
-if(timeline){
-
-
-
-cancelCollapse();
-
-
-
-
-
-timeline.classList.add(
-"expanded"
-);
-
-
-
-}
-
-
-
-
-
-
-loadProjects(
-year
-);
-
-
-
-}
-
-
-
-
-
-
-
-
-function restoreYear(){
-
-
-
-const saved =
-document.querySelector(
-
-`.year-buttons button[data-year="${selectedYear}"]`
+4000
 
 );
-
-
-
-
-
-if(saved){
-
-
-
-activateYear(
-saved
-);
-
-
-
-}
 
 
 
@@ -1362,26 +1280,61 @@ saved
 ===================================================== */
 
 
-yearButtons.forEach(button=>{
+yearButtons.forEach(
+(button)=>{
+
+
+
+
+
+const year =
+button.dataset.year;
+
+
+
 
 
 
 button.addEventListener(
-
 "mouseenter",
-
 ()=>{
 
 
-activateYear(
-button
+renderProjects(
+year
 );
 
 
 
+yearButtons.forEach(
+(btn)=>{
+
+btn.classList.remove(
+"active"
+);
+
+
+});
+
+
+
+
+button.classList.add(
+"active"
+);
+
+
+
+
+expandTimeline();
+
+
+
+resetCollapseTimer();
+
+
+
 }
-
-
 
 );
 
@@ -1391,46 +1344,22 @@ button
 
 
 button.addEventListener(
-
 "click",
-
 ()=>{
 
 
-activateYear(
-button
+renderProjects(
+year
 );
 
 
 
-}
+yearButtons.forEach(
+(btn)=>{
 
 
-
-);
-
-
-
-
-
-
-button.addEventListener(
-
-"focus",
-
-()=>{
-
-
-activateYear(
-button
-);
-
-
-
-}
-
-
-
+btn.classList.remove(
+"active"
 );
 
 
@@ -1439,301 +1368,41 @@ button
 
 
 
-
-
-
-
-
-
-/* =====================================================
-   TIMELINE HOVER BEHAVIOR
-===================================================== */
-
-
-if(timeline){
-
-
-
-timeline.addEventListener(
-
-"mouseenter",
-
-()=>{
-
-
-
-cancelCollapse();
-
-
-
-
-
-if(
-!timeline.classList.contains(
-"expanded"
-)
-
-){
-
-
-restoreYear();
-
-
-
-}
-
-
-
-}
-
-
-
+button.classList.add(
+"active"
 );
 
 
 
-
-
-timeline.addEventListener(
-
-"mouseleave",
-
-()=>{
+expandTimeline();
 
 
 
-scheduleCollapse();
+resetCollapseTimer();
 
 
 
 }
-
-
 
 );
-
-
-
-
-
-
-timeline.addEventListener(
-
-"focusin",
-
-()=>{
-
-
-cancelCollapse();
-
-
-
-}
-
-
-
-);
-
-
-
-
-
-timeline.addEventListener(
-
-"focusout",
-
-event=>{
-
-
-
-if(
-!timeline.contains(
-event.relatedTarget
-)
-
-){
-
-
-
-scheduleCollapse();
-
-
-
-}
-
-
-
-}
-
-
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-
-restoreYear();
-
-
-
-
-
-
-
-
-/* =====================================================
-   VIEW PROJECT BUTTON
-===================================================== */
-
-
-if(
-projectsButton &&
-timeline
-){
-
-
-
-projectsButton.addEventListener(
-
-"click",
-
-event=>{
-
-
-
-event.preventDefault();
-
-
-
-
-
-timeline.scrollIntoView({
-
-
-
-behavior:
-
-prefersReducedMotion
-
-?
-"auto"
-
-:
-
-"smooth",
-
-
-
-block:
-
-"center"
 
 
 
 });
 
-
-
-
-
-setTimeout(()=>{
-
-
-
-activateYear(
-yearButtons[0]
-);
-
-
-
-timeline.classList.add(
-"project-highlight"
-);
-
-
-
-setTimeout(()=>{
-
-
-
-timeline.classList.remove(
-"project-highlight"
-);
-
-
-
-},5000);
-
-
-
-},700);
-
-
-
-}
-
-
-
-);
-}
-
 /* =====================================================
-   FPGA / CPU DEBUG SIGNAL FIELD
+   FPGA SIGNAL GENERATOR
+   RANDOM HARDWARE TRACE MOVEMENT
 ===================================================== */
-
-
-const signalSettings = {
-
-
-desktop:{
-count:18,
-delay:2500
-},
-
-
-mobile:{
-count:8,
-delay:4500
-}
-
-
-};
-
-
-
-const screenSmall =
-window.innerWidth < 700;
-
-
-
-const activeSignalSettings =
-screenSmall
-?
-signalSettings.mobile
-:
-signalSettings.desktop;
-
-
-
-let signalInterval=null;
-
-
-
 
 
 function createSignal(){
 
 
-
-if(!cpuField)
+if(
+!cpuField ||
+prefersReducedMotion
+)
 return;
 
 
@@ -1747,8 +1416,6 @@ document.createElement(
 
 
 
-
-
 signal.className =
 "cpu-pulse";
 
@@ -1756,33 +1423,59 @@ signal.className =
 
 
 
-const size =
-Math.random()*250+150;
+const directions = [
+
+
+{
+angle:0,
+distance:"120vw"
+},
+
+
+{
+angle:180,
+distance:"-120vw"
+},
+
+
+{
+angle:90,
+distance:"120vh"
+},
+
+
+{
+angle:-90,
+distance:"-120vh"
+},
+
+
+{
+angle:45,
+distance:"120vw"
+},
+
+
+{
+angle:-45,
+distance:"120vw"
+},
+
+
+{
+angle:135,
+distance:"-120vw"
+},
+
+
+{
+angle:-135,
+distance:"-120vw"
+}
 
 
 
-const angle =
-Math.random()*360;
-
-
-
-const startX =
-Math.random()*120-20;
-
-
-
-const startY =
-Math.random()*120-20;
-
-
-
-const distance =
-Math.random()*700+400;
-
-
-
-const duration =
-Math.random()*5+7;
+];
 
 
 
@@ -1790,22 +1483,16 @@ Math.random()*5+7;
 
 
 
-signal.style.width =
-`${size}px`;
+const direction =
 
+directions[
+Math.floor(
+Math.random()
+*
+directions.length
+)
+];
 
-
-
-
-signal.style.left =
-`${startX}%`;
-
-
-
-
-
-signal.style.top =
-`${startY}%`;
 
 
 
@@ -1815,7 +1502,7 @@ signal.style.setProperty(
 
 "--angle",
 
-`${angle}deg`
+`${direction.angle}deg`
 
 );
 
@@ -1827,7 +1514,7 @@ signal.style.setProperty(
 
 "--distance",
 
-`${distance}px`
+direction.distance
 
 );
 
@@ -1835,8 +1522,36 @@ signal.style.setProperty(
 
 
 
+
+signal.style.top =
+
+`${Math.random()*100}%`;
+
+
+
+
+
+signal.style.left =
+
+`${Math.random()*100}%`;
+
+
+
+
+
+signal.style.width =
+
+`${80 + Math.random()*220}px`;
+
+
+
+
+
+
 signal.style.animationDuration =
-`${duration}s`;
+
+`${3 + Math.random()*5}s`;
+
 
 
 
@@ -1851,15 +1566,19 @@ signal
 
 
 
-setTimeout(()=>{
-
+setTimeout(
+()=>{
 
 
 signal.remove();
 
 
 
-},(duration+2)*1000);
+},
+
+9000
+
+);
 
 
 
@@ -1878,221 +1597,38 @@ function startSignals(){
 
 
 if(
-prefersReducedMotion ||
-signalInterval
+prefersReducedMotion
 )
-
 return;
 
 
 
 
 
-for(
-let i=0;
-i<activeSignalSettings.count;
-i++
-){
 
-
-
-setTimeout(
-
-createSignal,
-
-i*250
-
-);
-
-
-
-}
-
-
-
-
-
-
-signalInterval =
 setInterval(
 
-createSignal,
+()=>{
 
-activeSignalSettings.delay
+
+createSignal();
+
+
+},
+
+900
 
 );
 
 
 
 }
-
-
-
-
-
-
-
-
-function stopSignals(){
-
-
-
-if(signalInterval){
-
-
-
-clearInterval(
-signalInterval
-);
-
-
-
-signalInterval=null;
-
-
-
-}
-
-
-
-}
-
 
 
 
 
 startSignals();
 
-
-
-
-
-
-
-
-
-/* =====================================================
-   BACKGROUND DEBUG CONSOLE EFFECT
-===================================================== */
-
-
-const debugLines = [
-
-
-"FETCH instruction 0x00400000",
-
-
-"DECODE opcode RV32I",
-
-
-"EXECUTE ALU operation",
-
-
-"MEMORY access check",
-
-
-"WRITEBACK register update",
-
-
-"VERIFY waveform output",
-
-
-"SYNTHESIS COMPLETE"
-
-
-
-];
-
-
-
-
-
-
-
-function createDebugPulse(){
-
-
-
-const consoleBox =
-document.querySelector(
-".cpu-console"
-);
-
-
-
-if(!consoleBox)
-return;
-
-
-
-
-
-const line =
-document.createElement(
-"div"
-);
-
-
-
-line.className =
-"debug-line";
-
-
-
-
-
-line.textContent =
-"> " +
-debugLines[
-Math.floor(
-Math.random()*debugLines.length
-)
-];
-
-
-
-
-
-consoleBox.appendChild(
-line
-);
-
-
-
-
-
-setTimeout(()=>{
-
-
-line.remove();
-
-
-
-},5000);
-
-
-
-}
-
-
-
-
-
-if(!prefersReducedMotion){
-
-
-
-setInterval(
-
-createDebugPulse,
-
-1800
-
-);
-
-
-
-}
 
 
 
@@ -2106,28 +1642,10 @@ createDebugPulse,
 ===================================================== */
 
 
-const scrollBar =
-document.createElement(
-"div"
+const progress =
+document.querySelector(
+".scroll-progress"
 );
-
-
-
-scrollBar.className =
-"scroll-progress";
-
-
-
-document.body.appendChild(
-scrollBar
-);
-
-
-
-
-
-let scrolling=false;
-
 
 
 
@@ -2139,41 +1657,43 @@ function updateScroll(){
 
 
 
+if(!progress)
+return;
+
+
+
+
+
 const height =
+
 document.documentElement.scrollHeight
 -
 window.innerHeight;
 
 
 
-const progress =
-height>0
-?
-
-(window.scrollY/height)*100
-
-:
-
-0;
 
 
+const percent =
 
-
-
-scrollBar.style.width =
-`${progress}%`;
+(
+window.scrollY /
+height
+)
+*
+100;
 
 
 
 
 
-scrolling=false;
+progress.style.width =
+
+`${percent}%`;
 
 
 
 }
-
-
 
 
 
@@ -2184,86 +1704,12 @@ window.addEventListener(
 
 "scroll",
 
-()=>{
-
-
-
-if(!scrolling){
-
-
-
-requestAnimationFrame(
-updateScroll
-);
-
-
-
-scrolling=true;
-
-
-
-}
-
-
-
-},
-
-
+updateScroll,
 
 {
 passive:true
 }
 
-
-
-);
-
-/* =====================================================
-   PIPELINE / CPU VISIBILITY CONTROL
-===================================================== */
-
-
-document.addEventListener(
-
-"visibilitychange",
-
-()=>{
-
-
-if(document.hidden){
-
-
-
-stopCPU();
-
-stopSignals();
-
-
-
-}
-
-else{
-
-
-
-startCPU();
-
-
-
-if(!prefersReducedMotion){
-
-startSignals();
-
-}
-
-
-
-}
-
-
-
-}
-
 );
 
 
@@ -2272,10 +1718,8 @@ startSignals();
 
 
 
-
-
 /* =====================================================
-   TOUCH FEEDBACK
+   TOUCH INTERACTION SUPPORT
 ===================================================== */
 
 
@@ -2283,14 +1727,13 @@ if(isTouchDevice){
 
 
 
-cards.forEach(card=>{
+cards.forEach(
+(card)=>{
 
 
 
 card.addEventListener(
-
 "touchstart",
-
 ()=>{
 
 
@@ -2301,7 +1744,6 @@ card.classList.add(
 
 
 },
-
 {
 passive:true
 }
@@ -2314,13 +1756,12 @@ passive:true
 
 
 card.addEventListener(
-
 "touchend",
-
 ()=>{
 
 
-setTimeout(()=>{
+setTimeout(
+()=>{
 
 
 card.classList.remove(
@@ -2329,14 +1770,14 @@ card.classList.remove(
 
 
 
-},300);
-
-
-
 },
 
-{
-passive:true
+150
+
+);
+
+
+
 }
 
 );
@@ -2358,46 +1799,43 @@ passive:true
 
 
 /* =====================================================
-   KEYBOARD SHORTCUTS
+   PROJECT BUTTON
 ===================================================== */
 
 
-document.addEventListener(
-
-"keydown",
-
-event=>{
+if(projectsButton){
 
 
 
-const active =
-document.activeElement;
+projectsButton.addEventListener(
+"click",
+()=>{
+
+
+if(timeline){
 
 
 
-if(
-
-active &&
-(
-active.tagName==="INPUT" ||
-active.tagName==="TEXTAREA"
-)
-
-)
-
-return;
+timeline.classList.add(
+"project-active"
+);
 
 
 
+setTimeout(
+()=>{
+
+
+timeline.classList.remove(
+"project-active"
+);
 
 
 
+},
 
-if(event.key==="1" && yearButtons[0]){
+2000
 
-
-activateYear(
-yearButtons[0]
 );
 
 
@@ -2407,41 +1845,13 @@ yearButtons[0]
 
 
 
+}
 
-
-if(event.key==="2" && yearButtons[1]){
-
-
-activateYear(
-yearButtons[1]
 );
 
 
 
 }
-
-
-
-
-
-
-if(event.key==="3" && yearButtons[2]){
-
-
-activateYear(
-yearButtons[2]
-);
-
-
-
-}
-
-
-
-}
-
-);
-
 
 
 
@@ -2451,47 +1861,13 @@ yearButtons[2]
 
 
 /* =====================================================
-   FOOTER YEAR
-===================================================== */
-
-
-const yearElement =
-document.getElementById(
-"year"
-);
-
-
-
-if(yearElement){
-
-
-
-yearElement.textContent =
-new Date().getFullYear();
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   PAGE READY
+   PAGE LOAD STATE
 ===================================================== */
 
 
 window.addEventListener(
-
 "load",
-
 ()=>{
-
 
 
 document.body.classList.add(
@@ -2500,11 +1876,302 @@ document.body.classList.add(
 
 
 
+cards.forEach(
+(card,index)=>{
+
+
+setTimeout(
+()=>{
+
+
+card.classList.add(
+"active"
+);
+
+
+
+},
+
+index*120
+
+);
+
+
+
+});
+
+
+
+});
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   CLEANUP WHEN TAB HIDDEN
+===================================================== */
+
+
+document.addEventListener(
+"visibilitychange",
+()=>{
+
+
+if(document.hidden){
+
+
+stopPipeline();
+
+
+}
+
+else {
+
+
+startPipeline();
+
+
+}
+
+
+
+});
+
+/* =====================================================
+   ACCESSIBILITY ENHANCEMENTS
+===================================================== */
+
+
+document
+.querySelectorAll("a, button")
+.forEach(element=>{
+
+
+element.addEventListener(
+"keydown",
+(event)=>{
+
+
+if(
+event.key === "Enter" ||
+event.key === " "
+){
+
+
+element.click();
+
+
+}
+
+
+
+}
+
+);
+
+
+
+});
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   RESIZE HANDLING
+===================================================== */
+
+
+let resizeTimer;
+
+
+
+window.addEventListener(
+"resize",
+()=>{
+
+
+clearTimeout(
+resizeTimer
+);
+
+
+
+
+resizeTimer =
+setTimeout(
+()=>{
+
+
+cards.forEach(card=>{
+
+
+card.style.removeProperty(
+"transform"
+);
+
+
+});
+
+
+
+},
+
+250
+
+);
+
+
+
+});
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   REMOVE HOVER BEHAVIOR ON MOBILE
+===================================================== */
+
+
+if(isTouchDevice){
+
+
+
+document
+.documentElement
+.classList.add(
+"touch-device"
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   INITIAL PROJECT STATE
+===================================================== */
+
+
+if(projectGrid){
+
+
+
+projectGrid.innerHTML =
+
+
+`
+
+<p class="timeline-hint">
+
+Hover a year to explore projects.
+
+</p>
+
+`;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   DEFAULT YEAR
+===================================================== */
+
+
+const defaultYearButton =
+
+document.querySelector(
+".year-buttons button[data-year='2026']"
+);
+
+
+
+
+
+
+if(defaultYearButton){
+
+
+
+defaultYearButton.classList.add(
+"active"
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   FINAL ENGINE STARTUP CHECK
+===================================================== */
+
+
+function portfolioReady(){
+
 
 
 console.log(
 
-"ADAM MORGAN PORTFOLIO — CPU LAB ONLINE"
+"%cADAM MORGAN PORTFOLIO ONLINE",
+
+"color:#00ff88;font-size:16px;font-weight:bold"
+
+);
+
+
+
+console.log(
+
+"%cSYSTEM: FPGA VISUALIZATION ACTIVE",
+
+"color:#00eaff"
+
+);
+
+
+
+console.log(
+
+"%cARCHITECTURE: DIGITAL SYSTEMS // COMPUTER ARCHITECTURE",
+
+"color:#9297a3"
 
 );
 
@@ -2512,4 +2179,9 @@ console.log(
 
 }
 
-);
+
+
+
+
+
+portfolioReady();
