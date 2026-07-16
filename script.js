@@ -1,19 +1,28 @@
 /* =====================================================
-   ADAM MORGAN PORTFOLIO — INTERACTION ENGINE
-   CLEAN VERSION
+   ADAM MORGAN PORTFOLIO
+   HARDWARE INTERACTION ENGINE
 ===================================================== */
+
 
 
 /* =====================================================
    SYSTEM SETTINGS
 ===================================================== */
 
+
 const prefersReducedMotion =
-  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+window.matchMedia(
+"(prefers-reduced-motion: reduce)"
+).matches;
+
+
 
 const isTouchDevice =
-  "ontouchstart" in window ||
-  navigator.maxTouchPoints > 0;
+"ontouchstart" in window ||
+navigator.maxTouchPoints > 0;
+
+
+
 
 
 
@@ -21,32 +30,58 @@ const isTouchDevice =
    DOM REFERENCES
 ===================================================== */
 
+
 const cards =
-  document.querySelectorAll(".card");
+document.querySelectorAll(".card");
+
+
 
 const revealCards =
-  document.querySelectorAll(".reveal");
+document.querySelectorAll(".reveal");
+
+
 
 const hero =
-  document.querySelector(".hero");
+document.querySelector(".hero");
+
+
 
 const typingElement =
-  document.getElementById("typing");
+document.getElementById("typing");
+
+
 
 const timeline =
-  document.getElementById("timeline-card");
+document.getElementById("module-002");
+
+
 
 const projectsButton =
-  document.getElementById("projects-button");
+document.getElementById("projects-button");
+
+
 
 const yearButtons =
-  document.querySelectorAll(".year-buttons button");
+document.querySelectorAll(
+".year-buttons button"
+);
+
+
 
 const projectGrid =
-  document.querySelector(".project-grid");
+document.querySelector(
+".project-grid"
+);
+
+
 
 const cpuField =
-  document.getElementById("cpu-field");
+document.getElementById(
+"cpu-field"
+);
+
+
+
 
 
 
@@ -55,59 +90,85 @@ const cpuField =
 ===================================================== */
 
 
-if ("IntersectionObserver" in window) {
-
-
-  const revealObserver =
-    new IntersectionObserver(
-
-      (entries) => {
-
-
-        entries.forEach((entry,index)=>{
-
-
-          if(entry.isIntersecting){
-
-
-            setTimeout(()=>{
-
-
-              entry.target.classList.add(
-                "active"
-              );
-
-
-            }, index * 100);
+if(
+"IntersectionObserver" in window
+){
 
 
 
-            revealObserver.unobserve(
-              entry.target
-            );
+const revealObserver =
+new IntersectionObserver(
+
+(entries)=>{
 
 
-          }
+entries.forEach(
+
+(entry,index)=>{
 
 
-        });
-
-
-      },
-
-      {
-        threshold:0.15
-      }
-
-    );
+if(entry.isIntersecting){
 
 
 
-  revealCards.forEach(card=>{
+setTimeout(()=>{
 
-    revealObserver.observe(card);
 
-  });
+entry.target.classList.add(
+"active"
+);
+
+
+},index*100);
+
+
+
+
+
+revealObserver.unobserve(
+entry.target
+);
+
+
+
+}
+
+
+
+}
+
+);
+
+
+
+},
+
+{
+
+threshold:.15
+
+}
+
+);
+
+
+
+
+
+revealCards.forEach(
+(card)=>{
+
+
+revealObserver.observe(
+card
+);
+
+
+}
+
+);
+
+
 
 
 }
@@ -115,56 +176,75 @@ if ("IntersectionObserver" in window) {
 else {
 
 
-  window.addEventListener(
-    "load",
-    ()=>{
+
+window.addEventListener(
+"load",
+()=>{
 
 
-      revealCards.forEach(
-        (card,index)=>{
+revealCards.forEach(
+(card,index)=>{
 
 
-          setTimeout(()=>{
+setTimeout(()=>{
 
 
-            card.classList.add(
-              "active"
-            );
+card.classList.add(
+"active"
+);
 
 
-          },index*120);
+},index*120);
 
 
-        }
-      );
+
+}
+
+);
 
 
-    }
-  );
+
+}
+
+);
+
 
 
 }
 
 
 
+
+
+
+
+
 /* =====================================================
-   TYPEWRITER ENGINE
+   TYPEWRITER SYSTEM
 ===================================================== */
 
 
 const typingWords = [
 
-  "32-bit pipelined RISC-V cores...",
 
-  "synthesizable RTL architectures...",
+"32-bit pipelined RISC-V cores...",
 
-  "FPGA hardware systems...",
 
-  "processor microarchitecture...",
+"synthesizable RTL architectures...",
 
-  "high-performance digital logic..."
+
+"FPGA hardware systems...",
+
+
+"processor microarchitecture...",
+
+
+"high-performance digital logic..."
+
 
 ];
+
+
 
 
 let wordIndex = 0;
@@ -175,113 +255,69 @@ let deleting = false;
 
 
 
+
+
+
+
 function typeWriter(){
 
 
-  if(!typingElement)
-    return;
+if(!typingElement)
+return;
 
 
 
-  const current =
-    typingWords[wordIndex];
+
+
+const current =
+typingWords[wordIndex];
 
 
 
-  if(!deleting){
 
 
-    charIndex++;
+if(!deleting){
 
 
-    typingElement.textContent =
-      current.substring(
-        0,
-        charIndex
-      );
+charIndex++;
 
 
 
-    if(charIndex >= current.length){
 
-
-      deleting = true;
-
-
-      setTimeout(
-        typeWriter,
-        1500
-      );
-
-
-      return;
-
-
-    }
-
-
-  }
-
-
-  else {
-
-
-    charIndex--;
+typingElement.textContent =
+current.substring(
+0,
+charIndex
+);
 
 
 
-    typingElement.textContent =
-      current.substring(
-        0,
-        charIndex
-      );
+
+
+if(
+charIndex >= current.length
+){
 
 
 
-    if(charIndex <= 0){
-
-
-      deleting=false;
-
-
-      wordIndex =
-        (wordIndex+1)
-        %
-        typingWords.length;
-
-
-    }
-
-
-  }
+deleting = true;
 
 
 
-  setTimeout(
+setTimeout(
+typeWriter,
+1500
+);
 
-    typeWriter,
 
-    deleting ? 35 : 70
 
-  );
+return;
+
 
 
 }
 
 
-
-if(prefersReducedMotion){
-
-
-  if(typingElement){
-
-
-    typingElement.textContent =
-      typingWords[0]
-      .replace("...","");
-
-
-  }
 
 
 }
@@ -289,632 +325,284 @@ if(prefersReducedMotion){
 else {
 
 
-  typeWriter();
+
+charIndex--;
+
+
+
+
+
+typingElement.textContent =
+current.substring(
+0,
+charIndex
+);
+
+
+
+
+
+if(charIndex<=0){
+
+
+deleting=false;
+
+
+
+wordIndex =
+(wordIndex+1)
+%
+typingWords.length;
+
 
 
 }
 
 
 
+}
+
+
+
+
+
+setTimeout(
+
+typeWriter,
+
+deleting ? 35 : 70
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+if(prefersReducedMotion){
+
+
+
+if(typingElement){
+
+
+
+typingElement.textContent =
+typingWords[0];
+
+
+
+}
+
+
+
+}
+
+else {
+
+
+typeWriter();
+
+
+}
 /* =====================================================
    CARD CURSOR GLOW
 ===================================================== */
 
 
 if(
-  !isTouchDevice &&
-  !prefersReducedMotion
+!isTouchDevice &&
+!prefersReducedMotion
 ){
 
 
-  cards.forEach(card=>{
+cards.forEach(card=>{
 
 
-    card.addEventListener(
-      "mousemove",
-      event=>{
+card.addEventListener(
+"mousemove",
+(event)=>{
 
 
-        const rect =
-          card.getBoundingClientRect();
-
-
-
-        card.style.setProperty(
-
-          "--mouse-x",
-
-          `${event.clientX - rect.left}px`
-
-        );
+const rect =
+card.getBoundingClientRect();
 
 
 
-        card.style.setProperty(
+card.style.setProperty(
 
-          "--mouse-y",
+"--mouse-x",
 
-          `${event.clientY - rect.top}px`
+`${event.clientX - rect.left}px`
 
-        );
-
-
-      }
-
-    );
+);
 
 
-  });
+
+card.style.setProperty(
+
+"--mouse-y",
+
+`${event.clientY - rect.top}px`
+
+);
+
+
+
+}
+
+);
+
+
+
+});
+
 
 
 }
 
 
 
+
+
+
+
+
+
 /* =====================================================
-   HERO PARALLAX
+   HERO 3D MOVEMENT
 ===================================================== */
 
 
 if(
-  hero &&
-  !prefersReducedMotion
+hero &&
+!prefersReducedMotion
 ){
 
 
-  hero.addEventListener(
-    "mousemove",
-    event=>{
+
+hero.addEventListener(
+"mousemove",
+(event)=>{
 
 
-      const rect =
-        hero.getBoundingClientRect();
-
-
-
-      const x =
-        (event.clientX - rect.left)
-        /
-        rect.width
-        -
-        0.5;
+const rect =
+hero.getBoundingClientRect();
 
 
 
-      const y =
-        (event.clientY - rect.top)
-        /
-        rect.height
-        -
-        0.5;
+
+const x =
+(event.clientX - rect.left)
+/
+rect.width
+-
+0.5;
 
 
 
-      hero.style.transform =
 
-      `
-      perspective(1200px)
-      rotateY(${x*3}deg)
-      rotateX(${-y*3}deg)
-      translateY(-3px)
-      `;
-
-
-    }
-
-  );
+const y =
+(event.clientY - rect.top)
+/
+rect.height
+-
+0.5;
 
 
 
-  hero.addEventListener(
-    "mouseleave",
-    ()=>{
 
 
-      hero.style.transform="";
+hero.style.transform =
+
+`
+perspective(1200px)
+rotateY(${x*3}deg)
+rotateX(${-y*3}deg)
+translateY(-4px)
+`;
 
 
-    }
 
-  );
+}
+
+);
+
+
+
+
+
+hero.addEventListener(
+"mouseleave",
+()=>{
+
+
+hero.style.transform = "";
+
+
+}
+
+);
+
 
 
 }
 
 
 
+
+
+
+
+
 /* =====================================================
-   TERMINAL DOT INTERACTION
+   TERMINAL BUTTON EFFECT
 ===================================================== */
 
 
 document
-.querySelectorAll(".terminal-dots span")
+.querySelectorAll(
+".terminal-dots span"
+)
 .forEach(dot=>{
 
 
-  dot.addEventListener(
-    "mouseenter",
-    ()=>{
+dot.addEventListener(
+"mouseenter",
+()=>{
 
 
-      dot.style.transform =
-      "scale(1.35) rotate(15deg)";
+dot.style.transform =
 
-
-    }
-
-  );
-
-
-
-  dot.addEventListener(
-    "mouseleave",
-    ()=>{
-
-
-      dot.style.transform =
-      "scale(1) rotate(0deg)";
-
-
-    }
-
-  );
-
-
-});
-
-/* =====================================================
-   PROJECT DATABASE
-===================================================== */
-
-
-const projects = {
-
-
-  2026: [
-
-    {
-      title:
-      "32-Bit Pipelined RISC-V CPU Core",
-
-      text:
-      "Designed a custom SystemVerilog processor architecture with a 5-stage pipeline, hazard detection, forwarding logic, and RTL verification."
-    },
-
-
-    {
-      title:
-      "RTL Verification Environment",
-
-      text:
-      "Built simulation workflows using ModelSim, GTKWave, and Icarus Verilog for waveform debugging and hardware validation."
-    },
-
-
-    {
-      title:
-      "Computer Architecture Research",
-
-      text:
-      "Exploring instruction pipelines, datapaths, memory systems, control units, and processor optimization techniques."
-    }
-
-  ],
-
-
-
-  2025: [
-
-    {
-      title:
-      "Digital Systems Development",
-
-      text:
-      "Developed foundations in digital logic, programming, electronics, and hardware design principles."
-    },
-
-
-    {
-      title:
-      "Engineering Applications",
-
-      text:
-      "Applied mathematics, physics, and programming toward engineering-focused technical problems."
-    },
-
-
-    {
-      title:
-      "FPGA Hardware Exploration",
-
-      text:
-      "Started exploring FPGA development, embedded systems, and hardware acceleration concepts."
-    }
-
-  ],
-
-
-
-  2024: [
-
-    {
-      title:
-      "Programming Foundation",
-
-      text:
-      "Built programming fundamentals and problem-solving skills through technical projects."
-    },
-
-
-    {
-      title:
-      "Engineering Curiosity",
-
-      text:
-      "Explored computer systems, electronics, and modern technology."
-    }
-
-  ]
-
-
-};
-
-
-
-
-
-/* =====================================================
-   PROJECT LOADER
-===================================================== */
-
-
-function loadProjects(year){
-
-
-  if(!projectGrid)
-    return;
-
-
-
-  projectGrid.style.opacity = "0";
-
-
-
-  setTimeout(()=>{
-
-
-    projectGrid.innerHTML = "";
-
-
-
-    projects[year].forEach(
-      (project,index)=>{
-
-
-        const item =
-        document.createElement(
-          "div"
-        );
-
-
-        item.className =
-        "project-item";
-
-
-
-        item.style.animationDelay =
-        `${index * 0.12}s`;
-
-
-
-        const title =
-        document.createElement(
-          "h4"
-        );
-
-
-        title.textContent =
-        project.title;
-
-
-
-        const text =
-        document.createElement(
-          "p"
-        );
-
-
-        text.textContent =
-        project.text;
-
-
-
-        item.append(
-          title,
-          text
-        );
-
-
-
-        projectGrid.appendChild(
-          item
-        );
-
-
-      }
-    );
-
-
-
-    projectGrid.style.opacity = "1";
-
-
-
-  },150);
+"scale(1.35) rotate(15deg)";
 
 
 }
 
+);
 
 
 
-
-/* =====================================================
-   ENGINEERING JOURNEY SYSTEM
-===================================================== */
-
-
-const TIMELINE_COLLAPSE_DELAY = 3500;
+dot.addEventListener(
+"mouseleave",
+()=>{
 
 
-let timelineCollapseTimer = null;
+dot.style.transform =
 
-
-let selectedYear =
-localStorage.getItem("selectedYear")
-||
-"2026";
-
-
-
-
-
-function cancelTimelineCollapse(){
-
-
-  if(timelineCollapseTimer){
-
-
-    clearTimeout(
-      timelineCollapseTimer
-    );
-
-
-    timelineCollapseTimer = null;
-
-
-  }
+"scale(1) rotate(0deg)";
 
 
 }
 
+);
 
-
-
-
-function scheduleTimelineCollapse(){
-
-
-  cancelTimelineCollapse();
-
-
-
-  timelineCollapseTimer =
-  setTimeout(()=>{
-
-
-    if(!timeline)
-      return;
-
-
-
-    timeline.classList.add(
-      "collapsing"
-    );
-
-
-
-    setTimeout(()=>{
-
-
-      timeline.classList.remove(
-        "expanded"
-      );
-
-
-      timeline.classList.remove(
-        "collapsing"
-      );
-
-
-
-    },700);
-
-
-
-  },TIMELINE_COLLAPSE_DELAY);
-
-
-
-}
-
-
-
-
-
-function activateYear(button){
-
-
-  if(!button)
-    return;
-
-
-
-  const year =
-  button.dataset.year;
-
-
-
-  selectedYear =
-  year;
-
-
-
-  localStorage.setItem(
-    "selectedYear",
-    year
-  );
-
-
-
-  yearButtons.forEach(btn=>{
-
-
-    btn.classList.remove(
-      "active"
-    );
-
-
-    btn.setAttribute(
-      "aria-selected",
-      "false"
-    );
-
-
-  });
-
-
-
-  button.classList.add(
-    "active"
-  );
-
-
-
-  button.setAttribute(
-    "aria-selected",
-    "true"
-  );
-
-
-
-  if(timeline){
-
-
-    cancelTimelineCollapse();
-
-
-
-    timeline.classList.add(
-      "expanded"
-    );
-
-
-  }
-
-
-
-  loadProjects(
-    year
-  );
-
-
-}
-
-
-
-
-
-function restoreSelectedYear(){
-
-
-  const savedButton =
-  document.querySelector(
-
-    `.year-buttons button[data-year="${selectedYear}"]`
-
-  );
-
-
-
-  if(savedButton){
-
-
-    activateYear(
-      savedButton
-    );
-
-
-  }
-
-
-}
-
-
-
-
-
-/* =====================================================
-   YEAR BUTTON EVENTS
-===================================================== */
-
-
-yearButtons.forEach(button=>{
-
-
-  button.addEventListener(
-    "mouseenter",
-    ()=>{
-
-
-      activateYear(
-        button
-      );
-
-
-    }
-  );
-
-
-
-  button.addEventListener(
-    "click",
-    ()=>{
-
-
-      activateYear(
-        button
-      );
-
-
-    }
-  );
-
-
-
-  button.addEventListener(
-    "focus",
-    ()=>{
-
-
-      activateYear(
-        button
-      );
-
-
-    }
-  );
 
 
 });
@@ -923,133 +611,87 @@ yearButtons.forEach(button=>{
 
 
 
+
+
+
+
 /* =====================================================
-   TIMELINE HOVER CONTROL
+   CPU DEBUG VISUALIZATION
 ===================================================== */
 
 
-if(timeline){
+const cpuConsole =
+document.querySelector(
+".cpu-console"
+);
 
 
-  timeline.addEventListener(
-    "mouseenter",
-    ()=>{
 
+function createCPUNode(){
 
-      cancelTimelineCollapse();
 
+if(!cpuConsole)
+return;
 
 
-      if(
-        !timeline.classList.contains(
-          "expanded"
-        )
-      ){
 
 
-        restoreSelectedYear();
+const node =
+document.createElement(
+"span"
+);
 
 
-      }
 
+node.className =
+"cpu-node";
 
-    }
-  );
 
 
 
-  timeline.addEventListener(
-    "mouseleave",
-    ()=>{
 
+node.style.left =
+`${Math.random()*90}%`;
 
-      scheduleTimelineCollapse();
 
 
-    }
-  );
 
 
+node.style.top =
+`${Math.random()*80}%`;
 
-  timeline.addEventListener(
-    "focusin",
-    ()=>{
 
 
-      cancelTimelineCollapse();
 
 
-    }
-  );
+node.style.animationDelay =
+`${Math.random()*2}s`;
 
 
 
-  timeline.addEventListener(
-    "focusout",
-    event=>{
 
 
-      if(
-        !timeline.contains(
-          event.relatedTarget
-        )
-      ){
+cpuConsole.appendChild(
+node
+);
 
 
-        scheduleTimelineCollapse();
 
 
-      }
 
+setTimeout(
+()=>{
 
-    }
-  );
 
+node.remove();
 
-}
 
+},
 
+4000
 
-restoreSelectedYear();
+);
 
-/* =====================================================
-   VIEW PROJECTS BUTTON
-===================================================== */
-
-
-function playTimelineGlow(){
-
-
-  if(!timeline)
-    return;
-
-
-
-  timeline.classList.remove(
-    "project-active"
-  );
-
-
-
-  void timeline.offsetWidth;
-
-
-
-  timeline.classList.add(
-    "project-active"
-  );
-
-
-
-  setTimeout(()=>{
-
-
-    timeline.classList.remove(
-      "project-active"
-    );
-
-
-  },5000);
 
 
 }
@@ -1058,82 +700,59 @@ function playTimelineGlow(){
 
 
 
-if(projectsButton && timeline){
 
 
-  projectsButton.addEventListener(
-    "click",
-    event=>{
+function startCPUAnimation(){
 
 
-      event.preventDefault();
-
-
-
-      timeline.scrollIntoView({
-
-
-        behavior:
-          prefersReducedMotion
-          ?
-          "auto"
-          :
-          "smooth",
-
-
-        block:
-        "center"
-
-
-      });
+if(
+!cpuConsole ||
+prefersReducedMotion
+)
+return;
 
 
 
-      setTimeout(()=>{
 
+setInterval(
 
-        if(yearButtons[0]){
+createCPUNode,
 
+700
 
-          activateYear(
-            yearButtons[0]
-          );
+);
 
-
-        }
-
-
-
-        playTimelineGlow();
-
-
-
-      },700);
-
-
-
-    }
-  );
 
 
 }
+
+
+
+
+startCPUAnimation();
+
+
+
+
 
 
 
 
 
 /* =====================================================
-   PIPELINE ANIMATION
+   PIPELINE PROCESSOR ANIMATION
 ===================================================== */
 
 
 const pipelineStages =
 document.querySelectorAll(
-  ".pipeline div"
+".pipeline-node"
 );
 
 
+
 let pipelineIndex = 0;
+
 
 
 let pipelineInterval = null;
@@ -1142,46 +761,63 @@ let pipelineInterval = null;
 
 
 
+
 function stepPipeline(){
 
 
-  if(!pipelineStages.length)
-    return;
 
-
-
-  pipelineStages.forEach(stage=>{
-
-
-    stage.style.boxShadow = "";
-
-    stage.style.color = "";
-
-
-  });
+if(!pipelineStages.length)
+return;
 
 
 
 
-  const activeStage =
-  pipelineStages[pipelineIndex];
+
+pipelineStages.forEach(stage=>{
+
+
+stage.style.boxShadow =
+"";
+
+
+stage.style.color =
+"";
 
 
 
-  activeStage.style.boxShadow =
-  "0 0 25px rgba(0,234,255,.5)";
+});
 
 
 
-  activeStage.style.color =
-  "#00ff88";
+
+
+const active =
+pipelineStages[pipelineIndex];
 
 
 
-  pipelineIndex =
-  (pipelineIndex + 1)
-  %
-  pipelineStages.length;
+
+active.style.boxShadow =
+
+"0 0 25px rgba(0,234,255,.5)";
+
+
+
+
+
+active.style.color =
+"#00ff88";
+
+
+
+
+
+pipelineIndex =
+
+(pipelineIndex+1)
+%
+pipelineStages.length;
+
 
 
 }
@@ -1195,24 +831,28 @@ function stepPipeline(){
 function startPipeline(){
 
 
-  if(
-    !pipelineStages.length ||
-    pipelineInterval ||
-    prefersReducedMotion
-  )
-    return;
+
+if(
+!pipelineStages.length ||
+prefersReducedMotion
+)
+return;
 
 
 
-  pipelineInterval =
-  setInterval(
-    stepPipeline,
-    1200
-  );
+
+pipelineInterval =
+setInterval(
+
+stepPipeline,
+
+1200
+
+);
+
 
 
 }
-
 
 
 
@@ -1220,25 +860,776 @@ function startPipeline(){
 function stopPipeline(){
 
 
-  if(pipelineInterval){
+
+if(pipelineInterval){
 
 
-    clearInterval(
-      pipelineInterval
-    );
+clearInterval(
+pipelineInterval
+);
 
 
-    pipelineInterval = null;
+pipelineInterval=null;
 
-
-  }
 
 
 }
 
 
 
+}
+
+
+
+
 startPipeline();
+/* =====================================================
+   ENGINEERING JOURNEY DATA
+===================================================== */
+
+
+const journeyProjects = {
+
+
+"2026":[
+
+
+{
+
+title:
+
+"32-Bit Pipelined RISC-V CPU Core",
+
+
+description:
+
+"Designing a custom RV32I processor architecture using SystemVerilog with pipeline stages, hazard detection, forwarding logic, and RTL verification."
+
+},
+
+
+
+{
+
+title:
+
+"FPGA Hardware Development",
+
+
+description:
+
+"Building synthesizable digital systems and testing hardware implementations on FPGA platforms."
+
+},
+
+
+
+{
+
+title:
+
+"Processor Verification Environment",
+
+
+description:
+
+"Creating simulation workflows using ModelSim, GTKWave, and automated RTL testing."
+
+}
+
+
+],
+
+
+
+
+
+"2025":[
+
+
+{
+
+title:
+
+"Digital Systems Development",
+
+
+description:
+
+"Developed foundations in digital logic design, Boolean systems, hardware description languages, and computer architecture."
+
+},
+
+
+
+{
+
+title:
+
+"Embedded Hardware Projects",
+
+
+description:
+
+"Created hardware-focused projects involving microcontrollers, sensors, and low-level programming."
+
+}
+
+
+],
+
+
+
+
+
+"2024":[
+
+
+{
+
+title:
+
+"Engineering Foundations",
+
+
+description:
+
+"Started developing programming, mathematics, physics, and engineering fundamentals."
+
+},
+
+
+
+{
+
+title:
+
+"First Hardware Experiments",
+
+
+description:
+
+"Explored electronics, circuits, and early digital design concepts."
+
+}
+
+
+]
+
+
+
+};
+
+
+
+
+
+
+
+
+/* =====================================================
+   TIMELINE ELEMENTS
+===================================================== */
+
+
+const timelineHint =
+document.querySelector(
+".timeline-hint"
+);
+
+
+
+let collapseTimer = null;
+
+
+
+
+
+
+
+function renderProjects(year){
+
+
+
+if(!projectGrid)
+return;
+
+
+
+
+projectGrid.innerHTML = "";
+
+
+
+
+
+const projects =
+journeyProjects[year];
+
+
+
+
+
+projects.forEach(
+(project,index)=>{
+
+
+const card =
+document.createElement(
+"div"
+);
+
+
+
+card.className =
+"project-item";
+
+
+
+
+
+card.style.animationDelay =
+
+`${index*120}ms`;
+
+
+
+
+
+card.innerHTML =
+
+
+`
+
+<h4>
+${project.title}
+</h4>
+
+<p>
+${project.description}
+</p>
+
+`;
+
+
+
+
+
+
+projectGrid.appendChild(
+card
+);
+
+
+
+});
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   TIMELINE EXPAND SYSTEM
+===================================================== */
+
+
+
+function expandTimeline(){
+
+
+
+if(!timeline)
+return;
+
+
+
+
+
+timeline.classList.remove(
+"collapsing"
+);
+
+
+
+timeline.classList.add(
+"expanded"
+);
+
+
+
+
+
+
+if(timelineHint){
+
+
+timelineHint.textContent =
+
+"Select another year to explore projects.";
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+function collapseTimeline(){
+
+
+
+if(!timeline)
+return;
+
+
+
+
+
+timeline.classList.add(
+"collapsing"
+);
+
+
+
+timeline.classList.remove(
+"expanded"
+);
+
+
+
+
+
+if(timelineHint){
+
+
+timelineHint.textContent =
+
+"Hover a year to explore projects.";
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function resetCollapseTimer(){
+
+
+
+clearTimeout(
+collapseTimer
+);
+
+
+
+
+
+collapseTimer =
+setTimeout(
+
+()=>{
+
+
+collapseTimeline();
+
+
+},
+
+4000
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   YEAR BUTTON EVENTS
+===================================================== */
+
+
+yearButtons.forEach(
+(button)=>{
+
+
+
+
+
+const year =
+button.dataset.year;
+
+
+
+
+
+
+button.addEventListener(
+"mouseenter",
+()=>{
+
+
+renderProjects(
+year
+);
+
+
+
+yearButtons.forEach(
+(btn)=>{
+
+btn.classList.remove(
+"active"
+);
+
+
+});
+
+
+
+
+button.classList.add(
+"active"
+);
+
+
+
+
+expandTimeline();
+
+
+
+resetCollapseTimer();
+
+
+
+}
+
+);
+
+
+
+
+
+
+button.addEventListener(
+"click",
+()=>{
+
+
+renderProjects(
+year
+);
+
+
+
+yearButtons.forEach(
+(btn)=>{
+
+
+btn.classList.remove(
+"active"
+);
+
+
+
+});
+
+
+
+button.classList.add(
+"active"
+);
+
+
+
+expandTimeline();
+
+
+
+resetCollapseTimer();
+
+
+
+}
+
+);
+
+
+
+});
+
+/* =====================================================
+   FPGA SIGNAL GENERATOR
+   RANDOM HARDWARE TRACE MOVEMENT
+===================================================== */
+
+
+function createSignal(){
+
+
+if(
+!cpuField ||
+prefersReducedMotion
+)
+return;
+
+
+
+
+
+const signal =
+document.createElement(
+"div"
+);
+
+
+
+signal.className =
+"cpu-pulse";
+
+
+
+
+
+const directions = [
+
+
+{
+angle:0,
+distance:"120vw"
+},
+
+
+{
+angle:180,
+distance:"-120vw"
+},
+
+
+{
+angle:90,
+distance:"120vh"
+},
+
+
+{
+angle:-90,
+distance:"-120vh"
+},
+
+
+{
+angle:45,
+distance:"120vw"
+},
+
+
+{
+angle:-45,
+distance:"120vw"
+},
+
+
+{
+angle:135,
+distance:"-120vw"
+},
+
+
+{
+angle:-135,
+distance:"-120vw"
+}
+
+
+
+];
+
+
+
+
+
+
+
+const direction =
+
+directions[
+Math.floor(
+Math.random()
+*
+directions.length
+)
+];
+
+
+
+
+
+
+signal.style.setProperty(
+
+"--angle",
+
+`${direction.angle}deg`
+
+);
+
+
+
+
+
+signal.style.setProperty(
+
+"--distance",
+
+direction.distance
+
+);
+
+
+
+
+
+
+signal.style.top =
+
+`${Math.random()*100}%`;
+
+
+
+
+
+signal.style.left =
+
+`${Math.random()*100}%`;
+
+
+
+
+
+signal.style.width =
+
+`${80 + Math.random()*220}px`;
+
+
+
+
+
+
+signal.style.animationDuration =
+
+`${3 + Math.random()*5}s`;
+
+
+
+
+
+
+cpuField.appendChild(
+signal
+);
+
+
+
+
+
+
+setTimeout(
+()=>{
+
+
+signal.remove();
+
+
+
+},
+
+9000
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function startSignals(){
+
+
+
+if(
+prefersReducedMotion
+)
+return;
+
+
+
+
+
+
+setInterval(
+
+()=>{
+
+
+createSignal();
+
+
+},
+
+900
+
+);
+
+
+
+}
+
+
+
+
+startSignals();
+
+
 
 
 
@@ -1251,60 +1642,58 @@ startPipeline();
 ===================================================== */
 
 
-const scrollBar =
-document.createElement(
-  "div"
-);
-
-
-
-scrollBar.className =
-"scroll-progress";
-
-
-
-document.body.appendChild(
-  scrollBar
+const progress =
+document.querySelector(
+".scroll-progress"
 );
 
 
 
 
-let scrollTicking = false;
+
+
+
+function updateScroll(){
+
+
+
+if(!progress)
+return;
 
 
 
 
 
-function updateScrollProgress(){
+const height =
 
-
-  const height =
-  document.documentElement.scrollHeight
-  -
-  window.innerHeight;
-
-
-
-  const progress =
-  height > 0
-  ?
-  (window.scrollY / height) * 100
-  :
-  0;
+document.documentElement.scrollHeight
+-
+window.innerHeight;
 
 
 
-  scrollBar.style.width =
-  `${progress}%`;
+
+
+const percent =
+
+(
+window.scrollY /
+height
+)
+*
+100;
 
 
 
-  scrollTicking = false;
+
+
+progress.style.width =
+
+`${percent}%`;
+
 
 
 }
-
 
 
 
@@ -1312,30 +1701,14 @@ function updateScrollProgress(){
 
 
 window.addEventListener(
-  "scroll",
-  ()=>{
 
+"scroll",
 
-    if(!scrollTicking){
+updateScroll,
 
-
-      requestAnimationFrame(
-        updateScrollProgress
-      );
-
-
-      scrollTicking = true;
-
-
-    }
-
-
-  },
-
-
-  {
-    passive:true
-  }
+{
+passive:true
+}
 
 );
 
@@ -1345,463 +1718,470 @@ window.addEventListener(
 
 
 
-
 /* =====================================================
-   RANDOM FPGA SIGNAL FIELD
+   TOUCH INTERACTION SUPPORT
 ===================================================== */
 
 
-const isSmallScreen =
-window.innerWidth < 700;
+if(isTouchDevice){
 
 
 
-const signalConfig = {
+cards.forEach(
+(card)=>{
 
 
-  initialCount:
-  isSmallScreen
-  ?
-  8
-  :
-  20,
 
+card.addEventListener(
+"touchstart",
+()=>{
 
 
-  intervalMs:
-  isSmallScreen
-  ?
-  4500
-  :
-  2500,
+card.classList.add(
+"touch-active"
+);
 
 
 
-  burstMin:
-  isSmallScreen
-  ?
-  1
-  :
-  2,
+},
+{
+passive:true
+}
 
+);
 
 
-  burstMax:
-  isSmallScreen
-  ?
-  3
-  :
-  6
 
 
-};
 
 
+card.addEventListener(
+"touchend",
+()=>{
 
 
+setTimeout(
+()=>{
 
-let signalInterval = null;
 
+card.classList.remove(
+"touch-active"
+);
 
-let burstTimeout = null;
 
 
+},
 
+150
 
+);
 
-
-
-function createSignal(initial=false){
-
-
-  if(!cpuField)
-    return;
-
-
-
-  const pulse =
-  document.createElement(
-    "div"
-  );
-
-
-
-  pulse.className =
-  "cpu-pulse";
-
-
-
-  const length =
-  Math.random()*250 + 150;
-
-
-
-  const startX =
-  Math.random()*120 - 20;
-
-
-
-  const startY =
-  Math.random()*120 - 20;
-
-
-
-  const angle =
-  Math.random()*360;
-
-
-
-  const distance =
-  Math.random()*600 + 500;
-
-
-
-  const duration =
-  Math.random()*5 + 8;
-
-
-
-  const opacity =
-  Math.random()*0.35 + 0.25;
-
-
-
-
-
-  pulse.style.width =
-  `${length}px`;
-
-
-
-  pulse.style.left =
-  `${startX}%`;
-
-
-
-  pulse.style.top =
-  `${startY}%`;
-
-
-
-  pulse.style.opacity =
-  opacity;
-
-
-
-  pulse.style.setProperty(
-    "--angle",
-    `${angle}deg`
-  );
-
-
-
-  pulse.style.setProperty(
-    "--distance",
-    `${distance}px`
-  );
-
-
-
-  pulse.style.animationDuration =
-  `${duration}s`;
-
-
-
-
-
-  if(initial){
-
-
-    pulse.style.animationDelay =
-    `${Math.random()*2}s`;
-
-
-  }
-
-
-
-
-
-
-  cpuField.appendChild(
-    pulse
-  );
-
-
-
-  setTimeout(()=>{
-
-
-    pulse.remove();
-
-
-
-  },(duration+3)*1000);
 
 
 }
 
+);
 
 
-
-
-
-function randomBurst(){
-
-
-  const amount =
-  Math.floor(
-
-    Math.random()
-    *
-    (
-      signalConfig.burstMax
-      -
-      signalConfig.burstMin
-      +
-      1
-    )
-
-  )
-  +
-  signalConfig.burstMin;
-
-
-
-
-
-  for(let i=0;i<amount;i++){
-
-
-    setTimeout(
-      ()=>createSignal(),
-      i*250
-    );
-
-
-  }
-
-
-
-
-
-  burstTimeout =
-  setTimeout(
-    randomBurst,
-    Math.random()*10000 + 10000
-  );
-
-
-}
-
-
-
-
-
-
-
-function startSignalSystem(){
-
-
-  if(!cpuField)
-    return;
-
-
-
-  for(
-    let i=0;
-    i<signalConfig.initialCount;
-    i++
-  ){
-
-
-    createSignal(true);
-
-
-  }
-
-
-
-  signalInterval =
-  setInterval(
-    createSignal,
-    signalConfig.intervalMs
-  );
-
-
-
-  randomBurst();
-
-
-}
-
-
-
-
-
-function stopSignalSystem(){
-
-
-  clearInterval(
-    signalInterval
-  );
-
-
-  clearTimeout(
-    burstTimeout
-  );
-
-
-  signalInterval = null;
-
-
-}
-
-
-
-
-
-if(!prefersReducedMotion){
-
-
-  startSignalSystem();
-
-
-}
-
-/* =====================================================
-   PAUSE ANIMATIONS WHEN TAB IS HIDDEN
-===================================================== */
-
-document.addEventListener("visibilitychange", () => {
-
-  if (document.hidden) {
-
-    stopPipeline();
-    stopSignalSystem();
-
-  }
-
-  else {
-
-    startPipeline();
-
-    if (!prefersReducedMotion) {
-      startSignalSystem();
-    }
-
-  }
 
 });
 
 
-/* =====================================================
-   PAGE LOADED
-===================================================== */
-
-window.addEventListener("load", () => {
-
-  document.body.classList.add("loaded");
-
-  console.log(
-    "ADAM MORGAN PORTFOLIO — SYSTEM ONLINE (RISC-V / RTL / FPGA)"
-  );
-
-});
-
-
-/* =====================================================
-   TOUCH FEEDBACK
-===================================================== */
-
-if (isTouchDevice) {
-
-  cards.forEach(card => {
-
-    card.addEventListener(
-      "touchstart",
-      () => {
-
-        card.classList.add("touch-active");
-
-      },
-      {
-        passive: true
-      }
-    );
-
-
-    card.addEventListener(
-      "touchend",
-      () => {
-
-        setTimeout(() => {
-
-          card.classList.remove("touch-active");
-
-        }, 300);
-
-      },
-      {
-        passive: true
-      }
-    );
-
-  });
 
 }
 
 
+
+
+
+
+
+
+
 /* =====================================================
-   KEYBOARD SHORTCUTS
+   PROJECT BUTTON
 ===================================================== */
 
-document.addEventListener("keydown", event => {
 
-  const tag =
-    document.activeElement?.tagName;
-
-  if (
-    tag === "INPUT" ||
-    tag === "TEXTAREA"
-  ) {
-    return;
-  }
+if(projectsButton){
 
 
-  if (event.key === "1" && yearButtons[0]) {
 
-    activateYear(yearButtons[0]);
-
-  }
-
-
-  if (event.key === "2" && yearButtons[1]) {
-
-    activateYear(yearButtons[1]);
-
-  }
+projectsButton.addEventListener(
+"click",
+()=>{
 
 
-  if (event.key === "3" && yearButtons[2]) {
+if(timeline){
 
-    activateYear(yearButtons[2]);
 
-  }
+
+timeline.classList.add(
+"project-active"
+);
+
+
+
+setTimeout(
+()=>{
+
+
+timeline.classList.remove(
+"project-active"
+);
+
+
+
+},
+
+2000
+
+);
+
+
+
+}
+
+
+
+
+}
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   PAGE LOAD STATE
+===================================================== */
+
+
+window.addEventListener(
+"load",
+()=>{
+
+
+document.body.classList.add(
+"loaded"
+);
+
+
+
+cards.forEach(
+(card,index)=>{
+
+
+setTimeout(
+()=>{
+
+
+card.classList.add(
+"active"
+);
+
+
+
+},
+
+index*120
+
+);
+
+
 
 });
 
 
+
+});
+
+
+
+
+
+
+
+
+
 /* =====================================================
-   FOOTER YEAR
+   CLEANUP WHEN TAB HIDDEN
 ===================================================== */
 
-const yearElement =
-  document.getElementById("year");
 
-if (yearElement) {
+document.addEventListener(
+"visibilitychange",
+()=>{
 
-  yearElement.textContent =
-    new Date().getFullYear();
+
+if(document.hidden){
+
+
+stopPipeline();
+
 
 }
+
+else {
+
+
+startPipeline();
+
+
+}
+
+
+
+});
+
+/* =====================================================
+   ACCESSIBILITY ENHANCEMENTS
+===================================================== */
+
+
+document
+.querySelectorAll("a, button")
+.forEach(element=>{
+
+
+element.addEventListener(
+"keydown",
+(event)=>{
+
+
+if(
+event.key === "Enter" ||
+event.key === " "
+){
+
+
+element.click();
+
+
+}
+
+
+
+}
+
+);
+
+
+
+});
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   RESIZE HANDLING
+===================================================== */
+
+
+let resizeTimer;
+
+
+
+window.addEventListener(
+"resize",
+()=>{
+
+
+clearTimeout(
+resizeTimer
+);
+
+
+
+
+resizeTimer =
+setTimeout(
+()=>{
+
+
+cards.forEach(card=>{
+
+
+card.style.removeProperty(
+"transform"
+);
+
+
+});
+
+
+
+},
+
+250
+
+);
+
+
+
+});
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   REMOVE HOVER BEHAVIOR ON MOBILE
+===================================================== */
+
+
+if(isTouchDevice){
+
+
+
+document
+.documentElement
+.classList.add(
+"touch-device"
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   INITIAL PROJECT STATE
+===================================================== */
+
+
+if(projectGrid){
+
+
+
+projectGrid.innerHTML =
+
+
+`
+
+<p class="timeline-hint">
+
+Hover a year to explore projects.
+
+</p>
+
+`;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   DEFAULT YEAR
+===================================================== */
+
+
+const defaultYearButton =
+
+document.querySelector(
+".year-buttons button[data-year='2026']"
+);
+
+
+
+
+
+
+if(defaultYearButton){
+
+
+
+defaultYearButton.classList.add(
+"active"
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   FINAL ENGINE STARTUP CHECK
+===================================================== */
+
+
+function portfolioReady(){
+
+
+
+console.log(
+
+"%cADAM MORGAN PORTFOLIO ONLINE",
+
+"color:#00ff88;font-size:16px;font-weight:bold"
+
+);
+
+
+
+console.log(
+
+"%cSYSTEM: FPGA VISUALIZATION ACTIVE",
+
+"color:#00eaff"
+
+);
+
+
+
+console.log(
+
+"%cARCHITECTURE: DIGITAL SYSTEMS // COMPUTER ARCHITECTURE",
+
+"color:#9297a3"
+
+);
+
+
+
+}
+
+
+
+
+
+
+portfolioReady();
