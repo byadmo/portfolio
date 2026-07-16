@@ -116,6 +116,7 @@ body::before {
   margin: auto;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(5, minmax(180px, auto));
   gap: 22px;
   position: relative;
   z-index: 2;
@@ -411,7 +412,10 @@ pre code { font-family: inherit; background: transparent; }
 
 @media (max-width: 1200px) {
   body { padding: 25px; }
-  .bento-grid { grid-template-columns: repeat(8, 1fr); }
+  .bento-grid {
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(5, minmax(180px, auto));
+  }
   .hero { grid-column: span 8; min-height: 520px; }
   .profile { grid-column: span 4; }
   .hardware { grid-column: span 8; }
