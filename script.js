@@ -2229,6 +2229,61 @@ card
 
 
 
+function updateTimelineSize(){
+
+
+if(
+!timeline ||
+!bentoGrid
+)
+return;
+
+
+const gridStyle =
+getComputedStyle(bentoGrid);
+
+
+const rowHeight =
+parseFloat(gridStyle.gridAutoRows);
+
+
+const rowGap =
+parseFloat(gridStyle.rowGap || gridStyle.gap) || 0;
+
+
+const neededHeight =
+timeline.scrollHeight + 28;
+
+
+timeline.style.setProperty(
+"--timeline-expanded-height",
+`${neededHeight}px`
+);
+
+
+if(
+!Number.isFinite(rowHeight) ||
+rowHeight <= 0
+)
+return;
+
+
+const expandedRows =
+Math.ceil(
+(neededHeight + rowGap) / (rowHeight + rowGap)
+) + 1;
+
+
+timeline.style.setProperty(
+"--timeline-expanded-rows",
+expandedRows
+);
+
+
+}
+
+
+
 function expandTimeline(){
 
 
@@ -2240,6 +2295,9 @@ return;
 clearTimeout(
 collapseTimer
 );
+
+
+updateTimelineSize();
 
 
 
@@ -2973,6 +3031,9 @@ resetBentoPressure();
 });
 
 
+updateTimelineSize();
+
+
 
 }
 
@@ -3256,6 +3317,9 @@ updateExpandableCardSize(
 prostheticCard,
 ".prosthetic-details"
 );
+
+
+updateTimelineSize();
 
 
 
