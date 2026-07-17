@@ -848,6 +848,127 @@ new WeakMap();
 
 
 
+function getExpandableProjectCards(){
+
+
+return [
+hardwareCard,
+prostheticCard
+].filter(Boolean);
+
+
+}
+
+
+
+function measureExpandedCardHeight(card,detailsSelector){
+
+
+const cardRect =
+card.getBoundingClientRect();
+
+
+if(cardRect.width <= 0)
+return 0;
+
+
+const clone =
+card.cloneNode(true);
+
+
+clone.classList.add(
+"is-expanded"
+);
+
+
+clone.classList.remove(
+"is-collapsing"
+);
+
+
+clone.style.position =
+"absolute";
+
+
+clone.style.visibility =
+"hidden";
+
+
+clone.style.pointerEvents =
+"none";
+
+
+clone.style.left =
+"-9999px";
+
+
+clone.style.top =
+"0";
+
+
+clone.style.width =
+`${cardRect.width}px`;
+
+
+clone.style.height =
+"auto";
+
+
+clone.style.gridRow =
+"auto";
+
+
+clone.style.opacity =
+"1";
+
+
+clone.style.transform =
+"none";
+
+
+clone.style.transition =
+"none";
+
+
+const cloneDetails =
+clone.querySelector(detailsSelector);
+
+
+if(cloneDetails){
+
+
+cloneDetails.style.maxHeight =
+"none";
+
+
+cloneDetails.style.opacity =
+"1";
+
+
+cloneDetails.style.transform =
+"none";
+
+
+}
+
+
+document.body.appendChild(clone);
+
+
+const expandedHeight =
+clone.scrollHeight;
+
+
+clone.remove();
+
+
+return expandedHeight;
+
+
+}
+
+
+
 function updateExpandableCardSize(card,detailsSelector){
 
 
@@ -868,7 +989,7 @@ return;
 
 card.style.setProperty(
 "--details-height",
-`${details.scrollHeight}px`
+`${details.scrollHeight + 2}px`
 );
 
 
@@ -891,18 +1012,21 @@ rowHeight <= 0
 return;
 
 
-const currentHeight =
-card.getBoundingClientRect().height;
-
-
 const expandedHeight =
-currentHeight + details.scrollHeight + 64;
+measureExpandedCardHeight(
+card,
+detailsSelector
+);
+
+
+if(expandedHeight <= 0)
+return;
 
 
 const expandedRows =
 Math.ceil(
 (expandedHeight + rowGap) / (rowHeight + rowGap)
-) + 2;
+) + 1;
 
 
 card.style.setProperty(
@@ -918,8 +1042,15 @@ expandedRows
 function expandProjectCard(card,detailsSelector){
 
 
+const expandableCards =
+getExpandableProjectCards();
+
+
+expandableCards.forEach(expandableCard=>{
+
+
 const activeTimer =
-expandableCollapseTimers.get(card);
+expandableCollapseTimers.get(expandableCard);
 
 
 if(activeTimer){
@@ -928,10 +1059,13 @@ if(activeTimer){
 clearTimeout(activeTimer);
 
 
-expandableCollapseTimers.delete(card);
+expandableCollapseTimers.delete(expandableCard);
 
 
 }
+
+
+});
 
 
 updateExpandableCardSize(
@@ -940,11 +1074,39 @@ detailsSelector
 );
 
 
-if(card.classList.contains("is-expanded"))
+const shouldAnimate =
+!card.classList.contains("is-expanded") ||
+card.classList.contains("is-collapsing") ||
+expandableCards.some(expandableCard=>
+expandableCard !== card &&
+(
+expandableCard.classList.contains("is-expanded") ||
+expandableCard.classList.contains("is-collapsing")
+)
+);
+
+
+if(!shouldAnimate)
 return;
 
 
 animateBentoLayout(()=>{
+
+
+expandableCards.forEach(expandableCard=>{
+
+
+if(expandableCard === card)
+return;
+
+
+expandableCard.classList.remove(
+"is-expanded",
+"is-collapsing"
+);
+
+
+});
 
 
 card.classList.remove(
@@ -974,16 +1136,6 @@ if(
 return;
 
 
-card.classList.add(
-"is-collapsing"
-);
-
-
-card.classList.remove(
-"is-expanded"
-);
-
-
 const activeTimer =
 expandableCollapseTimers.get(card);
 
@@ -1000,6 +1152,7 @@ animateBentoLayout(()=>{
 
 
 card.classList.remove(
+"is-expanded",
 "is-collapsing"
 );
 
@@ -1010,7 +1163,7 @@ card.classList.remove(
 expandableCollapseTimers.delete(card);
 
 
-},720);
+},90);
 
 
 expandableCollapseTimers.set(
