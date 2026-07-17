@@ -252,19 +252,8 @@ card.classList.add(
 const typingWords = [
 
 
-"32-bit pipelined RISC-V cores...",
+"32-Bit Pipelined RISC-V Processor"
 
-
-"synthesizable RTL architectures...",
-
-
-"FPGA hardware systems...",
-
-
-"processor microarchitecture...",
-
-
-"high-performance digital logic..."
 
 
 ];
@@ -1920,42 +1909,12 @@ const journeyProjects = {
 
 title:
 
-"32-Bit Pipelined RISC-V CPU Core",
+"2026",
 
 
 description:
 
-"Designing a custom RV32I processor architecture using SystemVerilog with pipeline stages, hazard detection, forwarding logic, and RTL verification."
-
-},
-
-
-
-{
-
-title:
-
-"FPGA Hardware Development",
-
-
-description:
-
-"Building synthesizable digital systems and testing hardware implementations on FPGA platforms."
-
-},
-
-
-
-{
-
-title:
-
-"Processor Verification Environment",
-
-
-description:
-
-"Creating simulation workflows using ModelSim, GTKWave, and automated RTL testing."
+"Building a pipelined RISC-V CPU and expanding into FPGA development."
 
 }
 
@@ -1973,27 +1932,12 @@ description:
 
 title:
 
-"Digital Systems Development",
+"2025",
 
 
 description:
 
-"Developed foundations in digital logic design, Boolean systems, hardware description languages, and computer architecture."
-
-},
-
-
-
-{
-
-title:
-
-"Embedded Hardware Projects",
-
-
-description:
-
-"Created hardware-focused projects involving microcontrollers, sensors, and low-level programming."
+"Designed ALUs, control logic, and hardware modules."
 
 }
 
@@ -2011,27 +1955,12 @@ description:
 
 title:
 
-"Engineering Foundations",
+"2024",
 
 
 description:
 
-"Started developing programming, mathematics, physics, and engineering fundamentals."
-
-},
-
-
-
-{
-
-title:
-
-"First Hardware Experiments",
-
-
-description:
-
-"Explored electronics, circuits, and early digital design concepts."
+"Started learning digital logic and Verilog."
 
 }
 
@@ -2206,7 +2135,7 @@ if(timelineHint){
 
 timelineHint.textContent =
 
-"Select another year to explore projects.";
+"Select another year to see the progression.";
 
 
 }
@@ -2257,7 +2186,7 @@ if(timelineHint){
 
 timelineHint.textContent =
 
-"Hover a year to explore projects.";
+"Select a year to see the progression.";
 
 
 }
@@ -3256,7 +3185,7 @@ projectGrid.innerHTML =
 
 <p class="timeline-hint">
 
-Hover a year to explore projects.
+Select a year to see the progression.
 
 </p>
 
@@ -3298,6 +3227,11 @@ defaultYearButton.classList.add(
 );
 
 
+renderProjects(
+"2026"
+);
+
+
 
 }
 
@@ -3320,7 +3254,7 @@ function portfolioReady(){
 
 console.log(
 
-"%cADAM MORGAN PORTFOLIO ONLINE",
+"%cAdam Morgan portfolio ready.",
 
 "color:#00ff88;font-size:16px;font-weight:bold"
 
@@ -3330,7 +3264,7 @@ console.log(
 
 console.log(
 
-"%cSYSTEM: FPGA VISUALIZATION ACTIVE",
+"%cFocus: processor architecture, RTL design, FPGA development, and digital systems.",
 
 "color:#00eaff"
 
@@ -3340,7 +3274,7 @@ console.log(
 
 console.log(
 
-"%cARCHITECTURE: DIGITAL SYSTEMS // COMPUTER ARCHITECTURE",
+"%cDesigned and built by Adam Morgan.",
 
 "color:#9297a3"
 

@@ -239,12 +239,12 @@ body.cursor-active .cursor-light {
 
 .hero {
   grid-column: 1 / 9;
-  grid-row: span 27;
+  grid-row: span 28;
 }
 
 .hardware {
   grid-column: 1 / 9;
-  grid-row: span 22;
+  grid-row: span 42;
   align-self: stretch;
 }
 
@@ -258,7 +258,7 @@ body.cursor-active .cursor-light {
 
 .prosthetic {
   grid-column: 1 / 9;
-  grid-row: span 20;
+  grid-row: span 22;
 }
 
 .prosthetic.is-expanded {
@@ -269,29 +269,44 @@ body.cursor-active .cursor-light {
   grid-row: span var(--expanded-rows, 39);
 }
 
-.profile {
-  grid-column: 9 / 13;
-  grid-row: span 15;
-}
-
-.timeline {
-  grid-column: 9 / 13;
-  grid-row: span 15;
-}
-
-.stack {
+.about {
   grid-column: 9 / 13;
   grid-row: span 23;
 }
 
-.entrepreneur {
+.timeline {
+  grid-column: 9 / 13;
+  grid-row: span 18;
+}
+
+.stack {
+  grid-column: 9 / 13;
+  grid-row: span 30;
+}
+
+.focus {
+  grid-column: 9 / 13;
+  grid-row: span 21;
+}
+
+.philosophy {
   grid-column: 1 / 5;
   grid-row: span 18;
 }
 
+.learning {
+  grid-column: 5 / 9;
+  grid-row: span 18;
+}
+
+.entrepreneur {
+  grid-column: 1 / 5;
+  grid-row: span 17;
+}
+
 .connect {
   grid-column: 5 / 9;
-  grid-row: span 15;
+  grid-row: span 17;
 }
 
 .terminal-dots {
@@ -366,6 +381,12 @@ p {
 .working-label {
   color: var(--cyan);
   font-weight: 700;
+}
+
+.hero-role {
+  color: var(--white);
+  font-weight: 700;
+  margin-bottom: 14px;
 }
 
 #typing {
@@ -584,13 +605,90 @@ p {
   transform: translateY(-5px);
 }
 
+.project-summary-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 26px;
+}
+
+.project-summary-grid h3 {
+  color: var(--green);
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.check-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.check-list li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: var(--green);
+}
+
+.status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.status-row {
+  display: grid;
+  grid-template-columns: minmax(100px, 1fr) 1.4fr auto;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.status-row strong {
+  color: var(--white);
+  font-size: 12px;
+}
+
+.status-bar {
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .1);
+}
+
+.status-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--cyan), var(--green));
+  box-shadow: 0 0 16px rgba(0, 234, 255, .32);
+}
+
 .hardware ul {
   margin-top: 20px;
+}
+
+.hardware .check-list {
+  margin-top: 0;
+  padding-left: 0;
 }
 
 .hardware li {
   margin-top: 15px;
   color: var(--muted);
+}
+
+.hardware .check-list li:first-child {
+  margin-top: 0;
 }
 
 .hardware-details {
@@ -965,6 +1063,29 @@ p {
   transform: translateY(-4px);
 }
 
+.about p,
+.focus li,
+.philosophy li {
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.about p + p {
+  margin-top: 16px;
+}
+
+.focus ul,
+.philosophy ul {
+  margin-top: 18px;
+  padding-left: 20px;
+}
+
+.focus li,
+.philosophy li {
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
 .entrepreneur ul {
   margin-top: 18px;
   padding-left: 20px;
@@ -1092,6 +1213,26 @@ a {
     grid-row: auto;
   }
 
+  .about {
+    grid-column: 1 / 5;
+    grid-row: auto;
+  }
+
+  .focus {
+    grid-column: 5 / 9;
+    grid-row: auto;
+  }
+
+  .philosophy {
+    grid-column: 1 / 5;
+    grid-row: auto;
+  }
+
+  .learning {
+    grid-column: 5 / 9;
+    grid-row: auto;
+  }
+
   .entrepreneur {
     grid-column: 1 / 5;
     grid-row: auto;
@@ -1102,13 +1243,8 @@ a {
     grid-row: auto;
   }
 
-  .profile {
-    grid-column: 1 / 5;
-    grid-row: auto;
-  }
-
   .timeline {
-    grid-column: 5 / 9;
+    grid-column: 1 / -1;
     grid-row: auto;
   }
 
@@ -1117,7 +1253,10 @@ a {
     grid-row: auto;
   }
 
-  .profile,
+  .about,
+  .focus,
+  .philosophy,
+  .learning,
   .stack,
   .entrepreneur,
   .connect {
@@ -1172,30 +1311,42 @@ a {
     order: 3;
   }
 
-  .entrepreneur {
+  .about {
     order: 4;
   }
 
-  .connect {
+  .focus {
     order: 5;
   }
 
-  .profile {
-    order: 6;
-  }
-
   .timeline {
-    order: 7;
+    order: 6;
     height: auto;
     max-height: 330px;
   }
 
-  .timeline.expanded {
-    max-height: 1500px;
+  .stack {
+    order: 7;
   }
 
-  .stack {
+  .philosophy {
     order: 8;
+  }
+
+  .learning {
+    order: 9;
+  }
+
+  .entrepreneur {
+    order: 10;
+  }
+
+  .connect {
+    order: 11;
+  }
+
+  .timeline.expanded {
+    max-height: 1500px;
   }
 }
 
@@ -1265,6 +1416,17 @@ a {
   .pipeline-node {
     padding: 12px;
     font-size: 12px;
+  }
+
+  .project-summary-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .status-row {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 7px;
   }
 
   .cpu-console {
