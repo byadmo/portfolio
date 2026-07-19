@@ -1524,21 +1524,8 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .cpu-pulse,
-  .noise {
-    display: none;
-  }
-
   .card {
-    opacity: 1 !important;
-    transform: none !important;
+    opacity: 1;
   }
 }
 

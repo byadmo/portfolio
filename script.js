@@ -11,9 +11,7 @@
 
 
 const prefersReducedMotion =
-window.matchMedia(
-"(prefers-reduced-motion: reduce)"
-).matches;
+false;
 
 
 
@@ -1560,6 +1558,10 @@ resetBentoPressure
 }
 
 
+let lastProjectTouchTime =
+0;
+
+
 if(hardwareCard){
 
 
@@ -1593,7 +1595,31 @@ expandHardware
 
 
 hardwareCard.addEventListener(
+"mouseenter",
+expandHardware
+);
+
+
+hardwareCard.addEventListener(
 "pointerleave",
+collapseHardware
+);
+
+
+hardwareCard.addEventListener(
+"mouseleave",
+collapseHardware
+);
+
+
+hardwareCard.addEventListener(
+"focusin",
+expandHardware
+);
+
+
+hardwareCard.addEventListener(
+"focusout",
 collapseHardware
 );
 
@@ -1601,6 +1627,10 @@ collapseHardware
 hardwareCard.addEventListener(
 "touchstart",
 ()=>{
+
+
+lastProjectTouchTime =
+Date.now();
 
 
 toggleProjectCard(
@@ -1612,6 +1642,28 @@ hardwareCard,
 },
 {
 passive:true
+}
+);
+
+
+hardwareCard.addEventListener(
+"click",
+(event)=>{
+
+
+if(
+Date.now() - lastProjectTouchTime < 700 ||
+event.target.closest("a, button")
+)
+return;
+
+
+toggleProjectCard(
+hardwareCard,
+".hardware-details"
+);
+
+
 }
 );
 
@@ -1653,7 +1705,19 @@ expandProsthetic
 
 
 prostheticCard.addEventListener(
+"mouseenter",
+expandProsthetic
+);
+
+
+prostheticCard.addEventListener(
 "pointerleave",
+collapseProsthetic
+);
+
+
+prostheticCard.addEventListener(
+"mouseleave",
 collapseProsthetic
 );
 
@@ -1675,6 +1739,10 @@ prostheticCard.addEventListener(
 ()=>{
 
 
+lastProjectTouchTime =
+Date.now();
+
+
 toggleProjectCard(
 prostheticCard,
 ".prosthetic-details"
@@ -1684,6 +1752,28 @@ prostheticCard,
 },
 {
 passive:true
+}
+);
+
+
+prostheticCard.addEventListener(
+"click",
+(event)=>{
+
+
+if(
+Date.now() - lastProjectTouchTime < 700 ||
+event.target.closest("a, button")
+)
+return;
+
+
+toggleProjectCard(
+prostheticCard,
+".prosthetic-details"
+);
+
+
 }
 );
 
