@@ -2745,6 +2745,598 @@ resetCollapseTimer();
 });
 
 /* =====================================================
+   SILICON DIE BACKGROUND ENGINE
+===================================================== */
+
+function createSiliconDieField(){
+if(
+!cpuField ||
+typeof HTMLCanvasElement === "undefined" ||
+!(cpuField instanceof HTMLCanvasElement)
+)
+return null;
+
+const canvas = cpuField;
+const ctx = canvas.getContext("2d",{ alpha:true });
+
+if(!ctx)
+return null;
+
+const state = {
+width:0,
+height:0,
+dpr:1,
+traces:[],
+nodes:[],
+clusters:[],
+pulses:[],
+buses:[],
+projectRoute:null,
+cursor:{ x:-1000,y:-1000,active:false },
+activityBoost:1,
+nextPulse:0,
+nextRipple:0,
+nextBus:0,
+ripple:null,
+lastTime:0,
+frame:null
+};
+
+const clamp = (value,min,max)=>Math.max(min,Math.min(max,value));
+const rand = (min,max)=>min + Math.random() * (max - min);
+const choose = (items)=>items[Math.floor(Math.random() * items.length)];
+const snap = (value,grid)=>Math.round(value / grid) * grid + .5;
+const channel = (value,grid)=>snap(value,grid) + choose([-6,-3,0,4,7]);
+const segmentLength = (a,b)=>Math.hypot(b.x - a.x,b.y - a.y);
+
+function buildTrace(points,options = {}){
+const segments = [];
+let length = 0;
+
+for(let i = 1; i < points.length; i++){
+const start = points[i - 1];
+const end = points[i];
+const segment = {
+start,
+end,
+length:segmentLength(start,end),
+offset:length
+};
+
+if(segment.length > 4){
+segments.push(segment);
+length += segment.length;
+}
+}
+
+return {
+points,
+segments,
+length,
+alpha:options.alpha || rand(.018,.04),
+bus:Boolean(options.bus),
+temporary:Boolean(options.temporary),
+activeUntil:0,
+seed:Math.random() * 1000
+};
+}
+
+function pointOnTrace(trace,distance){
+let remaining = clamp(distance,0,trace.length);
+
+for(const segment of trace.segments){
+if(remaining <= segment.length){
+const ratio = segment.length === 0 ? 0 : remaining / segment.length;
+
+return {
+x:segment.start.x + (segment.end.x - segment.start.x) * ratio,
+y:segment.start.y + (segment.end.y - segment.start.y) * ratio,
+angle:Math.atan2(segment.end.y - segment.start.y,segment.end.x - segment.start.x)
+};
+}
+
+remaining -= segment.length;
+}
+
+const last = trace.points[trace.points.length - 1];
+
+return {
+x:last.x,
+y:last.y,
+angle:0
+};
+}
+
+function distanceToTrace(trace,x,y){
+let best = Infinity;
+
+for(const segment of trace.segments){
+const dx = segment.end.x - segment.start.x;
+const dy = segment.end.y - segment.start.y;
+const lengthSq = dx * dx + dy * dy;
+const t = lengthSq === 0
+? 0
+: clamp(((x - segment.start.x) * dx + (y - segment.start.y) * dy) / lengthSq,0,1);
+const px = segment.start.x + dx * t;
+const py = segment.start.y + dy * t;
+best = Math.min(best,Math.hypot(x - px,y - py));
+}
+
+return best;
+}
+
+function generateRoute(){
+const grid = choose(
+state.width < 700
+? [27,31,37]
+: [29,34,41,47]
+);
+let x = channel(rand(-80,state.width + 80),grid);
+let y = channel(rand(-80,state.height + 80),grid);
+let horizontal = Math.random() > .42;
+const points = [{ x,y }];
+const turns = 2 + Math.floor(Math.random() * 4);
+
+for(let i = 0; i < turns; i++){
+const step = channel(rand(90,460),grid) * (Math.random() > .5 ? 1 : -1);
+
+if(horizontal){
+x = clamp(x + step,-120,state.width + 120);
+}
+else {
+y = clamp(y + step,-120,state.height + 120);
+}
+
+points.push({ x,y });
+
+if(Math.random() > .24)
+horizontal = !horizontal;
+}
+
+return buildTrace(points);
+}
+
+function rebuildField(){
+state.width = window.innerWidth;
+state.height = window.innerHeight;
+state.dpr = Math.min(window.devicePixelRatio || 1,2);
+canvas.width = Math.floor(state.width * state.dpr);
+canvas.height = Math.floor(state.height * state.dpr);
+canvas.style.width = `${state.width}px`;
+canvas.style.height = `${state.height}px`;
+ctx.setTransform(state.dpr,0,0,state.dpr,0,0);
+
+const mobile = state.width < 700;
+const traceCount = mobile ? 38 : 156;
+const busCount = mobile ? 3 : 10;
+
+state.traces = Array.from({ length:traceCount },generateRoute);
+state.buses = Array.from({ length:busCount },()=>{
+const y = snap(rand(70,state.height - 70),mobile ? 40 : 48);
+const startX = snap(rand(-120,80),48);
+const endX = snap(rand(state.width * .68,state.width + 160),48);
+
+return buildTrace(
+[
+{ x:startX,y },
+{ x:snap(rand(state.width * .28,state.width * .55),48),y },
+{ x:endX,y }
+],
+{
+bus:true,
+alpha:.035
+}
+);
+});
+
+state.traces.push(...state.buses);
+
+const nodeMap = new Map();
+
+state.traces.forEach(trace=>{
+trace.points.forEach(point=>{
+if(
+Math.random() < .58 &&
+point.x > -20 &&
+point.x < state.width + 20 &&
+point.y > -20 &&
+point.y < state.height + 20
+){
+const key = `${Math.round(point.x / 6)}:${Math.round(point.y / 6)}`;
+
+if(!nodeMap.has(key)){
+nodeMap.set(key,{
+x:point.x,
+y:point.y,
+size:rand(1.4,2.3),
+switch:0
+});
+}
+}
+});
+});
+
+state.nodes = Array.from(nodeMap.values()).slice(0,mobile ? 34 : 72);
+state.clusters = Array.from({ length:mobile ? 4 : 12 },()=>({
+x:rand(40,Math.max(80,state.width - 180)),
+y:rand(40,Math.max(80,state.height - 150)),
+cols:5 + Math.floor(Math.random() * 5),
+rows:2 + Math.floor(Math.random() * 3),
+cell:mobile ? 8 : 9,
+seed:Math.floor(Math.random() * 120)
+}));
+
+drawField(performance.now());
+}
+
+function drawTrace(trace,alpha){
+if(trace.segments.length === 0)
+return;
+
+ctx.beginPath();
+ctx.moveTo(trace.points[0].x,trace.points[0].y);
+
+for(let i = 1; i < trace.points.length; i++){
+ctx.lineTo(trace.points[i].x,trace.points[i].y);
+}
+
+ctx.lineWidth = trace.bus ? 1.25 : 1;
+ctx.strokeStyle = `rgba(215,245,255,${alpha})`;
+ctx.stroke();
+}
+
+function drawClusters(time){
+state.clusters.forEach(cluster=>{
+let active = -1;
+const width = cluster.cols * cluster.cell;
+const height = cluster.rows * cluster.cell;
+
+for(const pulse of state.pulses){
+const point = pointOnTrace(pulse.trace,pulse.distance);
+
+if(
+point.x > cluster.x - 24 &&
+point.x < cluster.x + width + 24 &&
+point.y > cluster.y - 24 &&
+point.y < cluster.y + height + 24
+){
+active = Math.floor((time / 90 + cluster.seed) % (cluster.cols * cluster.rows));
+break;
+}
+}
+
+for(let row = 0; row < cluster.rows; row++){
+for(let col = 0; col < cluster.cols; col++){
+const index = row * cluster.cols + col;
+const x = cluster.x + col * cluster.cell;
+const y = cluster.y + row * cluster.cell;
+ctx.fillStyle = index === active ? "rgba(0,234,255,.22)" : "rgba(255,255,255,.018)";
+ctx.strokeStyle = index === active ? "rgba(0,234,255,.52)" : "rgba(255,255,255,.03)";
+ctx.lineWidth = 1;
+ctx.fillRect(x,y,cluster.cell - 3,cluster.cell - 3);
+ctx.strokeRect(x + .5,y + .5,cluster.cell - 4,cluster.cell - 4);
+}
+}
+});
+}
+
+function drawNodes(){
+state.nodes.forEach(node=>{
+let active = 0;
+
+for(const pulse of state.pulses){
+const point = pointOnTrace(pulse.trace,pulse.distance);
+const distance = Math.hypot(point.x - node.x,point.y - node.y);
+
+if(distance < 18){
+active = Math.max(active,1 - distance / 18);
+}
+}
+
+node.switch = Math.max(node.switch * .88,active);
+
+ctx.beginPath();
+ctx.arc(node.x,node.y,node.size + node.switch * 1.15,0,Math.PI * 2);
+ctx.fillStyle = `rgba(0,234,255,${.08 + node.switch * .82})`;
+ctx.shadowBlur = node.switch > .08 ? 12 : 0;
+ctx.shadowColor = "rgba(0,234,255,.75)";
+ctx.fill();
+ctx.shadowBlur = 0;
+});
+}
+
+function drawPulse(pulse){
+const point = pointOnTrace(pulse.trace,pulse.distance);
+const tail = pointOnTrace(pulse.trace,Math.max(0,pulse.distance - 34));
+ctx.beginPath();
+ctx.moveTo(tail.x,tail.y);
+ctx.lineTo(point.x,point.y);
+ctx.lineWidth = pulse.size;
+ctx.lineCap = "round";
+ctx.strokeStyle = pulse.accent ? "rgba(0,255,136,.62)" : "rgba(0,234,255,.72)";
+ctx.shadowBlur = 18;
+ctx.shadowColor = pulse.accent ? "rgba(0,255,136,.72)" : "rgba(0,234,255,.86)";
+ctx.stroke();
+ctx.shadowBlur = 0;
+}
+
+function drawField(time){
+ctx.clearRect(0,0,state.width,state.height);
+drawClusters(time);
+
+state.traces.forEach(trace=>{
+let alpha = trace.alpha;
+
+if(
+state.cursor.active &&
+distanceToTrace(trace,state.cursor.x,state.cursor.y) < 120
+){
+alpha += .004;
+}
+
+if(state.ripple){
+const progress = (time - state.ripple.started) / state.ripple.duration;
+const waveX = progress * (state.width + 260) - 130;
+const midpoint = trace.points[Math.floor(trace.points.length / 2)];
+const distance = Math.abs(midpoint.x - waveX);
+
+if(distance < 80){
+alpha += .026 * (1 - distance / 80);
+}
+}
+
+if(trace.activeUntil && trace.activeUntil > time){
+alpha += .13;
+}
+
+drawTrace(trace,alpha);
+});
+
+if(state.projectRoute){
+const age = time - state.projectRoute.started;
+
+if(age < 2600){
+drawTrace(state.projectRoute.trace,.16 * (1 - age / 2600));
+}
+else {
+state.projectRoute = null;
+}
+}
+
+state.pulses.forEach(drawPulse);
+drawNodes();
+}
+
+function findNearbyTrace(point){
+let best = null;
+let bestDistance = Infinity;
+
+state.traces.forEach(trace=>{
+const distance = distanceToTrace(trace,point.x,point.y);
+
+if(distance < bestDistance){
+bestDistance = distance;
+best = trace;
+}
+});
+
+return bestDistance < 34 ? best : null;
+}
+
+function addPulse(trace,options = {}){
+if(!trace || trace.length < 40)
+return;
+
+state.pulses.push({
+trace,
+distance:options.start || 0,
+speed:options.speed || rand(500,900),
+size:options.size || rand(6,8),
+accent:Boolean(options.accent),
+pauseUntil:0,
+branchAt:rand(trace.length * .3,trace.length * .82),
+branched:false,
+arrived:options.arrived || null
+});
+}
+
+function spawnPulse(time){
+const maxPulses = state.width < 700 ? 10 : 20;
+
+if(state.pulses.length < maxPulses){
+addPulse(choose(state.traces),{
+accent:Math.random() > .92
+});
+}
+
+state.nextPulse = time + rand(800,2500) / state.activityBoost;
+}
+
+function triggerRipple(time){
+state.ripple = {
+started:time,
+duration:1400
+};
+state.nextRipple = time + rand(10000,20000);
+}
+
+function triggerBus(time){
+const bus = choose(state.buses);
+
+if(bus){
+bus.activeUntil = time + 320;
+addPulse(bus,{
+speed:920,
+size:8,
+accent:true
+});
+}
+
+state.nextBus = time + rand(6000,13000);
+}
+
+function updatePulses(time,delta){
+state.pulses = state.pulses.filter(pulse=>{
+if(pulse.pauseUntil && time < pulse.pauseUntil)
+return true;
+
+if(Math.random() < .002){
+pulse.pauseUntil = time + rand(120,420);
+return true;
+}
+
+const variation = .82 + Math.sin(time * .002 + pulse.trace.seed) * .24;
+pulse.distance += pulse.speed * variation * state.activityBoost * delta;
+
+if(!pulse.branched && pulse.distance > pulse.branchAt){
+pulse.branched = true;
+
+if(Math.random() < .1){
+const branch = findNearbyTrace(pointOnTrace(pulse.trace,pulse.distance));
+
+if(branch && branch !== pulse.trace){
+addPulse(branch,{
+speed:pulse.speed * rand(.76,1.12),
+size:Math.max(5,pulse.size - 1),
+accent:pulse.accent
+});
+}
+}
+}
+
+if(pulse.distance >= pulse.trace.length){
+if(pulse.arrived)
+pulse.arrived();
+
+return false;
+}
+
+return true;
+});
+}
+
+function animate(time){
+const delta = state.lastTime ? Math.min((time - state.lastTime) / 1000,.04) : 0;
+state.lastTime = time;
+
+if(time > state.nextPulse)
+spawnPulse(time);
+
+if(time > state.nextRipple)
+triggerRipple(time);
+
+if(state.ripple && time - state.ripple.started > state.ripple.duration)
+state.ripple = null;
+
+if(time > state.nextBus)
+triggerBus(time);
+
+updatePulses(time,delta);
+drawField(time);
+
+if(!prefersReducedMotion){
+state.frame = requestAnimationFrame(animate);
+}
+}
+
+function triggerProjectPulse(){
+if(
+!projectsButton ||
+!timeline
+)
+return;
+
+const buttonRect = projectsButton.getBoundingClientRect();
+const targetRect = timeline.getBoundingClientRect();
+const start = {
+x:buttonRect.left + buttonRect.width / 2,
+y:buttonRect.top + buttonRect.height / 2
+};
+const end = {
+x:targetRect.left + Math.min(targetRect.width * .5,260),
+y:targetRect.top + Math.min(targetRect.height * .45,190)
+};
+const midY = snap(start.y + (end.y - start.y) * .46,34);
+const route = buildTrace(
+[
+start,
+{ x:start.x,y:midY },
+{ x:snap(end.x,34),y:midY },
+end
+],
+{
+temporary:true,
+alpha:.08
+}
+);
+
+state.projectRoute = {
+trace:route,
+started:performance.now()
+};
+
+addPulse(route,{
+speed:880,
+size:9,
+accent:true,
+arrived:()=>{
+if(timeline){
+timeline.classList.add("project-active");
+
+setTimeout(()=>{
+timeline.classList.remove("project-active");
+},1200);
+}
+}
+});
+}
+
+function handleResize(){
+rebuildField();
+
+if(!prefersReducedMotion){
+const now = performance.now();
+state.nextPulse = now + 200;
+state.nextRipple = now + rand(3000,6000);
+state.nextBus = now + rand(2500,6000);
+}
+}
+
+window.addEventListener("resize",handleResize,{ passive:true });
+
+document.addEventListener("pointermove",(event)=>{
+state.cursor.x = event.clientX;
+state.cursor.y = event.clientY;
+state.cursor.active = true;
+},{ passive:true });
+
+document.addEventListener("pointerleave",()=>{
+state.cursor.active = false;
+});
+
+projectCards.forEach(card=>{
+card.addEventListener("pointerenter",()=>{
+state.activityBoost = 1.55;
+});
+
+card.addEventListener("pointerleave",()=>{
+state.activityBoost = 1;
+});
+});
+
+handleResize();
+animate(performance.now());
+
+return {
+triggerProjectPulse,
+setActivityBoost(value){
+state.activityBoost = value;
+}
+};
+}
+
+
+/* =====================================================
    FPGA SIGNAL GENERATOR
    RANDOM HARDWARE TRACE MOVEMENT
 ===================================================== */
@@ -3022,7 +3614,8 @@ spawnBurst();
 
 
 
-startSignals();
+const siliconDieField =
+createSiliconDieField();
 
 
 
@@ -3232,6 +3825,18 @@ projectsButton.addEventListener(
 projectsButton.classList.add(
 "project-button-active"
 );
+
+
+if(
+siliconDieField &&
+typeof siliconDieField.triggerProjectPulse === "function"
+){
+
+
+siliconDieField.triggerProjectPulse();
+
+
+}
 
 
 projectCards.forEach(card=>{
