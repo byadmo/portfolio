@@ -2852,6 +2852,15 @@ const ctx = canvas.getContext("2d",{ alpha:true });
 if(!ctx)
 return null;
 
+const staticCanvas =
+document.createElement("canvas");
+
+const staticCtx =
+staticCanvas.getContext("2d",{ alpha:true });
+
+const supportsPath2D =
+typeof Path2D !== "undefined";
+
 const state = {
 width:0,
 height:0,
@@ -2870,11 +2879,15 @@ nextRipple:0,
 nextBus:0,
 ripple:null,
 lastTime:0,
+lastRenderTime:0,
 frame:null
 };
 
 const animateSiliconBackground =
 true;
+
+const backgroundFrameMs =
+1000 / 45;
 
 const clamp = (value,min,max)=>Math.max(min,Math.min(max,value));
 const rand = (min,max)=>min + Math.random() * (max - min);
@@ -2886,6 +2899,30 @@ const segmentLength = (a,b)=>Math.hypot(b.x - a.x,b.y - a.y);
 function buildTrace(points,options = {}){
 const segments = [];
 let length = 0;
+let minX = Infinity;
+let minY = Infinity;
+let maxX = -Infinity;
+let maxY = -Infinity;
+const path =
+supportsPath2D
+? new Path2D()
+: null;
+
+points.forEach((point,index)=>{
+minX = Math.min(minX,point.x);
+minY = Math.min(minY,point.y);
+maxX = Math.max(maxX,point.x);
+maxY = Math.max(maxY,point.y);
+
+if(path){
+if(index === 0){
+path.moveTo(point.x,point.y);
+}
+else {
+path.lineTo(point.x,point.y);
+}
+}
+});
 
 for(let i = 1; i < points.length; i++){
 const start = points[i - 1];
@@ -2907,6 +2944,14 @@ return {
 points,
 segments,
 length,
+path,
+midpoint:points[Math.floor(points.length / 2)],
+bounds:{
+minX,
+minY,
+maxX,
+maxY
+},
 alpha:options.alpha || rand(.018,.04),
 bus:Boolean(options.bus),
 temporary:Boolean(options.temporary),
@@ -2942,6 +2987,19 @@ angle:0
 }
 
 function distanceToTrace(trace,x,y){
+const bounds = trace.bounds;
+
+if(
+bounds &&
+(
+x < bounds.minX - 140 ||
+x > bounds.maxX + 140 ||
+y < bounds.minY - 140 ||
+y > bounds.maxY + 140
+)
+)
+return Infinity;
+
 let best = Infinity;
 
 for(const segment of trace.segments){
@@ -2993,12 +3051,18 @@ return buildTrace(points);
 function rebuildField(){
 state.width = window.innerWidth;
 state.height = window.innerHeight;
-state.dpr = Math.min(window.devicePixelRatio || 1,2);
+state.dpr = Math.min(window.devicePixelRatio || 1,1.5);
 canvas.width = Math.floor(state.width * state.dpr);
 canvas.height = Math.floor(state.height * state.dpr);
+staticCanvas.width = canvas.width;
+staticCanvas.height = canvas.height;
 canvas.style.width = `${state.width}px`;
 canvas.style.height = `${state.height}px`;
 ctx.setTransform(state.dpr,0,0,state.dpr,0,0);
+
+if(staticCtx){
+staticCtx.setTransform(state.dpr,0,0,state.dpr,0,0);
+}
 
 const mobile = state.width < 700;
 const traceCount = mobile ? 38 : 156;
@@ -3062,7 +3126,19 @@ seed:Math.floor(Math.random() * 120)
 
 state.floaters = Array.from({ length:mobile ? 12 : 34 },()=>createFloatingElement(mobile));
 
+renderStaticField();
 drawField(performance.now());
+}
+
+function renderStaticField(){
+if(!staticCtx)
+return;
+
+staticCtx.clearRect(0,0,state.width,state.height);
+
+state.traces.forEach(trace=>{
+drawTraceOn(staticCtx,trace,trace.alpha);
+});
 }
 
 function createFloatingElement(mobile){
@@ -3083,20 +3159,30 @@ alpha:mobile ? rand(.09,.18) : rand(.13,.3)
 };
 }
 
-function drawTrace(trace,alpha){
+function drawTraceOn(targetCtx,trace,alpha){
 if(trace.segments.length === 0)
 return;
 
-ctx.beginPath();
-ctx.moveTo(trace.points[0].x,trace.points[0].y);
+targetCtx.lineWidth = trace.bus ? 1.25 : 1;
+targetCtx.strokeStyle = `rgba(215,245,255,${alpha})`;
 
-for(let i = 1; i < trace.points.length; i++){
-ctx.lineTo(trace.points[i].x,trace.points[i].y);
+if(trace.path){
+targetCtx.stroke(trace.path);
+return;
 }
 
-ctx.lineWidth = trace.bus ? 1.25 : 1;
-ctx.strokeStyle = `rgba(215,245,255,${alpha})`;
-ctx.stroke();
+targetCtx.beginPath();
+targetCtx.moveTo(trace.points[0].x,trace.points[0].y);
+
+for(let i = 1; i < trace.points.length; i++){
+targetCtx.lineTo(trace.points[i].x,trace.points[i].y);
+}
+
+targetCtx.stroke();
+}
+
+function drawTrace(trace,alpha){
+drawTraceOn(ctx,trace,alpha);
 }
 
 function drawClusters(time){
@@ -3106,7 +3192,7 @@ const width = cluster.cols * cluster.cell;
 const height = cluster.rows * cluster.cell;
 
 for(const pulse of state.pulses){
-const point = pointOnTrace(pulse.trace,pulse.distance);
+const point = pulse.head;
 
 if(
 point.x > cluster.x - 24 &&
@@ -3139,11 +3225,13 @@ state.nodes.forEach(node=>{
 let active = 0;
 
 for(const pulse of state.pulses){
-const point = pointOnTrace(pulse.trace,pulse.distance);
-const distance = Math.hypot(point.x - node.x,point.y - node.y);
+const point = pulse.head;
+const dx = point.x - node.x;
+const dy = point.y - node.y;
+const distanceSq = dx * dx + dy * dy;
 
-if(distance < 18){
-active = Math.max(active,1 - distance / 18);
+if(distanceSq < 324){
+active = Math.max(active,1 - Math.sqrt(distanceSq) / 18);
 }
 }
 
@@ -3160,8 +3248,8 @@ ctx.shadowBlur = 0;
 }
 
 function drawPulse(pulse){
-const point = pointOnTrace(pulse.trace,pulse.distance);
-const tail = pointOnTrace(pulse.trace,Math.max(0,pulse.distance - 34));
+const point = pulse.head;
+const tail = pulse.tail;
 ctx.beginPath();
 ctx.moveTo(tail.x,tail.y);
 ctx.lineTo(point.x,point.y);
@@ -3287,6 +3375,10 @@ ctx.clearRect(0,0,state.width,state.height);
 drawClusters(time);
 drawFloaters(time);
 
+if(staticCtx){
+ctx.drawImage(staticCanvas,0,0,state.width,state.height);
+}
+
 state.traces.forEach(trace=>{
 let alpha = trace.alpha;
 
@@ -3300,7 +3392,7 @@ alpha += .004;
 if(state.ripple){
 const progress = (time - state.ripple.started) / state.ripple.duration;
 const waveX = progress * (state.width + 260) - 130;
-const midpoint = trace.points[Math.floor(trace.points.length / 2)];
+const midpoint = trace.midpoint;
 const distance = Math.abs(midpoint.x - waveX);
 
 if(distance < 80){
@@ -3312,7 +3404,15 @@ if(trace.activeUntil && trace.activeUntil > time){
 alpha += .13;
 }
 
+const highlightAlpha =
+alpha - trace.alpha;
+
+if(!staticCtx){
 drawTrace(trace,alpha);
+}
+else if(highlightAlpha > .001){
+drawTrace(trace,highlightAlpha);
+}
 });
 
 if(state.projectRoute){
@@ -3359,6 +3459,8 @@ accent:Boolean(options.accent),
 pauseUntil:0,
 branchAt:rand(trace.length * .3,trace.length * .82),
 branched:false,
+head:pointOnTrace(trace,options.start || 0),
+tail:pointOnTrace(trace,Math.max(0,(options.start || 0) - 34)),
 arrived:options.arrived || null
 });
 }
@@ -3410,12 +3512,14 @@ return true;
 
 const variation = .82 + Math.sin(time * .002 + pulse.trace.seed) * .24;
 pulse.distance += pulse.speed * variation * state.activityBoost * delta;
+pulse.head = pointOnTrace(pulse.trace,pulse.distance);
+pulse.tail = pointOnTrace(pulse.trace,Math.max(0,pulse.distance - 34));
 
 if(!pulse.branched && pulse.distance > pulse.branchAt){
 pulse.branched = true;
 
 if(Math.random() < .1){
-const branch = findNearbyTrace(pointOnTrace(pulse.trace,pulse.distance));
+const branch = findNearbyTrace(pulse.head);
 
 if(branch && branch !== pulse.trace){
 addPulse(branch,{
@@ -3439,8 +3543,26 @@ return true;
 }
 
 function animate(time){
+if(
+state.lastRenderTime &&
+time - state.lastRenderTime < backgroundFrameMs
+){
+
+
+state.frame =
+requestAnimationFrame(animate);
+
+
+return;
+
+
+}
+
+
 const delta = state.lastTime ? Math.min((time - state.lastTime) / 1000,.04) : 0;
 state.lastTime = time;
+state.lastRenderTime =
+time;
 
 if(time > state.nextPulse)
 spawnPulse(time);

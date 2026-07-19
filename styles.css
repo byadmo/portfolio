@@ -182,7 +182,7 @@ body.cursor-active .cursor-light {
   overflow: hidden;
   opacity: 0;
   height: 100%;
-  backdrop-filter: blur(14px) saturate(1.14);
+  backdrop-filter: blur(8px) saturate(1.1);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .035), 0 18px 70px rgba(0, 0, 0, .5);
   transform-origin: top center;
   transform: perspective(1200px)
