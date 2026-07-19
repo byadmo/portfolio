@@ -156,9 +156,31 @@
     <div class="project-update">
       <span>UPDATE // JULY 19, 2026</span>
       <p>
-        I've been actively working on this CPU core over the last couple of months,
-        focusing on tightening the pipeline control, hazard and forwarding behavior,
-        and waveform-driven verification before moving deeper into FPGA validation.
+        I'm excited to share a major milestone in my summer processor project: I have
+        successfully designed and verified the Arithmetic Logic Unit for my 32-bit
+        RISC-V CPU core. What started as a datapath concept is now a functional,
+        tested RTL module handling arithmetic, logical, comparison, and shift operations.
+      </p>
+
+      <p>
+        The biggest shift in this phase was moving beyond manual waveform inspection
+        and building automated, self-checking SystemVerilog testbenches. Seeing the
+        simulation end with "ALL ALU TESTS PASSED!" after exercising edge cases,
+        signed and unsigned behavior, zero detection, and operation decoding was a
+        huge step forward in how I verify hardware.
+      </p>
+
+      <ul class="update-takeaways">
+        <li>Verification: self-checking testbenches make the design loop faster and more reliable.</li>
+        <li>Automation: using iverilog and vvp streamlined repeatable ALU regression testing.</li>
+        <li>Precision: signed/unsigned comparisons, shifts, overflow thinking, and the zero flag all matter at the ISA level.</li>
+      </ul>
+
+      <p>
+        Theoretically, the ALU is where the instruction set starts becoming real hardware:
+        control signals, operands, flags, and datapath timing all meet in one block. Next,
+        I will integrate it into the execution stage, connect it with pipeline control,
+        and keep pushing toward finishing the full processor.
       </p>
     </div>
 
